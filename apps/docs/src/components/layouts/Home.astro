@@ -1,0 +1,38 @@
+---
+import "@styles/global.css";
+import SeoHead from "./SeoHead.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+  noindex?: boolean;
+  className?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  canonicalUrl,
+  noindex,
+  className = "",
+} = Astro.props;
+---
+
+<html lang="pt-BR">
+  <head>
+    <SeoHead
+      title={title}
+      description={description}
+      image={image}
+      canonicalUrl={canonicalUrl}
+      noindex={noindex}
+    />
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>
