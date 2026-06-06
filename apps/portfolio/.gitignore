@@ -23,3 +23,8 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# Vault CMS / Obsidian
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.ref/
