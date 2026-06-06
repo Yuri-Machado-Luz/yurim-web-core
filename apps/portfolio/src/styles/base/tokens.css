@@ -1,0 +1,237 @@
+/* ── DESIGN TOKENS ──────────────────────────────────────────────────────────
+   Merged from: base/colors.css + base/tokens.css
+   Removed: shadcn alias vars, @theme inline block, shadcn @layer base reset
+   ───────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  --color-*: initial;
+
+  /* Background / Surface */
+  --color-bg: #050404;
+  --color-surface: #110f0f;
+  --color-surface-strong: #1b1919;
+  --color-border: rgba(255, 255, 255, 0.12);
+
+  /* Text */
+  --color-text: #f2f4f3;
+  --color-muted: #b8b2b2;
+
+  /* Primary — Red */
+  --color-primary: #e82828;
+  --color-primary-light: #f64646;
+  --color-primary-dark: #ba1313;
+  --color-primary-deep: #a40c0c;
+
+  /* Accent — Red alias */
+  --color-accent: #e82828;
+  --color-accent-light: #f66565;
+  --color-accent-dark: #a40c0c;
+
+  /* Shock — Hot Pink */
+  --color-shock: #e82771;
+  --color-shock-light: #f54689;
+
+  /* Tones — callouts */
+  --color-tone-note: #7dffd8;
+  --color-tone-tip: #1bd19a;
+  --color-tone-caution: #e8a827;
+  --color-tone-danger: #e82828;
+  --color-tone-success: #3ae827;
+  --color-tone-info: #1bd19a;
+
+  /* Primary scale */
+  --color-primary-50: rgba(255, 125, 125, 1);
+  --color-primary-100: rgba(251, 101, 101, 1);
+  --color-primary-200: rgba(246, 70, 70, 1);
+  --color-primary-300: rgba(232, 40, 40, 1);
+  --color-primary-400: rgba(210, 28, 28, 1);
+  --color-primary-500: rgba(186, 19, 19, 1);
+  --color-primary-600: rgba(164, 12, 12, 1);
+  --color-primary-700: rgba(148, 9, 9, 1);
+  --color-primary-800: rgba(118, 3, 3, 1);
+  --color-primary-900: rgba(93, 0, 0, 1);
+  --color-primary-950: rgba(56, 0, 0, 1);
+
+  /* Shadow scale */
+  --color-shadow-50: rgba(205, 183, 183, 1);
+  --color-shadow-100: rgba(201, 161, 161, 1);
+  --color-shadow-200: rgba(199, 144, 144, 1);
+  --color-shadow-300: rgba(194, 119, 119, 1);
+  --color-shadow-400: rgba(162, 84, 84, 1);
+  --color-shadow-500: rgba(84, 28, 28, 1);
+  --color-shadow-600: rgba(59, 16, 16, 1);
+  --color-shadow-700: rgba(42, 9, 9, 1);
+  --color-shadow-800: rgba(27, 5, 5, 1);
+  --color-shadow-900: rgba(18, 2, 2, 1);
+  --color-shadow-950: rgba(8, 0, 0, 1);
+
+  /* Neutral scale */
+  --color-neutral-50: rgba(197, 191, 191, 1);
+  --color-neutral-100: rgba(184, 178, 178, 1);
+  --color-neutral-200: rgba(176, 169, 169, 1);
+  --color-neutral-300: rgba(161, 153, 153, 1);
+  --color-neutral-400: rgba(127, 118, 118, 1);
+  --color-neutral-500: rgba(58, 53, 53, 1);
+  --color-neutral-600: rgba(39, 36, 36, 1);
+  --color-neutral-700: rgba(27, 25, 25, 1);
+  --color-neutral-800: rgba(17, 15, 15, 1);
+  --color-neutral-900: rgba(10, 10, 10, 1);
+  --color-neutral-950: rgba(5, 4, 4, 1);
+
+  /* Shock scale */
+  --color-shock-50: rgba(255, 125, 175, 1);
+  --color-shock-100: rgba(251, 101, 159, 1);
+  --color-shock-200: rgba(245, 70, 137, 1);
+  --color-shock-300: rgba(232, 39, 113, 1);
+  --color-shock-400: rgba(210, 28, 97, 1);
+  --color-shock-500: rgba(187, 20, 84, 1);
+  --color-shock-600: rgba(163, 12, 71, 1);
+  --color-shock-700: rgba(148, 9, 62, 1);
+  --color-shock-800: rgba(118, 3, 46, 1);
+  --color-shock-900: rgba(93, 0, 35, 1);
+  --color-shock-950: rgba(55, 0, 21, 1);
+
+  /* Cyan scale */
+  --color-cyan-50: rgba(125, 255, 216, 1);
+  --color-cyan-100: rgba(101, 251, 206, 1);
+  --color-cyan-200: rgba(70, 245, 193, 1);
+  --color-cyan-300: rgba(39, 232, 174, 1);
+  --color-cyan-400: rgba(27, 209, 154, 1);
+  --color-cyan-500: rgba(19, 187, 137, 1);
+  --color-cyan-600: rgba(13, 164, 118, 1);
+  --color-cyan-700: rgba(9, 148, 106, 1);
+  --color-cyan-800: rgba(3, 118, 84, 1);
+  --color-cyan-900: rgba(0, 93, 65, 1);
+  --color-cyan-950: rgba(0, 55, 39, 1);
+
+  /* Green scale */
+  --color-green-50: rgba(138, 255, 125, 1);
+  --color-green-100: rgba(116, 251, 101, 1);
+  --color-green-200: rgba(88, 245, 69, 1);
+  --color-green-300: rgba(58, 232, 39, 1);
+  --color-green-400: rgba(46, 210, 28, 1);
+  --color-green-500: rgba(37, 187, 20, 1);
+  --color-green-600: rgba(28, 164, 12, 1);
+  --color-green-700: rgba(23, 149, 9, 1);
+  --color-green-800: rgba(14, 118, 3, 1);
+  --color-green-900: rgba(9, 93, 0, 1);
+  --color-green-950: rgba(5, 55, 0, 1);
+
+  /* Transition durations */
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --duration-enter: 500ms;
+  --duration-leave: 350ms;
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --navbar-height: 6rem;
+  --drawer-top: 5.5rem;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Z-index */
+  --z-base: 1;
+  --z-navbar: 50;
+
+  /* Opacity */
+  --opacity-faint: 0.2;
+
+  /* Breakpoints */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-base: 56rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+
+  /* Fonts */
+  --font-sans:
+    "Saira", sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-body:
+    "Saira", sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading:
+    "Cinzel", serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
+  --font-display:
+    "Cinzel", serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
+  --font-mono:
+    "Cutive Mono", monospace, "SF Mono", Consolas, "Liberation Mono", Menlo,
+    Courier, monospace;
+  --font-serif:
+    "Cutive", serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Glow colors */
+    --primary-glow: rgba(232, 40, 40, 0.18);
+    --accent-glow: rgba(27, 209, 154, 0.15);
+
+    /* Callout tone aliases */
+    --tone-note: var(--color-tone-note);
+    --tone-tip: var(--color-tone-tip);
+    --tone-caution: var(--color-tone-caution);
+    --tone-danger: var(--color-tone-danger);
+    --tone-success: var(--color-tone-success);
+    --tone-info: var(--color-tone-info);
+
+    /* Soft tone variants for callout backgrounds */
+    --tone-note-soft: color-mix(
+      in srgb,
+      var(--color-tone-note) 10%,
+      var(--color-surface-strong)
+    );
+    --tone-tip-soft: color-mix(
+      in srgb,
+      var(--color-tone-tip) 10%,
+      var(--color-surface-strong)
+    );
+    --tone-caution-soft: color-mix(
+      in srgb,
+      var(--color-tone-caution) 10%,
+      var(--color-surface-strong)
+    );
+    --tone-danger-soft: color-mix(
+      in srgb,
+      var(--color-tone-danger) 10%,
+      var(--color-surface-strong)
+    );
+    --tone-success-soft: color-mix(
+      in srgb,
+      var(--color-tone-success) 10%,
+      var(--color-surface-strong)
+    );
+    --tone-info-soft: color-mix(
+      in srgb,
+      var(--color-tone-info) 10%,
+      var(--color-surface-strong)
+    );
+
+    /* Status feedback */
+    --color-success: var(--color-tone-success);
+    --color-success-bg: color-mix(
+      in srgb,
+      var(--color-tone-success) 12%,
+      var(--color-surface)
+    );
+    --color-error: var(--color-primary);
+    --color-error-bg: color-mix(
+      in srgb,
+      var(--color-primary) 12%,
+      var(--color-surface)
+    );
+
+    /* Layout */
+    --prose-width: 72ch;
+    --container-max: 1280px;
+  }
+}
