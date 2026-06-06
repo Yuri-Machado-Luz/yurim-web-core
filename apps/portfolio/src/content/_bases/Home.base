@@ -1,0 +1,163 @@
+defaultView: Notas
+filters:
+  and:
+    - file.ext == "md"
+formulas:
+  Slug: |-
+    if(file.folder == "posts", "/posts/" + file.name.replace(".md", ""), 
+      if(file.folder == "pages", "/" + file.name.replace(".md", ""), 
+        if(file.folder == "special", if(file.name.replace(".md", "") == "home", "/", "/" + file.name.replace(".md", "")), 
+          if(file.folder == "projects", "/projects/" + file.name.replace(".md", ""), 
+            if(file.folder == "docs", "/docs/" + file.name.replace(".md", ""), 
+              "/" + file.folder)))))
+  Content Folder: |-
+    if(file.name == "index",
+      if(file.folder != "",
+        if(file.folder.replace("/" + file.folder.replace(/.*\//, ""), "") != "",
+          file.folder.replace("/" + file.folder.replace(/.*\//, ""), ""),
+          file.folder
+        ),
+        "root"
+      ),
+      if(file.folder != "",
+        file.folder,
+        "root"
+      )
+    )
+properties:
+  file.fullname:
+    displayName: Full File Name
+  file.name:
+    displayName: File Name
+  formula.Slug:
+    displayName: Path
+  note.date:
+    displayName: Date
+  note.description:
+    displayName: Description
+  note.draft:
+    displayName: Draft
+  note.pubDate:
+    displayName: Date
+  note.tags:
+    displayName: Tags
+  note.title:
+    displayName: Title
+  note.updatedAt:
+    displayName: UpdatedAt
+views:
+  - type: cms
+    name: Notas
+    filters:
+      and:
+        - file.folder.endsWith("notes")
+    sort:
+      - property: updatedAt
+        direction: DESC
+    imageFormat: cover
+    showDate: true
+    customizeNewButton: true
+    newNoteLocation: plub/notes
+    fallbackToEmbeds: if-empty
+    propertyDisplay1: file.fullname
+    showTextPreview: true
+    propertyLabels: above
+    titleProperty: note.title
+    dateProperty: note.updatedAt
+    descriptionProperty: note.description
+    showTags: false
+    showDraftStatus: true
+    draftStatusProperty: note.draft
+    draftStatusReverse: true
+    titlePropertyHasNested: false
+  - type: cms
+    name: Automação
+    filters:
+      and:
+        - file.folder.endsWith("automation")
+    sort:
+      - property: updatedAt
+        direction: DESC
+    imageFormat: cover
+    showDate: true
+    customizeNewButton: true
+    newNoteLocation: automation
+    fallbackToEmbeds: if-empty
+    propertyDisplay1: file.fullname
+    showTextPreview: true
+    propertyLabels: above
+    titleProperty: note.title
+    dateProperty: note.updatedAt
+    descriptionProperty: note.description
+    showTags: true
+    tagsProperty: note.tags
+    showDraftStatus: true
+    draftStatusProperty: note.draft
+    draftStatusReverse: true
+  - type: cms
+    name: Portfolio
+    filters:
+      and:
+        - file.folder.endsWith("portfolio")
+    sort:
+      - property: updatedAt
+        direction: DESC
+    imageFormat: cover
+    showDate: true
+    customizeNewButton: true
+    newNoteLocation: portfolio
+    fallbackToEmbeds: if-empty
+    propertyDisplay1: file.fullname
+    showTextPreview: true
+    propertyLabels: above
+    titleProperty: note.title
+    dateProperty: note.updatedAt
+    descriptionProperty: note.description
+    showTags: false
+    showDraftStatus: true
+    draftStatusProperty: note.draft
+    draftStatusReverse: true
+  - type: cms
+    name: Sandbox
+    filters:
+      and:
+        - file.folder.endsWith("sandbox")
+    sort:
+      - property: updatedAt
+        direction: DESC
+    imageFormat: cover
+    showDate: true
+    customizeNewButton: true
+    newNoteLocation: sandbox
+    fallbackToEmbeds: if-empty
+    propertyDisplay1: file.fullname
+    showTextPreview: true
+    propertyLabels: above
+    titleProperty: note.title
+    dateProperty: note.updatedAt
+    descriptionProperty: note.description
+    showTags: false
+    showDraftStatus: true
+    draftStatusProperty: note.draft
+    draftStatusReverse: true
+  - type: cms
+    name: Todos
+    sort:
+      - property: updatedAt
+        direction: DESC
+    imageFormat: none
+    showDate: true
+    customizeNewButton: true
+    newNoteLocation: plub/notes
+    fallbackToEmbeds: if-empty
+    propertyDisplay1: file.fullname
+    showTextPreview: true
+    propertyLabels: above
+    titleProperty: note.title
+    dateProperty: note.updatedAt
+    descriptionProperty: note.description
+    showTags: false
+    showDraftStatus: true
+    draftStatusProperty: note.draft
+    draftStatusReverse: true
+    titlePropertyHasNested: false
