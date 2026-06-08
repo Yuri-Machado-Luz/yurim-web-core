@@ -1,8 +1,9 @@
-import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
+import { defineCollection } from "astro:content";
 
 const notes = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs/notes' }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/docs/notes" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -13,12 +14,15 @@ const notes = defineCollection({
 });
 
 const portfolio = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs/portfolio' }),
+  loader: glob({
+    pattern: "**/index.{md,mdx}",
+    base: "./src/content/docs/portfolio",
+  }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
     draft: z.boolean().default(false),
-    status: z.enum(['ativo', 'dev', 'arquivado', 'beta']).default('dev'),
+    status: z.enum(["ativo", "dev", "arquivado", "beta"]).default("dev"),
     featured: z.boolean().default(false),
     order: z.number().optional(),
     github: z.string().url().optional(),
@@ -29,24 +33,30 @@ const portfolio = defineCollection({
 });
 
 const sandbox = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs/sandbox' }),
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/docs/sandbox",
+  }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
     draft: z.boolean().default(false),
-    status: z.enum(['ativo', 'dev', 'arquivado', 'beta']).default('beta'),
+    status: z.enum(["ativo", "dev", "arquivado", "beta"]).default("beta"),
     order: z.number().optional(),
     tags: z.array(z.string()).default([]),
   }),
 });
 
 const automation = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs/automation' }),
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/docs/automation",
+  }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
     draft: z.boolean().default(false),
-    status: z.enum(['ativo', 'dev', 'arquivado', 'beta']).default('beta'),
+    status: z.enum(["ativo", "dev", "arquivado", "beta"]).default("beta"),
     order: z.number().optional(),
     github: z.string().url().optional(),
     tags: z.array(z.string()).default([]),

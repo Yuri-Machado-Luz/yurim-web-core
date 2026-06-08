@@ -2,8 +2,8 @@
 title: Introdução ao site
 description: Como organizei a base do projeto, os layouts e o sistema visual.
 createdAt: 2024-08-01
-updatedAt: 2026-05-02
-draft: true
+updatedAt: 2026-06-07
+draft: false
 featured: false
 ---
 

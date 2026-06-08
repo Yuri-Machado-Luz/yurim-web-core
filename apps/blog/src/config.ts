@@ -1,11 +1,12 @@
+import { LogoText } from "@assets";
 import type { NavLink } from "./types";
 
-export const config = {
-  site: {
+export const CONFIG = {
+  meta: {
     author: "Yuri Machado Luz",
-    titleSuffix: " — Yuri Machado Luz",
+    suffix: " — Yuri Machado Luz",
     description:
-      "Full-Stack Developer focado em arquitetura, automação e design de sistemas.",
+      "Desenvolvedor full-stack focado em arquitetura, automação e design de sistemas.",
     locale: "pt-BR",
     social: {
       github: "https://github.com/Yuri-Machado-Luz",
@@ -17,15 +18,16 @@ export const config = {
   nav: {
     logo: {
       href: "/",
-      src: "/src/assets/text-logo-light.svg",
+      src: LogoText.src,
       alt: "Logotipo com link para página inicial",
     },
     pages: [
-      { label: "Projetos", href: "/projects" },
-      { label: "Publicações", href: "/content" },
+      { label: "Projetos", href: "/projetos" },
+      { label: "Publicações", href: "/docs" },
       { label: "Sobre", href: "/sobre" },
+      { label: "Contato", href: "/sobre#contato", cta: true },
     ],
   } satisfies NavLink,
 };
 
-export default config;
+export default CONFIG;
