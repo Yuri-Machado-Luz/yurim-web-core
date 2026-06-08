@@ -2,11 +2,11 @@
 title: Playground React
 description: Vitrine de experimentos com React 19, Vite e Tailwind CSS v4. Inclui internacionalização (PT-BR / EN-US), design tokens modulares e componentes reutilizáveis.
 createdAt: 2024-02-01
-updatedAt: 2026-06-06
+updatedAt: 2026-06-07
 status: beta
 github: https://github.com/Yuri-Machado-Luz/site-playground
 featured: false
-draft: true
+draft: false
 order: 4
 ---
 

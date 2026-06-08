@@ -2,8 +2,8 @@
 title: Sistema visual do projeto
 description: Notas sobre tokens, componentes e a direção estética adotada no site.
 createdAt: 2024-08-15
-updatedAt: 2026-06-06
-draft: true
+updatedAt: 2026-06-07
+draft: false
 featured: false
 ---
 
