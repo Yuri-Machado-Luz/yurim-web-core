@@ -1,0 +1,296 @@
+---
+import Sidebar from "../components/docs/Sidebar.astro";
+import TOC from "../components/docs/TOC.astro";
+import type { SidebarEntry } from "../types";
+import Base from "./Base.astro";
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  sidebar?: SidebarEntry[];
+  headings?: Heading[];
+}
+
+const { title, description, sidebar, headings = [] } = Astro.props;
+const hasSidebar = sidebar && sidebar.length > 0;
+const hasToc =
+  headings.filter((h) => h.depth === 2 || h.depth === 3).length > 0;
+---
+
+<Base title={title} description={description} hideNavbar>
+  <div
+    class="docs-layout"
+    data-has-sidebar={hasSidebar ? "true" : "false"}
+    data-has-toc={hasToc ? "true" : "false"}
+  >
+    {
+      hasSidebar && (
+        <aside class="docs-sidebar" transition:name="docs-sidebar">
+          <Sidebar entries={sidebar} />
+        </aside>
+      )
+    }
+    {
+      hasSidebar && (
+        <button class="sidebar-toggle" aria-label="Colapsar navegação">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </button>
+      )
+    }
+
+    {
+      hasSidebar && (
+        <button class="sidebar-mobile-toggle" aria-label="Abrir navegação">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <line x1="4" y1="8" x2="20" y2="8" />
+            <line x1="4" y1="16" x2="20" y2="16" />
+          </svg>
+          Navegação
+        </button>
+      )
+    }
+
+    <div class="sidebar-backdrop"></div>
+
+    <article class="docs-content prose min-w-0 text-justify">
+      <h1 class="text-4xl">{title}</h1>
+      {description && <p class="lead w-3/5 italic">{description}</p>}
+      <slot />
+    </article>
+
+    {
+      hasToc && (
+        <aside class="docs-toc">
+          <TOC headings={headings} />
+        </aside>
+      )
+    }
+  </div>
+</Base>
+
+<style>
+  /* Grid layout driven by data attributes */
+  .docs-layout {
+    display: grid;
+    min-height: 100svh;
+    align-items: start;
+    transition: grid-template-columns 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .docs-layout[data-has-sidebar="true"][data-has-toc="true"] {
+    grid-template-columns: 16rem 1fr 14rem;
+  }
+  .docs-layout[data-has-sidebar="true"][data-has-toc="false"] {
+    grid-template-columns: 16rem 1fr;
+  }
+  .docs-layout[data-has-sidebar="false"][data-has-toc="true"] {
+    grid-template-columns: 1fr 14rem;
+  }
+  .docs-layout[data-has-sidebar="false"][data-has-toc="false"] {
+    grid-template-columns: 1fr;
+  }
+
+  /* Collapsed sidebar */
+  .docs-layout.sidebar-collapsed[data-has-toc="true"] {
+    grid-template-columns: 0 1fr 14rem;
+  }
+  .docs-layout.sidebar-collapsed[data-has-toc="false"] {
+    grid-template-columns: 0 1fr;
+  }
+  .docs-layout.sidebar-collapsed .docs-sidebar {
+    border-right: none;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .docs-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow-y: auto;
+    border-right: 1px solid var(--color-border);
+    transition:
+      opacity 0.25s ease,
+      padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .docs-layout.sidebar-collapsed .docs-sidebar {
+    opacity: 0;
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    top: 6rem;
+    left: 15.5rem;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 36px;
+    border-radius: 0 6px 6px 0;
+    border: 1px solid var(--color-border);
+    border-left: none;
+    background: var(--color-surface);
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: color 150ms ease, background 150ms ease, left 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s ease;
+  }
+  .sidebar-toggle:hover {
+    color: var(--color-text);
+    background: rgb(255 255 255 / 0.08);
+  }
+  .docs-layout.sidebar-collapsed .sidebar-toggle {
+    left: 0;
+    transform: rotate(180deg);
+  }
+
+  .sidebar-mobile-toggle {
+    display: none;
+  }
+
+  .sidebar-backdrop {
+    display: none;
+  }
+
+  .docs-content {
+    padding: 3rem;
+    max-width: none;
+  }
+
+  .docs-toc {
+    position: sticky;
+    top: 2rem;
+    padding: 0 1.5rem 3rem 0;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .docs-layout[data-has-sidebar],
+    .docs-layout[data-has-sidebar="true"][data-has-toc="true"],
+    .docs-layout[data-has-sidebar="true"][data-has-toc="false"],
+    .docs-layout.sidebar-collapsed[data-has-toc="true"],
+    .docs-layout.sidebar-collapsed[data-has-toc="false"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    .docs-toc {
+      display: none;
+    }
+
+    .docs-sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100dvh;
+      width: 16rem;
+      z-index: 50;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      border-right: 1px solid var(--color-border);
+      overflow: hidden;
+      padding: 0;
+    }
+    .docs-sidebar.is-open {
+      transform: translateX(0);
+      overflow-y: auto;
+      padding: initial;
+    }
+
+    .sidebar-toggle {
+      display: none;
+    }
+
+    .sidebar-mobile-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1.5rem 0 0 1.25rem;
+      padding: 0.375rem 0.875rem;
+      border-radius: 6px;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-muted);
+      font-size: 0.8125rem;
+      cursor: pointer;
+    }
+
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 49;
+      background: rgb(0 0 0 / 0.5);
+    }
+    .sidebar-backdrop.is-open {
+      display: block;
+      background: rgb(0 0 0 / 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .docs-content {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  function initDocs() {
+    const layout = document.querySelector<HTMLElement>(".docs-layout");
+    const sidebar = document.querySelector<HTMLElement>(".docs-sidebar");
+    const toggle = document.querySelector<HTMLElement>(".sidebar-toggle");
+    const mobileToggle =
+      document.querySelector<HTMLElement>(".sidebar-mobile-toggle");
+    const backdrop = document.querySelector<HTMLElement>(".sidebar-backdrop");
+
+    if (layout && toggle) {
+      if (localStorage.getItem("docs-sidebar-collapsed") === "true") {
+        layout.classList.add("sidebar-collapsed");
+      }
+      toggle.addEventListener("click", () => {
+        const collapsed = layout.classList.toggle("sidebar-collapsed");
+        localStorage.setItem("docs-sidebar-collapsed", String(collapsed));
+      });
+    }
+
+    if (sidebar && mobileToggle && backdrop) {
+      mobileToggle.addEventListener("click", () => {
+        sidebar.classList.add("is-open");
+        backdrop.classList.add("is-open");
+      });
+      backdrop.addEventListener("click", () => {
+        sidebar.classList.remove("is-open");
+        backdrop.classList.remove("is-open");
+      });
+    }
+  }
+
+  document.addEventListener("astro:page-load", initDocs);
+</script>
