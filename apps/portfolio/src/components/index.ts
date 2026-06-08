@@ -1,3 +1,3 @@
-import Button from "./ui/Button";
-
-export { Button };
+export * from "./ui";
+export * from "./pages";
+export * from "./sections";
