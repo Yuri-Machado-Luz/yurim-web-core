@@ -1,35 +1,22 @@
 ---
-import Button from "@components/ui/Button";
-import Home from "@layouts/Home.astro";
+import { Base } from "@layouts";
+import { getFeaturedProjects, getRecentNotes } from "@lib/collections";
+import { HomePage } from "@pages/HomePage";
+
+const projects = await getFeaturedProjects();
+const serializedProjects = projects.map((e) => ({ id: e.id, data: e.data }));
+
+const recentNotes = await getRecentNotes(4);
+const serializedNotes = recentNotes.map((e) => ({
+  id: e.id,
+  data: {
+    title: e.data.title,
+    description: e.data.description,
+    pubDate: e.data.pubDate ?? null,
+  },
+}));
 ---
 
-<Home>
-  <nav
-    class="fixed top-0 left-0 z-50 flex w-full items-center justify-between border-b border-b-accent-light/50 bg-neutral-600/60 px-24 py-8 text-lg font-bold backdrop-blur-md"
-  >
-    <a href="/" class="font-serif text-primary">YM</a>
-    <ul class="flex gap-4">
-      <li><a href="/">Sobre</a></li>
-      <li><a href="/">Projetos</a></li>
-      <li><a href="/content">Docs</a></li>
-      <li><a href="/">Contato</a></li>
-    </ul>
-  </nav>
-  <div class="pt-24"></div>
-
-  <header class="container flex flex-col items-center gap-4 py-42 text-center">
-    <p class="text-lg text-shadow-300 uppercase">Desenvolvedor Full Stack</p>
-    <h1 class="text-8xl font-bold">Yuri Machado</h1>
-    <nav class="flex gap-5">
-      <Button client:load variant="primary" children="Saiba Mais" />
-      <Button
-        client:load
-        variant="muted"
-        href="/content"
-        children="Documentação"
-      />
-    </nav>
-  </header>
-  <main></main>
-  <footer></footer>
-</Home>
+<Base>
+  <HomePage client:load projects={serializedProjects} recentNotes={serializedNotes} />
+</Base>

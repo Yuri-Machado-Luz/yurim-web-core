@@ -1,0 +1,233 @@
+---
+import { Content } from "@layouts";
+import { getAllDocs } from "@lib/collections";
+import { buildDocsSidebar } from "@lib/sidebar";
+
+const currentPath = Astro.url.pathname;
+const sidebar = await buildDocsSidebar(currentPath);
+const { notes, portfolio, sandbox, automation } = await getAllDocs();
+
+const categories = [
+  {
+    key: "portfolio",
+    label: "Portfólio",
+    href: "/docs/portfolio",
+    entries: portfolio,
+    span: 2,
+    icon: `<path d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>`,
+  },
+  {
+    key: "notes",
+    label: "Notas",
+    href: "/docs/notes",
+    entries: notes,
+    span: 2,
+    icon: `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>`,
+  },
+  {
+    key: "sandbox",
+    label: "Sandbox",
+    href: "/docs/sandbox",
+    entries: sandbox,
+    span: 1,
+    icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
+  },
+  {
+    key: "automation",
+    label: "Automação",
+    href: "/docs/automation",
+    entries: automation,
+    span: 1,
+    icon: `<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/>`,
+  },
+].filter((c) => c.entries.length > 0);
+---
+
+<Content
+  title="Documentações"
+  description="Notas, projetos e experimentos."
+  sidebar={sidebar}
+>
+  <div class="bento-grid">
+    {
+      categories.map((cat) => (
+        <div class={`bento-card bento-span-${cat.span}`}>
+          <div class="bento-header">
+            <div class="bento-icon" aria-hidden="true">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                set:html={cat.icon}
+              />
+            </div>
+            <span class="bento-title">{cat.label}</span>
+            <span class="bento-count">{cat.entries.length}</span>
+          </div>
+          <ul class="bento-list" role="list">
+            {cat.entries.map((entry) => (
+              <li>
+                <a
+                  href={`/docs/${cat.key}/${entry.id}`}
+                  class="bento-item"
+                >
+                  <span class="bento-item-dot" aria-hidden="true" />
+                  <span class="bento-item-title">{entry.data.title}</span>
+                  {entry.data.description && (
+                    <span class="bento-item-desc">{entry.data.description}</span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</Content>
+
+<style>
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .bento-span-2 {
+      grid-column: span 2;
+    }
+    .bento-span-1 {
+      grid-column: span 1;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .bento-grid {
+      grid-template-columns: 1fr;
+    }
+    .bento-span-1,
+    .bento-span-2 {
+      grid-column: span 1;
+    }
+  }
+
+  .bento-span-1 {
+    grid-column: span 1;
+  }
+  .bento-span-2 {
+    grid-column: span 2;
+  }
+
+  .bento-card {
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    transition: border-color 150ms ease;
+  }
+
+  .bento-card:hover {
+    border-color: color-mix(in srgb, var(--color-primary-400) 30%, var(--color-border));
+  }
+
+  .bento-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .bento-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: var(--color-surface-strong);
+    color: var(--color-primary-400);
+    flex-shrink: 0;
+  }
+
+  .bento-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+    flex: 1;
+  }
+
+  .bento-count {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    background: var(--color-surface-strong);
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+  }
+
+  .bento-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .bento-item {
+    display: grid;
+    grid-template-columns: 6px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0.625rem;
+    row-gap: 0.125rem;
+    padding: 0.5rem 0.625rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 150ms ease;
+  }
+
+  .bento-item:hover {
+    background: var(--color-surface-strong);
+  }
+
+  .bento-item-dot {
+    grid-row: 1 / 3;
+    align-self: center;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-border);
+    flex-shrink: 0;
+    transition: background 150ms ease;
+  }
+
+  .bento-item:hover .bento-item-dot {
+    background: var(--color-primary-400);
+  }
+
+  .bento-item-title {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+
+  .bento-item-desc {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    line-height: 1.4;
+  }
+</style>
