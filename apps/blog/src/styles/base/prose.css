@@ -5,9 +5,10 @@
 
   .prose h2,
   .prose h3 {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     margin-bottom: 0.75rem;
     color: var(--color-text);
+    font-size: larger;
   }
 
   .prose p + p {
@@ -53,4 +54,52 @@
     border-radius: 0;
     font-size: 0.875rem;
   }
+}
+
+.callout {
+  --rc-color-default: #888;
+  --border-color: var(--rc-color-light, var(--rc-color-default));
+
+  width: 100%;
+  padding: 1rem 1rem;
+  margin: 1rem 0;
+  position: relative;
+  border-left: 0.4em solid var(--border-color);
+}
+
+/* 2. Fading Top Border */
+.callout::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, var(--border-color), transparent 75%);
+}
+
+/* 3. Fading Bottom Border */
+.callout::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, var(--border-color), transparent 75%);
+}
+
+.callout-title {
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+
+.callout-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, var(--border-color), transparent 15%);
 }
