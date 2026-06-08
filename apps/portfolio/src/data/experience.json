@@ -1,0 +1,54 @@
+[
+  {
+    "role": "Full-Stack Developer",
+    "company": "Autônomo",
+    "period": "Jul 2022 – Presente",
+    "bullets": [
+      "Desenvolvimento de aplicações web responsivas para PMEs.",
+      "Implementação de automações para otimização de fluxos operacionais.",
+      "Integração de APIs para sincronização de dados entre sistemas.",
+      "Criação de interfaces com aplicação otimizada de UX/UI.",
+      "Consultoria em arquitetura e documentação técnica para sustentabilidade de sistemas."
+    ]
+  },
+  {
+    "role": "Design & Redação Técnica",
+    "company": "Autônomo",
+    "period": "Jan 2020 – Presente",
+    "bullets": [
+      "Criação de identidade visual e prototipagem UI/UX.",
+      "Produção de conteúdo técnico e acadêmico — relatórios e pesquisas.",
+      "Revisão e formatação de documentos para publicação e submissão acadêmica."
+    ]
+  },
+  {
+    "role": "Assistente Administrativo Pleno",
+    "company": "IBM | BPO Decision",
+    "period": "Dez 2024 – Abr 2025",
+    "bullets": [
+      "Redesenho do fluxo de onboarding: tempo de integração reduzido de 7 para 3 dias (−57%).",
+      "Automação de arquivamento em massa com Python e documentação de SOPs.",
+      "Desenvolvimento de dashboard de KPIs interativo com Excel e VBA."
+    ]
+  },
+  {
+    "role": "Analista de Backoffice",
+    "company": "Cielo | BPO Atento",
+    "period": "Jul 2021 – Abr 2022",
+    "bullets": [
+      "Automação de triagem de e-mails com Power Automate.",
+      "Auditoria de bases de dados para conformidade regulatória.",
+      "Ponto focal para Ouvidoria e Jurídico."
+    ]
+  },
+  {
+    "role": "Suporte Técnico N2",
+    "company": "Santander | BPO Liq",
+    "period": "Mai 2020 – Fev 2021",
+    "bullets": [
+      "Suporte técnico voltado à cliente final para produtos digitais do banco.",
+      "Resolução de incidentes e orientação para uso de aplicativos móveis.",
+      "Manutenção cadastral e suporte a operações de internet banking, abrangendo conta corrente, cartões e empréstimos."
+    ]
+  }
+]
