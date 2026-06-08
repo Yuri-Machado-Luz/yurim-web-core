@@ -1,0 +1,69 @@
+import { cm } from "@lib";
+
+type ButtonVariant = "primary" | "muted";
+type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
+type ButtonAnimation = "spring" | "smooth";
+
+export type ButtonProps = {
+  children?: React.ReactNode;
+  className?: string;
+  href?: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  target?: React.AnchorHTMLAttributes<HTMLAnchorElement>["target"];
+  rel?: string;
+  title?: string;
+  style?: {
+    variant?: ButtonVariant;
+    size?: ButtonSize;
+    animation?: ButtonAnimation;
+  };
+};
+
+const variants: Record<ButtonVariant, string> = {
+  primary:
+    "bg-primary-700 text-white hover:bg-primary-600 active:bg-primary-700/90",
+  muted:
+    "bg-neutral-200/10 text-white border border-neutral-200/20 hover:bg-neutral-200/12 active:bg-neutral-200/8",
+};
+
+const sizes: Record<ButtonSize, string> = {
+  xs: "text-xs px-2 py-1",
+  sm: "text-sm px-3 py-1.5",
+  md: "text-base px-4 py-2",
+  lg: "text-lg px-5 py-2.5",
+  xl: "text-xl px-6 py-3",
+  "2xl": "text-2xl px-7 py-3.5",
+  "3xl": "text-3xl px-8 py-4",
+  "4xl": "text-4xl px-10 py-5",
+};
+
+// CSS puro: cubic-bezier com overshoot = feel de spring sem JS
+const animations: Record<ButtonAnimation, string> = {
+  spring:
+    "[transition:transform_220ms_cubic-bezier(0.34,1.56,0.64,1)] hover:scale-[1.02] active:scale-[0.98]",
+  smooth:
+    "transition-transform duration-200 ease-in-out hover:scale-[1.05] active:scale-[0.95]",
+};
+
+const Button = ({ children, style, className, ...props }: ButtonProps) => {
+  const variant = style?.variant ?? "muted";
+  const size = style?.size ?? "lg";
+  const animation = style?.animation ?? "spring";
+
+  return (
+    <a
+      className={cm(
+        "cursor-pointer rounded-full transition-colors duration-300 select-none",
+        variants[variant],
+        sizes[size],
+        animations[animation],
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </a>
+  );
+};
+
+export default Button;
