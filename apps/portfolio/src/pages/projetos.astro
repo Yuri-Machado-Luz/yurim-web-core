@@ -1,0 +1,12 @@
+---
+import { Base } from "@layouts";
+import { getAllProjects } from "@lib/collections";
+import { ProjectsPage } from "@pages/ProjectsPage";
+
+const projects = await getAllProjects();
+const serializedProjects = projects.map((e) => ({ id: e.id, data: e.data }));
+---
+
+<Base title="Projetos — Yuri Machado Luz" description="Todos os projetos desenvolvidos e mantidos por Yuri Machado Luz.">
+  <ProjectsPage client:load projects={serializedProjects} />
+</Base>
