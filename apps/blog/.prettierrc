@@ -5,8 +5,10 @@
       "files": "*.astro",
       "options": {
         "parser": "astro"
-      }
+      },
+      "excludeFiles": ["**/node_modules/**", "**/dist/**", "**/.obsidian/**"]
     }
   ],
-  "tailwindStylesheet": "./src/styles/base/index.css"
+  "checkIgnorePragma": false,
+  "tailwindStylesheet": "./src/styles/global.css"
 }

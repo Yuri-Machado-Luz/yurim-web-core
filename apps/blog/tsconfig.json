@@ -6,12 +6,20 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "paths": {
-      "@/*": ["./src/*"],
       "@components": ["./src/components/index.ts"],
       "@components/*": ["./src/components/*"],
-      "@styles/*": ["./src/styles/*"],
+      "@ui": ["./src/components/ui/index.ts"],
+      "@ui/*": ["./src/components/ui/*"],
+      "@pages": ["./src/components/pages/index.ts"],
+      "@pages/*": ["./src/components/pages/*"],
+      "@sections": ["./src/components/sections/index.ts"],
+      "@sections/*": ["./src/components/sections/*"],
+      "@lib": ["./src/lib/index.ts"],
+      "@lib/*": ["./src/lib/*"],
+      "@styles": ["./src/styles/index.ts"],
       "@config": ["./src/config.ts"],
-      "@layouts/*": ["./src/components/layouts/*"]
+      "@layouts": ["./src/layouts/index.ts"],
+      "@assets": ["./src/assets/index.ts"]
     }
   }
 }
