@@ -1,0 +1,50 @@
+---
+import { Footer, Navbar } from "@components";
+import Head from "./Head.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+  noindex?: boolean;
+  hideNavbar?: boolean;
+  hideFooter?: boolean;
+}
+
+const { title, description, image, canonicalUrl, noindex, hideNavbar = false, hideFooter = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<html lang="pt-BR">
+  <Head
+    title={title}
+    description={description}
+    image={image}
+    canonicalUrl={canonicalUrl}
+    noindex={noindex}
+  />
+
+  <body>
+    {!hideNavbar && <Navbar currentPath={currentPath} transition:persist="navbar" />}
+    <div id="page-content" transition:name="page-content" transition:animate="slide">
+      <slot />
+    </div>
+    {!hideFooter && <Footer />}
+
+    <script>
+      document.addEventListener("astro:before-preparation", (e) => {
+        const { from, to } = e as unknown as { from: URL; to: URL };
+        const fromDocs = from.pathname.startsWith("/docs");
+        const toDocs = to.pathname.startsWith("/docs");
+        if (fromDocs !== toDocs) {
+          document.documentElement.dataset.vtCross = "docs-home";
+        }
+      });
+
+      document.addEventListener("astro:after-swap", () => {
+        delete document.documentElement.dataset.vtCross;
+      });
+    </script>
+  </body>
+</html>
