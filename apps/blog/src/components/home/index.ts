@@ -1,0 +1,11 @@
+export { HomePage } from "./HomePage";
+export { Hero } from "./Hero";
+export { FeaturedProjects } from "./FeaturedProjects";
+export { AboutSection } from "./AboutSection";
+export { NotesSection } from "./NotesSection";
+export { CTASection } from "./CTASection";
+export { ProjectsPage } from "./ProjectsPage";
+export { PageHeader } from "./PageHeader";
+export { SobrePage } from "./SobrePage";
+export { Skills } from "./Skills";
+export { Contact } from "./Contact";
