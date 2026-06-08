@@ -126,6 +126,8 @@
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Layout */
+  --section-gap: 8rem;
+  --section-gap-sm: 5rem;
   --navbar-height: 6rem;
   --drawer-top: 5.5rem;
 
@@ -153,21 +155,13 @@
 
   /* Fonts */
   --font-sans:
-    "Saira", sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-body:
-    "Saira", sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-heading:
-    "Cinzel", serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
-  --font-display:
-    "Cinzel", serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-display: "Cinzel", Georgia, "Times New Roman", serif;
   --font-mono:
-    "Cutive Mono", monospace, "SF Mono", Consolas, "Liberation Mono", Menlo,
-    Courier, monospace;
-  --font-serif:
-    "Cutive", serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+    "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, Courier,
+    monospace;
+  --font-serif: Georgia, "Times New Roman", serif;
 }
 
 @layer base {
@@ -229,6 +223,36 @@
       var(--color-primary) 12%,
       var(--color-surface)
     );
+
+    /* Glow animation durations */
+    --glow-duration-1: 0.2s;
+    --glow-duration-2: 0.4s;
+    --glow-duration-3: 0.6s;
+    --glow-duration-4: 0.8s;
+    --glow-duration-5: 1s;
+    --glow-duration-6: 1.2s;
+    --glow-duration-7: 1.5s;
+    --glow-duration-8: 2s;
+    --glow-duration-9: 2.5s;
+    --glow-duration-10: 3s;
+    --glow-duration-11: 3.5s;
+    --glow-duration-12: 4s;
+    --glow-duration-13: 4.5s;
+    --glow-duration-14: 5s;
+    --glow-duration-15: 5.5s;
+    --glow-duration-16: 6s;
+    --glow-duration-17: 7s;
+    --glow-duration-18: 8s;
+    --glow-duration-19: 10s;
+    --glow-duration-20: 12s;
+    --glow-duration-fast: var(--glow-duration-8);
+    --glow-duration-normal: var(--glow-duration-12);
+    --glow-duration-slow: var(--glow-duration-16);
+    --glow-duration-very-slow: var(--glow-duration-20);
+
+    /* Danger aliases (Contact.tsx uses --color-danger-*) */
+    --color-danger: var(--color-error);
+    --color-danger-bg: var(--color-error-bg);
 
     /* Layout */
     --prose-width: 72ch;
