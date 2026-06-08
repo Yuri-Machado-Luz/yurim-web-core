@@ -47,6 +47,27 @@ properties:
     displayName: UpdatedAt
 views:
   - type: cms
+    name: Todos
+    sort:
+      - property: updatedAt
+        direction: DESC
+    imageFormat: none
+    showDate: true
+    customizeNewButton: true
+    newNoteLocation: plub/notes
+    fallbackToEmbeds: if-empty
+    propertyDisplay1: file.fullname
+    showTextPreview: true
+    propertyLabels: above
+    titleProperty: note.title
+    dateProperty: note.updatedAt
+    descriptionProperty: note.description
+    showTags: false
+    showDraftStatus: true
+    draftStatusProperty: note.draft
+    draftStatusReverse: false
+    titlePropertyHasNested: false
+  - type: cms
     name: Notas
     filters:
       and:
@@ -68,7 +89,7 @@ views:
     showTags: false
     showDraftStatus: true
     draftStatusProperty: note.draft
-    draftStatusReverse: true
+    draftStatusReverse: false
     titlePropertyHasNested: false
   - type: cms
     name: Automação
@@ -140,24 +161,3 @@ views:
     showDraftStatus: true
     draftStatusProperty: note.draft
     draftStatusReverse: true
-  - type: cms
-    name: Todos
-    sort:
-      - property: updatedAt
-        direction: DESC
-    imageFormat: none
-    showDate: true
-    customizeNewButton: true
-    newNoteLocation: plub/notes
-    fallbackToEmbeds: if-empty
-    propertyDisplay1: file.fullname
-    showTextPreview: true
-    propertyLabels: above
-    titleProperty: note.title
-    dateProperty: note.updatedAt
-    descriptionProperty: note.description
-    showTags: false
-    showDraftStatus: true
-    draftStatusProperty: note.draft
-    draftStatusReverse: true
-    titlePropertyHasNested: false
