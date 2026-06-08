@@ -1,0 +1,42 @@
+@layer components {
+  .card,
+  .card-interactive,
+  .card-accent,
+  .card-flat {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    transition:
+      transform var(--duration-slow) ease,
+      box-shadow var(--duration-slow) ease,
+      border-color var(--duration-slow) ease;
+  }
+
+  .card,
+  .card-interactive,
+  .card-accent {
+    background: var(--color-surface);
+  }
+
+  .card-flat {
+    background: transparent;
+  }
+
+  .card-interactive {
+    cursor: pointer;
+  }
+
+  .card-interactive:hover {
+    border-color: var(--color-primary);
+    box-shadow:
+      0 0 0 1px var(--color-primary),
+      0 0 24px rgb(from var(--color-primary) r g b / 0.35);
+    transform: translateY(-2px);
+  }
+
+  .card-accent:hover {
+    border-color: var(--color-accent);
+    box-shadow:
+      0 0 0 1px var(--color-accent),
+      0 0 20px rgb(from var(--color-accent) r g b / 0.35);
+  }
+}

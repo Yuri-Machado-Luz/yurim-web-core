@@ -88,12 +88,7 @@
     font: inherit;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1 {
     margin: 0;
     color: var(--color-text);
     font-family: var(--font-display);
@@ -101,9 +96,22 @@
     line-height: 1.1;
   }
 
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
   p {
     margin: 0;
     line-height: 1.7;
+    font-family: var(--font-sans);
   }
 
   ::selection {
