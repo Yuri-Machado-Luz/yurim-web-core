@@ -41,3 +41,17 @@ const canonicalUrl = customCanonicalUrl
   {image && <meta property="og:image" content={image} />}
 
 </head>
+
+<script>
+  document.addEventListener("astro:before-preparation", (e) => {
+    const { from, to } = e as unknown as { from: URL; to: URL };
+    const fromDocs = from.pathname.startsWith("/docs");
+    const toDocs = to.pathname.startsWith("/docs");
+    if (fromDocs !== toDocs) {
+      document.documentElement.dataset.vtCross = "docs-home";
+    }
+  });
+  document.addEventListener("astro:after-swap", () => {
+    delete document.documentElement.dataset.vtCross;
+  });
+</script>

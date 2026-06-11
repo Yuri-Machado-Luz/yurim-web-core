@@ -1,22 +1,64 @@
 ---
 import { Base } from "@layouts";
 import { getFeaturedProjects, getRecentNotes } from "@lib/collections";
-import { HomePage } from "@pages/HomePage";
+import AboutSection from "@sections/AboutSection.astro";
+import CTASection from "@sections/CTASection.astro";
+import FeaturedProjects from "@sections/FeaturedProjects.astro";
+import Hero from "@sections/Hero.astro";
+import NotesSection from "@sections/NotesSection.astro";
+import TechStack from "@sections/TechStack.astro";
 
 const projects = await getFeaturedProjects();
-const serializedProjects = projects.map((e) => ({ id: e.id, data: e.data }));
-
 const recentNotes = await getRecentNotes(4);
-const serializedNotes = recentNotes.map((e) => ({
-  id: e.id,
-  data: {
-    title: e.data.title,
-    description: e.data.description,
-    pubDate: e.data.pubDate ?? null,
-  },
-}));
 ---
 
 <Base>
-  <HomePage client:load projects={serializedProjects} recentNotes={serializedNotes} />
+  <main id="home-main">
+    <Hero />
+    <TechStack />
+    <AboutSection />
+    <FeaturedProjects projects={projects} />
+    <NotesSection notes={recentNotes} />
+    <CTASection />
+  </main>
 </Base>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let ctx: gsap.Context | null = null;
+
+  function init() {
+    const main = document.querySelector<HTMLElement>("#home-main");
+    if (!main) return;
+
+    ctx?.revert();
+
+    ctx = gsap.context(() => {
+      const panels = gsap.utils.toArray<HTMLElement>(".section-panel");
+      if (panels.length === 0) return;
+
+      panels.forEach((panel) => {
+        gsap.to(panel, {
+          scale: 1.04,
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: panel,
+            start: "top top",
+            end: "+=60%",
+            pin: true,
+            pinSpacing: false,
+            scrub: true,
+          },
+        });
+      });
+    }, main);
+  }
+
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:before-preparation", () => ctx?.revert());
+</script>

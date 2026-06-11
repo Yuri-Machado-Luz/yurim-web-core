@@ -1,1 +1,1 @@
-export { LogoLoop, type LogoItem } from "./LogoLoop.tsx";
+export { LogoLoopController } from "./LogoLoop";

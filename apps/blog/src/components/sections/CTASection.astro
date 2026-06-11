@@ -1,0 +1,35 @@
+---
+import { CONFIG } from "@config";
+---
+
+<section class="py-32 relative isolate flex items-center justify-center">
+  <div class="container text-center">
+    <h2 class="section-title mb-4">Vamos conversar?</h2>
+    <p class="mb-10 text-base" style="color: var(--color-muted)">
+      Tem um projeto em mente ou quer trocar uma ideia?
+    </p>
+    <a href="/sobre#contato" class="btn btn-primary">Entrar em contato</a>
+
+    <nav class="social-links justify-center mt-6">
+      <a
+        href={CONFIG.meta.social.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-link"
+      >
+        GitHub
+      </a>
+      <a
+        href={CONFIG.meta.social.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-link"
+      >
+        LinkedIn
+      </a>
+      <a href={`mailto:${CONFIG.meta.social.email}`} class="social-link">
+        Email
+      </a>
+    </nav>
+  </div>
+</section>

@@ -1,12 +1,131 @@
 ---
 import { Base } from "@layouts";
 import { getAllProjects } from "@lib/collections";
-import { ProjectsPage } from "@pages/ProjectsPage";
+import PageHeader from "@sections/PageHeader.astro";
+import ProjectCard from "@ui/ProjectCard/ProjectCard.astro";
 
 const projects = await getAllProjects();
-const serializedProjects = projects.map((e) => ({ id: e.id, data: e.data }));
+const featured = projects.filter((p) => p.data.featured);
+const others = projects.filter((p) => !p.data.featured);
 ---
 
-<Base title="Projetos — Yuri Machado Luz" description="Todos os projetos desenvolvidos e mantidos por Yuri Machado Luz.">
-  <ProjectsPage client:load projects={serializedProjects} />
+<Base
+  title="Projetos — Yuri Machado Luz"
+  description="Todos os projetos desenvolvidos e mantidos por Yuri Machado Luz."
+>
+  <main id="projects-main">
+    <Fragment>
+      <PageHeader
+        eyebrow="Portfólio"
+        title="Projetos em Destaque"
+        lead="Sites, ferramentas, automações e bases de conhecimento — do beta ao produto final."
+        class="projects-header"
+      />
+    </Fragment>
+
+    {
+      featured.length > 0 && (
+        <section class="container mb-20">
+          <div
+            class="featured-grid"
+            style={featured.length === 1 ? "grid-template-columns: 1fr" : ""}
+          >
+            {featured.map((entry) => (
+              <div class="project-card">
+                <ProjectCard
+                  title={entry.data.title}
+                  description={entry.data.description}
+                  status={entry.data.status}
+                  tags={entry.data.tags}
+                  github={entry.data.github}
+                  live={entry.data.live}
+                  documentation={entry.data.documentation}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      others.length > 0 && (
+        <section class="container mb-20">
+          {featured.length > 0 && (
+            <h2 class="section-title mb-6">Outros Projetos</h2>
+          )}
+          <div class="projects-grid">
+            {others.map((entry) => (
+              <div class="project-card">
+                <ProjectCard
+                  title={entry.data.title}
+                  description={entry.data.description}
+                  status={entry.data.status}
+                  tags={entry.data.tags}
+                  github={entry.data.github}
+                  live={entry.data.live}
+                  documentation={entry.data.documentation}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      projects.length === 0 && (
+        <section class="container mb-20">
+          <p style="color: var(--color-muted)">
+            Nenhum projeto disponível no momento.
+          </p>
+        </section>
+      )
+    }
+  </main>
 </Base>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let ctx: gsap.Context | null = null;
+
+  function init() {
+    const main = document.querySelector<HTMLElement>("#projects-main");
+    if (!main) return;
+
+    ctx?.revert();
+
+    ctx = gsap.context(() => {
+      gsap.set(".projects-header", { autoAlpha: 0, y: 32 });
+      gsap.set(".project-card", { autoAlpha: 0, y: 24 });
+
+      gsap.to(".projects-header", {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        delay: 0.1,
+      });
+
+      ScrollTrigger.batch(".project-card", {
+        onEnter: (els) =>
+          gsap.to(els, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.07,
+            ease: "power3.out",
+          }),
+        once: true,
+        start: "top 88%",
+      });
+    }, main);
+  }
+
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:before-preparation", () => ctx?.revert());
+</script>

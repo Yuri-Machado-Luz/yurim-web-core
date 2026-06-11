@@ -1,0 +1,456 @@
+---
+import { CONFIG } from "@config";
+
+interface Props {
+  fullPage?: boolean;
+}
+
+const { fullPage = false } = Astro.props;
+---
+
+<section
+  id="contato"
+  class:list={[
+    fullPage
+      ? "container flex min-h-svh flex-col items-center justify-center py-32 text-center"
+      : "container py-24",
+  ]}
+>
+  <h2 class="mb-2 text-4xl font-bold contact-item">Contato</h2>
+  <p class="mb-12 contact-item" style="color: var(--color-muted)">
+    Tem um projeto em mente ou quer trocar uma ideia?
+  </p>
+
+  <div
+    class="w-full overflow-hidden rounded-2xl"
+    style="border: 1px solid var(--color-border)"
+  >
+    <div class="grid md:grid-cols-2">
+      <!-- Left: contact info -->
+      <div
+        class="flex flex-col justify-between p-8 md:p-12"
+        style="border-right: 1px solid var(--color-border)"
+      >
+        <div class="flex flex-col gap-6">
+          <!-- Email -->
+          <div class="contact-item flex items-center gap-4">
+            <div
+              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+              style="border: 1px solid var(--color-border)"
+            >
+              <!-- Mail icon -->
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary-400"
+                aria-hidden="true"
+              >
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </div>
+            <div class="text-sm">
+              <p class="mb-1" style="color: var(--color-muted)">Email</p>
+              <a
+                href={`mailto:${CONFIG.meta.social.email}`}
+                class="transition-colors hover:text-primary-400"
+                style="color: var(--color-text)"
+              >
+                {CONFIG.meta.social.email}
+              </a>
+            </div>
+          </div>
+
+          <!-- WhatsApp -->
+          <a
+            href="https://api.whatsapp.com/send?phone=5511949359394&text=Ol%C3%A1!%20Vim%20atrav%C3%A9s%20do%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-item flex items-center gap-4 transition-opacity hover:opacity-80"
+          >
+            <div
+              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+              style="border: 1px solid var(--color-border)"
+            >
+              <!-- WhatsApp icon -->
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="text-primary-400"
+                aria-hidden="true"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"
+                />
+              </svg>
+            </div>
+            <div class="text-sm">
+              <p class="mb-1" style="color: var(--color-muted)">WhatsApp</p>
+              <p style="color: var(--color-text)">+55 (11) 94935-9394</p>
+            </div>
+          </a>
+
+          <!-- Location -->
+          <div class="contact-item flex items-center gap-4">
+            <div
+              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+              style="border: 1px solid var(--color-border)"
+            >
+              <!-- MapPin icon -->
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-primary-400"
+                aria-hidden="true"
+              >
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div class="text-sm">
+              <p class="mb-1" style="color: var(--color-muted)">Localização</p>
+              <p style="color: var(--color-text)">São Paulo, Brasil</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social buttons -->
+        <div
+          class="mt-8 flex gap-3 pt-8"
+          style="border-top: 1px solid var(--color-border)"
+        >
+          <!-- GitHub -->
+          <a
+            href={CONFIG.meta.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:opacity-80"
+            style="border: 1px solid var(--color-border); color: var(--color-muted)"
+            aria-label="GitHub"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+              />
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a
+            href={CONFIG.meta.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:opacity-80"
+            style="border: 1px solid var(--color-border); color: var(--color-muted)"
+            aria-label="LinkedIn"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              />
+            </svg>
+          </a>
+
+          <!-- Email -->
+          <a
+            href={`mailto:${CONFIG.meta.social.email}`}
+            class="flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:opacity-80"
+            style="border: 1px solid var(--color-border); color: var(--color-muted)"
+            aria-label="Email"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <form
+        id="contact-form"
+        data-status="idle"
+        class="contact-item flex flex-col gap-5 p-8 md:p-12"
+      >
+        <div>
+          <label
+            for="name"
+            class="block text-xs font-medium mb-1.5"
+            style="color: var(--color-muted)"
+          >
+            Nome
+          </label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            required
+            placeholder="Seu nome"
+            class="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors duration-200 focus:ring-1 focus:ring-primary-500/50"
+            style="background: var(--color-surface-strong); border: 1px solid var(--color-border); color: var(--color-text)"
+          />
+        </div>
+
+        <div>
+          <label
+            for="email"
+            class="block text-xs font-medium mb-1.5"
+            style="color: var(--color-muted)"
+          >
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            required
+            placeholder="seu@email.com"
+            class="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors duration-200 focus:ring-1 focus:ring-primary-500/50"
+            style="background: var(--color-surface-strong); border: 1px solid var(--color-border); color: var(--color-text)"
+          />
+        </div>
+
+        <div class="flex flex-1 flex-col">
+          <label
+            for="message"
+            class="block text-xs font-medium mb-1.5"
+            style="color: var(--color-muted)"
+          >
+            Mensagem
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            placeholder="Descreva brevemente o projeto, o prazo aproximado e como prefere conversar."
+            class="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors duration-200 focus:ring-1 focus:ring-primary-500/50"
+            style="background: var(--color-surface-strong); border: 1px solid var(--color-border); color: var(--color-text); min-height: 8rem; resize: vertical"
+          ></textarea>
+        </div>
+
+        <input type="hidden" name="title" />
+        <input type="hidden" name="time" />
+
+        <!-- Status messages (CSS-driven by data-status) -->
+        <p
+          class="msg-sent items-center gap-2 rounded-lg p-3 text-sm"
+          style="background: var(--color-success-bg); color: var(--color-success)"
+        >
+          <!-- Check icon -->
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+          Mensagem recebida. Respondo em até dois dias úteis.
+        </p>
+        <p
+          class="msg-error rounded-lg p-3 text-sm"
+          style="background: var(--color-danger-bg); color: var(--color-danger)"
+        >
+          Não foi possível enviar a mensagem. Verifique a conexão e tente novamente.
+        </p>
+
+        <button
+          type="submit"
+          class="text-white w-full rounded-full py-2.5 text-sm font-medium transition-colors duration-300 disabled:opacity-60"
+          style="background: var(--color-primary-700)"
+        >
+          <span data-btn-idle>Enviar mensagem</span>
+          <span data-btn-sending class="inline-flex items-center justify-center gap-2">
+            <!-- Loader2 spinner -->
+            <svg
+              class="animate-spin"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+            </svg>
+            Enviando...
+          </span>
+          <span data-btn-sent class="inline-flex items-center justify-center gap-2">
+            <!-- Check icon -->
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+            Enviado!
+          </span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Status message visibility */
+  #contact-form .msg-sent,
+  #contact-form .msg-error {
+    display: none;
+  }
+  #contact-form[data-status="sent"] .msg-sent {
+    display: flex;
+  }
+  #contact-form[data-status="error"] .msg-error {
+    display: block;
+  }
+
+  /* Button state spans */
+  #contact-form [data-btn-idle],
+  #contact-form [data-btn-sending],
+  #contact-form [data-btn-sent] {
+    display: none;
+  }
+  #contact-form[data-status="idle"] [data-btn-idle] {
+    display: inline;
+  }
+  #contact-form[data-status="sending"] [data-btn-sending] {
+    display: inline-flex;
+  }
+  #contact-form[data-status="sending"] button[type="submit"] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  #contact-form[data-status="sent"] [data-btn-sent] {
+    display: inline-flex;
+  }
+  #contact-form[data-status="sent"] button[type="submit"] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  import emailjs from "@emailjs/browser";
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let ctx: gsap.Context | null = null;
+
+  function init() {
+    const section = document.querySelector<HTMLElement>("#contato");
+    if (!section) return;
+
+    ctx?.revert();
+
+    const key = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (key) emailjs.init(key);
+
+    ctx = gsap.context(() => {
+      gsap.set(".contact-item", { autoAlpha: 0, y: 20 });
+
+      ScrollTrigger.batch(".contact-item", {
+        onEnter: (els) =>
+          gsap.to(els, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.08,
+            ease: "power2.out",
+            overwrite: true,
+          }),
+        once: true,
+        start: "top 85%",
+      });
+    }, section);
+
+    const form = document.querySelector<HTMLFormElement>("#contact-form");
+    if (!form || form.dataset.listenerAttached) return;
+    form.dataset.listenerAttached = "1";
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const els = form.elements;
+      const nameVal = (els.namedItem("name") as HTMLInputElement).value;
+      (els.namedItem("title") as HTMLInputElement).value = nameVal;
+      (els.namedItem("time") as HTMLInputElement).value =
+        new Date().toLocaleString("pt-BR");
+
+      form.dataset.status = "sending";
+
+      try {
+        await emailjs.sendForm(
+          import.meta.env.PUBLIC_EMAILJS_SERVICE_ID!,
+          import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID!,
+          form,
+        );
+        form.dataset.status = "sent";
+        form.reset();
+        setTimeout(() => {
+          form.dataset.status = "idle";
+        }, 5000);
+      } catch {
+        form.dataset.status = "error";
+        setTimeout(() => {
+          form.dataset.status = "idle";
+        }, 5000);
+      }
+    });
+  }
+
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:before-preparation", () => ctx?.revert());
+</script>

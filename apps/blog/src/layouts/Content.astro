@@ -1,8 +1,9 @@
 ---
 import Sidebar from "../components/docs/Sidebar.astro";
 import TOC from "../components/docs/TOC.astro";
+import Footer from "../components/ui/Footer/Footer.astro";
 import type { SidebarEntry } from "../types";
-import Base from "./Base.astro";
+import Head from "./Head.astro";
 
 interface Heading {
   depth: number;
@@ -23,76 +24,84 @@ const hasToc =
   headings.filter((h) => h.depth === 2 || h.depth === 3).length > 0;
 ---
 
-<Base title={title} description={description} hideNavbar>
-  <div
-    class="docs-layout"
-    data-has-sidebar={hasSidebar ? "true" : "false"}
-    data-has-toc={hasToc ? "true" : "false"}
-  >
-    {
-      hasSidebar && (
-        <aside class="docs-sidebar" transition:name="docs-sidebar">
-          <Sidebar entries={sidebar} />
-        </aside>
-      )
-    }
-    {
-      hasSidebar && (
-        <button class="sidebar-toggle" aria-label="Colapsar navegação">
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="m15 18-6-6 6-6" />
-          </svg>
-        </button>
-      )
-    }
+<html lang="pt-BR">
+  <Head title={title} description={description} />
 
-    {
-      hasSidebar && (
-        <button class="sidebar-mobile-toggle" aria-label="Abrir navegação">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
-          >
-            <line x1="4" y1="8" x2="20" y2="8" />
-            <line x1="4" y1="16" x2="20" y2="16" />
-          </svg>
-          Navegação
-        </button>
-      )
-    }
+  <body>
+    <main
+      class="docs-layout"
+      data-has-sidebar={hasSidebar ? "true" : "false"}
+      data-has-toc={hasToc ? "true" : "false"}
+    >
+      {
+        hasSidebar && (
+          <aside class="docs-sidebar" transition:name="docs-sidebar">
+            <Sidebar entries={sidebar} />
+          </aside>
+        )
+      }
+      {
+        hasSidebar && (
+          <button class="sidebar-toggle" aria-label="Colapsar navegação">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+        )
+      }
 
-    <div class="sidebar-backdrop"></div>
+      {
+        hasSidebar && (
+          <button class="sidebar-mobile-toggle" aria-label="Abrir navegação">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <line x1="4" y1="8" x2="20" y2="8" />
+              <line x1="4" y1="16" x2="20" y2="16" />
+            </svg>
+            Navegação
+          </button>
+        )
+      }
 
-    <article class="docs-content prose min-w-0 text-justify">
-      <h1 class="text-4xl">{title}</h1>
-      {description && <p class="lead w-3/5 italic">{description}</p>}
-      <slot />
-    </article>
+      <div class="sidebar-backdrop"></div>
 
-    {
-      hasToc && (
-        <aside class="docs-toc">
-          <TOC headings={headings} />
-        </aside>
-      )
-    }
-  </div>
-</Base>
+      <article class="docs-content prose min-w-0 text-justify">
+        <h1 class="text-4xl">{title}</h1>
+        {description && <p class="lead w-3/5 italic">{description}</p>}
+        <slot />
+      </article>
+
+      {
+        hasToc && (
+          <aside class="docs-toc">
+            <TOC headings={headings} />
+          </aside>
+        )
+      }
+
+      <div class="docs-footer">
+        <Footer />
+      </div>
+    </main>
+  </body>
+</html>
 
 <style>
   /* Grid layout driven by data attributes */
@@ -160,7 +169,11 @@ const hasToc =
     background: var(--color-surface);
     color: var(--color-muted);
     cursor: pointer;
-    transition: color 150ms ease, background 150ms ease, left 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s ease;
+    transition:
+      color 150ms ease,
+      background 150ms ease,
+      left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.25s ease;
   }
   .sidebar-toggle:hover {
     color: var(--color-text);
@@ -188,6 +201,19 @@ const hasToc =
     position: sticky;
     top: 2rem;
     padding: 0 1.5rem 3rem 0;
+  }
+
+  .docs-footer {
+    grid-column: 1 / -1;
+  }
+  .docs-layout[data-has-sidebar="true"] .docs-footer {
+    grid-column: 2 / -1;
+  }
+  .docs-layout.sidebar-collapsed .docs-footer {
+    grid-column: 1 / -1;
+  }
+  .docs-footer :global(.footer) {
+    margin-top: 0;
   }
 
   /* Mobile */
@@ -258,6 +284,10 @@ const hasToc =
     .docs-content {
       padding: 2rem 1.25rem;
     }
+
+    .docs-footer {
+      grid-column: 1 / -1;
+    }
   }
 </style>
 
@@ -266,8 +296,9 @@ const hasToc =
     const layout = document.querySelector<HTMLElement>(".docs-layout");
     const sidebar = document.querySelector<HTMLElement>(".docs-sidebar");
     const toggle = document.querySelector<HTMLElement>(".sidebar-toggle");
-    const mobileToggle =
-      document.querySelector<HTMLElement>(".sidebar-mobile-toggle");
+    const mobileToggle = document.querySelector<HTMLElement>(
+      ".sidebar-mobile-toggle",
+    );
     const backdrop = document.querySelector<HTMLElement>(".sidebar-backdrop");
 
     if (layout && toggle) {

@@ -1,6 +1,15 @@
-import { cm } from "@lib";
+---
+import { cn } from "@lib/utils";
 
 type BadgeVariant = "ativo" | "dev" | "arquivado" | "beta";
+
+interface Props {
+  variant: BadgeVariant;
+  label?: string;
+  class?: string;
+}
+
+const { variant, label, class: className } = Astro.props;
 
 const styles: Record<BadgeVariant, string> = {
   ativo: "bg-green-500/15 text-green-400 border-green-500/30",
@@ -15,23 +24,14 @@ const labels: Record<BadgeVariant, string> = {
   arquivado: "Arquivado",
   beta: "Beta",
 };
+---
 
-type BadgeProps = {
-  variant: BadgeVariant;
-  label?: string;
-  className?: string;
-};
-
-export function Badge({ variant, label, className }: BadgeProps) {
-  return (
-    <span
-      className={cm(
-        "inline-flex items-center text-xs px-2 py-0.5 rounded-full border font-medium",
-        styles[variant],
-        className,
-      )}
-    >
-      {label ?? labels[variant]}
-    </span>
-  );
-}
+<span
+  class={cn(
+    "inline-flex items-center text-xs px-2 py-0.5 rounded-full border font-medium",
+    styles[variant],
+    className,
+  )}
+>
+  {label ?? labels[variant]}
+</span>
