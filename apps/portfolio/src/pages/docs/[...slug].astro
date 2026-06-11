@@ -1,7 +1,7 @@
 ---
 import { Content } from "@layouts";
 import { getCollection, render } from "astro:content";
-import { buildDocsSidebar } from "@lib/sidebar";
+import { buildDocsSidebar } from "@shared";
 
 export async function getStaticPaths() {
   const COLLECTIONS = ["notes", "portfolio", "sandbox", "automation"] as const;

@@ -1,7 +1,7 @@
 ---
 import { Content } from "@layouts";
-import { getAllDocs } from "@lib/collections";
-import { buildDocsSidebar } from "@lib/sidebar";
+import { getAllDocs } from "@shared";
+import { buildDocsSidebar } from "@shared";
 
 const currentPath = Astro.url.pathname;
 const sidebar = await buildDocsSidebar(currentPath);
