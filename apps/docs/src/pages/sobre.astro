@@ -1,11 +1,292 @@
 ---
+import { CONFIG } from "@config";
 import { Base } from "@layouts";
-import { SobrePage } from "@pages/SobrePage";
+import { education, experience, languages, stats } from "@lib";
+import Contact from "@sections/Contact.astro";
+import Skills from "@sections/Skills.astro";
 ---
 
 <Base
   title="Sobre — Yuri Machado Luz"
   description="Desenvolvedor Full-Stack com formação em Psicologia e Análise de Sistemas. Baseado em São Paulo."
 >
-  <SobrePage client:load />
+  <main id="sobre-main">
+    <!-- Header -->
+    <header class="container pt-32 pb-16 sobre-header">
+      <div class="grid md:grid-cols-[1fr_auto] gap-8 items-start">
+        <!-- Left: title + lead + social -->
+        <div class="flex flex-col gap-4">
+          <p class="eyebrow">Sobre</p>
+          <h1 class="page-title">Yuri Machado Luz</h1>
+          <p class="page-lead">
+            Desenvolvedor Full-Stack · Analista de Sistemas · São Paulo, Brasil
+          </p>
+          <nav class="flex gap-3 mt-2">
+            <a
+              href={CONFIG.meta.social.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                />
+              </svg>
+              GitHub
+            </a>
+            <a
+              href={CONFIG.meta.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+              LinkedIn
+            </a>
+          </nav>
+        </div>
+
+        <!-- Right: quick facts -->
+        <div
+          class="rounded-xl px-5 py-4 shrink-0"
+          style="border: 1px solid var(--color-border); background: var(--color-surface)"
+        >
+          <ul class="flex flex-col gap-2.5">
+            {
+              stats.quickFacts.map((fact) => (
+                <li
+                  class="flex items-center gap-2 text-sm"
+                  style="color: var(--color-muted)"
+                >
+                  <span
+                    class="h-1.5 w-1.5 rounded-full bg-primary-400 shrink-0"
+                    aria-hidden="true"
+                  />
+                  {fact.text}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Bio -->
+    <section id="bio" class="container mb-20">
+      <h2 class="section-title mb-8">Bio</h2>
+      <div
+        class="flex flex-col gap-5 leading-[1.8] max-w-3xl"
+        style="color: var(--color-muted)"
+      >
+        <p class="bio-paragraph">
+          Comecei minha trajetória em tecnologia ainda na graduação em Psicologia
+          — e desde então combino análise comportamental com engenharia de
+          software.
+        </p>
+        <p class="bio-paragraph">
+          Trabalho de forma autônoma desde 2020, desenvolvendo sistemas web,
+          automações e produtos digitais para PMEs e projetos próprios. Em 2024,
+          integrei a equipe da IBM onde redesenhei o ciclo de onboarding e reduzi
+          o tempo de integração em 57%, antes de retomar minha trajetória
+          independente.
+        </p>
+        <p class="bio-paragraph">
+          Escrevo, desenho e documento o que construo — o que me permite cobrir
+          um projeto inteiro: da arquitetura à comunicação final, com rigor e
+          sigilo.
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="habilidades" class="container mb-20">
+      <h2 class="section-title mb-2">Habilidades</h2>
+      <p class="mb-10" style="color: var(--color-muted)">
+        Tecnologias e ferramentas que uso no dia a dia.
+      </p>
+      <Skills />
+    </section>
+
+    <!-- Experience -->
+    <section id="experiencia" class="container mb-20">
+      <h2 class="section-title mb-10">Experiência</h2>
+      <div class="experience-list">
+        {
+          experience.map((item) => (
+            <div class="experience-item">
+              <div class="timeline">
+                <div class="timeline-dot" />
+                <div class="timeline-line" />
+              </div>
+              <div class="body">
+                <h3 class="role">{item.role}</h3>
+                <div class="meta">
+                  <span class="company">{item.company}</span>
+                  <span class="period">{item.period}</span>
+                </div>
+                <ul class="bullets">
+                  {item.bullets.map((bullet) => (
+                    <li class="bullet">{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="formacao" class="container mb-20">
+      <h2 class="section-title mb-8">Formação</h2>
+      <div class="education-list">
+        {
+          education.map((edu) => (
+            <article class="education-item">
+              <p class="degree">{edu.degree}</p>
+              <p class="institution">{edu.institution}</p>
+              {edu.detail && <p class="detail">{edu.detail}</p>}
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Languages -->
+    <section id="idiomas" class="container mb-20">
+      <h2 class="section-title mb-8">Idiomas</h2>
+      <div class="language-grid">
+        {
+          languages.map((lang) => (
+            <article class="language-card">
+              <span class="name">{lang.name}</span>
+              <span class="level">{lang.level}</span>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <Contact />
+  </main>
 </Base>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let ctx: gsap.Context | null = null;
+
+  function init() {
+    const main = document.querySelector<HTMLElement>("#sobre-main");
+    if (!main) return;
+
+    ctx?.revert();
+
+    ctx = gsap.context(() => {
+      gsap.set(".sobre-header", { autoAlpha: 0, y: 24 });
+      gsap.to(".sobre-header", {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        delay: 0.1,
+      });
+
+      gsap.set(".bio-paragraph", { autoAlpha: 0, y: 16 });
+      ScrollTrigger.batch(".bio-paragraph", {
+        onEnter: (els) =>
+          gsap.to(els, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.55,
+            stagger: 0.08,
+            ease: "power2.out",
+          }),
+        once: true,
+        start: "top 90%",
+      });
+
+      gsap.set(".experience-item", { autoAlpha: 0, x: -20 });
+      ScrollTrigger.batch(".experience-item", {
+        onEnter: (els) =>
+          gsap.to(els, {
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.55,
+            stagger: 0.1,
+            ease: "power3.out",
+          }),
+        once: true,
+        start: "top 88%",
+      });
+
+      gsap.set(".education-item, .language-card", { autoAlpha: 0, y: 20 });
+      ScrollTrigger.batch(".education-item, .language-card", {
+        onEnter: (els) =>
+          gsap.to(els, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.45,
+            stagger: 0.07,
+            ease: "power2.out",
+          }),
+        once: true,
+        start: "top 90%",
+      });
+    }, main);
+
+    // Hash-tracking via IntersectionObserver
+    const ids = ["bio", "habilidades", "experiencia", "formacao", "idiomas", "contato"];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    if (sections.length > 0) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              history.replaceState(null, "", `#${entry.target.id}`);
+              break;
+            }
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px" },
+      );
+      sections.forEach((s) => observer.observe(s));
+      // Cleanup handled by astro:before-preparation → ctx.revert() kills GSAP,
+      // but IntersectionObserver needs manual disconnect.
+      document.addEventListener(
+        "astro:before-preparation",
+        () => observer.disconnect(),
+        { once: true },
+      );
+    }
+
+    ScrollTrigger.refresh();
+  }
+
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:before-preparation", () => ctx?.revert());
+</script>

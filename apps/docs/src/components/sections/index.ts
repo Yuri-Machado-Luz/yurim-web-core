@@ -1,8 +1,9 @@
-export { Hero } from "./Hero";
-export { AboutSection } from "./AboutSection";
-export { FeaturedProjects } from "./FeaturedProjects";
-export { NotesSection } from "./NotesSection";
-export { CTASection } from "./CTASection";
-export { Contact } from "./Contact";
-export { Skills } from "./Skills";
-export { PageHeader } from "./PageHeader";
+export { default as Hero } from "./Hero.astro";
+export { default as AboutSection } from "./AboutSection.astro";
+export { default as FeaturedProjects } from "./FeaturedProjects.astro";
+export { default as NotesSection } from "./NotesSection.astro";
+export { default as CTASection } from "./CTASection.astro";
+export { default as Contact } from "./Contact.astro";
+export { default as Skills } from "./Skills.astro";
+export { default as PageHeader } from "./PageHeader.astro";
+export { default as TechStack } from "./TechStack.astro";
