@@ -20,3 +20,13 @@ pnpm-debug.log*
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .ref/
+
+# editor / assistente
+.vscode/
+.claude/
+
+# obsidian vault dentro do content
+src/content/.obsidian/
+
+# doc de planejamento da refatoração
+filetree.md
