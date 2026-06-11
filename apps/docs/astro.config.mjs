@@ -4,7 +4,6 @@ import { fileURLToPath } from "url";
 
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
-import react from "@astrojs/react";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 import rehypeCallouts from "rehype-callouts";
@@ -28,15 +27,17 @@ export default defineConfig({
     }),
   },
 
-  integrations: [react(), mdx({ extendMarkdownConfig: true })],
+  integrations: [mdx({ extendMarkdownConfig: true })],
 
   adapter: vercel(),
 
   vite: {
     assetsInclude: ["**/*.base", "**/.obsidian/**", "**/_bases/**"],
     plugins: [tailwindcss()],
-    optimizeDeps: {
-      include: ["lucide-react"],
+    server: {
+      watch: {
+        ignored: ["**/.vscode/**", "**/.claude/**", "**/.obsidian/**"],
+      },
     },
     resolve: {
       alias: {
@@ -49,9 +50,7 @@ export default defineConfig({
         "@sections": fileURLToPath(
           new URL("./src/components/sections", import.meta.url),
         ),
-        "@ui": fileURLToPath(
-          new URL("./src/components/ui", import.meta.url),
-        ),
+        "@ui": fileURLToPath(new URL("./src/components/ui", import.meta.url)),
         "@data": fileURLToPath(new URL("./src/data", import.meta.url)),
         "@lib": fileURLToPath(new URL("./src/lib", import.meta.url)),
         "@styles": fileURLToPath(
