@@ -1,12 +1,12 @@
 ---
 import { Base } from "@layouts";
 import { getFeaturedProjects, getRecentNotes } from "@shared";
-import AboutSection from "@sections/AboutSection.astro";
-import CTASection from "@sections/CTASection.astro";
-import FeaturedProjects from "@sections/FeaturedProjects.astro";
-import Hero from "@sections/Hero.astro";
-import NotesSection from "@sections/NotesSection.astro";
-import TechStack from "@sections/TechStack.astro";
+import AboutSection from "@home/AboutSection.astro";
+import CTASection from "@home/CTASection.astro";
+import FeaturedProjects from "@home/FeaturedProjects.astro";
+import Hero from "@home/Hero.astro";
+import NotesSection from "@home/NotesSection.astro";
+import TechStack from "@home/TechStack.astro";
 
 const projects = await getFeaturedProjects();
 const recentNotes = await getRecentNotes(4);
