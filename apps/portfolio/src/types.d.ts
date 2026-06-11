@@ -134,8 +134,6 @@ export interface ProjectContent extends BaseContent {
 export interface NoteContent extends BaseContent {
   fmContentType: "note";
 }
-
-// Swup global instance
 declare global {
   interface Window {
     swup?: any;
