@@ -2,13 +2,19 @@
   "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
   "overrides": [
     {
-      "files": "*.astro",
+      "files": "*.json",
       "options": {
-        "parser": "astro"
-      },
+        "parser": "json",
+        "objectWrap": "collapse"
+      }
+    },
+    {
+      "files": "*.astro",
+      "options": { "parser": "astro" },
       "excludeFiles": ["**/node_modules/**", "**/dist/**", "**/.obsidian/**"]
     }
   ],
+
   "checkIgnorePragma": false,
   "tailwindStylesheet": "./src/styles/global.css"
 }
