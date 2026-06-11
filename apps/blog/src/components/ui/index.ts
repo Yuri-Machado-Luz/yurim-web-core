@@ -6,5 +6,3 @@ export { default as PageHeader } from "./PageHeader.astro";
 export { default as Sidebar } from "./Sidebar.astro";
 export { default as TOC } from "./TOC.astro";
 export { LogoLoopController } from "./LogoLoop";
-export { default as Footer } from "./Footer/Footer.astro";
-export { default as Navbar } from "./Navbar/Navbar.astro";
