@@ -1,8 +1,8 @@
 import gsap from "gsap";
 
 /**
- * Singleton para contextos GSAP fora de ilhas React.
- * React islands usam useGSAP({ scope: ref }) diretamente.
+ * Singleton para contextos GSAP globais, fora de componentes.
+ * Reverte o contexto GSAP a cada navegacao (astro:after-swap).
  */
 class AnimationOrchestrator {
   private ctx: gsap.Context | null = null;
@@ -30,7 +30,7 @@ class AnimationOrchestrator {
   /** Atualiza ScrollTrigger após navegação. Chamado em astro:page-load. */
   refresh(): void {
     gsap.getProperty(document.body, "--gsap-refresh");
-    // ScrollTrigger.refresh() é chamado pelos componentes React via useGSAP;
+    // ScrollTrigger.refresh() é chamado pelos componentes quando necessario;
     // este método existe para scripts Astro que precisem do hook.
   }
 }
