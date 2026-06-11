@@ -16,7 +16,7 @@
       "@sections/*": ["./src/components/sections/*"],
       "@shared": ["./src/components/shared/index.ts"],
       "@shared/*": ["./src/components/shared/*"],
-      "@styles": ["./src/styles/index.ts"],
+      "@styles": ["./src/components/styles/index.ts"],
+      "@styles/*": ["./src/components/styles/*"],
       "@config": ["./src/config.ts"],
-      "@layouts": ["./src/layouts/index.ts"],
-      "@assets": ["./
+      
