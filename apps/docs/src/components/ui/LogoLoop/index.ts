@@ -1,1 +1,0 @@
-export { LogoLoopController } from "./LogoLoop";

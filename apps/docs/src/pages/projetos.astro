@@ -1,8 +1,8 @@
 ---
 import { Base } from "@layouts";
 import { getAllProjects } from "@shared";
-import PageHeader from "@sections/PageHeader.astro";
-import ProjectCard from "@ui/ProjectCard/ProjectCard.astro";
+import PageHeader from "@ui/PageHeader.astro";
+import ProjectCard from "@ui/ProjectCard.astro";
 
 const projects = await getAllProjects();
 const featured = projects.filter((p) => p.data.featured);
