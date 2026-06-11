@@ -169,7 +169,9 @@
     border: 1px solid var(--color-border);
     color: var(--color-text);
     background: transparent;
-    transition: opacity 200ms ease, color 200ms ease;
+    transition:
+      opacity 200ms ease,
+      color 200ms ease;
   }
   .btn:hover {
     opacity: 0.7;
@@ -220,9 +222,15 @@
     color: var(--color-text);
     animation: ambientGlow 4s ease-in-out infinite;
   }
-  .stat-item:nth-child(2) { animation-delay: 0.6s; }
-  .stat-item:nth-child(3) { animation-delay: 1.2s; }
-  .stat-item:nth-child(4) { animation-delay: 1.8s; }
+  .stat-item:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+  .stat-item:nth-child(3) {
+    animation-delay: 1.2s;
+  }
+  .stat-item:nth-child(4) {
+    animation-delay: 1.8s;
+  }
   .stat-item .value {
     font-size: 1.25rem;
     font-weight: 700;
