@@ -14,12 +14,9 @@
       "@pages/*": ["./src/components/pages/*"],
       "@sections": ["./src/components/sections/index.ts"],
       "@sections/*": ["./src/components/sections/*"],
-      "@lib": ["./src/lib/index.ts"],
-      "@lib/*": ["./src/lib/*"],
+      "@shared": ["./src/components/shared/index.ts"],
+      "@shared/*": ["./src/components/shared/*"],
       "@styles": ["./src/styles/index.ts"],
       "@config": ["./src/config.ts"],
       "@layouts": ["./src/layouts/index.ts"],
-      "@assets": ["./src/assets/index.ts"]
-    }
-  }
-}
+      "@assets": ["./

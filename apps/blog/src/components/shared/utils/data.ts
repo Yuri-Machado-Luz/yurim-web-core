@@ -1,4 +1,4 @@
-import type { SkillCategory, ExperienceItem, EducationItem, LanguageItem, HeroStat, QuickFact } from "../types";
+import type { SkillCategory, ExperienceItem, EducationItem, LanguageItem, HeroStat, QuickFact } from "../../../types";
 
 import skillsRaw from "../data/skills.json";
 import experienceRaw from "../data/experience.json";

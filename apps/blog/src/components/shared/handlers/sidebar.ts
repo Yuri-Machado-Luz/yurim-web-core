@@ -1,5 +1,5 @@
 import { getCollection } from "astro:content";
-import type { SidebarEntry, SidebarGroup } from "../types";
+import type { SidebarEntry, SidebarGroup } from "../../../types";
 
 type CollectionName = "notes" | "portfolio" | "sandbox" | "automation";
 
