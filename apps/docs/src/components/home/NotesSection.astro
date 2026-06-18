@@ -1,4 +1,6 @@
 ---
+import Button from "@ui/Button.astro";
+
 interface NoteEntry {
   id: string;
   data: {
@@ -52,77 +54,9 @@ function formatDate(date: Date) {
       )
     }
 
-    <a href="/docs" class="notes-cta btn" style="padding-left: 0; border: none">
-      Ver todas as notas →
-    </a>
+    <Button href="/projetos" class="notes-cta">
+      Ver publicações →
+    </Button>
   </div>
 </section>
 
-<script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  let ctx: gsap.Context | null = null;
-
-  function init() {
-    const section = document.querySelector<HTMLElement>("#notes-section");
-    if (!section) return;
-
-    ctx?.revert();
-
-    ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.set(".eyebrow, .section-title", { autoAlpha: 0, y: 24 });
-        gsap.set(".notes-item", { autoAlpha: 0, x: -16 });
-        gsap.set(".notes-cta", { autoAlpha: 0, y: 12 });
-
-        ScrollTrigger.batch([".eyebrow", ".section-title"], {
-          onEnter: (els) =>
-            gsap.to(els, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.5,
-              stagger: 0.08,
-              ease: "power2.out",
-              overwrite: true,
-            }),
-          once: true,
-          start: "top 88%",
-        });
-
-        ScrollTrigger.batch(".notes-item", {
-          onEnter: (els) =>
-            gsap.to(els, {
-              autoAlpha: 1,
-              x: 0,
-              duration: 0.45,
-              stagger: 0.06,
-              ease: "power2.out",
-              overwrite: true,
-            }),
-          once: true,
-          start: "top 88%",
-        });
-
-        ScrollTrigger.batch(".notes-cta", {
-          onEnter: (els) =>
-            gsap.to(els, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.4,
-              ease: "power2.out",
-            }),
-          once: true,
-          start: "top 92%",
-        });
-      });
-    }, section);
-  }
-
-  document.addEventListener("astro:page-load", init);
-  document.addEventListener("astro:before-preparation", () => ctx?.revert());
-</script>

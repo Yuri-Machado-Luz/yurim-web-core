@@ -27,7 +27,7 @@
   }
 
   .prose a {
-    color: var(--color-accent);
+    color: var(--color-primary);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
