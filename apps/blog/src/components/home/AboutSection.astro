@@ -1,5 +1,6 @@
 ---
 import { stats } from "@shared";
+import Button from "@ui/Button.astro";
 ---
 
 <section id="about" class="section-panel container py-24">
@@ -24,13 +25,13 @@ import { stats } from "@shared";
           minha trajetória independente.
         </p>
         <p>
-          Escrevo, desenho e documento o que construo — cobrindo um projeto
-          inteiro da arquitetura à comunicação final.
+          Escrevo, desenho e documento o que construo — da arquitetura à
+          comunicação final, com rigor e sigilo.
         </p>
       </div>
-      <a href="/sobre" class="about-cta btn btn-ghost self-start" style="padding-left: 0">
+      <Button href="/sobre" class="about-cta self-start">
         Conheça minha trajetória →
-      </a>
+      </Button>
     </div>
 
     <ul role="list" class="flex min-w-0 flex-col gap-3 lg:min-w-64">
@@ -68,60 +69,3 @@ import { stats } from "@shared";
   </div>
 </section>
 
-<script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  let ctx: gsap.Context | null = null;
-
-  function init() {
-    const section = document.querySelector<HTMLElement>("#about");
-    if (!section) return;
-
-    ctx?.revert();
-
-    ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.set(".section-title", { autoAlpha: 0, y: 28 });
-        gsap.set(".about-bio p", { autoAlpha: 0, y: 20 });
-        gsap.set(".about-cta", { autoAlpha: 0, y: 16 });
-        gsap.set(".stat-item", { autoAlpha: 0, x: 24 });
-
-        ScrollTrigger.batch([".section-title", ".about-bio p", ".about-cta"], {
-          onEnter: (els) =>
-            gsap.to(els, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.55,
-              stagger: 0.08,
-              ease: "power2.out",
-              overwrite: true,
-            }),
-          once: true,
-          start: "top 88%",
-        });
-
-        ScrollTrigger.batch(".stat-item", {
-          onEnter: (els) =>
-            gsap.to(els, {
-              autoAlpha: 1,
-              x: 0,
-              duration: 0.45,
-              stagger: 0.07,
-              ease: "power2.out",
-              overwrite: true,
-            }),
-          once: true,
-          start: "top 88%",
-        });
-      });
-    }, section);
-  }
-
-  document.addEventListener("astro:page-load", init);
-  document.addEventListener("astro:before-preparation", () => ctx?.revert());
-</script>

@@ -2,11 +2,14 @@
 import { ProfilePicture } from "@assets";
 import Button from "@ui/Button.astro";
 import { CONFIG } from "@config";
+import TechStack from "@home/TechStack.astro";
 ---
 
-<header id="hero" class="container flex min-h-svh flex-col items-center py-32">
+<header
+  id="hero"
+  class="container mt-24 flex min-h-svh flex-col items-center py-32"
+>
   <div class="grid w-full items-center gap-8 md:grid-cols-[2fr_1fr] md:gap-12">
-    <!-- Left: text block -->
     <div class="order-2 flex flex-col gap-6 md:order-1">
       <div data-hero-badge>
         <span
@@ -14,7 +17,7 @@ import { CONFIG } from "@config";
           style="border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-muted)"
         >
           <span
-            class="h-1.5 w-1.5 rounded-full bg-primary-400"
+            class="h-1.5 w-1.5 animate-pulse rounded-full bg-primary-400"
             aria-hidden="true"></span>
           Full-Stack Developer
         </span>
@@ -50,8 +53,8 @@ import { CONFIG } from "@config";
         <Button href="/sobre" style={{ variant: "primary", size: "md" }}>
           Saiba Mais
         </Button>
-        <Button href="/docs" style={{ variant: "muted", size: "md" }}>
-          Publicações
+        <Button href="/projetos" style={{ variant: "muted", size: "md" }}>
+          Projetos
         </Button>
       </nav>
     </div>
@@ -61,6 +64,8 @@ import { CONFIG } from "@config";
       class="order-1 flex justify-center md:order-2 md:items-center md:justify-end"
     >
       <div class="hero-picture-wrap" data-hero-picture>
+        <span class="picture-ring picture-ring--a" aria-hidden="true"></span>
+        <span class="picture-ring picture-ring--b" aria-hidden="true"></span>
         <img
           src={ProfilePicture.src}
           alt={`Foto de ${CONFIG.meta.author}`}
@@ -71,7 +76,42 @@ import { CONFIG } from "@config";
       </div>
     </div>
   </div>
+
+  <div class="w-full mt-auto" data-hero-techstack>
+    <TechStack inline />
+  </div>
 </header>
+
+<style>
+  .hero-picture-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .picture-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--color-primary-400) 40%, transparent);
+    animation: picture-ring-pulse 2.8s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .picture-ring--b {
+    animation-delay: 1.4s;
+  }
+
+  @keyframes picture-ring-pulse {
+    0%   { transform: scale(1);    opacity: 0.7; }
+    100% { transform: scale(1.55); opacity: 0;   }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .picture-ring { animation: none; opacity: 0; }
+  }
+</style>
 
 <script>
   import gsap from "gsap";
@@ -87,20 +127,43 @@ import { CONFIG } from "@config";
 
     ctx?.revert();
 
+    // Se o usuário já viu o Hero recentemente (30 minutos), pular animação
+    const HERO_SEEN_KEY = "hero:lastSeen";
+    const HERO_TTL = 30 * 60 * 1000; // 30 minutos
+    let shouldAnimate = true;
+    try {
+      const last = localStorage.getItem(HERO_SEEN_KEY);
+      if (last && Date.now() - Number(last) < HERO_TTL) {
+        shouldAnimate = false;
+      }
+    } catch (e) {
+      // localStorage pode não estar disponível — continuar como padrão
+    }
+
     ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
+        if (!shouldAnimate) {
+          // Pular animação: aplicar estado final imediatamente
+          gsap.set(
+            "[data-hero-text-reveal], [data-hero-badge], [data-hero-reveal], [data-hero-picture], [data-hero-techstack]",
+            { autoAlpha: 1, y: 0, scale: 1 },
+          );
+          return;
+        }
+
         gsap.set("[data-hero-badge]", { autoAlpha: 0, y: 16 });
         gsap.set("[data-hero-reveal]", { autoAlpha: 0, y: 16 });
         gsap.set("[data-hero-picture]", { autoAlpha: 0, scale: 0.95 });
+        gsap.set("[data-hero-techstack]", { autoAlpha: 0, y: 20 });
 
         SplitText.create("[data-hero-text-reveal]", {
           type: "lines",
           mask: "lines",
           autoSplit: true,
           onSplit(self) {
-            return gsap
+            const tl = gsap
               .timeline({ delay: 0.6 })
               .set("[data-hero-text-reveal]", { autoAlpha: 1 })
               .to("[data-hero-badge]", {
@@ -134,14 +197,27 @@ import { CONFIG } from "@config";
                   ease: "power2.out",
                 },
                 "<0.35",
+              )
+              .to(
+                "[data-hero-techstack]",
+                { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" },
+                "<0.2",
               );
+
+            try {
+              localStorage.setItem(HERO_SEEN_KEY, String(Date.now()));
+            } catch (e) {
+              // ignore
+            }
+
+            return tl;
           },
         });
       });
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set(
-          "[data-hero-text-reveal], [data-hero-badge], [data-hero-reveal], [data-hero-picture]",
+          "[data-hero-text-reveal], [data-hero-badge], [data-hero-reveal], [data-hero-picture], [data-hero-techstack]",
           { autoAlpha: 1, y: 0, scale: 1 },
         );
       });

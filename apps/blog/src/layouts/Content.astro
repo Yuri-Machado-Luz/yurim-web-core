@@ -4,6 +4,7 @@ import TOC from "@ui/TOC.astro";
 import Footer from "./Footer.astro";
 import type { SidebarEntry } from "../types";
 import Head from "./Head.astro";
+import { ChevronLeftRaw, HamburgerRaw } from "@assets";
 
 interface Heading {
   depth: number;
@@ -43,19 +44,7 @@ const hasToc =
       {
         hasSidebar && (
           <button class="sidebar-toggle" aria-label="Colapsar navegação">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="m15 18-6-6 6-6" />
-            </svg>
+            <span aria-hidden set:html={ChevronLeftRaw} />
           </button>
         )
       }
@@ -63,18 +52,7 @@ const hasToc =
       {
         hasSidebar && (
           <button class="sidebar-mobile-toggle" aria-label="Abrir navegação">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              aria-hidden="true"
-            >
-              <line x1="4" y1="8" x2="20" y2="8" />
-              <line x1="4" y1="16" x2="20" y2="16" />
-            </svg>
+            <span aria-hidden set:html={HamburgerRaw} />
             Navegação
           </button>
         )

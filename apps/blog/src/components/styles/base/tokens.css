@@ -22,11 +22,6 @@
   --color-primary-dark: #ba1313;
   --color-primary-deep: #a40c0c;
 
-  /* Accent — Red alias */
-  --color-accent: #e82828;
-  --color-accent-light: #f66565;
-  --color-accent-dark: #a40c0c;
-
   /* Shock — Hot Pink */
   --color-shock: #e82771;
   --color-shock-light: #f54689;
@@ -37,7 +32,6 @@
   --color-tone-caution: #e8a827;
   --color-tone-danger: #e82828;
   --color-tone-success: #3ae827;
-  --color-tone-info: #1bd19a;
 
   /* Primary scale */
   --color-primary-50: rgba(255, 125, 125, 1);
@@ -124,6 +118,7 @@
   --duration-enter: 500ms;
   --duration-leave: 350ms;
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Layout */
   --section-gap: 8rem;
@@ -153,6 +148,16 @@
   --breakpoint-xl: 80rem;
   --breakpoint-2xl: 96rem;
 
+  /* Font sizes */
+  --font-size-xs:   0.75rem;
+  --font-size-sm:   0.8125rem;
+  --font-size-base: 0.875rem;
+  --font-size-md:   0.9375rem;
+  --font-size-lg:   1.0625rem;
+  --font-size-xl:   1.25rem;
+  --font-size-2xl:  2rem;
+  --font-size-3xl:  clamp(2.5rem, 5vw, 4rem);
+
   /* Fonts */
   --font-sans:
     "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -176,7 +181,7 @@
     --tone-caution: var(--color-tone-caution);
     --tone-danger: var(--color-tone-danger);
     --tone-success: var(--color-tone-success);
-    --tone-info: var(--color-tone-info);
+    --tone-info: var(--color-tone-tip);
 
     /* Soft tone variants for callout backgrounds */
     --tone-note-soft: color-mix(
@@ -206,7 +211,7 @@
     );
     --tone-info-soft: color-mix(
       in srgb,
-      var(--color-tone-info) 10%,
+      var(--color-tone-tip) 10%,
       var(--color-surface-strong)
     );
 

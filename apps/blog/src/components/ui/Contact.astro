@@ -16,14 +16,8 @@ const { fullPage = false } = Astro.props;
       : "container py-24",
   ]}
 >
-  <h2 class="mb-2 text-4xl font-bold contact-item">Contato</h2>
-  <p class="mb-12 contact-item" style="color: var(--color-muted)">
-    Tem um projeto em mente ou quer trocar uma ideia?
-  </p>
-
   <div
-    class="w-full overflow-hidden rounded-2xl"
-    style="border: 1px solid var(--color-border)"
+    class="w-full overflow-hidden rounded-2xl mt-16 border-base"
   >
     <div class="grid md:grid-cols-2">
       <!-- Left: contact info -->
@@ -35,8 +29,7 @@ const { fullPage = false } = Astro.props;
           <!-- Email -->
           <div class="contact-item flex items-center gap-4">
             <div
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-              style="border: 1px solid var(--color-border)"
+              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-base"
             >
               <!-- Mail icon -->
               <svg
@@ -56,7 +49,7 @@ const { fullPage = false } = Astro.props;
               </svg>
             </div>
             <div class="text-sm">
-              <p class="mb-1" style="color: var(--color-muted)">Email</p>
+              <p class="mb-1 text-muted">Email</p>
               <a
                 href={`mailto:${CONFIG.meta.social.email}`}
                 class="transition-colors hover:text-primary-400"
@@ -75,8 +68,7 @@ const { fullPage = false } = Astro.props;
             class="contact-item flex items-center gap-4 transition-opacity hover:opacity-80"
           >
             <div
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-              style="border: 1px solid var(--color-border)"
+              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-base"
             >
               <!-- WhatsApp icon -->
               <svg
@@ -93,7 +85,7 @@ const { fullPage = false } = Astro.props;
               </svg>
             </div>
             <div class="text-sm">
-              <p class="mb-1" style="color: var(--color-muted)">WhatsApp</p>
+              <p class="mb-1 text-muted">WhatsApp</p>
               <p style="color: var(--color-text)">+55 (11) 94935-9394</p>
             </div>
           </a>
@@ -101,8 +93,7 @@ const { fullPage = false } = Astro.props;
           <!-- Location -->
           <div class="contact-item flex items-center gap-4">
             <div
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-              style="border: 1px solid var(--color-border)"
+              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-base"
             >
               <!-- MapPin icon -->
               <svg
@@ -122,7 +113,7 @@ const { fullPage = false } = Astro.props;
               </svg>
             </div>
             <div class="text-sm">
-              <p class="mb-1" style="color: var(--color-muted)">Localização</p>
+              <p class="mb-1 text-muted">Localização</p>
               <p style="color: var(--color-text)">São Paulo, Brasil</p>
             </div>
           </div>
@@ -138,8 +129,7 @@ const { fullPage = false } = Astro.props;
             href={CONFIG.meta.social.github}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:opacity-80"
-            style="border: 1px solid var(--color-border); color: var(--color-muted)"
+            class="flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:opacity-80 border-base text-muted"
             aria-label="GitHub"
           >
             <svg
@@ -160,8 +150,7 @@ const { fullPage = false } = Astro.props;
             href={CONFIG.meta.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:opacity-80"
-            style="border: 1px solid var(--color-border); color: var(--color-muted)"
+            class="flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:opacity-80 border-base text-muted"
             aria-label="LinkedIn"
           >
             <svg
@@ -180,8 +169,7 @@ const { fullPage = false } = Astro.props;
           <!-- Email -->
           <a
             href={`mailto:${CONFIG.meta.social.email}`}
-            class="flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:opacity-80"
-            style="border: 1px solid var(--color-border); color: var(--color-muted)"
+            class="flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 hover:opacity-80 border-base text-muted"
             aria-label="Email"
           >
             <svg
@@ -211,8 +199,7 @@ const { fullPage = false } = Astro.props;
         <div>
           <label
             for="name"
-            class="block text-xs font-medium mb-1.5"
-            style="color: var(--color-muted)"
+            class="block text-xs font-medium mb-1.5 text-muted"
           >
             Nome
           </label>
@@ -230,8 +217,7 @@ const { fullPage = false } = Astro.props;
         <div>
           <label
             for="email"
-            class="block text-xs font-medium mb-1.5"
-            style="color: var(--color-muted)"
+            class="block text-xs font-medium mb-1.5 text-muted"
           >
             Email
           </label>
@@ -249,8 +235,7 @@ const { fullPage = false } = Astro.props;
         <div class="flex flex-1 flex-col">
           <label
             for="message"
-            class="block text-xs font-medium mb-1.5"
-            style="color: var(--color-muted)"
+            class="block text-xs font-medium mb-1.5 text-muted"
           >
             Mensagem
           </label>
@@ -382,8 +367,8 @@ const { fullPage = false } = Astro.props;
 
 <script>
   import emailjs from "@emailjs/browser";
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
 

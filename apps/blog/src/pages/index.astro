@@ -6,16 +6,14 @@ import CTASection from "@home/CTASection.astro";
 import FeaturedProjects from "@home/FeaturedProjects.astro";
 import Hero from "@home/Hero.astro";
 import NotesSection from "@home/NotesSection.astro";
-import TechStack from "@home/TechStack.astro";
 
 const projects = await getFeaturedProjects();
 const recentNotes = await getRecentNotes(4);
 ---
 
 <Base>
-  <main id="home-main">
+  <main id="home-main" style="overflow-x: clip">
     <Hero />
-    <TechStack />
     <AboutSection />
     <FeaturedProjects projects={projects} />
     <NotesSection notes={recentNotes} />
@@ -38,22 +36,55 @@ const recentNotes = await getRecentNotes(4);
     ctx?.revert();
 
     ctx = gsap.context(() => {
-      const panels = gsap.utils.toArray<HTMLElement>(".section-panel");
-      if (panels.length === 0) return;
+      const mm = gsap.matchMedia();
 
-      panels.forEach((panel) => {
-        gsap.to(panel, {
-          scale: 1.04,
-          opacity: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: panel,
-            start: "top top",
-            end: "+=60%",
-            pin: true,
-            pinSpacing: false,
-            scrub: true,
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const animSections = [
+          {
+            id: "#about",
+            xFrom: -60,
+            selectors: ".section-title, .about-bio p, .about-cta, .stat-item",
           },
+          {
+            id: "#featured-projects",
+            xFrom: 60,
+            selectors:
+              ".eyebrow, .section-title, .projects-header-desc, .project-card, .projects-cta",
+          },
+          {
+            id: "#notes-section",
+            xFrom: -60,
+            selectors: ".eyebrow, .section-title, .notes-item, .notes-cta",
+          },
+          {
+            id: "#cta-section",
+            xFrom: 60,
+            selectors: ".section-title, .btn, .social-link",
+          },
+        ] as const;
+
+        animSections.forEach(({ id, xFrom, selectors }) => {
+          const section = main.querySelector<HTMLElement>(id);
+          if (!section) return;
+
+          const items = section.querySelectorAll<HTMLElement>(selectors);
+          if (!items.length) return;
+
+          const tl = gsap.timeline({ paused: true });
+          tl.from(items, {
+            x: xFrom,
+            autoAlpha: 0,
+            stagger: 0.06,
+            duration: 0.55,
+            ease: "power2.out",
+          });
+
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top 80%",
+            animation: tl,
+            toggleActions: "play none none reverse",
+          });
         });
       });
     }, main);

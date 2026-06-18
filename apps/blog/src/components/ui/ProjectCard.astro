@@ -25,7 +25,7 @@ const { title, description, status, tags, github, live, documentation } =
 
   {
     description && (
-      <p class="text-sm leading-relaxed" style="color: var(--color-muted)">
+      <p class="text-sm leading-relaxed text-muted">
         {description}
       </p>
     )
@@ -36,8 +36,7 @@ const { title, description, status, tags, github, live, documentation } =
       <div class="flex flex-wrap gap-2">
         {tags.map((tag) => (
           <span
-            class="text-xs px-2 py-0.5 rounded-full"
-            style="border: 1px solid var(--color-border); color: var(--color-muted)"
+            class="text-xs px-2 py-0.5 rounded-full border-base text-muted"
           >
             {tag}
           </span>
@@ -80,8 +79,7 @@ const { title, description, status, tags, github, live, documentation } =
           href={github}
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center gap-1.5 text-sm transition-colors hover:opacity-80"
-          style="color: var(--color-muted)"
+          class="flex items-center gap-1.5 text-sm transition-colors hover:opacity-80 text-muted"
         >
           <svg
             width="14"
@@ -101,8 +99,7 @@ const { title, description, status, tags, github, live, documentation } =
       documentation && (
         <a
           href={documentation}
-          class="flex items-center gap-1.5 text-sm transition-colors hover:opacity-80"
-          style="color: var(--color-muted)"
+          class="flex items-center gap-1.5 text-sm transition-colors hover:opacity-80 text-muted"
         >
           <svg
             width="14"
