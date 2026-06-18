@@ -6,7 +6,7 @@ export const CONFIG = {
     author: "Yuri Machado Luz",
     suffix: " — Yuri Machado Luz",
     description:
-      "Desenvolvedor full-stack focado em arquitetura, automação e design de sistemas.",
+      "Desenvolvedor full-stack especializado em arquitetura, automação e design de sistemas.",
     locale: "pt-BR",
     social: {
       github: "https://github.com/Yuri-Machado-Luz",
@@ -23,9 +23,8 @@ export const CONFIG = {
     },
     pages: [
       { label: "Projetos", href: "/projetos" },
-      { label: "Publicações", href: "/docs" },
       { label: "Sobre", href: "/sobre" },
-      { label: "Contato", href: "/sobre#contato", cta: true },
+      { label: "Contato", href: "/contato", cta: true },
     ],
   } satisfies NavLink,
 };
