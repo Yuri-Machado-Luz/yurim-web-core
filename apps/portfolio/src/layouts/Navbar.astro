@@ -1,5 +1,6 @@
 ---
 import { CONFIG } from "@config";
+import { MenuRaw, CloseRaw } from "@assets";
 
 const currentPath = Astro.url.pathname;
 ---
@@ -8,44 +9,52 @@ const currentPath = Astro.url.pathname;
   id="navbar"
   class="navbar fixed top-0 left-0 z-50 w-full will-change-transform"
 >
-  <div class="container flex items-center justify-between py-4 font-medium md:py-5">
+  <div
+    class="container flex items-center justify-between py-4 font-medium md:py-5"
+  >
     <a href={CONFIG.nav.logo.href}>
-      <img src={CONFIG.nav.logo.src} alt={CONFIG.nav.logo.alt} class="h-8 md:h-10" />
+      <img
+        src={CONFIG.nav.logo.src}
+        alt={CONFIG.nav.logo.alt}
+        class="h-8 md:h-10"
+      />
     </a>
 
     <!-- Desktop nav -->
     <ul class="hidden items-center gap-6 text-sm md:flex">
-      {CONFIG.nav.pages.map(({ label, href, cta }) => (
-        <li>
-          {cta ? (
-            <a
-              href={href}
-              class="btn btn-primary"
-              style="font-size: 0.8125rem; padding: 0.375rem 0.875rem"
-            >
-              {label}
-            </a>
-          ) : (
-            <a
-              href={href}
-              data-nav-link
-              class:list={[
-                "transition-colors duration-200",
-                currentPath === href || currentPath.startsWith(href + "/")
-                  ? "text-primary-400"
-                  : "hover:text-primary-400",
-              ]}
-              style={
-                currentPath === href || currentPath.startsWith(href + "/")
-                  ? ""
-                  : "color: var(--color-muted)"
-              }
-            >
-              {label}
-            </a>
-          )}
-        </li>
-      ))}
+      {
+        CONFIG.nav.pages.map(({ label, href, cta }) => (
+          <li>
+            {cta ? (
+              <a
+                href={href}
+                class="btn btn-primary"
+                style="font-size: 0.8125rem; padding: 0.375rem 0.875rem"
+              >
+                {label}
+              </a>
+            ) : (
+              <a
+                href={href}
+                data-nav-link
+                class:list={[
+                  "transition-colors duration-200",
+                  currentPath === href || currentPath.startsWith(href + "/")
+                    ? "text-primary-400"
+                    : "hover:text-primary-400",
+                ]}
+                style={
+                  currentPath === href || currentPath.startsWith(href + "/")
+                    ? ""
+                    : "color: var(--color-muted)"
+                }
+              >
+                {label}
+              </a>
+            )}
+          </li>
+        ))
+      }
     </ul>
 
     <!-- Mobile toggle -->
@@ -57,39 +66,9 @@ const currentPath = Astro.url.pathname;
       aria-expanded="false"
     >
       <!-- Hamburger -->
-      <svg
-        data-icon-menu
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <line x1="3" y1="12" x2="21" y2="12" />
-        <line x1="3" y1="18" x2="21" y2="18" />
-      </svg>
+      <span data-icon-menu aria-hidden set:html={MenuRaw} />
       <!-- Close -->
-      <svg
-        data-icon-close
-        class="hidden"
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </svg>
+      <span data-icon-close class="hidden" aria-hidden set:html={CloseRaw} />
     </button>
   </div>
 
@@ -101,43 +80,48 @@ const currentPath = Astro.url.pathname;
     aria-hidden="true"
   >
     <ul class="flex flex-col gap-1 px-6 py-4 text-sm">
-      {CONFIG.nav.pages.map(({ label, href, cta }) => (
-        <li>
-          {cta ? (
-            <a
-              href={href}
-              class="block py-2 font-medium transition-colors duration-200 text-primary-400 hover:text-primary-300"
-            >
-              {label}
-            </a>
-          ) : (
-            <a
-              href={href}
-              data-nav-link-mobile
-              class:list={[
-                "block py-2 transition-colors duration-200",
-                currentPath === href ? "text-primary-400" : "hover:text-primary-400",
-              ]}
-              style={currentPath === href ? "" : "color: var(--color-muted)"}
-            >
-              {label}
-            </a>
-          )}
-        </li>
-      ))}
+      {
+        CONFIG.nav.pages.map(({ label, href, cta }) => (
+          <li>
+            {cta ? (
+              <a
+                href={href}
+                class="block py-2 font-medium text-primary-400 transition-colors duration-200 hover:text-primary-300"
+              >
+                {label}
+              </a>
+            ) : (
+              <a
+                href={href}
+                data-nav-link-mobile
+                class:list={[
+                  "block py-2 transition-colors duration-200",
+                  currentPath === href
+                    ? "text-primary-400"
+                    : "hover:text-primary-400",
+                ]}
+                style={currentPath === href ? "" : "color: var(--color-muted)"}
+              >
+                {label}
+              </a>
+            )}
+          </li>
+        ))
+      }
     </ul>
   </div>
 </nav>
 
 <script>
   import gsap from "gsap";
-  import { Observer } from "gsap/Observer";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  gsap.registerPlugin(Observer, ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
 
   let isTransitioning = false;
   let navInitialized = false;
+  let lastScrollY = 0;
+  let lastAnimDir: "up" | "down" | null = null;
 
   function updateActiveLinks(path: string) {
     document
@@ -167,6 +151,28 @@ const currentPath = Astro.url.pathname;
       });
   }
 
+  function handleScroll() {
+    if (isTransitioning) return;
+    const nav = document.querySelector<HTMLElement>("#navbar");
+    if (!nav) return;
+
+    const y = window.scrollY;
+    const delta = y - lastScrollY;
+    lastScrollY = y;
+
+    if (Math.abs(delta) < 4) return;
+
+    if (delta > 0 && y > 60) {
+      if (lastAnimDir === "down") return;
+      lastAnimDir = "down";
+      gsap.to(nav, { y: "-100%", duration: 0.3, ease: "power2.in", overwrite: true });
+    } else if (delta < 0) {
+      if (lastAnimDir === "up") return;
+      lastAnimDir = "up";
+      gsap.to(nav, { y: 0, duration: 0.3, ease: "power2.out", overwrite: true });
+    }
+  }
+
   function initNavAnimations() {
     const nav = document.querySelector<HTMLElement>("#navbar");
     if (!nav || navInitialized) return;
@@ -178,27 +184,7 @@ const currentPath = Astro.url.pathname;
       onLeaveBack: () => nav.classList.remove("is-scrolled"),
     });
 
-    Observer.create({
-      tolerance: 4,
-      onDown: () => {
-        if (isTransitioning || window.scrollY < 5) return;
-        gsap.to(nav, {
-          y: "-100%",
-          duration: 0.3,
-          ease: "power2.in",
-          overwrite: true,
-        });
-      },
-      onUp: () => {
-        if (isTransitioning) return;
-        gsap.to(nav, {
-          y: 0,
-          duration: 0.3,
-          ease: "power2.out",
-          overwrite: true,
-        });
-      },
-    });
+    window.addEventListener("scroll", handleScroll, { passive: true });
   }
 
   function initMobileMenu() {
@@ -257,7 +243,7 @@ const currentPath = Astro.url.pathname;
     initNavAnimations();
     initMobileMenu();
     updateActiveLinks(window.location.pathname);
-    ScrollTrigger.refresh();
+    requestAnimationFrame(() => ScrollTrigger.refresh());
   });
 
   document.addEventListener("astro:before-preparation", () => {
@@ -266,6 +252,8 @@ const currentPath = Astro.url.pathname;
 
   document.addEventListener("astro:after-swap", () => {
     isTransitioning = false;
+    lastScrollY = window.scrollY;
+    lastAnimDir = null;
     updateActiveLinks(window.location.pathname);
     gsap.set("#navbar", { y: 0 });
   });

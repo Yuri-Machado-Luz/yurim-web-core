@@ -34,9 +34,9 @@
   }
 
   .card-accent:hover {
-    border-color: var(--color-accent);
+    border-color: var(--color-primary);
     box-shadow:
-      0 0 0 1px var(--color-accent),
-      0 0 20px rgb(from var(--color-accent) r g b / 0.35);
+      0 0 0 1px var(--color-primary),
+      0 0 20px rgb(from var(--color-primary) r g b / 0.35);
   }
 }

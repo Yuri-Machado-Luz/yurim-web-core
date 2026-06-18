@@ -40,7 +40,7 @@ const sizes: Record<ButtonSize, string> = {
 
 const animations: Record<ButtonAnimation, string> = {
   spring:
-    "[transition:transform_220ms_cubic-bezier(0.34,1.56,0.64,1)] hover:scale-[1.02] active:scale-[0.98]",
+    "[transition:transform_220ms_var(--ease-spring)] hover:scale-[1.02] active:scale-[0.98]",
   smooth:
     "transition-transform duration-200 ease-in-out hover:scale-[1.05] active:scale-[0.95]",
 };

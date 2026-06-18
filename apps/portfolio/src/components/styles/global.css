@@ -64,6 +64,15 @@
   .text-muted {
     color: var(--color-muted);
   }
+  .text-primary {
+    color: var(--color-primary-400);
+  }
+  .bg-surface {
+    background: var(--color-surface);
+  }
+  .border-base {
+    border: 1px solid var(--color-border);
+  }
 }
 
 @layer components {
@@ -85,26 +94,9 @@
       0 0 64px rgb(from var(--color-primary) r g b / 0.1);
   }
 
-  .hero-picture-wrap::before {
-    content: "";
-    position: absolute;
-    inset: -24px;
-    border: 1px dashed rgb(from var(--color-text) r g b / 0.12);
-    border-radius: 50%;
-    z-index: 1;
-  }
-
-  .hero-picture-wrap::after {
-    content: "";
-    position: absolute;
-    inset: -56px;
-    border: 1px solid rgb(from var(--color-primary) r g b / 0.08);
-    border-radius: 50%;
-    z-index: 0;
-  }
-
   /* ── Navbar ── */
   .navbar {
+    view-transition-name: navbar;
     background: transparent;
     border-bottom: 1px solid transparent;
     transition:
@@ -119,7 +111,7 @@
     border-bottom-color: var(--color-border);
   }
 
-  /* ── Section panels (scroll-stack) ── */
+  /* ── Section panels ── */
   .section-panel {
     position: relative;
     isolation: isolate;
@@ -127,29 +119,27 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transform-style: preserve-3d;
-    will-change: transform, opacity;
   }
 
   /* ── Page typography ── */
   .page-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: var(--font-size-3xl);
     font-weight: 700;
     line-height: 1.15;
   }
   .page-lead {
-    font-size: 1.0625rem;
+    font-size: var(--font-size-lg);
     color: var(--color-muted);
     max-width: 52ch;
     line-height: 1.7;
   }
   .section-title {
-    font-size: 2rem;
+    font-size: var(--font-size-2xl);
     font-weight: 700;
     line-height: 1.2;
   }
   .eyebrow {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -163,7 +153,7 @@
     gap: 8px;
     padding: 0.5rem 1.25rem;
     border-radius: 999px;
-    font-size: 0.875rem;
+    font-size: var(--font-size-base);
     font-weight: 500;
     text-decoration: none;
     border: 1px solid var(--color-border);
@@ -201,11 +191,11 @@
     color: var(--color-primary-400);
   }
   .article-title {
-    font-size: 0.9375rem;
+    font-size: var(--font-size-md);
     font-weight: 500;
   }
   .article-meta {
-    font-size: 0.8125rem;
+    font-size: var(--font-size-sm);
     color: var(--color-muted);
   }
 
@@ -218,7 +208,7 @@
     border-radius: 12px;
     border: 1px solid var(--color-border);
     background: var(--color-surface);
-    font-size: 0.875rem;
+    font-size: var(--font-size-base);
     color: var(--color-text);
     animation: ambientGlow 4s ease-in-out infinite;
   }
@@ -232,7 +222,7 @@
     animation-delay: 1.8s;
   }
   .stat-item .value {
-    font-size: 1.25rem;
+    font-size: var(--font-size-xl);
     font-weight: 700;
     color: var(--color-primary-400);
     white-space: nowrap;
@@ -252,7 +242,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.8125rem;
+    font-size: var(--font-size-sm);
     color: var(--color-muted);
     text-decoration: none;
     transition: color 200ms ease;
@@ -296,12 +286,12 @@
   }
   .experience-item .role {
     font-weight: 600;
-    font-size: 0.9375rem;
+    font-size: var(--font-size-md);
   }
   .experience-item .meta {
     display: flex;
     gap: 0.75rem;
-    font-size: 0.8125rem;
+    font-size: var(--font-size-sm);
     color: var(--color-muted);
     margin: 2px 0 8px;
     flex-wrap: wrap;
@@ -318,7 +308,7 @@
     gap: 4px;
   }
   .experience-item .bullet {
-    font-size: 0.8125rem;
+    font-size: var(--font-size-sm);
     color: var(--color-muted);
     padding-left: 1rem;
     position: relative;
@@ -345,15 +335,15 @@
   }
   .education-item .degree {
     font-weight: 600;
-    font-size: 0.9375rem;
+    font-size: var(--font-size-md);
     margin-bottom: 4px;
   }
   .education-item .institution {
-    font-size: 0.875rem;
+    font-size: var(--font-size-base);
     color: var(--color-muted);
   }
   .education-item .detail {
-    font-size: 0.8125rem;
+    font-size: var(--font-size-sm);
     color: var(--color-muted);
     opacity: 0.7;
     margin-top: 2px;
@@ -376,10 +366,10 @@
   }
   .language-card .name {
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: var(--font-size-base);
   }
   .language-card .level {
-    font-size: 0.8125rem;
+    font-size: var(--font-size-sm);
     color: var(--color-muted);
   }
 
@@ -405,7 +395,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.875rem;
+    font-size: var(--font-size-base);
     color: var(--color-muted);
   }
 }
