@@ -16,5 +16,5 @@
   ],
 
   "checkIgnorePragma": false,
-  "tailwindStylesheet": "./src/styles/global.css"
+  "tailwindStylesheet": "./src/components/styles/global.css"
 }
