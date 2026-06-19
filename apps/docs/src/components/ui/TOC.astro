@@ -25,10 +25,9 @@ const filtered = headings.filter((h) => h.depth === 2 || h.depth === 3);
             <a
               href={`#${heading.slug}`}
               class:list={[
-                "toc-link block rounded px-2 py-1 transition-colors duration-150 hover:text-text",
+                "toc-link block rounded px-2 py-1 text-muted transition-colors duration-150 hover:text-text",
                 heading.depth === 3 ? "ml-3 text-xs" : "text-sm",
               ]}
-              style="color: var(--color-muted)"
               data-toc-link
             >
               {heading.text}
