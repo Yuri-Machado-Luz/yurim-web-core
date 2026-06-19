@@ -2,6 +2,7 @@
 import { ProfilePicture } from "@assets";
 import Button from "@ui/Button.astro";
 import { CONFIG } from "@config";
+import { pt } from "@i18n/pt";
 import TechStack from "@home/TechStack.astro";
 ---
 
@@ -13,13 +14,12 @@ import TechStack from "@home/TechStack.astro";
     <div class="order-2 flex flex-col gap-6 md:order-1">
       <div data-hero-badge>
         <span
-          class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium"
-          style="border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-muted)"
+          class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium border-base bg-surface text-muted"
         >
           <span
             class="h-1.5 w-1.5 animate-pulse rounded-full bg-primary-400"
             aria-hidden="true"></span>
-          Full-Stack Developer
+          {pt.hero.badge}
         </span>
       </div>
 
@@ -32,29 +32,25 @@ import TechStack from "@home/TechStack.astro";
       </h1>
 
       <p
-        class="text-lg font-medium"
-        style="color: var(--color-muted)"
+        class="text-lg font-medium text-muted"
         data-hero-reveal
       >
         {CONFIG.meta.description}
       </p>
 
       <p
-        class="max-w-md text-sm leading-relaxed"
-        style="color: var(--color-muted)"
+        class="max-w-md text-sm leading-relaxed text-muted"
         data-hero-reveal
       >
-        Construo sistemas web, APIs e automações — do back-end à interface.
-        Trabalho autônomo desde 2020 com foco em arquitetura documentada e
-        entrega que funciona.
+        {pt.hero.paragraph}
       </p>
 
       <nav class="flex flex-wrap gap-3" data-hero-reveal>
         <Button href="/sobre" style={{ variant: "primary", size: "md" }}>
-          Saiba Mais
+          {pt.hero.cta.primary}
         </Button>
         <Button href="/projetos" style={{ variant: "muted", size: "md" }}>
-          Projetos
+          {pt.hero.cta.secondary}
         </Button>
       </nav>
     </div>

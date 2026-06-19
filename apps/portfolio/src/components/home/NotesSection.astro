@@ -1,5 +1,6 @@
 ---
 import Button from "@ui/Button.astro";
+import { pt } from "@i18n/pt";
 
 interface NoteEntry {
   id: string;
@@ -27,8 +28,8 @@ function formatDate(date: Date) {
 
 <section id="notes-section" class="section-panel">
   <div class="section-inner container py-24">
-    <p class="eyebrow mb-3">Notas</p>
-    <h2 class="section-title mb-10">Publicações recentes</h2>
+    <p class="eyebrow mb-3">{pt.notes.eyebrow}</p>
+    <h2 class="section-title mb-10">{pt.notes.title}</h2>
 
     {
       notes.length > 0 ? (
@@ -50,12 +51,12 @@ function formatDate(date: Date) {
           ))}
         </ul>
       ) : (
-        <p class="article-meta mb-8">Nenhuma publicação disponível ainda.</p>
+        <p class="article-meta mb-8">{pt.notes.empty}</p>
       )
     }
 
     <Button href="/projetos" class="notes-cta">
-      Ver publicações →
+      {pt.notes.cta}
     </Button>
   </div>
 </section>

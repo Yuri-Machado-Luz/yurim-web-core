@@ -1,71 +1,54 @@
 ---
 import { stats } from "@shared";
 import Button from "@ui/Button.astro";
+import { pt } from "@i18n/pt";
 ---
 
-<section id="about" class="section-panel container py-24">
-  <div class="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
-    <div class="flex flex-col gap-6">
-      <h2 class="section-title">Sobre mim</h2>
-      <div
-        class="about-bio flex flex-col gap-4 text-base leading-[1.8]"
-        style="color: var(--color-muted)"
-      >
-        <p>
-          Comecei minha trajetória em tecnologia ainda na graduação em
-          Psicologia — e desde então combino análise comportamental com
-          engenharia de software. Acredito que o melhor produto nasce da
-          interseção entre código robusto e design centrado em pessoas.
-        </p>
-        <p>
-          Trabalho de forma autônoma desde 2020, desenvolvendo sistemas web,
-          automações e produtos digitais para PMEs e projetos próprios. Em
-          2024, integrei a equipe da IBM onde redesenhei o ciclo de
-          onboarding e reduzi o tempo de integração em 57%, antes de retomar
-          minha trajetória independente.
-        </p>
-        <p>
-          Escrevo, desenho e documento o que construo — da arquitetura à
-          comunicação final, com rigor e sigilo.
-        </p>
+<section id="about" class="section-panel">
+  <div class="section-inner container py-24">
+    <div class="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
+      <div class="flex flex-col gap-6">
+        <h2 class="section-title">{pt.about.title}</h2>
+        <div class="about-bio flex flex-col gap-4 text-base leading-[1.8] text-muted">
+          {pt.about.bio.map((para) => <p>{para}</p>)}
+        </div>
+        <Button href="/sobre" class="about-cta self-start">
+          {pt.about.cta}
+        </Button>
       </div>
-      <Button href="/sobre" class="about-cta self-start">
-        Conheça minha trajetória →
-      </Button>
-    </div>
 
-    <ul role="list" class="flex min-w-0 flex-col gap-3 lg:min-w-64">
-      {
-        stats.heroStats.map((stat) => (
-          <li class="stat-item">
-            {stat.value ? (
-              <span class="value">{stat.value}</span>
-            ) : (
-              <span
-                class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                style="background: var(--color-surface-strong)"
-                aria-hidden="true"
-              >
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  style="color: var(--color-primary-400)"
+      <ul role="list" class="flex min-w-0 flex-col gap-3 lg:min-w-64">
+        {
+          stats.heroStats.map((stat) => (
+            <li class="stat-item">
+              {stat.value ? (
+                <span class="value">{stat.value}</span>
+              ) : (
+                <span
+                  class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+                  style="background: var(--color-surface-strong)"
                   aria-hidden="true"
                 >
-                  <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
-                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                </svg>
-              </span>
-            )}
-            <span class="label">{stat.label}</span>
-          </li>
-        ))
-      }
-    </ul>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    style="color: var(--color-primary-400)"
+                    aria-hidden="true"
+                  >
+                    <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  </svg>
+                </span>
+              )}
+              <span class="label">{stat.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </section>
-
