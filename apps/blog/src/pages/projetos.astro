@@ -59,8 +59,7 @@ const docCategories = [
       featured.length > 0 && (
         <section class="container mb-20">
           <div
-            class="featured-grid"
-            style={featured.length === 1 ? "grid-template-columns: 1fr" : ""}
+            class:list={["featured-grid", featured.length === 1 && "grid-cols-1!"]}
           >
             {featured.map((entry) => (
               <div class="project-card">
