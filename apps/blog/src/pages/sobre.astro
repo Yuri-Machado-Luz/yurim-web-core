@@ -5,6 +5,7 @@ import { education, experience, languages, stats } from "@shared";
 import Skills from "@home/Skills.astro";
 import Button from "@ui/Button.astro";
 import DownloadIcon from "@ui/DownloadIcon.astro";
+import { pt } from "@i18n/pt";
 ---
 
 <Base
@@ -219,7 +220,7 @@ import DownloadIcon from "@ui/DownloadIcon.astro";
       id="contato"
     >
       <Button href="/contato" variant="primary" size="xl">
-        Entre em contato
+        {pt.cta.button}
       </Button>
     </section>
   </main>
