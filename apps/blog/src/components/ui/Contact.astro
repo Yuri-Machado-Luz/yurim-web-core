@@ -13,11 +13,11 @@ const { fullPage = false } = Astro.props;
   class:list={[
     fullPage
       ? "container flex min-h-svh flex-col items-center justify-center py-32 text-center"
-      : "container py-24",
+      : "container pt-24 pb-6",
   ]}
 >
   <div
-    class="w-full overflow-hidden rounded-2xl mt-16 border-base"
+    class:list={["w-full overflow-hidden rounded-2xl border-base", fullPage && "mt-16"]}
   >
     <div class="grid md:grid-cols-2">
       <!-- Left: contact info -->
