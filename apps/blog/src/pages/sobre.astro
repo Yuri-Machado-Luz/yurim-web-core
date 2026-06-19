@@ -23,11 +23,12 @@ import DownloadIcon from "@ui/DownloadIcon.astro";
             Desenvolvedor Full-Stack · Analista de Sistemas · São Paulo, Brasil
           </p>
           <nav class="mt-2 flex flex-wrap gap-3">
-            <a
+            <Button
               href={CONFIG.meta.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              class="btn"
+              variant="outline"
+              size="sm"
             >
               <svg
                 width="14"
@@ -41,12 +42,13 @@ import DownloadIcon from "@ui/DownloadIcon.astro";
                 ></path>
               </svg>
               GitHub
-            </a>
-            <a
+            </Button>
+            <Button
               href={CONFIG.meta.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              class="btn"
+              variant="outline"
+              size="sm"
             >
               <svg
                 width="14"
@@ -60,34 +62,37 @@ import DownloadIcon from "@ui/DownloadIcon.astro";
                 ></path>
               </svg>
               LinkedIn
-            </a>
-            <a
+            </Button>
+            <Button
               href="/assets/job/curriculo-yuri-machado.pdf"
               download
-              class="btn"
+              variant="outline"
+              size="sm"
               aria-label="Baixar currículo em PDF"
             >
               <DownloadIcon />
               PDF
-            </a>
-            <a
+            </Button>
+            <Button
               href="/assets/job/curriculo-yuri-machado.docx"
               download
-              class="btn"
+              variant="outline"
+              size="sm"
               aria-label="Baixar currículo em DOCX"
             >
               <DownloadIcon />
               DOCX
-            </a>
-            <a
+            </Button>
+            <Button
               href="/assets/job/curriculo-yuri-machado.yaml"
               download
-              class="btn"
+              variant="outline"
+              size="sm"
               aria-label="Baixar currículo em YAML"
             >
               <DownloadIcon />
               YAML
-            </a>
+            </Button>
           </nav>
         </div>
 
@@ -210,13 +215,10 @@ import DownloadIcon from "@ui/DownloadIcon.astro";
     </section>
 
     <section
-      class="container mt-32 mb-24 flex flex-col items-center gap-6"
+      class="container mt-24 mb-16 flex flex-col items-center gap-6"
       id="contato"
     >
-      <Button
-        href="/contato"
-        style={{ variant: "primary", size: "2xl", animation: "smooth" }}
-      >
+      <Button href="/contato" variant="primary" size="xl">
         Entre em contato
       </Button>
     </section>

@@ -27,7 +27,7 @@ function formatDate(date: Date) {
 ---
 
 <section id="notes-section" class="section-panel">
-  <div class="section-inner container py-16 md:py-24">
+  <div class="section-inner container py-12 md:py-24">
     <p class="eyebrow mb-3">{pt.notes.eyebrow}</p>
     <h2 class="section-title mb-10">{pt.notes.title}</h2>
 
@@ -55,7 +55,7 @@ function formatDate(date: Date) {
       )
     }
 
-    <Button href="/projetos" class="notes-cta">
+    <Button href="/projetos" class="notes-cta" variant="outline" size="md">
       {pt.notes.cta}
     </Button>
   </div>

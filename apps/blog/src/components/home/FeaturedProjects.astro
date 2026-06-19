@@ -28,7 +28,7 @@ const { projects } = Astro.props;
 {
   projects.length > 0 && (
     <section id="featured-projects" class="section-panel">
-      <div class="section-inner container py-16 md:py-24">
+      <div class="section-inner container py-12 md:py-24">
         <div class="projects-header mb-12">
           <p class="eyebrow mb-3">{pt.projects.eyebrow}</p>
           <h2 class="section-title mb-2">{pt.projects.title}</h2>
@@ -52,7 +52,7 @@ const { projects } = Astro.props;
         </div>
 
         <div class="mt-10">
-          <Button href="/projetos" class="projects-cta" style={{ variant: "muted", size: "sm" }}>
+          <Button href="/projetos" class="projects-cta" variant="outline" size="sm">
             {pt.projects.cta}
           </Button>
         </div>
