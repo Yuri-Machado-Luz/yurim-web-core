@@ -37,13 +37,12 @@ const techs = [
 <div
   id="tech-stack"
   aria-hidden="true"
-  class="py-8"
-  style={!inline ? "border-top: 1px solid var(--color-border)" : undefined}
+  class:list={["py-8", !inline && "border-t-base"]}
 >
   <div
     id="logoloop-tech"
-    class="logoloop logoloop--horizontal logoloop--fade logoloop--scale-hover"
-    style="color: var(--color-muted); --logoloop-gap: 32px; --logoloop-logoHeight: 22px; --logoloop-fadeColor: var(--color-bg)"
+    class="logoloop logoloop--horizontal logoloop--fade logoloop--scale-hover text-muted"
+    style="--logoloop-gap: 32px; --logoloop-logoHeight: 22px; --logoloop-fadeColor: var(--color-bg)"
     role="region"
     aria-label="Stack de tecnologias"
   >
@@ -53,7 +52,7 @@ const techs = [
           <li class="logoloop__item" role="listitem">
             <span class="logoloop__node inline-flex items-center gap-2" title={name} aria-label={name}>
               <span class="tech-icon" aria-hidden="true" set:html={icon} />
-              <span class="font-medium" style="color: var(--color-muted); letter-spacing: 0.02em; font-size: 13px">{name}</span>
+              <span class="font-medium text-muted tracking-[0.02em] text-[13px]">{name}</span>
             </span>
           </li>
         ))}
