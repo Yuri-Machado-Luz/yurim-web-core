@@ -4,11 +4,11 @@
     "company": "Autônomo",
     "period": "Jul 2022 – Presente",
     "bullets": [
-      "Desenvolvimento de aplicações web responsivas para PMEs.",
-      "Implementação de automações para otimização de fluxos operacionais.",
-      "Integração de APIs para sincronização de dados entre sistemas.",
-      "Criação de interfaces com aplicação otimizada de UX/UI.",
-      "Consultoria em arquitetura e documentação técnica para sustentabilidade de sistemas."
+      "Sistemas web para pequenas e médias empresas.",
+      "Automações internas e integrações entre ferramentas e plataformas.",
+      "APIs REST, webhooks e sincronização de dados entre sistemas.",
+      "Interfaces responsivas com atenção a usabilidade e performance.",
+      "Documentação técnica e consultoria de arquitetura."
     ]
   },
   {
@@ -46,9 +46,9 @@
     "company": "Santander | BPO Liq",
     "period": "Mai 2020 – Fev 2021",
     "bullets": [
-      "Suporte técnico voltado à cliente final para produtos digitais do banco.",
-      "Resolução de incidentes e orientação para uso de aplicativos móveis.",
-      "Manutenção cadastral e suporte a operações de internet banking, abrangendo conta corrente, cartões e empréstimos."
+      "Suporte N2 a clientes nos produtos digitais do banco.",
+      "Resolução de incidentes e orientação em aplicativos móveis.",
+      "Manutenção cadastral e operações de internet banking — conta corrente, cartões e empréstimos."
     ]
   }
 ]
