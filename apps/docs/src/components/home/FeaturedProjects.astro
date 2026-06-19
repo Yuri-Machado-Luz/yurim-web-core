@@ -1,5 +1,6 @@
 ---
 import ProjectCard from "@ui/ProjectCard.astro";
+import { pt } from "@i18n/pt";
 
 interface ProjectEntry {
   id: string;
@@ -28,11 +29,9 @@ const { projects } = Astro.props;
     <section id="featured-projects" class="section-panel">
       <div class="section-inner container py-24">
         <div class="projects-header mb-12">
-          <p class="eyebrow mb-3">Projetos</p>
-          <h2 class="section-title mb-2">Projetos em Destaque</h2>
-          <p class="projects-header-desc" style="color: var(--color-muted)">
-            Alguns dos projetos que desenvolvi e mantenho.
-          </p>
+          <p class="eyebrow mb-3">{pt.projects.eyebrow}</p>
+          <h2 class="section-title mb-2">{pt.projects.title}</h2>
+          <p class="projects-header-desc text-muted">{pt.projects.description}</p>
         </div>
 
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -54,10 +53,9 @@ const { projects } = Astro.props;
         <div class="mt-10 text-center">
           <a
             href="/projetos"
-            class="projects-cta text-sm transition-colors duration-200 hover:text-primary-400"
-            style="color: var(--color-muted)"
+            class="projects-cta text-sm text-muted transition-colors duration-200 hover:text-primary-400"
           >
-            Ver todos →
+            {pt.projects.cta}
           </a>
         </div>
       </div>

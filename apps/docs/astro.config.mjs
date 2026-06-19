@@ -59,6 +59,7 @@ export default defineConfig({
         "@layouts": fileURLToPath(new URL("./src/layouts", import.meta.url)),
         "@assets": fileURLToPath(new URL("./src/assets", import.meta.url)),
         "@config": fileURLToPath(new URL("./src/config.ts", import.meta.url)),
+        "@i18n": fileURLToPath(new URL("./src/i18n", import.meta.url)),
       },
     },
   },
