@@ -1,61 +1,47 @@
 ---
 import { cn } from "@shared";
 
-type ButtonVariant = "primary" | "muted";
-type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
-type ButtonAnimation = "spring" | "smooth";
+type Variant = "primary" | "outline";
+type Size = "sm" | "md" | "lg" | "xl";
 
 interface Props {
   href?: string;
   target?: string;
   rel?: string;
   title?: string;
+  download?: boolean | string;
   class?: string;
-  style?: {
-    variant?: ButtonVariant;
-    size?: ButtonSize;
-    animation?: ButtonAnimation;
-  };
+  variant?: Variant;
+  size?: Size;
 }
 
-const { style, class: className, ...props } = Astro.props;
+const {
+  variant = "outline",
+  size = "md",
+  class: className,
+  ...props
+} = Astro.props;
 
-const variants: Record<ButtonVariant, string> = {
+const variants: Record<Variant, string> = {
   primary:
-    "bg-primary-700 text-white hover:bg-primary-600 active:bg-primary-700/90 [animation:ambientGlow_3s_ease-in-out_infinite]",
-  muted:
-    "bg-neutral-200/10 text-white border border-neutral-200/20 hover:bg-neutral-200/12 active:bg-neutral-200/8",
+    "bg-primary-700 text-white [animation:ambientGlow_3s_ease-in-out_infinite] hover:bg-primary-600 hover:scale-[1.02] active:scale-[0.98] active:bg-primary-700/90",
+  outline:
+    "border border-[var(--color-border)] bg-transparent hover:bg-[var(--color-surface)] hover:border-primary-700/40 active:opacity-70",
 };
 
-const sizes: Record<ButtonSize, string> = {
-  xs: "text-xs px-2 py-1",
-  sm: "text-sm px-3 py-1.5",
-  md: "text-base px-4 py-2",
-  lg: "text-lg px-5 py-2.5",
-  xl: "text-xl px-6 py-3",
-  "2xl": "text-2xl px-7 py-3.5",
-  "3xl": "text-3xl px-8 py-4",
-  "4xl": "text-4xl px-10 py-5",
+const sizes: Record<Size, string> = {
+  sm: "text-sm px-4 py-1.5",
+  md: "text-sm px-5 py-2.5",
+  lg: "text-base px-6 py-3",
+  xl: "text-lg px-8 py-4",
 };
-
-const animations: Record<ButtonAnimation, string> = {
-  spring:
-    "[transition:transform_220ms_var(--ease-spring)] hover:scale-[1.02] active:scale-[0.98]",
-  smooth:
-    "transition-transform duration-200 ease-in-out hover:scale-[1.05] active:scale-[0.95]",
-};
-
-const variant = style?.variant ?? "muted";
-const size = style?.size ?? "lg";
-const animation = style?.animation ?? "spring";
 ---
 
 <a
   class={cn(
-    "inline-flex items-center cursor-pointer rounded-full transition-colors duration-300 select-none w-fit",
+    "inline-flex items-center gap-2 w-fit cursor-pointer rounded-full select-none transition-all duration-200 ease-out",
     variants[variant],
     sizes[size],
-    animations[animation],
     className,
   )}
   {...props}
