@@ -82,6 +82,18 @@
   .border-t-base {
     border-top: 1px solid var(--color-border);
   }
+  .bg-success-bg {
+    background: var(--color-success-bg);
+  }
+  .text-success {
+    color: var(--color-success);
+  }
+  .bg-error-bg {
+    background: var(--color-error-bg);
+  }
+  .text-error {
+    color: var(--color-error);
+  }
 }
 
 @layer components {
