@@ -2,7 +2,8 @@
 title: Migração de Arquitetura
 draft: false
 description: Reflexões sobre a decisão de abandonar Quartz e migrar para sistema próprio. Motivações, desafios técnicos e o que realmente está envolvido nesse processo.
-updatedAt: 2026-06-07
+updatedAt: 2026-06-19
+tags: [devlog, reflexao, arquitetura]
 ---
 
 ## O panorama
@@ -10,9 +11,6 @@ updatedAt: 2026-06-07
 Vamos aos fatos: hoje, esse blog poderia continuar funcionando perfeitamente com Quartz. Afinal, já é uma V2 da arquitetura anterior — aquela baseada só em React. A estrutura atual é "perfeita" pra integrar meu workflow de notas do Obsidian e transformar tudo num SSR coeso.
 
 Pois é. Mas aí eu olho pra isso e penso: "E se eu jogasse tudo pro alto e construísse meu próprio sistema?"
-
-> [!note]
-> Olá
 
 Não seria exatamente jogar tudo fora, claro. Mas... no mínimo, é refazer do zero. Até porque esse blog deveria servir também como exemplo técnico — e um exemplo técnico com um sistema que eu acoplei na minha base de dados e configurei uns YAMLs não é exatamente o que se pode chamar de "uau".
 
@@ -76,3 +74,7 @@ Faz igual eu estou fazendo (ainda bem que fiz isso, sinceramente): mantenha um b
 Olha, ainda não sei. Mas estou pensando em ir de Preact e JSX na camada de template. Ainda não decidi se quero me autoflagelar nesse nível fazendo todo o pipeline, então talvez eu use Next.js no modo SSG. Atualizações virão HAHAHA
 
 Enfim, essa é minha jornada até agora. Espero que, se você estiver nessa mesma dúvida, essas reflexões te ajudem a decidir. E se decidir ir pelo caminho da loucura total (tipo eu), pelo menos agora você já sabe o buraco onde tá entrando.
+
+## **Atualização (junho 2026)**
+
+A migração foi concluída com Astro 6. O pipeline de build customizado ficou no papel — o Astro resolve processamento de Markdown, roteamento e bundling de forma muito mais sólida do que qualquer coisa que eu construiria do zero. A decisão final foi: Astro como base, React islands onde necessário, Tailwind CSS v4 com design tokens nativos. O masoquismo teve um limite razoável.
