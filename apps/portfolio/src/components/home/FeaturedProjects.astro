@@ -1,6 +1,5 @@
 ---
 import ProjectCard from "@ui/ProjectCard.astro";
-import Button from "@ui/Button.astro";
 import { pt } from "@i18n/pt";
 
 interface ProjectEntry {
@@ -28,7 +27,7 @@ const { projects } = Astro.props;
 {
   projects.length > 0 && (
     <section id="featured-projects" class="section-panel">
-      <div class="section-inner container py-12 md:py-24">
+      <div class="section-inner container py-8 md:py-20">
         <div class="projects-header mb-12">
           <p class="eyebrow mb-3">{pt.projects.eyebrow}</p>
           <h2 class="section-title mb-2">{pt.projects.title}</h2>
@@ -49,12 +48,6 @@ const { projects } = Astro.props;
               />
             </div>
           ))}
-        </div>
-
-        <div class="mt-10">
-          <Button href="/projetos" class="projects-cta" variant="outline" size="sm">
-            {pt.projects.cta}
-          </Button>
         </div>
       </div>
     </section>

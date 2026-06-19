@@ -80,12 +80,9 @@ const currentPath = Astro.url.pathname;
         CONFIG.nav.pages.map(({ label, href, cta }) => (
           <li>
             {cta ? (
-              <a
-                href={href}
-                class="block py-2 font-medium text-primary-400 transition-colors duration-200 hover:text-primary-300"
-              >
+              <Button href={href} variant="primary" size="sm" class="my-1">
                 {label}
-              </a>
+              </Button>
             ) : (
               <a
                 href={href}
@@ -94,9 +91,8 @@ const currentPath = Astro.url.pathname;
                   "block py-2 transition-colors duration-200",
                   currentPath === href
                     ? "text-primary-400"
-                    : "hover:text-primary-400",
+                    : "text-muted hover:text-primary-400",
                 ]}
-                style={currentPath === href ? "" : "color: var(--color-muted)"}
               >
                 {label}
               </a>
