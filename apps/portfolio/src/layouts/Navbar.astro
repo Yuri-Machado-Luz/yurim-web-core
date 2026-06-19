@@ -1,6 +1,7 @@
 ---
 import { CONFIG } from "@config";
 import { MenuRaw, CloseRaw } from "@assets";
+import Button from "@ui/Button.astro";
 
 const currentPath = Astro.url.pathname;
 ---
@@ -26,13 +27,9 @@ const currentPath = Astro.url.pathname;
         CONFIG.nav.pages.map(({ label, href, cta }) => (
           <li>
             {cta ? (
-              <a
-                href={href}
-                class="btn btn-primary"
-                style="font-size: 0.8125rem; padding: 0.375rem 0.875rem"
-              >
+              <Button href={href} variant="primary" size="sm">
                 {label}
-              </a>
+              </Button>
             ) : (
               <a
                 href={href}

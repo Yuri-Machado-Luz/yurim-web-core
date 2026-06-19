@@ -8,7 +8,7 @@ import TechStack from "@home/TechStack.astro";
 
 <header
   id="hero"
-  class="container mt-16 flex min-h-svh flex-col items-center py-16 md:mt-24 md:py-32"
+  class="container mt-16 flex flex-col items-center py-12 md:mt-24 md:min-h-svh md:py-32"
 >
   <div class="grid w-full items-center gap-8 md:grid-cols-[2fr_1fr] md:gap-12">
     <div class="order-2 flex flex-col gap-6 md:order-1">
@@ -46,10 +46,10 @@ import TechStack from "@home/TechStack.astro";
       </p>
 
       <nav class="flex flex-wrap gap-3" data-hero-reveal>
-        <Button href="/sobre" style={{ variant: "primary", size: "md" }}>
+        <Button href="/sobre" variant="primary" size="lg">
           {pt.hero.cta.primary}
         </Button>
-        <Button href="/projetos" style={{ variant: "muted", size: "md" }}>
+        <Button href="/projetos" variant="outline" size="lg">
           {pt.hero.cta.secondary}
         </Button>
       </nav>

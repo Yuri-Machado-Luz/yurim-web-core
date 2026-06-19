@@ -5,14 +5,14 @@ import { pt } from "@i18n/pt";
 ---
 
 <section id="about" class="section-panel">
-  <div class="section-inner container py-16 md:py-24">
+  <div class="section-inner container py-12 md:py-24">
     <div class="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
       <div class="flex flex-col gap-6">
         <h2 class="section-title">{pt.about.title}</h2>
         <div class="about-bio flex flex-col gap-4 text-base leading-[1.8] text-muted">
           {pt.about.bio.map((para) => <p>{para}</p>)}
         </div>
-        <Button href="/sobre" class="about-cta self-start">
+        <Button href="/sobre" class="about-cta" variant="outline" size="md">
           {pt.about.cta}
         </Button>
       </div>

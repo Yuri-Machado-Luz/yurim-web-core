@@ -150,36 +150,6 @@
     color: var(--color-primary-400);
   }
 
-  /* ── Generic buttons ── */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0.5rem 1.25rem;
-    border-radius: 999px;
-    font-size: var(--font-size-base);
-    font-weight: 500;
-    text-decoration: none;
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-    background: transparent;
-    transition:
-      opacity 200ms ease,
-      color 200ms ease;
-  }
-  .btn:hover {
-    opacity: 0.7;
-  }
-  .btn-primary {
-    background: var(--color-primary-700);
-    color: white;
-    border-color: var(--color-primary-700);
-    animation: ambientGlow 3s ease-in-out infinite;
-  }
-  .btn-ghost {
-    border-color: transparent;
-  }
-
   /* ── Article list items ── */
   .article-item {
     display: flex;
