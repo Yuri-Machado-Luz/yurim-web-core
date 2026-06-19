@@ -53,7 +53,6 @@ const { fullPage = false } = Astro.props;
               <a
                 href={`mailto:${CONFIG.meta.social.email}`}
                 class="transition-colors hover:text-primary-400"
-                style="color: var(--color-text)"
               >
                 {CONFIG.meta.social.email}
               </a>
@@ -282,8 +281,7 @@ const { fullPage = false } = Astro.props;
 
         <button
           type="submit"
-          class="text-white w-full rounded-full py-2.5 text-sm font-medium transition-colors duration-300 disabled:opacity-60"
-          style="background: var(--color-primary-700)"
+          class="w-full rounded-full bg-primary-700 py-2.5 text-sm font-medium text-white transition-colors duration-300 disabled:opacity-60"
         >
           <span data-btn-idle>Enviar mensagem</span>
           <span data-btn-sending class="inline-flex items-center justify-center gap-2">
