@@ -43,7 +43,7 @@ const docCategories = [
 
 <Base
   title="Projetos — Yuri Machado Luz"
-  description="Todos os projetos desenvolvidos e mantidos por Yuri Machado Luz."
+  description="Projetos em produção, experimentos e automações — sistemas web desenvolvidos e mantidos por Yuri Machado Luz."
 >
   <main id="projects-main">
     <Fragment>
@@ -108,7 +108,7 @@ const docCategories = [
     {
       projects.length === 0 && (
         <section class="container mb-20">
-          <p style="color: var(--color-muted)">
+          <p class="text-muted">
             Nenhum projeto disponível no momento.
           </p>
         </section>
@@ -258,28 +258,36 @@ const docCategories = [
     ctx?.revert();
 
     ctx = gsap.context(() => {
-      gsap.set(".projects-header", { autoAlpha: 0, y: 32 });
-      gsap.set(".project-card", { autoAlpha: 0, y: 24 });
+      const mm = gsap.matchMedia();
 
-      gsap.to(".projects-header", {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power3.out",
-        delay: 0.1,
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.set(".projects-header", { autoAlpha: 0, y: 32 });
+        gsap.set(".project-card", { autoAlpha: 0, y: 24 });
+
+        gsap.to(".projects-header", {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          delay: 0.1,
+        });
+
+        ScrollTrigger.batch(".project-card", {
+          onEnter: (els) =>
+            gsap.to(els, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.5,
+              stagger: 0.07,
+              ease: "power3.out",
+            }),
+          once: true,
+          start: "top 88%",
+        });
       });
 
-      ScrollTrigger.batch(".project-card", {
-        onEnter: (els) =>
-          gsap.to(els, {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.5,
-            stagger: 0.07,
-            ease: "power3.out",
-          }),
-        once: true,
-        start: "top 88%",
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(".projects-header, .project-card", { autoAlpha: 1, y: 0 });
       });
     }, main);
   }

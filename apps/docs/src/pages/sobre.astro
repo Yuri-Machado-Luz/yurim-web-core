@@ -93,15 +93,13 @@ import DownloadIcon from "@ui/DownloadIcon.astro";
 
         <!-- Right: quick facts -->
         <div
-          class="shrink-0 rounded-xl px-5 py-4"
-          style="border: 1px solid var(--color-border); background: var(--color-surface)"
+          class="shrink-0 rounded-xl px-5 py-4 border-base bg-surface"
         >
           <ul class="flex flex-col gap-2.5">
             {
               stats.quickFacts.map((fact) => (
                 <li
-                  class="flex items-center gap-2 text-sm"
-                  style="color: var(--color-muted)"
+                  class="flex items-center gap-2 text-sm text-muted"
                 >
                   <span
                     class="h-1.5 w-1.5 shrink-0 rounded-full bg-primary-400"
@@ -120,8 +118,7 @@ import DownloadIcon from "@ui/DownloadIcon.astro";
     <section id="bio" class="container mb-20">
       <h2 class="section-title mb-8">Bio</h2>
       <div
-        class="flex max-w-3xl flex-col gap-5 leading-[1.8]"
-        style="color: var(--color-muted)"
+        class="flex max-w-3xl flex-col gap-5 leading-[1.8] text-muted"
       >
         <p class="bio-paragraph">
           Comecei minha trajetória em tecnologia ainda na graduação em
@@ -146,8 +143,8 @@ import DownloadIcon from "@ui/DownloadIcon.astro";
     <!-- Skills -->
     <section id="habilidades" class="container mb-20">
       <h2 class="section-title mb-2">Habilidades</h2>
-      <p class="mb-10" style="color: var(--color-muted)">
-        Tecnologias e ferramentas que uso no dia a dia.
+      <p class="mb-10 text-muted">
+        Stack e ferramentas que uso em produção.
       </p>
       <Skills />
     </section>
@@ -213,14 +210,14 @@ import DownloadIcon from "@ui/DownloadIcon.astro";
     </section>
 
     <section
-      class="container mt-86 mb-72 flex flex-col items-center gap-6"
+      class="container mt-32 mb-24 flex flex-col items-center gap-6"
       id="contato"
     >
       <Button
         href="/contato"
         style={{ variant: "primary", size: "2xl", animation: "smooth" }}
       >
-        Entre em Contato
+        Entre em contato
       </Button>
     </section>
   </main>
@@ -241,55 +238,66 @@ import DownloadIcon from "@ui/DownloadIcon.astro";
     ctx?.revert();
 
     ctx = gsap.context(() => {
-      gsap.set(".sobre-header", { autoAlpha: 0, y: 24 });
-      gsap.to(".sobre-header", {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power3.out",
-        delay: 0.1,
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(
+          ".sobre-header, .bio-paragraph, .experience-item, .education-item, .language-card",
+          { autoAlpha: 1, y: 0, x: 0 },
+        );
       });
 
-      gsap.set(".bio-paragraph", { autoAlpha: 0, y: 16 });
-      ScrollTrigger.batch(".bio-paragraph", {
-        onEnter: (els) =>
-          gsap.to(els, {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.55,
-            stagger: 0.08,
-            ease: "power2.out",
-          }),
-        once: true,
-        start: "top 90%",
-      });
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.set(".sobre-header", { autoAlpha: 0, y: 24 });
+        gsap.to(".sobre-header", {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          delay: 0.1,
+        });
 
-      gsap.set(".experience-item", { autoAlpha: 0, x: -20 });
-      ScrollTrigger.batch(".experience-item", {
-        onEnter: (els) =>
-          gsap.to(els, {
-            autoAlpha: 1,
-            x: 0,
-            duration: 0.55,
-            stagger: 0.1,
-            ease: "power3.out",
-          }),
-        once: true,
-        start: "top 88%",
-      });
+        gsap.set(".bio-paragraph", { autoAlpha: 0, y: 16 });
+        ScrollTrigger.batch(".bio-paragraph", {
+          onEnter: (els) =>
+            gsap.to(els, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.55,
+              stagger: 0.08,
+              ease: "power2.out",
+            }),
+          once: true,
+          start: "top 90%",
+        });
 
-      gsap.set(".education-item, .language-card", { autoAlpha: 0, y: 20 });
-      ScrollTrigger.batch(".education-item, .language-card", {
-        onEnter: (els) =>
-          gsap.to(els, {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.45,
-            stagger: 0.07,
-            ease: "power2.out",
-          }),
-        once: true,
-        start: "top 90%",
+        gsap.set(".experience-item", { autoAlpha: 0, x: -20 });
+        ScrollTrigger.batch(".experience-item", {
+          onEnter: (els) =>
+            gsap.to(els, {
+              autoAlpha: 1,
+              x: 0,
+              duration: 0.55,
+              stagger: 0.1,
+              ease: "power3.out",
+            }),
+          once: true,
+          start: "top 88%",
+        });
+
+        gsap.set(".education-item, .language-card", { autoAlpha: 0, y: 20 });
+        ScrollTrigger.batch(".education-item, .language-card", {
+          onEnter: (els) =>
+            gsap.to(els, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.45,
+              stagger: 0.07,
+              ease: "power2.out",
+            }),
+          once: true,
+          start: "top 90%",
+        });
       });
     }, main);
 
