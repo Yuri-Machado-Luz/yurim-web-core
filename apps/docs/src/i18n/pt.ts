@@ -1,10 +1,10 @@
 export const pt = {
   hero: {
-    badge: "Full-Stack Developer",
+    badge: "Desenvolvedor Full-Stack",
     paragraph:
       "Trabalho solo desde 2020 — do requisito ao produto final, sem escalar equipe. Projetos em produção, com código documentado e entrega real.",
     cta: {
-      primary: "Saiba Mais",
+      primary: "Sobre mim",
       secondary: "Projetos",
     },
   },
