@@ -62,7 +62,7 @@ const { fullPage = false } = Astro.props;
 
           <!-- WhatsApp -->
           <a
-            href="https://api.whatsapp.com/send?phone=5511949359394&text=Ol%C3%A1!%20Vim%20atrav%C3%A9s%20do%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar."
+            href={`https://api.whatsapp.com/send?phone=${CONFIG.meta.social.whatsapp}&text=Ol%C3%A1!%20Vim%20atrav%C3%A9s%20do%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar.`}
             target="_blank"
             rel="noopener noreferrer"
             class="contact-item flex items-center gap-4 transition-opacity hover:opacity-80"
@@ -86,7 +86,7 @@ const { fullPage = false } = Astro.props;
             </div>
             <div class="text-sm">
               <p class="mb-1 text-muted">WhatsApp</p>
-              <p style="color: var(--color-text)">+55 (11) 94935-9394</p>
+              <p>{CONFIG.meta.social.phone}</p>
             </div>
           </a>
 
@@ -114,7 +114,7 @@ const { fullPage = false } = Astro.props;
             </div>
             <div class="text-sm">
               <p class="mb-1 text-muted">Localização</p>
-              <p style="color: var(--color-text)">São Paulo, Brasil</p>
+              <p>São Paulo, Brasil</p>
             </div>
           </div>
         </div>
