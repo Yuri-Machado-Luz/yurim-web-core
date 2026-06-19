@@ -2,25 +2,20 @@
 import { EmailRaw, GitHubRaw, LinkedInRaw } from "@assets";
 import { CONFIG } from "@config";
 import Button from "@ui/Button.astro";
+import { pt } from "@i18n/pt";
 ---
 
-<section
-  id="cta-section"
-  class="relative isolate mb-32 flex items-center justify-center gap-6 py-32"
->
+<section id="cta-section" class="relative isolate py-32">
   <div class="container text-center">
-    <h2 class="section-title mb-8 font-medium">
-      Tem um projeto em mente ou quer conversar?
-    </h2>
+    <h2 class="section-title mb-8">{pt.cta.title}</h2>
 
     <Button href="/contato" style={{ variant: "primary", size: "xl" }}>
-      Entre em contato!
+      {pt.cta.button}
     </Button>
 
-    <nav class="social-links mt-6 justify-center fill-accent text-accent">
+    <nav class="social-links mt-6 justify-center">
       <a
-        href={`mailto:yurimachadoluz@gmail.com?subject=Forms%20-%20Portfolio
-`}
+        href={`mailto:${CONFIG.meta.social.email}?subject=Portfolio%20-%20Contato`}
         class="social-link text-white text-xl"
         rel="noopener noreferrer"
         target="_blank"
@@ -31,7 +26,7 @@ import Button from "@ui/Button.astro";
         href={CONFIG.meta.social.github}
         target="_blank"
         rel="noopener noreferrer"
-        class="social-link text-xl"
+        class="social-link text-white text-xl"
       >
         <span class="text-white h-16 w-16" aria-hidden set:html={GitHubRaw} />
       </a>
