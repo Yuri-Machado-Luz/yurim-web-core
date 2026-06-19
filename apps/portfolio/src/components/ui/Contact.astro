@@ -21,10 +21,7 @@ const { fullPage = false } = Astro.props;
   >
     <div class="grid md:grid-cols-2">
       <!-- Left: contact info -->
-      <div
-        class="flex flex-col justify-between p-8 md:p-12"
-        style="border-right: 1px solid var(--color-border)"
-      >
+      <div class="flex flex-col justify-between p-8 md:p-12 border-r-base">
         <div class="flex flex-col gap-6">
           <!-- Email -->
           <div class="contact-item flex items-center gap-4">
@@ -119,10 +116,7 @@ const { fullPage = false } = Astro.props;
         </div>
 
         <!-- Social buttons -->
-        <div
-          class="mt-8 flex gap-3 pt-8"
-          style="border-top: 1px solid var(--color-border)"
-        >
+        <div class="mt-8 flex gap-3 pt-8 border-t-base">
           <!-- GitHub -->
           <a
             href={CONFIG.meta.social.github}
@@ -208,8 +202,7 @@ const { fullPage = false } = Astro.props;
             name="name"
             required
             placeholder="Seu nome"
-            class="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors duration-200 focus:ring-1 focus:ring-primary-500/50"
-            style="background: var(--color-surface-strong); border: 1px solid var(--color-border); color: var(--color-text)"
+            class="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors duration-200 focus:ring-1 focus:ring-primary-500/50 bg-surface-strong border-base text-text"
           />
         </div>
 
@@ -226,8 +219,7 @@ const { fullPage = false } = Astro.props;
             name="email"
             required
             placeholder="seu@email.com"
-            class="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors duration-200 focus:ring-1 focus:ring-primary-500/50"
-            style="background: var(--color-surface-strong); border: 1px solid var(--color-border); color: var(--color-text)"
+            class="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors duration-200 focus:ring-1 focus:ring-primary-500/50 bg-surface-strong border-base text-text"
           />
         </div>
 
@@ -243,8 +235,7 @@ const { fullPage = false } = Astro.props;
             name="message"
             required
             placeholder="Descreva brevemente o projeto, o prazo aproximado e como prefere conversar."
-            class="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors duration-200 focus:ring-1 focus:ring-primary-500/50"
-            style="background: var(--color-surface-strong); border: 1px solid var(--color-border); color: var(--color-text); min-height: 8rem; resize: vertical"
+            class="w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-colors duration-200 focus:ring-1 focus:ring-primary-500/50 bg-surface-strong border-base text-text min-h-32 resize-y"
           ></textarea>
         </div>
 
@@ -274,7 +265,7 @@ const { fullPage = false } = Astro.props;
         </p>
         <p
           class="msg-error rounded-lg p-3 text-sm"
-          style="background: var(--color-danger-bg); color: var(--color-danger)"
+          style="background: var(--color-error-bg); color: var(--color-error)"
         >
           Não foi possível enviar a mensagem. Verifique a conexão e tente novamente.
         </p>

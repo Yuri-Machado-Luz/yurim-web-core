@@ -70,8 +70,17 @@
   .bg-surface {
     background: var(--color-surface);
   }
+  .bg-surface-strong {
+    background: var(--color-surface-strong);
+  }
   .border-base {
     border: 1px solid var(--color-border);
+  }
+  .border-r-base {
+    border-right: 1px solid var(--color-border);
+  }
+  .border-t-base {
+    border-top: 1px solid var(--color-border);
   }
 }
 
