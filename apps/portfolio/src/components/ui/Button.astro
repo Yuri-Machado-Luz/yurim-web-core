@@ -22,7 +22,7 @@ const { style, class: className, ...props } = Astro.props;
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary-700 text-white hover:bg-primary-600 active:bg-primary-700/90",
+    "bg-primary-700 text-white hover:bg-primary-600 active:bg-primary-700/90 [animation:ambientGlow_3s_ease-in-out_infinite]",
   muted:
     "bg-neutral-200/10 text-white border border-neutral-200/20 hover:bg-neutral-200/12 active:bg-neutral-200/8",
 };
@@ -52,7 +52,7 @@ const animation = style?.animation ?? "spring";
 
 <a
   class={cn(
-    "cursor-pointer rounded-full transition-colors duration-300 select-none",
+    "inline-flex items-center cursor-pointer rounded-full transition-colors duration-300 select-none w-fit",
     variants[variant],
     sizes[size],
     animations[animation],
