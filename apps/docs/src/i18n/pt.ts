@@ -2,7 +2,7 @@ export const pt = {
   hero: {
     badge: "Desenvolvedor Full-Stack",
     paragraph:
-      "Formação em Psicologia e ADS, com passagem pela IBM. Do briefing ao produto final — solo, desde 2020.",
+      "Formação em Psicologia e ADS, com passagem pela IBM. Trabalho solo desde 2020.",
     cta: {
       primary: "Sobre mim",
       secondary: "Projetos",
@@ -11,17 +11,16 @@ export const pt = {
   about: {
     title: "Sobre mim",
     bio: [
-      "Comecei minha trajetória em tecnologia ainda na graduação em Psicologia — e desde então combino análise comportamental com engenharia de software. Acredito que o melhor produto nasce da interseção entre código robusto e design centrado em pessoas.",
-      "Trabalho de forma autônoma desde 2020, desenvolvendo sistemas web, automações e produtos digitais para PMEs e projetos próprios. Em 2024, integrei a equipe da IBM onde redesenhei o ciclo de onboarding e reduzi o tempo de integração em 57%, antes de retomar minha trajetória independente.",
-      "Escrevo, desenho e documento o que construo — da arquitetura à comunicação final, com rigor e sigilo.",
+      "Comecei em tecnologia durante a graduação em Psicologia — e desde então combino leitura de contexto com desenvolvimento de software.",
+      "Trabalho de forma autônoma desde 2020, construindo sistemas web, automações e produtos digitais. Em 2024 integrei a equipe IBM, onde redesenhei o processo de onboarding e reduzi o tempo de integração de 7 para 3 dias — antes de voltar ao trabalho autônomo.",
+      "Escrevo, desenho e documento o que construo — da arquitetura à entrega final, com sigilo.",
     ],
-    cta: "Conheça minha trajetória →",
+    cta: "Ver histórico completo →",
   },
   projects: {
     eyebrow: "Projetos",
     title: "Projetos em Destaque",
-    description:
-      "Uma seleção do que tenho construído — sistemas em produção e projetos em desenvolvimento ativo.",
+    description: "Uma seleção de projetos em produção e em andamento.",
     cta: "Ver todos →",
   },
   notes: {

@@ -6,7 +6,7 @@ export const CONFIG = {
     author: "Yuri Machado Luz",
     suffix: " — Yuri Machado Luz",
     description:
-      "Desenvolvedor full-stack independente — sistemas web, APIs e automações do back-end à interface, com documentação e entrega.",
+      "Desenvolvedor full-stack independente — sistemas web, APIs e automações, do back-end à interface.",
     locale: "pt-BR",
     social: {
       github: "https://github.com/Yuri-Machado-Luz",
