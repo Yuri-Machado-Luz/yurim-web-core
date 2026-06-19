@@ -115,10 +115,14 @@
   .section-panel {
     position: relative;
     isolation: isolate;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  }
+  @media (min-width: 768px) {
+    .section-panel {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   /* ── Page typography ── */
