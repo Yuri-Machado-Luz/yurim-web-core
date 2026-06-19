@@ -116,14 +116,6 @@
     position: relative;
     isolation: isolate;
   }
-  @media (min-width: 768px) {
-    .section-panel {
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-  }
 
   /* ── Page typography ── */
   .page-title {

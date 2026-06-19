@@ -1,5 +1,6 @@
 ---
 import ProjectCard from "@ui/ProjectCard.astro";
+import Button from "@ui/Button.astro";
 import { pt } from "@i18n/pt";
 
 interface ProjectEntry {
@@ -48,6 +49,12 @@ const { projects } = Astro.props;
               />
             </div>
           ))}
+        </div>
+
+        <div class="mt-10">
+          <Button href="/projetos" class="projects-cta" variant="outline" size="sm">
+            {pt.projects.cta}
+          </Button>
         </div>
       </div>
     </section>

@@ -49,7 +49,7 @@ const recentNotes = await getRecentNotes(4);
             id: "#featured-projects",
             xFrom: 60,
             selectors:
-              ".eyebrow, .section-title, .projects-header-desc, .project-card",
+              ".eyebrow, .section-title, .projects-header-desc, .project-card, .projects-cta",
           },
           {
             id: "#notes-section",
@@ -70,20 +70,21 @@ const recentNotes = await getRecentNotes(4);
           const items = section.querySelectorAll<HTMLElement>(selectors);
           if (!items.length) return;
 
-          const tl = gsap.timeline({ paused: true });
-          tl.from(items, {
-            x: xFrom,
-            autoAlpha: 0,
-            stagger: 0.06,
-            duration: 0.55,
-            ease: "power2.out",
-          });
+          gsap.set(items, { autoAlpha: 0, x: xFrom });
 
           ScrollTrigger.create({
             trigger: section,
-            start: "top 80%",
-            animation: tl,
-            toggleActions: "play none none reverse",
+            start: "top 85%",
+            once: true,
+            onEnter: () => {
+              gsap.to(items, {
+                autoAlpha: 1,
+                x: 0,
+                stagger: 0.06,
+                duration: 0.55,
+                ease: "power2.out",
+              });
+            },
           });
         });
       });
