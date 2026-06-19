@@ -13,7 +13,7 @@ const { fullPage = false } = Astro.props;
   class:list={[
     fullPage
       ? "container flex min-h-svh flex-col items-center justify-center py-32 text-center"
-      : "container pt-24 pb-6",
+      : "container pt-20 pb-4 md:min-h-[calc(100svh-4rem)] md:flex md:flex-col md:justify-center md:py-8",
   ]}
 >
   <div
@@ -61,7 +61,7 @@ const { fullPage = false } = Astro.props;
             href={`https://api.whatsapp.com/send?phone=${CONFIG.meta.social.whatsapp}&text=Ol%C3%A1!%20Vim%20atrav%C3%A9s%20do%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar.`}
             target="_blank"
             rel="noopener noreferrer"
-            class="contact-item flex items-center gap-4 transition-opacity hover:opacity-80"
+            class="contact-item flex items-center gap-4 hover:opacity-80"
           >
             <div
               class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-base"
