@@ -5,21 +5,14 @@ import { skills } from "@shared";
 <div id="skills-grid" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
   {
     skills.map((category) => (
-      <div
-        class="skill-card rounded-2xl p-6"
-        style="border: 1px solid var(--color-border); background: var(--color-surface)"
-      >
-        <h3
-          class="text-sm font-semibold uppercase tracking-wider mb-4"
-          style="color: var(--color-muted)"
-        >
+      <div class="skill-card rounded-2xl p-6 border-base bg-surface">
+        <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-muted">
           {category.label}
         </h3>
         <ul class="flex flex-col gap-2">
           {category.skills.map((skill) => (
             <li
               class="flex items-center gap-2 text-sm"
-              style="color: var(--color-text)"
             >
               <span
                 class="h-1.5 w-1.5 rounded-full bg-primary-500 shrink-0"
