@@ -15,7 +15,7 @@ import { pt } from "@i18n/pt";
   <main id="sobre-main">
     <!-- Header -->
     <header class="sobre-header container pt-32 pb-16">
-      <div class="grid items-start gap-8 md:grid-cols-[1fr_auto]">
+      <div class="grid items-center gap-8 md:grid-cols-[1fr_auto]">
         <!-- Left: title + lead + social -->
         <div class="flex flex-col gap-4">
           <p class="eyebrow">Sobre</p>
@@ -99,19 +99,22 @@ import { pt } from "@i18n/pt";
 
         <!-- Right: quick facts -->
         <div
-          class="shrink-0 rounded-xl px-5 py-4 border-base bg-surface"
+          class="shrink-0 rounded-xl px-5 py-5 border-base bg-surface [animation:ambientGlow_5s_ease-in-out_infinite]"
         >
-          <ul class="flex flex-col gap-2.5">
+          <ul class="flex flex-col gap-3">
             {
-              stats.quickFacts.map((fact) => (
-                <li
-                  class="flex items-center gap-2 text-sm text-muted"
-                >
+              stats.quickFacts.map((fact, i) => (
+                <li class="flex items-center gap-2 text-sm text-muted">
                   <span
-                    class="h-1.5 w-1.5 shrink-0 rounded-full bg-primary-400"
+                    class:list={[
+                      "h-1.5 w-1.5 shrink-0 rounded-full bg-primary-400",
+                      i === 0 && "animate-pulse",
+                    ]}
                     aria-hidden="true"
                   />
-                  {fact.text}
+                  <span class:list={[i === 0 && "text-white font-medium"]}>
+                    {fact.text}
+                  </span>
                 </li>
               ))
             }
@@ -123,22 +126,18 @@ import { pt } from "@i18n/pt";
     <!-- Bio -->
     <section id="bio" class="container mb-20">
       <h2 class="section-title mb-8">Bio</h2>
-      <div
-        class="flex max-w-3xl flex-col gap-5 leading-[1.8] text-muted"
-      >
+      <div class="flex flex-col gap-5 leading-[1.8] text-muted">
         <p class="bio-paragraph">
-          Comecei em tecnologia durante a graduação em Psicologia — e desde
-          então combino leitura de contexto com desenvolvimento de software.
+          Desenvolvedor full-stack autônomo desde 2020. Construo sistemas web,
+          automações e integrações para pequenas empresas e projetos próprios.
         </p>
         <p class="bio-paragraph">
-          Trabalho de forma autônoma desde 2020, construindo sistemas web,
-          automações e produtos digitais. Em 2024 integrei a equipe IBM, onde
-          redesenhei o processo de onboarding e reduzi o tempo de integração
-          de 7 para 3 dias — antes de voltar ao trabalho autônomo.
+          Em 2024 integrei a equipe IBM, onde reestruturei o processo de
+          onboarding e reduzi o tempo de integração de 7 para 3 dias.
         </p>
         <p class="bio-paragraph">
-          Escrevo, desenho e documento o que construo — da arquitetura à
-          entrega final, com sigilo.
+          Além de desenvolver, produzo documentação técnica e conteúdo editorial
+          para clientes sob contrato de confidencialidade.
         </p>
       </div>
     </section>
@@ -242,7 +241,7 @@ import { pt } from "@i18n/pt";
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set(
-          ".sobre-header, .bio-paragraph, .experience-item, .education-item, .language-card",
+          ".sobre-header, .section-title, .bio-paragraph, .experience-item, .education-item, .language-card",
           { autoAlpha: 1, y: 0, x: 0 },
         );
       });
@@ -255,6 +254,19 @@ import { pt } from "@i18n/pt";
           duration: 0.7,
           ease: "power3.out",
           delay: 0.1,
+        });
+
+        gsap.set(".section-title", { autoAlpha: 0, y: 14 });
+        ScrollTrigger.batch(".section-title", {
+          onEnter: (els) =>
+            gsap.to(els, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            }),
+          once: true,
+          start: "top 88%",
         });
 
         gsap.set(".bio-paragraph", { autoAlpha: 0, y: 16 });
