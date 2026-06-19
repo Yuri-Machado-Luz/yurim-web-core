@@ -166,7 +166,6 @@
   --font-mono:
     "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, Courier,
     monospace;
-  --font-serif: Georgia, "Times New Roman", serif;
 }
 
 @layer base {
