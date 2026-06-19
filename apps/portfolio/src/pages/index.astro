@@ -16,7 +16,7 @@ const recentNotes = await getRecentNotes(4);
     <Hero />
     <AboutSection />
     <FeaturedProjects projects={projects} />
-    <NotesSection notes={recentNotes} />
+    {recentNotes.length > 0 && <NotesSection notes={recentNotes} />}
     <CTASection />
   </main>
 </Base>

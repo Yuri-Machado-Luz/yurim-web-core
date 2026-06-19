@@ -2,7 +2,7 @@ export const pt = {
   hero: {
     badge: "Desenvolvedor Full-Stack",
     paragraph:
-      "Trabalho solo desde 2020 — do requisito ao produto final, sem escalar equipe. Projetos em produção, com código documentado e entrega real.",
+      "Formação em Psicologia e ADS, com passagem pela IBM. Do briefing ao produto final — solo, desde 2020.",
     cta: {
       primary: "Sobre mim",
       secondary: "Projetos",
