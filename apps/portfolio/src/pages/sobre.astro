@@ -333,6 +333,16 @@ import { pt } from "@i18n/pt";
     ScrollTrigger.refresh();
   }
 
+  function preHide() {
+    if (!document.querySelector("#sobre-main")) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.set(
+      ".sobre-header, .section-title, .bio-paragraph, .experience-item, .education-item, .language-card",
+      { autoAlpha: 0 },
+    );
+  }
+
+  document.addEventListener("astro:after-swap", preHide);
   document.addEventListener("astro:page-load", init);
   document.addEventListener("astro:before-preparation", () => ctx?.revert());
 </script>
