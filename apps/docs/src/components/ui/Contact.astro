@@ -119,6 +119,18 @@ const { fullPage = false } = Astro.props;
         data-status="idle"
         class="contact-item order-1 flex flex-col gap-5 p-5 md:order-2 md:p-12"
       >
+        <!-- Honeypot: visually hidden, never filled by real users -->
+        <div class="contact-hp" aria-hidden="true">
+          <label for="website">Website</label>
+          <input
+            id="website"
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
         <div>
           <label for="name" class="mb-1.5 block text-xs font-medium text-muted">
             Nome
@@ -247,6 +259,17 @@ const { fullPage = false } = Astro.props;
 </section>
 
 <style>
+  /* Honeypot: off-screen, invisible to real users, but present in DOM for bots */
+  .contact-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
   /* Status message visibility */
   #contact-form .msg-sent,
   #contact-form .msg-error {
@@ -287,6 +310,39 @@ const { fullPage = false } = Astro.props;
 <script>
   import emailjs from "@emailjs/browser";
 
+  const COOLDOWN_MS = 60_000;
+  const STORAGE_KEY = "contact_last_sent";
+
+  function getCooldownRemaining(): number {
+    const last = Number(localStorage.getItem(STORAGE_KEY) ?? 0);
+    return Math.max(0, COOLDOWN_MS - (Date.now() - last));
+  }
+
+  function setCooldown() {
+    localStorage.setItem(STORAGE_KEY, String(Date.now()));
+  }
+
+  function applyCooldownUI(form: HTMLFormElement, btn: HTMLButtonElement) {
+    const remaining = getCooldownRemaining();
+    if (remaining <= 0) return;
+
+    btn.disabled = true;
+    const idleSpan = btn.querySelector<HTMLElement>("[data-btn-idle]");
+    const originalText = idleSpan?.textContent ?? "";
+
+    const tick = () => {
+      const r = getCooldownRemaining();
+      if (r <= 0) {
+        btn.disabled = false;
+        if (idleSpan) idleSpan.textContent = originalText;
+        return;
+      }
+      if (idleSpan) idleSpan.textContent = `Aguarde ${Math.ceil(r / 1000)}s`;
+      setTimeout(tick, 1000);
+    };
+    tick();
+  }
+
   function init() {
     if (!document.querySelector("#contato")) return;
 
@@ -297,8 +353,22 @@ const { fullPage = false } = Astro.props;
     if (!form || form.dataset.listenerAttached) return;
     form.dataset.listenerAttached = "1";
 
+    const btn = form.querySelector<HTMLButtonElement>("button[type='submit']")!;
+    applyCooldownUI(form, btn);
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+
+      if (getCooldownRemaining() > 0) return;
+
+      // Honeypot check: bots fill hidden fields, real users don't
+      const hp = (form.elements.namedItem("website") as HTMLInputElement).value;
+      if (hp) {
+        form.dataset.status = "sent";
+        form.reset();
+        setTimeout(() => { form.dataset.status = "idle"; }, 5000);
+        return;
+      }
 
       const els = form.elements;
       const nameVal = (els.namedItem("name") as HTMLInputElement).value;
@@ -314,8 +384,10 @@ const { fullPage = false } = Astro.props;
           import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID!,
           form,
         );
+        setCooldown();
         form.dataset.status = "sent";
         form.reset();
+        applyCooldownUI(form, btn);
         setTimeout(() => { form.dataset.status = "idle"; }, 5000);
       } catch {
         form.dataset.status = "error";
