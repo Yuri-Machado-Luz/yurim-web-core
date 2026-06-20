@@ -29,7 +29,15 @@ export default defineConfig({
     }),
   },
 
-  integrations: [icon(), mdx({ extendMarkdownConfig: true }), sitemap()],
+  integrations: [
+    icon(),
+    mdx({ extendMarkdownConfig: true }),
+    sitemap({
+      filter: (page) =>
+        page === "https://yurimachado.dev.br/" ||
+        page === "https://yurimachado.dev.br/sobre/",
+    }),
+  ],
 
   adapter: vercel(),
 
