@@ -286,26 +286,9 @@ const { fullPage = false } = Astro.props;
 
 <script>
   import emailjs from "@emailjs/browser";
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  let ctx: gsap.Context | null = null;
 
   function init() {
     if (!document.querySelector("#contato")) return;
-
-    ctx?.revert();
-    ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        ScrollTrigger.batch(".contact-item", {
-          onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 20, duration: 0.5, stagger: 0.08, ease: "power2.out" }),
-          once: true, start: "top 85%",
-        });
-      });
-    });
 
     const key = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
     if (key) emailjs.init(key);
@@ -342,5 +325,4 @@ const { fullPage = false } = Astro.props;
   }
 
   document.addEventListener("astro:page-load", init);
-  document.addEventListener("astro:before-preparation", () => ctx?.revert());
 </script>

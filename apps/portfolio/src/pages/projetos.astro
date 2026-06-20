@@ -150,12 +150,18 @@ const others = projects.filter((p) => !p.data.featured);
     ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        ScrollTrigger.batch(".projects-header", {
-          onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 24, duration: 0.6, ease: "power3.out" }),
-          once: true, start: "top 88%",
+        // Only hide cards that are already below the fold to avoid flash
+        const cards = main.querySelectorAll<HTMLElement>(".project-card");
+        if (!cards.length) return;
+
+        cards.forEach((card) => {
+          if (card.getBoundingClientRect().top > window.innerHeight) {
+            gsap.set(card, { autoAlpha: 0, y: 20 });
+          }
         });
-        ScrollTrigger.batch(".project-card", {
-          onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 20, duration: 0.5, stagger: 0.07, ease: "power2.out" }),
+
+        ScrollTrigger.batch(cards, {
+          onEnter: (els) => gsap.to(els, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.07, ease: "power2.out" }),
           once: true, start: "top 88%",
         });
       });
