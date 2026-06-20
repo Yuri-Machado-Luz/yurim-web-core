@@ -1,66 +1,34 @@
 ---
 import { Base } from "@layouts";
-import { getAllProjects, getAllDocs } from "@shared";
+import { getAllProjects, getAllTools, getAllNotes } from "@shared";
 import PageHeader from "@ui/PageHeader.astro";
 import ProjectCard from "@ui/ProjectCard.astro";
 
 const projects = await getAllProjects();
+const tools = await getAllTools();
+const notes = await getAllNotes();
+
 const featured = projects.filter((p) => p.data.featured);
 const others = projects.filter((p) => !p.data.featured);
-
-const { notes, portfolio, sandbox, automation } = await getAllDocs();
-const docCategories = [
-  {
-    key: "portfolio",
-    label: "Portfólio",
-    entries: portfolio,
-    span: 2,
-    icon: `<path d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>`,
-  },
-  {
-    key: "notes",
-    label: "Notas",
-    entries: notes,
-    span: 2,
-    icon: `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>`,
-  },
-  {
-    key: "sandbox",
-    label: "Sandbox",
-    entries: sandbox,
-    span: 2,
-    icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
-  },
-  {
-    key: "automation",
-    label: "Automação",
-    entries: automation,
-    span: 2,
-    icon: `<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/>`,
-  },
-].filter((c) => c.entries.length > 0);
 ---
 
 <Base
   title="Projetos — Yuri Machado Luz"
-  description="Projetos em produção, experimentos e automações — sistemas web desenvolvidos e mantidos por Yuri Machado Luz."
+  description="Projetos em produção, ferramentas, contribuições open-source e notas técnicas."
 >
   <main id="projects-main">
-    <Fragment>
-      <PageHeader
-        eyebrow="Portfólio"
-        title="Projetos em Destaque"
-        lead="Sites, ferramentas, automações e bases de conhecimento — do beta ao produto final."
-        class="projects-header"
-      />
-    </Fragment>
+    <PageHeader
+      eyebrow="Portfólio"
+      title="Projetos"
+      lead="Sites, ferramentas e contribuições open-source."
+      class="projects-header"
+    />
 
+    <!-- Projetos em destaque -->
     {
       featured.length > 0 && (
         <section class="container mb-20">
-          <div
-            class:list={["featured-grid", featured.length === 1 && "grid-cols-1!"]}
-          >
+          <div class:list={["featured-grid", featured.length === 1 && "grid-cols-1!"]}>
             {featured.map((entry) => (
               <div class="project-card">
                 <ProjectCard
@@ -79,12 +47,11 @@ const docCategories = [
       )
     }
 
+    <!-- Outros projetos -->
     {
       others.length > 0 && (
         <section class="container mb-20">
-          {featured.length > 0 && (
-            <h2 class="section-title mb-6">Outros Projetos</h2>
-          )}
+          <h2 class="section-title mb-6">Outros Projetos</h2>
           <div class="projects-grid">
             {others.map((entry) => (
               <div class="project-card">
@@ -104,59 +71,62 @@ const docCategories = [
       )
     }
 
+    <!-- Ferramentas & Contribuições -->
     {
-      projects.length === 0 && (
+      tools.length > 0 && (
         <section class="container mb-20">
-          <p class="text-muted">
-            Nenhum projeto disponível no momento.
-          </p>
+          <h2 class="section-title mb-6">Ferramentas &amp; Contribuições</h2>
+          <div class="projects-grid">
+            {tools.map((entry) => (
+              <div class="project-card">
+                <ProjectCard
+                  title={entry.data.title}
+                  description={entry.data.description}
+                  status={entry.data.status}
+                  tags={entry.data.tags}
+                  github={entry.data.github}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Notas -->
+    {
+      notes.length > 0 && (
+        <section class="container mb-20">
+          <h2 class="section-title mb-2">Notas</h2>
+          <p class="text-muted text-sm mb-8">Devlogs e registros técnicos.</p>
+          <div class="notes-list">
+            {notes.map((entry) => (
+              <a
+                href={`/docs/notes/${entry.id}`}
+                class="article-item"
+              >
+                <span class="article-title">{entry.data.title}</span>
+                {entry.data.description && (
+                  <span class="article-meta">{entry.data.description}</span>
+                )}
+                {entry.data.tags && entry.data.tags.length > 0 && (
+                  <div class="note-tags">
+                    {entry.data.tags.map((tag: string) => (
+                      <span class="note-tag">{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
         </section>
       )
     }
 
     {
-      docCategories.length > 0 && (
+      projects.length === 0 && tools.length === 0 && notes.length === 0 && (
         <section class="container mb-20">
-          <h2 class="section-title mb-8">Publicações</h2>
-          <div class="bento-grid">
-            {docCategories.map((cat) => (
-              <div class={`bento-card bento-span-${cat.span}`}>
-                <div class="bento-header">
-                  <div class="bento-icon" aria-hidden="true">
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      set:html={cat.icon}
-                    />
-                  </div>
-                  <span class="bento-title">{cat.label}</span>
-                  <span class="bento-count">{cat.entries.length}</span>
-                </div>
-                <ul class="bento-list" role="list">
-                  {cat.entries.map((entry) => (
-                    <li>
-                      <a
-                        href={`/docs/${cat.key}/${entry.id}`}
-                        class="bento-item"
-                      >
-                        <span class="bento-item-dot" aria-hidden="true" />
-                        <span class="bento-item-title">{entry.data.title}</span>
-                        {entry.data.description && (
-                          <span class="bento-item-desc">{entry.data.description}</span>
-                        )}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <p class="text-muted">Nenhum conteúdo disponível no momento.</p>
         </section>
       )
     }
@@ -164,81 +134,24 @@ const docCategories = [
 </Base>
 
 <style>
-  .bento-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 0.5rem;
-  }
-  .bento-span-1 { grid-column: span 1; }
-  .bento-span-2 { grid-column: span 2; }
-  .bento-card {
-    border-radius: 10px;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    padding: 1.25rem;
+  .notes-list {
     display: flex;
     flex-direction: column;
-    gap: 0.875rem;
-    transition: border-color 150ms ease;
   }
-  .bento-card:hover {
-    border-color: color-mix(in srgb, var(--color-primary-400) 30%, var(--color-border));
-  }
-  .bento-header { display: flex; align-items: center; gap: 0.5rem; }
-  .bento-icon {
+
+  .note-tags {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    border-radius: 6px;
-    background: var(--color-surface-strong);
-    color: var(--color-primary-400);
-    flex-shrink: 0;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
   }
-  .bento-title { font-size: 0.875rem; font-weight: 600; color: var(--color-text); flex: 1; }
-  .bento-count {
+
+  .note-tag {
     font-size: 0.6875rem;
-    font-weight: 500;
     padding: 0.125rem 0.5rem;
     border-radius: 999px;
-    background: var(--color-surface-strong);
-    color: var(--color-muted);
     border: 1px solid var(--color-border);
-  }
-  .bento-list { display: flex; flex-direction: column; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
-  .bento-item {
-    display: grid;
-    grid-template-columns: 6px 1fr;
-    grid-template-rows: auto auto;
-    column-gap: 0.625rem;
-    row-gap: 0.125rem;
-    padding: 0.5rem 0.625rem;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: background 150ms ease;
-  }
-  .bento-item:hover { background: var(--color-surface-strong); }
-  .bento-item-dot {
-    grid-row: 1 / 3;
-    align-self: center;
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background: var(--color-border);
-    flex-shrink: 0;
-    transition: background 150ms ease;
-  }
-  .bento-item:hover .bento-item-dot { background: var(--color-primary-400); }
-  .bento-item-title { font-size: 0.8125rem; font-weight: 500; color: var(--color-text); line-height: 1.4; }
-  .bento-item-desc { font-size: 0.75rem; color: var(--color-muted); line-height: 1.4; }
-  @media (max-width: 900px) {
-    .bento-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 540px) {
-    .bento-grid { grid-template-columns: 1fr; }
-    .bento-span-1, .bento-span-2 { grid-column: span 1; }
+    color: var(--color-muted);
   }
 </style>
 
