@@ -15,13 +15,14 @@ const notes = defineCollection({
 
 const portfolio = defineCollection({
   loader: glob({
-    pattern: "**/index.{md,mdx}",
+    pattern: "**/*.{md,mdx}",
     base: "./src/content/docs/portfolio",
   }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
     draft: z.boolean().default(false),
+    type: z.enum(["project", "changelog", "doc"]).default("project"),
     status: z.enum(["ativo", "dev", "arquivado", "beta"]).default("dev"),
     featured: z.boolean().default(false),
     order: z.number().optional(),
