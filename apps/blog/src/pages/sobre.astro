@@ -221,6 +221,20 @@ import { pt } from "@i18n/pt";
     ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Section titles: check viewport — "Bio" might be visible, others definitely aren't
+        const titles = main.querySelectorAll<HTMLElement>(".section-title");
+        titles.forEach((el) => {
+          if (el.getBoundingClientRect().top > window.innerHeight) {
+            gsap.set(el, { autoAlpha: 0, y: 14 });
+          }
+        });
+        if (titles.length) {
+          ScrollTrigger.batch(titles, {
+            onEnter: (els) => gsap.to(els, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" }),
+            once: true, start: "top 88%",
+          });
+        }
+
         // Experience: definitely below fold (after header + bio + habilidades)
         const expItems = main.querySelectorAll(".experience-item");
         if (expItems.length) {
