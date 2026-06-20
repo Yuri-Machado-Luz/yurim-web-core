@@ -91,6 +91,19 @@ const recentNotes = await getRecentNotes(4);
     }, main);
   }
 
+  function preHide() {
+    if (!document.querySelector("#home-main")) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.set(
+      "#about .section-title, #about .about-bio p, #about .about-cta, #about .stat-item," +
+      "#featured-projects .eyebrow, #featured-projects .section-title, #featured-projects .projects-header-desc, #featured-projects .project-card, #featured-projects .projects-cta," +
+      "#notes-section .eyebrow, #notes-section .section-title, #notes-section .notes-item, #notes-section .notes-cta," +
+      "#cta-section .section-title, #cta-section .cta-btn, #cta-section .social-link",
+      { autoAlpha: 0 },
+    );
+  }
+
+  document.addEventListener("astro:after-swap", preHide);
   document.addEventListener("astro:page-load", init);
   document.addEventListener("astro:before-preparation", () => ctx?.revert());
 </script>
