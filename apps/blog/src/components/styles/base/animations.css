@@ -120,11 +120,11 @@
 }
 
 ::view-transition-old(root) {
-  animation: 220ms cubic-bezier(0.4, 0, 0.2, 1) both vtSlideOutLeft;
+  animation: 180ms ease-in both vtFadeOut;
 }
 
 ::view-transition-new(root) {
-  animation: 220ms cubic-bezier(0.4, 0, 0.2, 1) both vtSlideInRight;
+  animation: none; /* GSAP owns the entry — CSS slide conflicts with per-element animations */
 }
 
 /* Navbar persisted — suprimir animação VT */

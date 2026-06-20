@@ -204,6 +204,13 @@ const others = projects.filter((p) => !p.data.featured);
     }, main);
   }
 
+  function preHide() {
+    if (!document.querySelector("#projects-main")) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.set(".projects-header, .project-card", { autoAlpha: 0 });
+  }
+
+  document.addEventListener("astro:after-swap", preHide);
   document.addEventListener("astro:page-load", init);
   document.addEventListener("astro:before-preparation", () => ctx?.revert());
 </script>

@@ -355,6 +355,13 @@ const { fullPage = false } = Astro.props;
     });
   }
 
+  function preHide() {
+    if (!document.querySelector("#contato")) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.set(".contact-item", { autoAlpha: 0 });
+  }
+
+  document.addEventListener("astro:after-swap", preHide);
   document.addEventListener("astro:page-load", init);
   document.addEventListener("astro:before-preparation", () => ctx?.revert());
 </script>
