@@ -33,6 +33,10 @@ export default defineConfig({
 
   adapter: vercel(),
 
+  build: {
+    inlineStylesheets: "always",
+  },
+
   vite: {
     assetsInclude: ["**/*.base", "**/.obsidian/**", "**/_bases/**"],
     plugins: [tailwindcss()],
