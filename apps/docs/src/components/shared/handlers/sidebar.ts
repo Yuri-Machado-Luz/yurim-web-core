@@ -7,7 +7,7 @@ const COLLECTION_LABELS: Record<CollectionName, string> = {
   notes: "Notas",
   portfolio: "Portfólio",
   sandbox: "Sandbox",
-  automation: "Automação",
+  automation: "Ferramentas",
 };
 
 async function buildGroup(
