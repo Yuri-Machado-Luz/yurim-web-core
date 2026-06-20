@@ -3,6 +3,7 @@ import ClientRouter from "astro/components/ClientRouter.astro";
 import { Logo } from "@assets";
 import { CONFIG } from "@config";
 import "@styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 
 const {
   title,
@@ -40,7 +41,7 @@ const canonicalUrl = customCanonicalUrl
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:description" content={description} />
   {image && <meta property="og:image" content={image} />}
-
+  <Analytics />
 </head>
 
 <script>
