@@ -120,11 +120,11 @@
 }
 
 ::view-transition-old(root) {
-  animation: 180ms ease-in both vtFadeOut;
+  animation: 150ms ease-in both vtFadeOut;
 }
 
 ::view-transition-new(root) {
-  animation: none; /* GSAP owns the entry — CSS slide conflicts with per-element animations */
+  animation: none;
 }
 
 /* Navbar persisted — suprimir animação VT */
