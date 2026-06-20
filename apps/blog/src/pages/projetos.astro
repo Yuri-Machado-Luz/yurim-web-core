@@ -133,6 +133,39 @@ const others = projects.filter((p) => !p.data.featured);
   </main>
 </Base>
 
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let ctx: gsap.Context | null = null;
+
+  function init() {
+    const main = document.querySelector<HTMLElement>("#projects-main");
+    if (!main) return;
+
+    ctx?.revert();
+
+    ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        ScrollTrigger.batch(".projects-header", {
+          onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 24, duration: 0.6, ease: "power3.out" }),
+          once: true, start: "top 88%",
+        });
+        ScrollTrigger.batch(".project-card", {
+          onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 20, duration: 0.5, stagger: 0.07, ease: "power2.out" }),
+          once: true, start: "top 88%",
+        });
+      });
+    }, main);
+  }
+
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:before-preparation", () => ctx?.revert());
+</script>
+
 <style>
   .notes-list {
     display: flex;

@@ -127,18 +127,6 @@
   animation: none;
 }
 
-/* Navbar persisted — suprimir animação VT */
-::view-transition-old(navbar),
-::view-transition-new(navbar) {
-  animation: none;
-}
-
-/* Docs sidebar — suprimir slide; conteúdo troca instantaneamente */
-::view-transition-old(.docs-sidebar),
-::view-transition-new(.docs-sidebar) {
-  animation: none;
-}
-
 /* home↔docs cross-transition: old page fades out, new page slides in normally */
 @keyframes vtFadeOut {
   from {
