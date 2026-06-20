@@ -39,10 +39,10 @@ const recentNotes = await getRecentNotes(4);
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const sections = [
-          { id: "#about",            xFrom: -50, selectors: ".section-title, .about-bio p, .about-cta, .stat-item" },
+          { id: "#about",             xFrom: -50, selectors: ".section-title, .about-bio p, .about-cta, .stat-item" },
           { id: "#featured-projects", xFrom:  50, selectors: ".eyebrow, .section-title, .projects-header-desc, .project-card, .projects-cta" },
-          { id: "#notes-section",    xFrom: -50, selectors: ".eyebrow, .section-title, .notes-item, .notes-cta" },
-          { id: "#cta-section",      xFrom:  50, selectors: ".section-title, .cta-btn, .social-link" },
+          { id: "#notes-section",     xFrom: -50, selectors: ".eyebrow, .section-title, .notes-item, .notes-cta" },
+          { id: "#cta-section",       xFrom:  50, selectors: ".section-title, .cta-btn, .social-link" },
         ] as const;
 
         sections.forEach(({ id, xFrom, selectors }) => {
@@ -51,16 +51,20 @@ const recentNotes = await getRecentNotes(4);
           const items = section.querySelectorAll(selectors);
           if (!items.length) return;
 
-          gsap.from(items, {
-            autoAlpha: 0,
-            x: xFrom,
-            duration: 0.55,
-            stagger: 0.06,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 85%",
-              once: true,
+          gsap.set(items, { autoAlpha: 0, x: xFrom });
+
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top 85%",
+            once: true,
+            onEnter: () => {
+              gsap.to(items, {
+                autoAlpha: 1,
+                x: 0,
+                duration: 0.55,
+                stagger: 0.06,
+                ease: "power2.out",
+              });
             },
           });
         });
