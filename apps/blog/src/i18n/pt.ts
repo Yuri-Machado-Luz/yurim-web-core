@@ -1,19 +1,18 @@
 export const pt = {
   hero: {
-    badge: "Desenvolvedor Full-Stack",
-    paragraph:
-      "Formação em Psicologia e ADS, com passagem pela IBM. Trabalho solo desde 2020.",
+    badge: "Full-Stack Developer",
+    paragraph: `Consultor e desenvolvedor independente, com passagens pela IBM, Cielo e Santander.`,
     cta: {
-      primary: "Sobre mim",
+      primary: "Currículo",
       secondary: "Projetos",
     },
   },
   about: {
     title: "Sobre mim",
     bio: [
-      "Desenvolvedor full-stack autônomo desde 2020. Construo sistemas web, automações e integrações para pequenas empresas e projetos próprios.",
-      "Em 2024 integrei a equipe IBM, onde reestruturei o processo de onboarding e reduzi o tempo de integração de 7 para 3 dias.",
-      "Além de desenvolver, produzo documentação técnica e conteúdo editorial para clientes sob contrato de confidencialidade.",
+      "Desenvolvedor full-stack autônomo. Sistemas web, APIs e automações, do back-end à interface.",
+      "Em 2024-2025, passei pela IBM, redesenhando o onboarding e reduzindo o tempo de integração de 7 para 3 dias (−57%).",
+      "Paralelo ao desenvolvimento: identidade visual, prototipagem UI/UX e documentação técnica.",
     ],
     cta: "Ver histórico completo →",
   },
