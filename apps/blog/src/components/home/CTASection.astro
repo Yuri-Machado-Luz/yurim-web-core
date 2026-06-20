@@ -5,7 +5,7 @@ import Button from "@ui/Button.astro";
 import { pt } from "@i18n/pt";
 ---
 
-<section id="cta-section" class="relative isolate py-8 md:py-28">
+<section id="cta-section" class="relative isolate py-14 md:py-28">
   <div class="container text-center">
     <h2 class="section-title mb-8">{pt.cta.title}</h2>
 
@@ -20,7 +20,7 @@ import { pt } from "@i18n/pt";
         rel="noopener noreferrer"
         target="_blank"
       >
-        <span class="text-white h-14 w-14" aria-hidden set:html={EmailRaw} />
+        <span class="text-white h-8 w-8 md:h-14 md:w-14" aria-hidden set:html={EmailRaw} />
       </a>
       <a
         href={CONFIG.meta.social.github}
@@ -28,7 +28,7 @@ import { pt } from "@i18n/pt";
         rel="noopener noreferrer"
         class="social-link text-white text-xl"
       >
-        <span class="text-white h-16 w-16" aria-hidden set:html={GitHubRaw} />
+        <span class="text-white h-8 w-8 md:h-16 md:w-16" aria-hidden set:html={GitHubRaw} />
       </a>
       <a
         href={CONFIG.meta.social.linkedin}
@@ -36,7 +36,7 @@ import { pt } from "@i18n/pt";
         rel="noopener noreferrer"
         class="social-link text-white text-xl"
       >
-        <span class="text-white h-14 w-14" aria-hidden set:html={LinkedInRaw} />
+        <span class="text-white h-8 w-8 md:h-14 md:w-14" aria-hidden set:html={LinkedInRaw} />
       </a>
     </nav>
   </div>
