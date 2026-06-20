@@ -39,6 +39,7 @@
   }
   html {
     font-family: var(--font-sans);
+    scrollbar-gutter: stable;
   }
   code,
   pre,
@@ -115,7 +116,6 @@
 
   /* ── Navbar ── */
   .navbar {
-    view-transition-name: navbar;
     background: transparent;
     border-bottom: 1px solid transparent;
     transition:
