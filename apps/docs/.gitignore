@@ -27,6 +27,3 @@ pnpm-debug.log*
 
 # obsidian vault dentro do content
 src/content/.obsidian/
-
-# doc de planejamento da refatoração
-filetree.md
