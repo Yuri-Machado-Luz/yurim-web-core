@@ -286,39 +286,12 @@ const { fullPage = false } = Astro.props;
 
 <script>
   import emailjs from "@emailjs/browser";
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  let ctx: gsap.Context | null = null;
 
   function init() {
-    const section = document.querySelector<HTMLElement>("#contato");
-    if (!section) return;
-
-    ctx?.revert();
+    if (!document.querySelector("#contato")) return;
 
     const key = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
     if (key) emailjs.init(key);
-
-    ctx = gsap.context(() => {
-      gsap.set(".contact-item", { autoAlpha: 0, y: 20 });
-
-      ScrollTrigger.batch(".contact-item", {
-        onEnter: (els) =>
-          gsap.to(els, {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.5,
-            stagger: 0.08,
-            ease: "power2.out",
-            overwrite: true,
-          }),
-        once: true,
-        start: "top 85%",
-      });
-    }, section);
 
     const form = document.querySelector<HTMLFormElement>("#contact-form");
     if (!form || form.dataset.listenerAttached) return;
@@ -343,25 +316,13 @@ const { fullPage = false } = Astro.props;
         );
         form.dataset.status = "sent";
         form.reset();
-        setTimeout(() => {
-          form.dataset.status = "idle";
-        }, 5000);
+        setTimeout(() => { form.dataset.status = "idle"; }, 5000);
       } catch {
         form.dataset.status = "error";
-        setTimeout(() => {
-          form.dataset.status = "idle";
-        }, 5000);
+        setTimeout(() => { form.dataset.status = "idle"; }, 5000);
       }
     });
   }
 
-  function preHide() {
-    if (!document.querySelector("#contato")) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    gsap.set(".contact-item", { autoAlpha: 0 });
-  }
-
-  document.addEventListener("astro:after-swap", preHide);
   document.addEventListener("astro:page-load", init);
-  document.addEventListener("astro:before-preparation", () => ctx?.revert());
 </script>

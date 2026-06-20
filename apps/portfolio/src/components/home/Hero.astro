@@ -82,12 +82,39 @@ import TechStack from "@home/TechStack.astro";
 </header>
 
 <style>
-  [data-hero-badge],
-  [data-hero-reveal],
-  [data-hero-picture],
-  [data-hero-techstack] {
-    opacity: 0;
-    visibility: hidden;
+  @media (prefers-reduced-motion: no-preference) {
+    [data-hero-badge] {
+      animation: hero-fade-up 0.4s ease 0.15s both;
+    }
+    [data-hero-picture] {
+      animation: hero-fade 0.6s ease 0.1s both;
+    }
+    [data-hero-reveal] {
+      animation: hero-fade-up 0.45s ease 0.45s both;
+    }
+    [data-hero-techstack] {
+      animation: hero-fade-up 0.45s ease 0.65s both;
+    }
+  }
+
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .hero-picture-wrap {
@@ -144,99 +171,29 @@ import TechStack from "@home/TechStack.astro";
 
     ctx?.revert();
 
-    // Se o usuário já viu o Hero recentemente (30 minutos), pular animação
-    const HERO_SEEN_KEY = "hero:lastSeen";
-    const HERO_TTL = 30 * 60 * 1000; // 30 minutos
-    let shouldAnimate = true;
-    try {
-      const last = localStorage.getItem(HERO_SEEN_KEY);
-      if (last && Date.now() - Number(last) < HERO_TTL) {
-        shouldAnimate = false;
-      }
-    } catch (e) {
-      // localStorage pode não estar disponível — continuar como padrão
-    }
-
     ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        if (!shouldAnimate) {
-          // Pular animação: aplicar estado final imediatamente
-          gsap.set(
-            "[data-hero-text-reveal], [data-hero-badge], [data-hero-reveal], [data-hero-picture], [data-hero-techstack]",
-            { autoAlpha: 1, y: 0, scale: 1 },
-          );
-          return;
-        }
-
-        gsap.set("[data-hero-badge]", { autoAlpha: 0, y: 16 });
-        gsap.set("[data-hero-reveal]", { autoAlpha: 0, y: 16 });
-        gsap.set("[data-hero-picture]", { autoAlpha: 0, scale: 0.95 });
-        gsap.set("[data-hero-techstack]", { autoAlpha: 0, y: 20 });
-
         SplitText.create("[data-hero-text-reveal]", {
           type: "lines",
           mask: "lines",
           autoSplit: true,
           onSplit(self) {
-            const tl = gsap
-              .timeline({ delay: 0.6 })
-              .set("[data-hero-text-reveal]", { autoAlpha: 1 })
-              .to("[data-hero-badge]", {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.45,
-                ease: "power2.out",
-              })
-              .from(
-                self.lines,
-                {
-                  yPercent: 110,
-                  duration: 0.7,
-                  stagger: 0.12,
-                  ease: "power3.out",
-                },
-                "<0.1",
-              )
-              .to(
-                "[data-hero-picture]",
-                { autoAlpha: 1, scale: 1, duration: 0.7, ease: "power2.out" },
-                "<",
-              )
-              .to(
-                "[data-hero-reveal]",
-                {
-                  autoAlpha: 1,
-                  y: 0,
-                  duration: 0.5,
-                  stagger: 0.09,
-                  ease: "power2.out",
-                },
-                "<0.35",
-              )
-              .to(
-                "[data-hero-techstack]",
-                { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" },
-                "<0.2",
-              );
-
-            try {
-              localStorage.setItem(HERO_SEEN_KEY, String(Date.now()));
-            } catch (e) {
-              // ignore
-            }
-
-            return tl;
+            gsap.set("[data-hero-text-reveal]", { autoAlpha: 1 });
+            gsap.from(self.lines, {
+              yPercent: 110,
+              duration: 0.7,
+              stagger: 0.12,
+              ease: "power3.out",
+              delay: 0.2,
+            });
           },
         });
       });
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(
-          "[data-hero-text-reveal], [data-hero-badge], [data-hero-reveal], [data-hero-picture], [data-hero-techstack]",
-          { autoAlpha: 1, y: 0, scale: 1 },
-        );
+        gsap.set("[data-hero-text-reveal]", { autoAlpha: 1 });
       });
     }, hero);
   }
