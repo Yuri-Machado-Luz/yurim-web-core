@@ -8,7 +8,7 @@ const currentPath = Astro.url.pathname;
 
 <nav
   id="navbar"
-  class="navbar fixed top-0 left-0 z-50 w-full will-change-transform"
+  class="navbar fixed top-0 left-0 z-50 w-full backdrop-blur-3xl will-change-transform"
 >
   <div
     class="container flex items-center justify-between py-4 font-medium md:py-5"
@@ -22,7 +22,7 @@ const currentPath = Astro.url.pathname;
     </a>
 
     <!-- Desktop nav -->
-    <ul class="hidden items-center gap-6 text-sm md:flex">
+    <ul class="text-md hidden items-center gap-6 md:flex">
       {
         CONFIG.nav.pages.map(({ label, href, cta }) => (
           <li>
@@ -52,50 +52,68 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile toggle -->
     <button
       data-menu-btn
-      class="flex items-center justify-center text-muted md:hidden"
+      class="border-base flex items-center justify-center rounded-lg p-2 text-muted transition-colors hover:text-primary-400 md:hidden"
       aria-label="Abrir menu"
       aria-expanded="false"
     >
-      <!-- Hamburger -->
       <span data-icon-menu aria-hidden set:html={MenuRaw} />
-      <!-- Close -->
       <span data-icon-close class="hidden" aria-hidden set:html={CloseRaw} />
     </button>
   </div>
 
-  <!-- Mobile drawer — GSAP controls height/visibility -->
+  <!-- Mobile drawer -->
   <div
     data-menu-drawer
     class="overflow-hidden md:hidden"
-    style="height: 0; visibility: hidden; border-bottom: 1px solid var(--color-border); background: rgb(from var(--color-bg) r g b / 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"
+    style="height: 0; visibility: hidden; border-bottom: 1px solid var(--color-border); background: rgb(from var(--color-bg) r g b / 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);"
     aria-hidden="true"
   >
-    <ul class="flex flex-col gap-1 px-6 py-4 text-sm">
+    <nav class="flex flex-col gap-1 px-4 pt-3 pb-5">
+      <!-- Início — não está no CONFIG.nav.pages, mas é útil no mobile -->
+      <a
+        href="/"
+        data-nav-link-mobile
+        class:list={[
+          "flex items-center rounded-lg px-3 py-3 text-base font-medium transition-colors duration-200",
+          currentPath === "/"
+            ? "bg-surface text-primary-400"
+            : "text-muted hover:bg-surface hover:text-primary-400",
+        ]}
+      >
+        Início
+      </a>
+
       {
-        CONFIG.nav.pages.map(({ label, href, cta }) => (
-          <li>
-            {cta ? (
-              <Button href={href} variant="primary" size="sm" class="my-1">
-                {label}
-              </Button>
-            ) : (
-              <a
-                href={href}
-                data-nav-link-mobile
-                class:list={[
-                  "block py-2 transition-colors duration-200",
-                  currentPath === href
-                    ? "text-primary-400"
-                    : "text-muted hover:text-primary-400",
-                ]}
-              >
-                {label}
-              </a>
-            )}
-          </li>
-        ))
+        CONFIG.nav.pages.map(({ label, href, cta }) =>
+          cta ? null : (
+            <a
+              href={href}
+              data-nav-link-mobile
+              class:list={[
+                "flex items-center rounded-lg px-3 py-3 text-base font-medium transition-colors duration-200",
+                currentPath === href || currentPath.startsWith(href + "/")
+                  ? "bg-surface text-primary-400"
+                  : "text-muted hover:bg-surface hover:text-primary-400",
+              ]}
+            >
+              {label}
+            </a>
+          )
+        )
       }
-    </ul>
+
+      <div class="border-t-base my-2"></div>
+
+      {
+        CONFIG.nav.pages
+          .filter(({ cta }) => cta)
+          .map(({ label, href }) => (
+            <Button href={href} variant="primary" size="sm" class="w-full justify-center">
+              {label}
+            </Button>
+          ))
+      }
+    </nav>
   </div>
 </nav>
 
@@ -128,13 +146,10 @@ const currentPath = Astro.url.pathname;
       .querySelectorAll<HTMLAnchorElement>("[data-nav-link-mobile]")
       .forEach((link) => {
         const href = link.getAttribute("href") ?? "";
-        const isActive = path === href;
+        const isActive = path === href || (href !== "/" && path.startsWith(href + "/"));
         link.classList.toggle("text-primary-400", isActive);
-        if (isActive) {
-          link.style.removeProperty("color");
-        } else {
-          link.style.color = "var(--color-muted)";
-        }
+        link.classList.toggle("bg-surface", isActive);
+        link.style.removeProperty("color");
       });
   }
 
@@ -152,11 +167,21 @@ const currentPath = Astro.url.pathname;
     if (delta > 0 && y > 60) {
       if (lastAnimDir === "down") return;
       lastAnimDir = "down";
-      gsap.to(nav, { y: "-100%", duration: 0.3, ease: "power2.in", overwrite: true });
+      gsap.to(nav, {
+        y: "-100%",
+        duration: 0.3,
+        ease: "power2.in",
+        overwrite: true,
+      });
     } else if (delta < 0) {
       if (lastAnimDir === "up") return;
       lastAnimDir = "up";
-      gsap.to(nav, { y: 0, duration: 0.3, ease: "power2.out", overwrite: true });
+      gsap.to(nav, {
+        y: 0,
+        duration: 0.3,
+        ease: "power2.out",
+        overwrite: true,
+      });
     }
   }
 
