@@ -221,26 +221,25 @@ import { pt } from "@i18n/pt";
     ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        ScrollTrigger.batch(".sobre-header", {
-          onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 24, duration: 0.6, ease: "power3.out" }),
-          once: true, start: "top 88%",
-        });
-        ScrollTrigger.batch(".section-title", {
-          onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 14, duration: 0.5, ease: "power2.out" }),
-          once: true, start: "top 88%",
-        });
-        ScrollTrigger.batch(".bio-paragraph", {
-          onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 16, duration: 0.55, stagger: 0.08, ease: "power2.out" }),
-          once: true, start: "top 90%",
-        });
-        ScrollTrigger.batch(".experience-item", {
-          onEnter: (els) => gsap.from(els, { autoAlpha: 0, x: -20, duration: 0.55, stagger: 0.1, ease: "power3.out" }),
-          once: true, start: "top 88%",
-        });
-        ScrollTrigger.batch(".education-item, .language-card", {
-          onEnter: (els) => gsap.from(els, { autoAlpha: 0, y: 20, duration: 0.45, stagger: 0.07, ease: "power2.out" }),
-          once: true, start: "top 90%",
-        });
+        // Experience: definitely below fold (after header + bio + habilidades)
+        const expItems = main.querySelectorAll(".experience-item");
+        if (expItems.length) {
+          gsap.set(expItems, { autoAlpha: 0, x: -20 });
+          ScrollTrigger.batch(expItems, {
+            onEnter: (els) => gsap.to(els, { autoAlpha: 1, x: 0, duration: 0.55, stagger: 0.1, ease: "power3.out" }),
+            once: true, start: "top 88%",
+          });
+        }
+
+        // Education + Languages: definitely below fold
+        const eduLang = main.querySelectorAll(".education-item, .language-card");
+        if (eduLang.length) {
+          gsap.set(eduLang, { autoAlpha: 0, y: 20 });
+          ScrollTrigger.batch(eduLang, {
+            onEnter: (els) => gsap.to(els, { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.07, ease: "power2.out" }),
+            once: true, start: "top 90%",
+          });
+        }
       });
     }, main);
 
