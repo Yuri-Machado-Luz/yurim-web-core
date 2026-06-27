@@ -11,9 +11,10 @@ import tailwindcss from "@tailwindcss/vite";
 import rehypeCallouts from "rehype-callouts";
 import rehypeSlug from "rehype-slug";
 import remarkDirective from "remark-directive";
+import { rehypeWrapTables } from "./src/components/shared/handlers/rehype-wrap-tables.ts";
 
 const markdownPlugins = [remarkDirective];
-const rehypePlugins = [rehypeSlug, rehypeCallouts];
+const rehypePlugins = [rehypeSlug, rehypeCallouts, rehypeWrapTables];
 
 export default defineConfig({
   site: "https://yurimachado.dev.br",
