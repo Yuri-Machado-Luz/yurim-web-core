@@ -1,3 +1,8 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Tokens consolidated from the design system at D:\Control\DesignSystem.
+   Values mirror dist/css/tokens.standard.css (raw, --color-* naming).
+   Primary is canonical at step 400 (#d21c1c); the old "shadow" scale is now "rose".
+   ───────────────────────────────────────────────────────────────────────── */
 /* ── DESIGN TOKENS ──────────────────────────────────────────────────────────
    Merged from: base/colors.css + base/tokens.css
    Removed: shadcn alias vars, @theme inline block, shadcn @layer base reset
@@ -17,7 +22,7 @@
   --color-muted: #b8b2b2;
 
   /* Primary — Red */
-  --color-primary: #e82828;
+  --color-primary: rgba(210, 28, 28, 1);
   --color-primary-light: #f64646;
   --color-primary-dark: #ba1313;
   --color-primary-deep: #a40c0c;
@@ -46,18 +51,18 @@
   --color-primary-900: rgba(93, 0, 0, 1);
   --color-primary-950: rgba(56, 0, 0, 1);
 
-  /* Shadow scale */
-  --color-shadow-50: rgba(205, 183, 183, 1);
-  --color-shadow-100: rgba(201, 161, 161, 1);
-  --color-shadow-200: rgba(199, 144, 144, 1);
-  --color-shadow-300: rgba(194, 119, 119, 1);
-  --color-shadow-400: rgba(162, 84, 84, 1);
-  --color-shadow-500: rgba(84, 28, 28, 1);
-  --color-shadow-600: rgba(59, 16, 16, 1);
-  --color-shadow-700: rgba(42, 9, 9, 1);
-  --color-shadow-800: rgba(27, 5, 5, 1);
-  --color-shadow-900: rgba(18, 2, 2, 1);
-  --color-shadow-950: rgba(8, 0, 0, 1);
+  /* Rose scale (renamed from "shadow": it is a muted-rose color scale, not box-shadows) */
+  --color-rose-50: rgba(205, 183, 183, 1);
+  --color-rose-100: rgba(201, 161, 161, 1);
+  --color-rose-200: rgba(199, 144, 144, 1);
+  --color-rose-300: rgba(194, 119, 119, 1);
+  --color-rose-400: rgba(162, 84, 84, 1);
+  --color-rose-500: rgba(84, 28, 28, 1);
+  --color-rose-600: rgba(59, 16, 16, 1);
+  --color-rose-700: rgba(42, 9, 9, 1);
+  --color-rose-800: rgba(27, 5, 5, 1);
+  --color-rose-900: rgba(18, 2, 2, 1);
+  --color-rose-950: rgba(8, 0, 0, 1);
 
   /* Neutral scale */
   --color-neutral-50: rgba(197, 191, 191, 1);
@@ -135,6 +140,8 @@
 
   /* Z-index */
   --z-base: 1;
+  --z-behind: 0;
+  --z-above: 2;
   --z-navbar: 50;
 
   /* Opacity */
@@ -257,6 +264,13 @@
     /* Danger aliases (Contact.tsx uses --color-danger-*) */
     --color-danger: var(--color-error);
     --color-danger-bg: var(--color-error-bg);
+
+    /* Shadows (track --color-primary) */
+    --shadow-card-hover: 0 0 0 1px var(--color-primary), 0 0 24px rgb(from var(--color-primary) r g b / 0.35);
+    --shadow-card-accent-hover: 0 0 0 1px var(--color-primary), 0 0 20px rgb(from var(--color-primary) r g b / 0.35);
+    --shadow-hero-ring: 0 0 0 3px rgb(from var(--color-primary) r g b / 0.12), 0 0 64px rgb(from var(--color-primary) r g b / 0.1);
+    --shadow-ambient-min: 0 0 18px rgb(from var(--color-primary) r g b / 0.08);
+    --shadow-ambient-max: 0 0 36px rgb(from var(--color-primary) r g b / 0.22);
 
     /* Layout */
     --prose-width: 72ch;
