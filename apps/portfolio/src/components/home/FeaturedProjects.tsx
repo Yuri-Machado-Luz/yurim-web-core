@@ -3,25 +3,14 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { ProjectCard } from '@/components/ui/project-card';
 import { pt } from '@/lib/i18n';
 import { projects } from '@/lib/data/projects';
-import { Code, Zap, FileText } from 'lucide-react';
-
-const statusVariants = {
-  ativo: 'default',
-  dev: 'secondary',
-  arquivado: 'outline',
-  beta: 'secondary',
-} as const;
 
 export function FeaturedProjects() {
   const featured = projects.filter((p) => p.featured);
 
-  if (featured.length === 0) {
-    return null;
-  }
+  if (featured.length === 0) return null;
 
   return (
     <section className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
@@ -43,7 +32,7 @@ export function FeaturedProjects() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mb-8">
         {featured.map((project, idx) => (
           <motion.div
             key={project.id}
@@ -53,56 +42,15 @@ export function FeaturedProjects() {
             viewport={{ once: true }}
             className="h-full"
           >
-            <Card className="h-full flex flex-col hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-start justify-between mb-2">
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
-                  <Badge variant={statusVariants[project.status]}>
-                    {project.status}
-                  </Badge>
-                </div>
-                <CardDescription className="line-clamp-2 min-h-[2.5rem]">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <div className="flex flex-wrap gap-2">
-                  {project.tags?.map((tag) => (
-                    <Badge key={tag} variant="outline" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-              {(project.live || project.github || project.documentation) && (
-                <div className="px-6 pb-6 border-t border-border pt-4 flex gap-2">
-                  {project.live && (
-                    <Button asChild variant="ghost" size="sm" className="flex-1">
-                      <Link href={project.live} target="_blank" rel="noopener noreferrer">
-                        <Zap className="h-4 w-4 mr-2" />
-                        Live
-                      </Link>
-                    </Button>
-                  )}
-                  {project.github && (
-                    <Button asChild variant="ghost" size="sm" className="flex-1">
-                      <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Code className="h-4 w-4 mr-2" />
-                        GitHub
-                      </Link>
-                    </Button>
-                  )}
-                  {project.documentation && (
-                    <Button asChild variant="ghost" size="sm" className="flex-1">
-                      <Link href={project.documentation}>
-                        <FileText className="h-4 w-4 mr-2" />
-                        Docs
-                      </Link>
-                    </Button>
-                  )}
-                </div>
-              )}
-            </Card>
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              status={project.status}
+              tags={project.tags ?? []}
+              github={project.github}
+              live={project.live}
+              documentation={project.documentation}
+            />
           </motion.div>
         ))}
       </div>
@@ -115,9 +63,7 @@ export function FeaturedProjects() {
         className="text-center"
       >
         <Button asChild variant="outline" size="lg">
-          <Link href="/projetos">
-            {pt.projects.cta}
-          </Link>
+          <Link href="/projetos">{pt.projects.cta}</Link>
         </Button>
       </motion.div>
     </section>
