@@ -43,6 +43,7 @@ pnpm build
 
 ## Versões
 
+- **v4** (em desenvolvimento) — Next.js (Main Site), Astro 7 (Blog/Docs), Tailwind CSS, React 20, ShadcnUI, ++
 - **v3** (atual) — Astro 6, Tailwind CSS v4, React 19 islands
 - **v2** — Quartz + Preact
 - **v1** — React SPA (CRA)
