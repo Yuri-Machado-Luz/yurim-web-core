@@ -51,6 +51,7 @@ export function FeaturedProjects() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: idx * 0.1 }}
             viewport={{ once: true }}
+            className="h-full"
           >
             <Card className="h-full flex flex-col hover:shadow-lg transition-shadow">
               <CardHeader>
@@ -60,7 +61,7 @@ export function FeaturedProjects() {
                     {project.status}
                   </Badge>
                 </div>
-                <CardDescription className="line-clamp-2">
+                <CardDescription className="line-clamp-2 min-h-[2.5rem]">
                   {project.description}
                 </CardDescription>
               </CardHeader>
@@ -73,32 +74,34 @@ export function FeaturedProjects() {
                   ))}
                 </div>
               </CardContent>
-              <div className="px-6 pb-6 border-t border-border pt-4 flex gap-2">
-                {project.live && (
-                  <Button asChild variant="ghost" size="sm" className="flex-1">
-                    <Link href={project.live} target="_blank" rel="noopener noreferrer">
-                      <Zap className="h-4 w-4 mr-2" />
-                      Live
-                    </Link>
-                  </Button>
-                )}
-                {project.github && (
-                  <Button asChild variant="ghost" size="sm" className="flex-1">
-                    <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Code className="h-4 w-4 mr-2" />
-                      GitHub
-                    </Link>
-                  </Button>
-                )}
-                {project.documentation && (
-                  <Button asChild variant="ghost" size="sm" className="flex-1">
-                    <Link href={project.documentation}>
-                      <FileText className="h-4 w-4 mr-2" />
-                      Docs
-                    </Link>
-                  </Button>
-                )}
-              </div>
+              {(project.live || project.github || project.documentation) && (
+                <div className="px-6 pb-6 border-t border-border pt-4 flex gap-2">
+                  {project.live && (
+                    <Button asChild variant="ghost" size="sm" className="flex-1">
+                      <Link href={project.live} target="_blank" rel="noopener noreferrer">
+                        <Zap className="h-4 w-4 mr-2" />
+                        Live
+                      </Link>
+                    </Button>
+                  )}
+                  {project.github && (
+                    <Button asChild variant="ghost" size="sm" className="flex-1">
+                      <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Code className="h-4 w-4 mr-2" />
+                        GitHub
+                      </Link>
+                    </Button>
+                  )}
+                  {project.documentation && (
+                    <Button asChild variant="ghost" size="sm" className="flex-1">
+                      <Link href={project.documentation}>
+                        <FileText className="h-4 w-4 mr-2" />
+                        Docs
+                      </Link>
+                    </Button>
+                  )}
+                </div>
+              )}
             </Card>
           </motion.div>
         ))}

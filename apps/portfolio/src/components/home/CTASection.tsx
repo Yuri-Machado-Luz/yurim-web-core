@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { pt } from '@/lib/i18n';
 import CONFIG from '@/lib/config';
-import { Mail, Code, ExternalLink } from 'lucide-react';
+import { EnvelopeIcon, GithubAltIcon, LinkedinIcon } from '@/components/icons/social';
 
 export function CTASection() {
   const { email, github, linkedin } = CONFIG.meta.social;
@@ -33,7 +33,7 @@ export function CTASection() {
             className="p-3 rounded-lg border border-border hover:bg-secondary transition-colors"
             aria-label="Email"
           >
-            <Mail className="h-6 w-6" />
+            <EnvelopeIcon className="h-6 w-6" />
           </Link>
           <Link
             href={github}
@@ -42,7 +42,7 @@ export function CTASection() {
             className="p-3 rounded-lg border border-border hover:bg-secondary transition-colors"
             aria-label="GitHub"
           >
-            <Code className="h-6 w-6" />
+            <GithubAltIcon className="h-6 w-6" />
           </Link>
           <Link
             href={linkedin}
@@ -51,7 +51,7 @@ export function CTASection() {
             className="p-3 rounded-lg border border-border hover:bg-secondary transition-colors"
             aria-label="LinkedIn"
           >
-            <ExternalLink className="h-6 w-6" />
+            <LinkedinIcon className="h-6 w-6" />
           </Link>
         </div>
       </motion.div>

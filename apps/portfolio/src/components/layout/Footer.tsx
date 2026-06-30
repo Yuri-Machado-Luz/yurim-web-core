@@ -1,8 +1,8 @@
 'use client';
 
-import { Mail, Code, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import CONFIG from '@/lib/config';
+import { EnvelopeIcon, GithubAltIcon, LinkedinIcon } from '@/components/icons/social';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -22,7 +22,7 @@ export function Footer() {
               className="text-muted-foreground transition-colors hover:text-foreground"
               aria-label="Email"
             >
-              <Mail className="h-5 w-5" />
+              <EnvelopeIcon className="h-5 w-5" />
             </Link>
             <Link
               href={github}
@@ -31,7 +31,7 @@ export function Footer() {
               className="text-muted-foreground transition-colors hover:text-foreground"
               aria-label="GitHub"
             >
-              <Code className="h-5 w-5" />
+              <GithubAltIcon className="h-5 w-5" />
             </Link>
             <Link
               href={linkedin}
@@ -40,7 +40,7 @@ export function Footer() {
               className="text-muted-foreground transition-colors hover:text-foreground"
               aria-label="LinkedIn"
             >
-              <ExternalLink className="h-5 w-5" />
+              <LinkedinIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>

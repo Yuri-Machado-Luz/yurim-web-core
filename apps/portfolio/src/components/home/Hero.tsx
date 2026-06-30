@@ -40,6 +40,10 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 pt-16">
+      {/* Background: grid + primary glow */}
+      <div className="pointer-events-none absolute inset-0 hero-bg-grid" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/4 rounded-full bg-primary/10 blur-[120px]" />
+
       {/* Available Badge */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
