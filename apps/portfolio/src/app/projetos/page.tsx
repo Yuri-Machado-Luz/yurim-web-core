@@ -16,21 +16,15 @@ export default function ProjectsPage() {
     <>
       {/* Page Header */}
       <Section as="header" spacing="none" className="pt-12 md:pt-16 pb-8">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-          Portfólio
-        </p>
-        <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4">
-          Projetos
-        </h1>
-        <p className="text-xl text-muted-foreground">
-          Sites, ferramentas e contribuições open-source.
-        </p>
+        <p className="eyebrow mb-2">Portfólio</p>
+        <h1 className="heading-page mb-4">Projetos</h1>
+        <p className="lead">Sites, ferramentas e contribuições open-source.</p>
       </Section>
 
       {/* Featured */}
       {featured.length > 0 && (
         <Section spacing="none" className="pb-12">
-          <h2 className="font-display text-2xl font-bold mb-6 text-muted-foreground">
+          <h2 className="heading-group mb-6">
             Em Destaque
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -53,7 +47,7 @@ export default function ProjectsPage() {
       {/* Others */}
       {others.length > 0 && (
         <Section spacing="none" className="pb-12">
-          <h2 className="font-display text-2xl font-bold mb-6 text-muted-foreground">
+          <h2 className="heading-group mb-6">
             Outros Projetos
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

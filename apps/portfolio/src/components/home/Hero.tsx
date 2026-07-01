@@ -79,7 +79,7 @@ export function Hero() {
           {/* Title */}
           <motion.h1
             variants={container}
-            className="mb-6 font-display text-4xl font-bold sm:text-5xl md:text-6xl"
+            className="mb-6 heading-page md:text-6xl"
           >
             {WORDS.map((word, idx) => (
               <Fragment key={idx}>

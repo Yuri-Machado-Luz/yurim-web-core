@@ -21,10 +21,8 @@ export function FeaturedProjects() {
         viewport={{ once: true }}
         className="mb-12"
       >
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-          {pt.projects.eyebrow}
-        </p>
-        <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
+        <p className="eyebrow mb-2">{pt.projects.eyebrow}</p>
+        <h2 className="heading-section sm:text-4xl mb-4">
           {pt.projects.title}
         </h2>
         <p className="text-lg text-muted-foreground">{pt.projects.description}</p>

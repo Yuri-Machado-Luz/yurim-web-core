@@ -19,7 +19,7 @@ export function CTASection() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="font-display text-3xl sm:text-4xl font-bold mb-8">
+        <h2 className="heading-section sm:text-4xl mb-8">
           {pt.cta.title}
         </h2>
         <Button asChild size="lg" className="mb-12">

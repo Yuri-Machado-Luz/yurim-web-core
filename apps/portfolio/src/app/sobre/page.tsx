@@ -31,10 +31,8 @@ export default function AboutPage() {
     <>
       {/* Header */}
       <Section as="header" spacing="none" className="pt-16 pb-12">
-        <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4">
-          {CONFIG.meta.author}
-        </h1>
-        <p className="text-xl text-muted-foreground mb-8">
+        <h1 className="heading-page mb-4">{CONFIG.meta.author}</h1>
+        <p className="lead mb-8">
           Desenvolvedor Full-Stack · Analista de Sistemas · São Paulo, Brasil
         </p>
 
@@ -117,7 +115,7 @@ export default function AboutPage() {
       </Section>
 
       <Section as="article" id="bio" spacing="none" className="pb-16">
-        <h2 className="font-display text-3xl font-bold mb-8">Bio</h2>
+        <h2 className="heading-section mb-8">Bio</h2>
         <div className="space-y-6 text-muted-foreground">
           <p className="text-lg leading-relaxed">
             Desenvolvedor full-stack autônomo desde 2020. Construo sistemas web,
@@ -139,24 +137,19 @@ export default function AboutPage() {
 
       {/* Skills Section */}
       <Section id="habilidades" spacing="none" className="pt-16 pb-8">
-        <h2 className="font-display text-3xl font-bold mb-4">Habilidades</h2>
+        <h2 className="heading-section mb-4">Habilidades</h2>
         <p className="text-muted-foreground mb-8">
           Stack e ferramentas que uso em produção.
         </p>
         <div className="space-y-8">
           {skills.map((category) => (
             <div key={category.label}>
-              <h3 className="font-semibold text-foreground mb-4">
-                {category.label}
-              </h3>
+              <h3 className="heading-sub mb-4">{category.label}</h3>
               <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {category.skills.map((skill) => {
                   const Icon = iconMap[skill.icon];
                   return (
-                    <li
-                      key={skill.name}
-                      className="flex items-center gap-2 p-3 rounded-lg border border-border bg-secondary/30 hover:bg-secondary transition-colors"
-                    >
+                    <li key={skill.name} className="chip">
                       {Icon && <Icon className="h-4 w-4 text-primary shrink-0" />}
                       <span className="text-sm font-medium">{skill.name}</span>
                     </li>
@@ -170,7 +163,7 @@ export default function AboutPage() {
 
       {/* Experience Section */}
       <Section id="experiencia" spacing="none" className="pt-16 pb-8">
-        <h2 className="font-display text-3xl font-bold mb-8">Experiência</h2>
+        <h2 className="heading-section mb-8">Experiência</h2>
         <div className="space-y-6">
           {experience.map((exp, idx) => (
             <Card key={idx} className="gap-1">
@@ -201,7 +194,7 @@ export default function AboutPage() {
 
       {/* Education Section */}
       <Section id="formacao" spacing="none" className="pt-16 pb-8">
-        <h2 className="font-display text-3xl font-bold mb-8">Formação</h2>
+        <h2 className="heading-section mb-8">Formação</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {education.map((edu, idx) => (
             <Card key={idx} className="gap-0">
@@ -224,7 +217,7 @@ export default function AboutPage() {
 
       {/* Languages Section */}
       <Section id="idiomas" spacing="none" className="pt-16 pb-28">
-        <h2 className="font-display text-3xl font-bold mb-8">Idiomas</h2>
+        <h2 className="heading-section mb-8">Idiomas</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {languages.map((lang) => (
             <Card key={lang.name} className="text-center gap-0">
@@ -244,9 +237,7 @@ export default function AboutPage() {
         spacing="none"
         className="flex min-h-[60vh] flex-col items-center justify-center pb-24 text-center"
       >
-        <h2 className="font-display text-3xl font-bold mb-8">
-          Vamos conversar?
-        </h2>
+        <h2 className="heading-section mb-8">Vamos conversar?</h2>
         <Button asChild size="lg">
           <Link href="/contato">Entre em contato</Link>
         </Button>
