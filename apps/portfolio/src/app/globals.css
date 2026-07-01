@@ -131,16 +131,38 @@
 }
 
 @keyframes picture-ring-pulse {
-  from { transform: scale(1); opacity: 0.5; }
-  to   { transform: scale(1.6); opacity: 0; }
+  from {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
 }
 
 @layer utilities {
   .hero-bg-grid {
     background-image:
-      linear-gradient(to right, var(--border) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--border) 40%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--border) 40%, transparent) 1px,
+        transparent 1px
+      );
     background-size: 3.5rem 3.5rem;
+
+    /* Aplica a máscara radial para suavizar as bordas (efeito fade-out) */
+    -webkit-mask-image: radial-gradient(
+      circle at center,
+      black 40%,
+      transparent 80%
+    );
+    mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
   }
 
   .picture-ring {
