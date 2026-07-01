@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import { Button, ProjectCard } from "@/components";
+import { Button, ProjectCard, Section } from "@/components";
 import { projects } from "@/lib/data";
 import { pt } from "@/lib/i18n";
 
@@ -13,8 +13,8 @@ export function FeaturedProjects() {
   if (featured.length === 0) return null;
 
   return (
-    <section className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
-      <motion.div
+    <Section spacing="lg">
+      <motion.header
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -27,10 +27,8 @@ export function FeaturedProjects() {
         <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
           {pt.projects.title}
         </h2>
-        <p className="text-lg text-muted-foreground">
-          {pt.projects.description}
-        </p>
-      </motion.div>
+        <p className="text-lg text-muted-foreground">{pt.projects.description}</p>
+      </motion.header>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mb-8">
         {featured.map((project, idx) => (
@@ -66,6 +64,6 @@ export function FeaturedProjects() {
           <Link href="/projetos">{pt.projects.cta}</Link>
         </Button>
       </motion.div>
-    </section>
+    </Section>
   );
 }

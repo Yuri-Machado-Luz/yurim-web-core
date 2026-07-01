@@ -77,18 +77,19 @@ export function Hero() {
           </motion.div>
 
           {/* Title */}
-          <motion.div variants={container} className="mb-6">
-            <h1 className="font-display text-4xl font-bold sm:text-5xl md:text-6xl">
-              {WORDS.map((word, idx) => (
-                <Fragment key={idx}>
-                  <motion.span variants={wordVariants} className="inline-block">
-                    {word}
-                  </motion.span>
-                  {idx < WORDS.length - 1 && " "}
-                </Fragment>
-              ))}
-            </h1>
-          </motion.div>
+          <motion.h1
+            variants={container}
+            className="mb-6 font-display text-4xl font-bold sm:text-5xl md:text-6xl"
+          >
+            {WORDS.map((word, idx) => (
+              <Fragment key={idx}>
+                <motion.span variants={wordVariants} className="inline-block">
+                  {word}
+                </motion.span>
+                {idx < WORDS.length - 1 && " "}
+              </Fragment>
+            ))}
+          </motion.h1>
 
           {/* Description */}
           <motion.p

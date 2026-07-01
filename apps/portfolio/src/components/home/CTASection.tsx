@@ -1,19 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 
-import { ICON } from "@/assets";
-import { Button } from "@/components";
-import CONFIG from "@/lib/config";
+import { Button, Section, SocialLinks } from "@/components";
 import { pt } from "@/lib/i18n";
 
 export function CTASection() {
-  const { email, github, linkedin } = CONFIG.meta.social;
-
   return (
-    <section className="mx-auto h-[70vh] max-w-4xl px-4 sm:px-6 text-center flex flex-col items-center justify-center">
+    <Section
+      width="narrow"
+      spacing="none"
+      className="flex min-h-[60vh] flex-col items-center justify-center py-20 text-center"
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -27,46 +26,8 @@ export function CTASection() {
           <Link href="/contato">{pt.cta.button}</Link>
         </Button>
 
-        <div className="flex items-center justify-center gap-4">
-          <Link
-            href={`mailto:${email}`}
-            className="p-3 rounded-lg border border-border hover:bg-secondary transition-colors"
-            aria-label="Email"
-          >
-            <Image
-              src={ICON.envelope}
-              alt="Email"
-              className="h-6 w-6 dark:invert"
-            />
-          </Link>
-          <Link
-            href={github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-lg border border-border hover:bg-secondary transition-colors"
-            aria-label="GitHub"
-          >
-            <Image
-              src={ICON.github}
-              alt="GitHub"
-              className="h-6 w-6 dark:invert"
-            />
-          </Link>
-          <Link
-            href={linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-lg border border-border hover:bg-secondary transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Image
-              src={ICON.linkedin}
-              alt="LinkedIn"
-              className="h-6 w-6 dark:invert"
-            />
-          </Link>
-        </div>
+        <SocialLinks variant="boxed" className="justify-center" />
       </motion.div>
-    </section>
+    </Section>
   );
 }
