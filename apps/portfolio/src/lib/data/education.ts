@@ -9,6 +9,8 @@ export const education: EducationItem[] = [
   {
     degree: "Psicologia",
     institution: "Universidade Nove de Julho",
-    detail: "8 semestres concluídos, não finalizado — transição motivada pelo desenvolvimento paralelo de projetos de software durante a graduação.",
+    detail: "8 semestres concluídos, não finalizado.",
+    description:
+      "Transição motivada pelo desenvolvimento paralelo de projetos de software durante a graduação.",
   },
 ];
