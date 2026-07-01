@@ -12,6 +12,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  Section,
 } from "@/components";
 import CONFIG from "@/lib/config";
 import { education, experience, languages, skills } from "@/lib/data";
@@ -29,7 +30,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Header */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 pt-16 pb-12">
+      <Section as="header" spacing="none" className="pt-16 pb-12">
         <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4">
           {CONFIG.meta.author}
         </h1>
@@ -37,10 +38,9 @@ export default function AboutPage() {
           Desenvolvedor Full-Stack · Analista de Sistemas · São Paulo, Brasil
         </p>
 
-        {/* Quick Facts Card */}
+        {/* Social Links & Downloads */}
         <div className="flex flex-col gap-4">
-          {/* Social Links & Downloads */}
-          <div className="flex gap-2 ">
+          <div className="flex flex-wrap gap-2">
             <Button asChild variant="outline">
               <Link href={github} target="_blank" rel="noopener noreferrer">
                 <Image
@@ -72,17 +72,14 @@ export default function AboutPage() {
               </Link>
             </Button>
           </div>
-          <div className="flex gap-2 ">
+          <div className="flex flex-wrap gap-2">
             <Button
               asChild
               variant="outline"
               size="sm"
               className="w-fit justify-start"
             >
-              <Link
-                href="/downloads/curriculo-yuri-machado.pdf"
-                target="_blank"
-              >
+              <Link href="/downloads/curriculo-yuri-machado.pdf" target="_blank">
                 <Download className="h-4 w-4 mr-2" />
                 PDF
               </Link>
@@ -117,9 +114,9 @@ export default function AboutPage() {
             </Button>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section id="bio" className="mx-auto max-w-6xl px-4 sm:px-6 pb-16">
+      <Section as="article" id="bio" spacing="none" className="pb-16">
         <h2 className="font-display text-3xl font-bold mb-8">Bio</h2>
         <div className="space-y-6 text-muted-foreground">
           <p className="text-lg leading-relaxed">
@@ -129,8 +126,8 @@ export default function AboutPage() {
           </p>
           <p className="text-lg leading-relaxed">
             Em 2024-2025, passei pela IBM como Assistente Administrativo,
-            redesenhando o onboarding e reduzindo o tempo de integração de 7
-            para 3 dias (−57%). Automatizei arquivamento em massa com Python e
+            redesenhando o onboarding e reduzindo o tempo de integração de 7 para
+            3 dias (−57%). Automatizei arquivamento em massa com Python e
             desenvolvi dashboard de KPIs em Excel/VBA.
           </p>
           <p className="text-lg leading-relaxed">
@@ -138,13 +135,10 @@ export default function AboutPage() {
             produção de conteúdo técnico e acadêmico para clientes sob NDA.
           </p>
         </div>
-      </section>
+      </Section>
 
       {/* Skills Section */}
-      <section
-        id="habilidades"
-        className="mx-auto max-w-6xl px-4 sm:px-6 pt-16 pb-8"
-      >
+      <Section id="habilidades" spacing="none" className="pt-16 pb-8">
         <h2 className="font-display text-3xl font-bold mb-4">Habilidades</h2>
         <p className="text-muted-foreground mb-8">
           Stack e ferramentas que uso em produção.
@@ -155,32 +149,27 @@ export default function AboutPage() {
               <h3 className="font-semibold text-foreground mb-4">
                 {category.label}
               </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {category.skills.map((skill) => {
                   const Icon = iconMap[skill.icon];
                   return (
-                    <div
+                    <li
                       key={skill.name}
                       className="flex items-center gap-2 p-3 rounded-lg border border-border bg-secondary/30 hover:bg-secondary transition-colors"
                     >
-                      {Icon && (
-                        <Icon className="h-4 w-4 text-primary shrink-0" />
-                      )}
+                      {Icon && <Icon className="h-4 w-4 text-primary shrink-0" />}
                       <span className="text-sm font-medium">{skill.name}</span>
-                    </div>
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
             </div>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* Experience Section */}
-      <section
-        id="experiencia"
-        className="mx-auto max-w-6xl px-4 sm:px-6 pt-16 pb-8"
-      >
+      <Section id="experiencia" spacing="none" className="pt-16 pb-8">
         <h2 className="font-display text-3xl font-bold mb-8">Experiência</h2>
         <div className="space-y-6">
           {experience.map((exp, idx) => (
@@ -208,13 +197,10 @@ export default function AboutPage() {
             </Card>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* Education Section */}
-      <section
-        id="formacao"
-        className="mx-auto max-w-6xl px-4 sm:px-6 pt-16 pb-8"
-      >
+      <Section id="formacao" spacing="none" className="pt-16 pb-8">
         <h2 className="font-display text-3xl font-bold mb-8">Formação</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {education.map((edu, idx) => (
@@ -234,13 +220,10 @@ export default function AboutPage() {
             </Card>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* Languages Section */}
-      <section
-        id="idiomas"
-        className="mx-auto max-w-6xl px-4 sm:px-6 pt-16 pb-28"
-      >
+      <Section id="idiomas" spacing="none" className="pt-16 pb-28">
         <h2 className="font-display text-3xl font-bold mb-8">Idiomas</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {languages.map((lang) => (
@@ -254,17 +237,20 @@ export default function AboutPage() {
             </Card>
           ))}
         </div>
-      </section>
+      </Section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 flex flex-col items-center justify-center h-[70vh] text-center pb-24">
+      <Section
+        spacing="none"
+        className="flex min-h-[60vh] flex-col items-center justify-center pb-24 text-center"
+      >
         <h2 className="font-display text-3xl font-bold mb-8">
           Vamos conversar?
         </h2>
         <Button asChild size="lg">
           <Link href="/contato">Entre em contato</Link>
         </Button>
-      </section>
+      </Section>
     </>
   );
 }
