@@ -1,10 +1,10 @@
-import { Metadata } from 'next';
-import { ProjectCard } from '@/components/ui/project-card';
-import { projects } from '@/lib/data/projects';
+import { ProjectCard } from "@/components";
+import { projects } from "@/lib/data/projects";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Projetos',
-  description: 'Sites, ferramentas e contribuições open-source.',
+  title: "Projetos",
+  description: "Sites, ferramentas e contribuições open-source.",
 };
 
 export default function ProjectsPage() {
@@ -74,7 +74,9 @@ export default function ProjectsPage() {
 
       {projects.length === 0 && (
         <section className="mx-auto max-w-6xl px-4 sm:px-6 py-12 text-center">
-          <p className="text-lg text-muted-foreground">Nenhum projeto adicionado ainda.</p>
+          <p className="text-lg text-muted-foreground">
+            Nenhum projeto adicionado ainda.
+          </p>
         </section>
       )}
     </div>

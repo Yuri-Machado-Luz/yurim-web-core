@@ -1,42 +1,58 @@
-'use client';
+"use client";
 
-import { Fragment } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { pt } from '@/lib/i18n';
-import CONFIG from '@/lib/config';
-import profilePicture from '@/assets/imgs/profile-picture.png';
-import { TechStack } from './TechStack';
+import { IMAGE } from "@/assets";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Button,
+  TechStack,
+} from "@/components";
+import CONFIG from "@/lib/config";
+import { pt } from "@/lib/i18n";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Fragment } from "react";
+import { HeroBG } from "./Hero.Background";
 
-const WORDS = ['Yuri', 'Machado', 'Luz'];
+const WORDS = ["Yuri", "Machado", "Luz"];
+const profilePicture = IMAGE.profilePicture;
 
 const container = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  hidden: { opacity: 0, x: -16, y: 0 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 const wordVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  hidden: { opacity: 0, x: -20, y: 0 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
 };
 
 export function Hero() {
   return (
-    <section className="relative flex flex-col items-center overflow-hidden px-4 sm:px-6 pt-20 pb-12 md:min-h-screen">
-      {/* Background decorative */}
-      <div className="pointer-events-none absolute inset-0 hero-bg-grid" />
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/4 rounded-full bg-primary/10 blur-[120px]" />
+    <section className="relative flex flex-col items-center overflow-hidden px-4 sm:px-6 pt-6 pb-12 md:min-h-screen">
+      <HeroBG />
 
       {/* Content grid: text left, photo right (desktop) */}
       <div className="relative z-10 mt-16 grid w-full max-w-6xl gap-12 lg:mt-28 lg:grid-cols-[2fr_1fr] lg:items-center">
-
         {/* Text column */}
         <motion.div
           variants={container}
@@ -49,23 +65,24 @@ export function Hero() {
             variants={item}
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2"
           >
-            <span className="text-sm font-medium text-foreground">{pt.hero.badge}</span>
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
             </span>
-            <span className="text-sm font-medium text-foreground">Open To Work</span>
+            <span className="text-sm font-medium text-foreground">
+              {pt.hero.badge}
+            </span>
           </motion.div>
 
           {/* Title */}
           <motion.div variants={container} className="mb-6">
-            <h1 className="font-display text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="font-display text-4xl font-bold sm:text-5xl md:text-6xl">
               {WORDS.map((word, idx) => (
                 <Fragment key={idx}>
                   <motion.span variants={wordVariants} className="inline-block">
                     {word}
                   </motion.span>
-                  {idx < WORDS.length - 1 && ' '}
+                  {idx < WORDS.length - 1 && " "}
                 </Fragment>
               ))}
             </h1>
@@ -88,7 +105,10 @@ export function Hero() {
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={item} className="flex flex-col gap-4 sm:flex-row">
+          <motion.div
+            variants={item}
+            className="flex flex-col gap-4 sm:flex-row"
+          >
             <Button asChild size="lg">
               <Link href="/sobre">{pt.hero.cta.primary}</Link>
             </Button>
@@ -121,7 +141,7 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
-        className="relative z-10 mt-24 w-full lg:mt-32"
+        className="relative z-10 mt-24 w-full lg:mt-32 mask-[linear-gradient(to_right,transparent_10%,black_20%,black_80%,transparent_90%)]"
       >
         <TechStack />
       </motion.div>

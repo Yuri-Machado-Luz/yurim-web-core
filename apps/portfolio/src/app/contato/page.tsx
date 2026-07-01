@@ -1,18 +1,20 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
-import { Mail, Phone, MapPin, Code, ExternalLink } from 'lucide-react';
-import { ContactForm } from '@/components/ui/ContactForm';
-import CONFIG from '@/lib/config';
-import { Button } from '@/components/ui/button';
+import { Button, ContactForm } from "@/components";
+import CONFIG from "@/lib/config";
+import { Code, ExternalLink, Mail, MapPin, Phone } from "lucide-react";
+import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: 'Contato',
-  description: 'Entre em contato com Yuri Machado Luz para projetos de desenvolvimento web, automação ou consultoria.',
+  title: "Contato",
+  description:
+    "Entre em contato com Yuri Machado Luz para projetos de desenvolvimento web, automação ou consultoria.",
 };
 
 export default function ContactPage() {
   const { email, phone, whatsapp, github, linkedin } = CONFIG.meta.social;
-  const whatsappMessage = encodeURIComponent('Olá! Vim através do seu portfólio e gostaria de conversar.');
+  const whatsappMessage = encodeURIComponent(
+    "Olá! Vim através do seu portfólio e gostaria de conversar.",
+  );
 
   return (
     <div className="space-y-20">
@@ -25,7 +27,8 @@ export default function ContactPage() {
           Vamos conversar
         </h1>
         <p className="text-xl text-muted-foreground">
-          Entre em contato para projetos de desenvolvimento web, automação ou consultoria.
+          Entre em contato para projetos de desenvolvimento web, automação ou
+          consultoria.
         </p>
       </section>
 
@@ -35,7 +38,9 @@ export default function ContactPage() {
           {/* Left Column - Contact Info */}
           <div className="space-y-8">
             <div>
-              <h3 className="font-semibold text-foreground mb-4">Informações de Contato</h3>
+              <h3 className="font-semibold text-foreground mb-4">
+                Informações de Contato
+              </h3>
               <div className="space-y-4">
                 {/* Email */}
                 <Link
@@ -65,10 +70,12 @@ export default function ContactPage() {
 
                 {/* Location */}
                 <div className="flex items-center gap-3 p-4 rounded-lg border border-border bg-secondary/30">
-                  <MapPin className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                  <MapPin className="h-5 w-5 text-muted-foreground shrink-0" />
                   <div>
                     <p className="text-xs text-muted-foreground">Localização</p>
-                    <p className="font-medium text-foreground">São Paulo, Brasil</p>
+                    <p className="font-medium text-foreground">
+                      São Paulo, Brasil
+                    </p>
                   </div>
                 </div>
               </div>
@@ -76,7 +83,9 @@ export default function ContactPage() {
 
             {/* Social Links */}
             <div>
-              <h3 className="font-semibold text-foreground mb-4">Redes Sociais</h3>
+              <h3 className="font-semibold text-foreground mb-4">
+                Redes Sociais
+              </h3>
               <div className="flex gap-3">
                 <Button asChild size="icon" variant="outline">
                   <Link href={github} target="_blank" rel="noopener noreferrer">
@@ -84,7 +93,11 @@ export default function ContactPage() {
                   </Link>
                 </Button>
                 <Button asChild size="icon" variant="outline">
-                  <Link href={linkedin} target="_blank" rel="noopener noreferrer">
+                  <Link
+                    href={linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ExternalLink className="h-4 w-4" />
                   </Link>
                 </Button>
@@ -99,7 +112,9 @@ export default function ContactPage() {
 
           {/* Right Column - Contact Form */}
           <div>
-            <h3 className="font-semibold text-foreground mb-6">Envie uma Mensagem</h3>
+            <h3 className="font-semibold text-foreground mb-6">
+              Envie uma Mensagem
+            </h3>
             <ContactForm />
           </div>
         </div>

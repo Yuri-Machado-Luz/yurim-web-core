@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import CONFIG from '@/lib/config';
-import { EnvelopeIcon, GithubAltIcon, LinkedinIcon } from '@/components/icons/social';
+import { ICON } from "@/assets";
+import CONFIG from "@/lib/config";
+import Image from "next/image";
+import Link from "next/link";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -22,7 +23,12 @@ export function Footer() {
               className="text-muted-foreground transition-colors hover:text-foreground"
               aria-label="Email"
             >
-              <EnvelopeIcon className="h-5 w-5" />
+              <Image
+                src={ICON.envelope}
+                alt="Email Icon"
+                width={20}
+                height={20}
+              />
             </Link>
             <Link
               href={github}
@@ -31,7 +37,12 @@ export function Footer() {
               className="text-muted-foreground transition-colors hover:text-foreground"
               aria-label="GitHub"
             >
-              <GithubAltIcon className="h-5 w-5" />
+              <Image
+                src={ICON.github}
+                alt="GitHub Icon"
+                width={20}
+                height={20}
+              />
             </Link>
             <Link
               href={linkedin}
@@ -40,7 +51,12 @@ export function Footer() {
               className="text-muted-foreground transition-colors hover:text-foreground"
               aria-label="LinkedIn"
             >
-              <LinkedinIcon className="h-5 w-5" />
+              <Image
+                src={ICON.linkedin}
+                alt="LinkedIn Icon"
+                width={20}
+                height={20}
+              />
             </Link>
           </div>
         </div>

@@ -1,11 +1,9 @@
-import type { Metadata } from "next";
-import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-import { cn } from "@/lib/utils";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Footer, Navbar, ThemeProvider } from "@/components";
 import CONFIG from "@/lib/config";
+import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -37,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang={CONFIG.meta.locale.split('-')[0]}
+      lang={CONFIG.meta.locale.split("-")[0]}
       suppressHydrationWarning
       className={cn(
         "h-full",

@@ -1,11 +1,10 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ProjectCard } from '@/components/ui/project-card';
-import { pt } from '@/lib/i18n';
-import { projects } from '@/lib/data/projects';
+import { Button, ProjectCard } from "@/components";
+import { projects } from "@/lib/data/projects";
+import { pt } from "@/lib/i18n";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function FeaturedProjects() {
   const featured = projects.filter((p) => p.featured);

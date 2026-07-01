@@ -1,26 +1,35 @@
-import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
-import { GithubAltIcon } from '@/components/icons/social';
-import { ExternalLink, BookOpen } from 'lucide-react';
+import { ICON } from "@/assets";
+import { Badge } from "@/components";
+import { BookOpen, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const statusVariants = {
-  ativo: 'default',
-  dev: 'secondary',
-  arquivado: 'outline',
-  beta: 'secondary',
+  ativo: "default",
+  dev: "secondary",
+  arquivado: "outline",
+  beta: "secondary",
 } as const;
 
 interface ProjectCardProps {
   title: string;
   description?: string;
-  status: 'ativo' | 'dev' | 'arquivado' | 'beta';
+  status: "ativo" | "dev" | "arquivado" | "beta";
   tags: string[];
   github?: string;
   live?: string;
   documentation?: string;
 }
 
-export function ProjectCard({ title, description, status, tags, github, live, documentation }: ProjectCardProps) {
+export function ProjectCard({
+  title,
+  description,
+  status,
+  tags,
+  github,
+  live,
+  documentation,
+}: ProjectCardProps) {
   const hasLinks = live || github || documentation;
 
   return (
@@ -71,7 +80,11 @@ export function ProjectCard({ title, description, status, tags, github, live, do
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-sm text-muted-foreground transition-opacity hover:opacity-70"
             >
-              <GithubAltIcon className="h-3.5 w-3.5" />
+              <Image
+                src={ICON.github}
+                alt="GitHub"
+                className="h-3.5 w-3.5 dark:invert"
+              />
               GitHub
             </Link>
           )}
@@ -80,7 +93,7 @@ export function ProjectCard({ title, description, status, tags, github, live, do
               href={documentation}
               className="flex items-center gap-1.5 text-sm text-muted-foreground transition-opacity hover:opacity-70"
             >
-              <BookOpen className="h-3.5 w-3.5" aria-hidden />
+              <BookOpen className="h-3.5 w-3.5 dark:invert" aria-hidden />
               Docs
             </Link>
           )}

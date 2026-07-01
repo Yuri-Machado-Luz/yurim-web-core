@@ -1,17 +1,18 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { pt } from '@/lib/i18n';
-import CONFIG from '@/lib/config';
-import { EnvelopeIcon, GithubAltIcon, LinkedinIcon } from '@/components/icons/social';
+import { ICON } from "@/assets";
+import { Button } from "@/components";
+import CONFIG from "@/lib/config";
+import { pt } from "@/lib/i18n";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 export function CTASection() {
   const { email, github, linkedin } = CONFIG.meta.social;
 
   return (
-    <section className="mx-auto max-w-4xl px-4 sm:px-6 py-20 text-center">
+    <section className="mx-auto h-[70vh] max-w-4xl px-4 sm:px-6 text-center flex flex-col items-center justify-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -22,9 +23,7 @@ export function CTASection() {
           {pt.cta.title}
         </h2>
         <Button asChild size="lg" className="mb-12">
-          <Link href="/contato">
-            {pt.cta.button}
-          </Link>
+          <Link href="/contato">{pt.cta.button}</Link>
         </Button>
 
         <div className="flex items-center justify-center gap-4">
@@ -33,7 +32,11 @@ export function CTASection() {
             className="p-3 rounded-lg border border-border hover:bg-secondary transition-colors"
             aria-label="Email"
           >
-            <EnvelopeIcon className="h-6 w-6" />
+            <Image
+              src={ICON.envelope}
+              alt="Email"
+              className="h-6 w-6 dark:invert"
+            />
           </Link>
           <Link
             href={github}
@@ -42,7 +45,11 @@ export function CTASection() {
             className="p-3 rounded-lg border border-border hover:bg-secondary transition-colors"
             aria-label="GitHub"
           >
-            <GithubAltIcon className="h-6 w-6" />
+            <Image
+              src={ICON.github}
+              alt="GitHub"
+              className="h-6 w-6 dark:invert"
+            />
           </Link>
           <Link
             href={linkedin}
@@ -51,7 +58,11 @@ export function CTASection() {
             className="p-3 rounded-lg border border-border hover:bg-secondary transition-colors"
             aria-label="LinkedIn"
           >
-            <LinkedinIcon className="h-6 w-6" />
+            <Image
+              src={ICON.linkedin}
+              alt="LinkedIn"
+              className="h-6 w-6 dark:invert"
+            />
           </Link>
         </div>
       </motion.div>
