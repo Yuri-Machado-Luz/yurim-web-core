@@ -13,9 +13,9 @@ export default function ProjectsPage() {
   const others = projects.filter((p) => !p.featured);
 
   return (
-    <div className="space-y-20">
+    <>
       {/* Page Header */}
-      <Section as="header" spacing="sm">
+      <Section as="header" spacing="none" className="pt-12 md:pt-16 pb-8">
         <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
           Portfólio
         </p>
@@ -29,7 +29,7 @@ export default function ProjectsPage() {
 
       {/* Featured */}
       {featured.length > 0 && (
-        <Section spacing="none">
+        <Section spacing="none" className="pb-12">
           <h2 className="font-display text-2xl font-bold mb-6 text-muted-foreground">
             Em Destaque
           </h2>
@@ -52,7 +52,7 @@ export default function ProjectsPage() {
 
       {/* Others */}
       {others.length > 0 && (
-        <Section spacing="none">
+        <Section spacing="none" className="pb-12">
           <h2 className="font-display text-2xl font-bold mb-6 text-muted-foreground">
             Outros Projetos
           </h2>
@@ -74,12 +74,12 @@ export default function ProjectsPage() {
       )}
 
       {projects.length === 0 && (
-        <Section spacing="none" className="py-12 text-center">
+        <Section spacing="none" className="pb-16 text-center">
           <p className="text-lg text-muted-foreground">
             Nenhum projeto adicionado ainda.
           </p>
         </Section>
       )}
-    </div>
+    </>
   );
 }
