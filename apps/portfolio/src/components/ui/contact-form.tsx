@@ -1,9 +1,10 @@
 "use client";
 
-import { Alert, AlertDescription, Button, Input, Textarea } from "@/components";
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import { z } from "zod";
+
+import { Alert, AlertDescription, Button, Input, Textarea } from "@/components";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Nome é obrigatório"),
@@ -11,8 +12,6 @@ const contactSchema = z.object({
   message: z.string().min(10, "Mensagem deve ter pelo menos 10 caracteres"),
   _hp: z.string().optional(),
 });
-
-type ContactFormValues = z.infer<typeof contactSchema>;
 
 export function ContactForm() {
   const [isLoading, setIsLoading] = useState(false);
