@@ -1,10 +1,11 @@
 "use client";
 
-import { Button, ProjectCard } from "@/components";
-import { projects } from "@/lib/data/projects";
-import { pt } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import Link from "next/link";
+
+import { Button, ProjectCard } from "@/components";
+import { projects } from "@/lib/data";
+import { pt } from "@/lib/i18n";
 
 export function FeaturedProjects() {
   const featured = projects.filter((p) => p.featured);

@@ -1,3 +1,8 @@
+import { Download } from "lucide-react";
+import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+
 import { ICON } from "@/assets";
 import {
   Badge,
@@ -9,15 +14,8 @@ import {
   CardTitle,
 } from "@/components";
 import CONFIG from "@/lib/config";
-import { education } from "@/lib/data/education";
-import { experience } from "@/lib/data/experience";
-import { languages } from "@/lib/data/languages";
-import { skills } from "@/lib/data/skills";
+import { education, experience, languages, skills } from "@/lib/data";
 import { iconMap } from "@/lib/icons";
-import { Download } from "lucide-react";
-import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Sobre",
