@@ -1,6 +1,3 @@
-/* Semantic component classes — extracted from repeated inline Tailwind.
-   Imported by globals.css after Tailwind so @apply resolves. */
-
 @layer components {
   /* ---- Navigation ---- */
   .nav-link {
@@ -17,19 +14,17 @@
     @apply text-xs font-semibold uppercase tracking-wider text-muted-foreground;
   }
 
-  /* NOTE: `font-display` é um typo no-op no projeto (o token real é
-     `font-heading`), então os headings hoje renderizam em sans. Mantido assim
-     para não alterar o visual; trocar para `font-heading` aqui os põe em Fraunces. */
+  /* Headings usam a fonte de display (Fraunces via `font-heading`) */
   .heading-page {
-    @apply text-4xl font-bold sm:text-5xl;
+    @apply font-heading text-4xl font-bold sm:text-5xl;
   }
 
   .heading-section {
-    @apply text-3xl font-bold;
+    @apply font-heading text-3xl font-bold;
   }
 
   .heading-group {
-    @apply text-2xl font-bold text-muted-foreground;
+    @apply font-heading text-2xl font-bold text-muted-foreground;
   }
 
   .heading-sub {
