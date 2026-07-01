@@ -178,3 +178,15 @@
     animation-delay: 1.4s;
   }
 }
+
+@layer components {
+  /* Item de navegação — estado ativo aplicado pelo caller (text-foreground) */
+  .nav-link {
+    @apply px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground;
+  }
+
+  /* Link/ícone com currentColor que escurece no hover */
+  .icon-link {
+    @apply text-muted-foreground transition-colors hover:text-foreground;
+  }
+}

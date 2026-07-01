@@ -19,6 +19,7 @@ export {
   CardTitle,
 } from "./card";
 export { ContactForm } from "./contact-form";
+export { IconLink } from "./icon-link";
 export { Input } from "./input";
 export { ProjectCard } from "./project-card";
 export { Separator } from "./separator";
