@@ -23,6 +23,7 @@ export interface EducationItem {
   degree: string;
   institution: string;
   detail: string;
+  description?: string;
 }
 
 export interface LanguageItem {
