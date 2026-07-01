@@ -1,5 +1,11 @@
 "use client";
 
+import { Menu } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { BRAND } from "@/assets";
 import {
   Button,
@@ -9,11 +15,6 @@ import {
   ThemeToggle,
 } from "@/components";
 import CONFIG from "@/lib/config";
-import { Menu } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const navLinks = CONFIG.nav.pages.filter((p) => !("cta" in p && p.cta));
 const ctaPage = CONFIG.nav.pages.find((p) => "cta" in p && p.cta);

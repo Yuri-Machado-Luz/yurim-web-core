@@ -1,8 +1,9 @@
 "use client";
 
-import { ICON } from "@/assets";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
+
+import { ICON } from "@/assets";
 
 const TECHS = [
   { name: "TypeScript", icon: ICON.typescript },

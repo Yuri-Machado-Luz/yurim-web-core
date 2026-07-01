@@ -1,9 +1,11 @@
+import "./globals.css";
+
+import type { Metadata } from "next";
+import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+
 import { Footer, Navbar, ThemeProvider } from "@/components";
 import CONFIG from "@/lib/config";
 import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 

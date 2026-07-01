@@ -1,5 +1,9 @@
 "use client";
 
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Fragment } from "react";
+
 import { IMAGE } from "@/assets";
 import {
   Avatar,
@@ -10,9 +14,7 @@ import {
 } from "@/components";
 import CONFIG from "@/lib/config";
 import { pt } from "@/lib/i18n";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { Fragment } from "react";
+
 import { HeroBG } from "./Hero.Background";
 
 const WORDS = ["Yuri", "Machado", "Luz"];

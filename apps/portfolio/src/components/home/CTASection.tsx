@@ -1,12 +1,13 @@
 "use client";
 
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+
 import { ICON } from "@/assets";
 import { Button } from "@/components";
 import CONFIG from "@/lib/config";
 import { pt } from "@/lib/i18n";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
 
 export function CTASection() {
   const { email, github, linkedin } = CONFIG.meta.social;
