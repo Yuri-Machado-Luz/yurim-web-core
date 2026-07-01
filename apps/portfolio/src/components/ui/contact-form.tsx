@@ -1,17 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { z } from 'zod';
-import emailjs from '@emailjs/browser';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Alert, AlertDescription, Button, Input, Textarea } from "@/components";
+import emailjs from "@emailjs/browser";
+import { useState } from "react";
+import { z } from "zod";
 
 const contactSchema = z.object({
-  name: z.string().min(2, 'Nome é obrigatório'),
-  email: z.string().email('Email inválido'),
-  message: z.string().min(10, 'Mensagem deve ter pelo menos 10 caracteres'),
+  name: z.string().min(2, "Nome é obrigatório"),
+  email: z.string().email("Email inválido"),
+  message: z.string().min(10, "Mensagem deve ter pelo menos 10 caracteres"),
   _hp: z.string().optional(),
 });
 
@@ -23,10 +20,10 @@ export function ContactForm() {
   const [error, setError] = useState<string | null>(null);
   const [cooldownSeconds, setCooldownSeconds] = useState(0);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-    _hp: '',
+    name: "",
+    email: "",
+    message: "",
+    _hp: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -59,19 +56,19 @@ export function ContactForm() {
 
     try {
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-          to_email: 'yurimachadoluz@gmail.com',
+          to_email: "yurimachadoluz@gmail.com",
         },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "",
       );
 
       setSuccess(true);
-      setFormData({ name: '', email: '', message: '', _hp: '' });
+      setFormData({ name: "", email: "", message: "", _hp: "" });
       setCooldownSeconds(60);
 
       const interval = setInterval(() => {
@@ -84,8 +81,10 @@ export function ContactForm() {
         });
       }, 1000);
     } catch (err) {
-      setError('Não foi possível enviar a mensagem. Verifique a conexão e tente novamente.');
-      console.error('EmailJS error:', err);
+      setError(
+        "Não foi possível enviar a mensagem. Verifique a conexão e tente novamente.",
+      );
+      console.error("EmailJS error:", err);
     } finally {
       setIsLoading(false);
     }
@@ -103,9 +102,7 @@ export function ContactForm() {
 
       {error && (
         <Alert className="bg-red-50 border-red-200">
-          <AlertDescription className="text-red-800">
-            {error}
-          </AlertDescription>
+          <AlertDescription className="text-red-800">{error}</AlertDescription>
         </Alert>
       )}
 
@@ -129,7 +126,9 @@ export function ContactForm() {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             disabled={isLoading || cooldownSeconds > 0}
           />
-          {errors.name && <p className="text-sm text-red-600 mt-1">{errors.name}</p>}
+          {errors.name && (
+            <p className="text-sm text-red-600 mt-1">{errors.name}</p>
+          )}
         </div>
 
         <div>
@@ -138,10 +137,14 @@ export function ContactForm() {
             type="email"
             placeholder="seu@email.com"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             disabled={isLoading || cooldownSeconds > 0}
           />
-          {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email}</p>}
+          {errors.email && (
+            <p className="text-sm text-red-600 mt-1">{errors.email}</p>
+          )}
         </div>
 
         <div>
@@ -151,10 +154,14 @@ export function ContactForm() {
             className="resize-none"
             rows={5}
             value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, message: e.target.value })
+            }
             disabled={isLoading || cooldownSeconds > 0}
           />
-          {errors.message && <p className="text-sm text-red-600 mt-1">{errors.message}</p>}
+          {errors.message && (
+            <p className="text-sm text-red-600 mt-1">{errors.message}</p>
+          )}
         </div>
 
         <Button
@@ -163,9 +170,9 @@ export function ContactForm() {
           className="w-full"
           size="lg"
         >
-          {isLoading && 'Enviando...'}
+          {isLoading && "Enviando..."}
           {!isLoading && cooldownSeconds > 0 && `Aguarde ${cooldownSeconds}s`}
-          {!isLoading && cooldownSeconds === 0 && 'Enviar mensagem'}
+          {!isLoading && cooldownSeconds === 0 && "Enviar mensagem"}
         </Button>
       </form>
     </div>
