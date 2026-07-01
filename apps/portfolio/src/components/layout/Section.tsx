@@ -24,7 +24,7 @@ const sectionVariants = cva("mx-auto w-full px-4 sm:px-6", {
 
 type SectionProps = ComponentPropsWithoutRef<"section"> &
   VariantProps<typeof sectionVariants> & {
-    as?: "section" | "header" | "footer" | "article" | "div";
+    as?: "section" | "header" | "footer" | "nav" | "article" | "div";
   };
 
 export function Section({
