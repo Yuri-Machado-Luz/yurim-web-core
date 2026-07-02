@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   },
 };
 
+const themeInitScript = `(function(){try{var e=localStorage.getItem("theme");var t=window.matchMedia("(prefers-color-scheme: dark)").matches;var d=e==="dark"||(e!=="light"&&t);var r=document.documentElement;r.classList.toggle("dark",d);r.dataset.theme=d?"dark":"light"}catch(e){}})();`;
+
+const themeIconCriticalCss = `[data-theme-icon="sun"]{display:none!important}[data-theme-icon="moon"]{display:inline-flex!important}html[data-theme="dark"] [data-theme-icon="sun"]{display:inline-flex!important}html[data-theme="dark"] [data-theme-icon="moon"]{display:none!important}[data-theme-icon]{transition:none!important}`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,6 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang={CONFIG.meta.locale.split("-")[0]}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={cn(
         "h-full",
@@ -48,15 +53,20 @@ export default function RootLayout({
         "font-sans",
       )}
     >
-      <body className="flex min-h-full flex-col bg-background text-foreground">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <style dangerouslySetInnerHTML={{ __html: themeIconCriticalCss }} />
+      </head>
+      <body className="flex min-h-full flex-col text-foreground">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
+          storageKey="theme"
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="relative z-1 flex-1 pt-16 md:pt-20">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

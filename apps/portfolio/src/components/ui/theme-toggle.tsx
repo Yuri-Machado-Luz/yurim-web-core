@@ -1,43 +1,26 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useSyncExternalStore } from "react";
 
-import { Button } from "@/components";
-
-const subscribe = () => () => {};
+import { Button, Icon } from "@/components";
 
 export function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
-  const mounted = useSyncExternalStore(
-    subscribe,
-    () => true,
-    () => false,
-  );
-
-  if (!mounted) {
-    return (
-      <Button
-        variant="ghost"
-        size="icon"
-        aria-hidden
-        disabled
-        className="opacity-0"
-      />
-    );
-  }
-
-  const isDark = resolvedTheme === "dark";
+  const { setTheme } = useTheme();
 
   return (
     <Button
       variant="ghost"
       size="icon"
-      aria-label={isDark ? "Ativar tema claro" : "Ativar tema escuro"}
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label="Alternar tema"
+      onClick={() => {
+        const isDark = document.documentElement.classList.contains("dark");
+        const next = isDark ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        setTheme(next);
+      }}
     >
-      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      <Icon name="sun" data-theme-icon="sun" className="h-5 w-5" />
+      <Icon name="moon" data-theme-icon="moon" className="h-5 w-5" />
     </Button>
   );
 }
