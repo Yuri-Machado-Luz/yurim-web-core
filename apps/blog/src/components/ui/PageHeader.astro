@@ -7,15 +7,18 @@ interface Props {
 }
 
 const { eyebrow, title, lead, class: className = "" } = Astro.props;
+const hasSlot = Astro.slots.has("default");
 ---
 
-<section class={`container pt-32 pb-16 ${className}`.trim()}>
-  <div class="flex flex-col gap-8">
-    <div>
-      {eyebrow && <p class="eyebrow mb-3">{eyebrow}</p>}
-      <h1 class="page-title mb-4">{title}</h1>
-      {lead && <p class="page-lead">{lead}</p>}
-    </div>
-    <slot />
-  </div>
-</section>
+<header class={`site-container pb-16 pt-16 ${className}`.trim()}>
+  {eyebrow && <p class="eyebrow mb-3">{eyebrow}</p>}
+  <h1 class="page-title mb-4">{title}</h1>
+  {lead && <p class="page-lead">{lead}</p>}
+  {
+    hasSlot && (
+      <div class="mt-8">
+        <slot />
+      </div>
+    )
+  }
+</header>

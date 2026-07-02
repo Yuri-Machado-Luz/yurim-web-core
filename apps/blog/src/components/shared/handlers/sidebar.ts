@@ -38,9 +38,6 @@ async function buildGroup(
 }
 
 export async function buildDocsSidebar(currentPath?: string): Promise<SidebarEntry[]> {
-  const collections: CollectionName[] = ["notes", "portfolio", "sandbox", "automation"];
-  const groups = await Promise.all(
-    collections.map((col) => buildGroup(col, currentPath)),
-  );
-  return groups.filter((g): g is SidebarGroup => g !== null);
+  const group = await buildGroup("notes", currentPath);
+  return group ? [group] : [];
 }

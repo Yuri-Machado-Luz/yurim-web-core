@@ -1,12 +1,28 @@
-import { LogoText } from "@assets";
 import type { NavLink } from "./types";
+
+const defaultPortfolioUrl = import.meta.env.DEV
+  ? "http://localhost:3000"
+  : "https://www.yurimachado.dev.br";
+
+const portfolioBase = (
+  import.meta.env.PUBLIC_PORTFOLIO_URL ?? defaultPortfolioUrl
+).replace(/\/$/, "");
+
+export function portfolioUrl(path = ""): string {
+  if (!path) return portfolioBase;
+  return `${portfolioBase}${path.startsWith("/") ? path : `/${path}`}`;
+}
 
 export const CONFIG = {
   meta: {
     author: "Yuri Machado Luz",
     suffix: " — Yuri Machado Luz",
-    description: "Sistemas web, APIs e automações, do back-end à interface.",
+    description:
+      "Devlogs, notas técnicas e publicações sobre desenvolvimento web, APIs e automações.",
     locale: "pt-BR",
+    og: {
+      default: "/og/blog.png",
+    },
     social: {
       github: "https://github.com/Yuri-Machado-Luz",
       linkedin: "https://linkedin.com/in/yurimachadoluz",
@@ -16,16 +32,26 @@ export const CONFIG = {
     },
   },
 
+  sites: {
+    portfolio: portfolioBase,
+  },
+
   nav: {
     logo: {
-      href: "/",
-      src: LogoText.src,
-      alt: "Logotipo com link para página inicial",
+      href: portfolioUrl(),
+      alt: "Logotipo — ir para o portfólio",
     },
     pages: [
-      { label: "Projetos", href: "/projetos" },
-      { label: "Sobre", href: "/sobre" },
-      { label: "Contato", href: "/contato", cta: true },
+      { label: "Início", href: portfolioUrl(), external: true },
+      { label: "Projetos", href: portfolioUrl("/projetos"), external: true },
+      { label: "Sobre", href: portfolioUrl("/sobre"), external: true },
+      { label: "Blog", href: "/" },
+      {
+        label: "Contato",
+        href: portfolioUrl("/contato"),
+        external: true,
+        cta: true,
+      },
     ],
   } satisfies NavLink,
 };

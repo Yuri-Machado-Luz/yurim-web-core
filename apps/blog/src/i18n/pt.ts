@@ -1,11 +1,22 @@
 export const pt = {
+  home: {
+    eyebrow: "Blog",
+    title: "Publicações",
+    lead: "Devlogs e registros técnicos. Para portfólio, projetos e contato, visite o site principal.",
+    portfolioCta: "Ir para o portfólio →",
+  },
+  notes: {
+    eyebrow: "Notas",
+    title: "Publicações recentes",
+    empty: "Nenhuma publicação disponível ainda.",
+    cta: "Ver publicações →",
+  },
+  /** @deprecated Legacy portfolio-home copy — components retained but unused */
   hero: {
     badge: "Full-Stack Developer",
-    paragraph: `Consultor e desenvolvedor independente, com passagens pela IBM, Cielo e Santander.`,
-    cta: {
-      primary: "Currículo",
-      secondary: "Projetos",
-    },
+    paragraph:
+      "Consultor e desenvolvedor independente, com passagens pela IBM, Cielo e Santander.",
+    cta: { primary: "Currículo", secondary: "Projetos" },
   },
   about: {
     title: "Sobre mim",
@@ -21,12 +32,6 @@ export const pt = {
     title: "Projetos em Destaque",
     description: "Uma seleção de projetos em produção e em andamento.",
     cta: "Ver todos →",
-  },
-  notes: {
-    eyebrow: "Notas",
-    title: "Publicações recentes",
-    empty: "Nenhuma publicação disponível ainda.",
-    cta: "Ver publicações →",
   },
   cta: {
     title: "Tem um projeto em mente ou quer conversar?",
