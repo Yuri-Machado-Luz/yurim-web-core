@@ -17,7 +17,7 @@ const markdownPlugins = [remarkDirective];
 const rehypePlugins = [rehypeSlug, rehypeCallouts, rehypeWrapTables];
 
 export default defineConfig({
-  site: "https://yurimachado.dev.br",
+  site: "https://blog.yurimachado.dev.br",
   prefetch: {
     defaultStrategy: "hover",
     prefetchAll: false,
@@ -35,8 +35,8 @@ export default defineConfig({
     mdx({ extendMarkdownConfig: true }),
     sitemap({
       filter: (page) =>
-        page === "https://yurimachado.dev.br/" ||
-        page === "https://yurimachado.dev.br/sobre/",
+        page.startsWith("https://blog.yurimachado.dev.br/docs/notes/") ||
+        page === "https://blog.yurimachado.dev.br/",
     }),
   ],
 

@@ -3,4 +3,4 @@ Disallow: /*
 Allow: /$
 Allow: /sobre
 
-Sitemap: https://yurimachado.dev.br/sitemap-index.xml
+Sitemap: https://blog.yurimachado.dev.br/sitemap-index.xml

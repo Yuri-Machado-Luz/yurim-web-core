@@ -10,7 +10,10 @@ pnpm-debug.log*
 
 
 .env
+.env.local
+.env.development
 .env.production
+!.env.example
 
 .DS_Store
 

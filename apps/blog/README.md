@@ -1,4 +1,4 @@
-# yurimachado.dev.br
+# blog.yurimachado.dev.br
 
 Site pessoal — portfólio, devlogs e documentação de projetos.
 
@@ -37,9 +37,11 @@ src/
 
 ```bash
 pnpm install
-pnpm dev
+pnpm dev   # http://localhost:5000
 pnpm build
 ```
+
+Em dev, links para o portfólio (navbar, logo, redirects) apontam para `http://localhost:3000` (override via `PUBLIC_PORTFOLIO_URL` em `.env.development`). Produção: `https://www.yurimachado.dev.br`.
 
 ## Versões
 
