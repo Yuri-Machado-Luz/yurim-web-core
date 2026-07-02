@@ -7,7 +7,7 @@ export const projects: ProjectItem[] = [
     title: "Portfólio",
     description:
       "Site pessoal com apresentação, histórico de projetos e seções de contato.",
-    status: "dev",
+    status: "ativo",
     featured: true,
     github: "https://github.com/Yuri-Machado-Luz/portfolio",
     live: "https://www.yurimachado.dev.br",
