@@ -2,7 +2,7 @@
 
 Site pessoal — portfólio.
 
-> Este repositório foi separado do blog. Devlogs, documentação e conteúdo em Markdown agora vivem em `01_Sites/blog` (Astro). Aqui fica apenas o site principal — Home, Sobre, Projetos e Contato.
+> Este repositório foi separado do blog. Devlogs, documentação e conteúdo em Markdown agora vivem em [Blog](https://github.com/Yuri-Machado-Luz/personal--blog) (Astro). Aqui fica apenas o site principal — Home, Sobre, Projetos e Contato.
 
 ## Stack
 
