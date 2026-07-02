@@ -1,19 +1,22 @@
 ---
+import { CONFIG } from "@config";
+import SocialLinks from "@ui/SocialLinks.astro";
+
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer">
-  <div class="container flex justify-center gap-4 py-5">
-    <span class="text-xs text-muted">
-      &copy; {year} Yuri Machado Luz. Todos os direitos reservados.
+<footer class="footer border-t border-[var(--color-border)] bg-[var(--color-bg)]">
+  <div class="site-container flex flex-col items-center justify-between gap-4 py-6 md:flex-row md:py-8">
+    <span class="text-sm text-muted">
+      &copy; {year} {CONFIG.meta.author}. Todos os direitos reservados.
     </span>
+    <SocialLinks />
   </div>
 </footer>
 
 <style>
   .footer {
-    border-top: 1px solid var(--color-border);
-    margin-top: 6rem;
+    margin-top: 4rem;
     &[docsFooter] {
       margin-top: 0;
     }
