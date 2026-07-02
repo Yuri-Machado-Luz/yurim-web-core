@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import { Button, Section, SocialLinks } from "@/components";
+import { Button, Section } from "@/components";
 import { pt } from "@/lib/i18n";
 
 export function CTASection() {
@@ -11,7 +11,7 @@ export function CTASection() {
     <Section
       width="narrow"
       spacing="none"
-      className="flex min-h-[60vh] flex-col items-center justify-center py-20 text-center"
+      className="mb-16 mt-24 flex flex-col items-center gap-6 text-center h-[65vh] justify-center"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -19,14 +19,10 @@ export function CTASection() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="heading-section sm:text-4xl mb-8">
-          {pt.cta.title}
-        </h2>
+        <h2 className="heading-section sm:text-4xl mb-8">{pt.cta.title}</h2>
         <Button asChild size="lg" className="mb-12">
           <Link href="/contato">{pt.cta.button}</Link>
         </Button>
-
-        <SocialLinks variant="boxed" className="justify-center" />
       </motion.div>
     </Section>
   );

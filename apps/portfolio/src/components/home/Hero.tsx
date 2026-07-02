@@ -15,8 +15,6 @@ import {
 import CONFIG from "@/lib/config";
 import { pt } from "@/lib/i18n";
 
-import { HeroBG } from "./Hero.Background";
-
 const WORDS = ["Yuri", "Machado", "Luz"];
 const profilePicture = IMAGE.profilePicture;
 
@@ -50,11 +48,9 @@ const wordVariants = {
 
 export function Hero() {
   return (
-    <section className="relative flex flex-col items-center overflow-hidden px-4 sm:px-6 pt-6 pb-12 md:min-h-screen">
-      <HeroBG />
-
+    <section className="relative mx-auto flex w-full max-w-6xl flex-col items-center overflow-x-hidden px-4 sm:px-6 mt-20 pt-12 pb-20 md:mt-4 md:min-h-[calc(100svh-5rem)] md:justify-center md:pb-32 md:pt-20">
       {/* Content grid: text left, photo right (desktop) */}
-      <div className="relative z-10 mt-16 grid w-full max-w-6xl gap-12 lg:mt-28 lg:grid-cols-[2fr_1fr] lg:items-center">
+      <div className="relative z-10 grid w-full max-w-6xl gap-12 lg:grid-cols-[2fr_1fr] lg:items-center">
         {/* Text column */}
         <motion.div
           variants={container}
@@ -126,12 +122,12 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="hidden lg:flex lg:items-center lg:justify-center"
+          className="hidden overflow-visible lg:flex lg:items-center lg:justify-center"
         >
-          <div className="relative">
-            <span className="picture-ring" />
-            <span className="picture-ring picture-ring-b" />
-            <Avatar className="relative z-10 h-64 w-64 border border-border xl:h-72 xl:w-72">
+          <div className="hero-picture-wrap shrink-0">
+            <span className="picture-ring" aria-hidden="true" />
+            <span className="picture-ring picture-ring-b" aria-hidden="true" />
+            <Avatar className="h-64 w-64 border border-border xl:h-72 xl:w-72">
               <AvatarImage src={profilePicture.src} alt={CONFIG.meta.author} />
               <AvatarFallback>YM</AvatarFallback>
             </Avatar>
