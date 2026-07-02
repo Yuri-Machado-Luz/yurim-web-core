@@ -19,6 +19,11 @@ const canonicalUrl = customCanonicalUrl
   : Astro.site
     ? new URL(Astro.url.pathname, Astro.site).toString()
     : Astro.url.toString();
+
+const ogImagePath = image ?? CONFIG.meta.og.default;
+const ogImageUrl = Astro.site
+  ? new URL(ogImagePath, Astro.site).toString()
+  : ogImagePath;
 ---
 
 <head>
@@ -31,7 +36,7 @@ const canonicalUrl = customCanonicalUrl
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:wght@300..900&family=JetBrains+Mono:wght@300..700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Inter:wght@300..900&family=JetBrains+Mono:wght@300..700&display=swap"
   />
 
   <link rel="canonical" href={canonicalUrl} />
@@ -44,7 +49,11 @@ const canonicalUrl = customCanonicalUrl
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:description" content={description} />
-  {image && <meta property="og:image" content={image} />}
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={ogImageUrl} />
   <Analytics />
 </head>
 
