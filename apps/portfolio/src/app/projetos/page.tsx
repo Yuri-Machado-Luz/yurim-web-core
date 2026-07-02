@@ -1,12 +1,13 @@
-import { Metadata } from "next";
-
 import { ProjectCard, Section } from "@/components";
 import { projects } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Projetos",
-  description: "Sites, ferramentas e contribuições open-source.",
-};
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata(
+  "Projetos",
+  "Sites, ferramentas e contribuições open-source.",
+  "projetos",
+);
 
 export default function ProjectsPage() {
   const featured = projects.filter((p) => p.featured);
@@ -15,8 +16,7 @@ export default function ProjectsPage() {
   return (
     <>
       {/* Page Header */}
-      <Section as="header" spacing="none" className="pt-12 md:pt-16 pb-8">
-        <p className="eyebrow mb-2">Portfólio</p>
+      <Section as="header" spacing="none" className="pb-16 pt-16">
         <h1 className="heading-page mb-4">Projetos</h1>
         <p className="lead">Sites, ferramentas e contribuições open-source.</p>
       </Section>

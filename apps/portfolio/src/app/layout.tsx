@@ -5,6 +5,7 @@ import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 
 import { Footer, Navbar, ThemeProvider } from "@/components";
 import CONFIG from "@/lib/config";
+import { defaultOgImage } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -20,14 +21,16 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(CONFIG.meta.siteUrl),
   title: {
-    default: `${CONFIG.meta.author}${CONFIG.meta.suffix}`,
+    default: `Portfólio ${CONFIG.meta.suffix}`,
     template: `%s${CONFIG.meta.suffix}`,
   },
   description: CONFIG.meta.description,
   icons: {
     icon: "/favicon.svg",
   },
+  ...defaultOgImage("portfolio"),
 };
 
 const themeInitScript = `(function(){try{var e=localStorage.getItem("theme");var t=window.matchMedia("(prefers-color-scheme: dark)").matches;var d=e==="dark"||(e!=="light"&&t);var r=document.documentElement;r.classList.toggle("dark",d);r.dataset.theme=d?"dark":"light"}catch(e){}})();`;
