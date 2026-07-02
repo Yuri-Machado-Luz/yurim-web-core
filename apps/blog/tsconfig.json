@@ -8,8 +8,6 @@
       "@components/*": ["./src/components/*"],
       "@ui": ["./src/components/ui/index.ts"],
       "@ui/*": ["./src/components/ui/*"],
-      "@home": ["./src/components/home/index.ts"],
-      "@home/*": ["./src/components/home/*"],
       "@shared": ["./src/components/shared/index.ts"],
       "@shared/*": ["./src/components/shared/*"],
       "@styles": ["./src/components/styles/index.ts"],

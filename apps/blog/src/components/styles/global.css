@@ -109,22 +109,6 @@
     }
   }
 
-  /* ── Hero ── */
-  .hero-picture-wrap {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    animation: ambientGlow 4s ease-in-out infinite;
-  }
-
-  .hero-picture-wrap img {
-    position: relative;
-    z-index: var(--z-above);
-    box-shadow: var(--shadow-hero-ring);
-  }
-
   /* ── Navbar ── */
   .navbar {
     background: transparent;
@@ -170,12 +154,6 @@
     color: var(--color-primary-400);
   }
 
-  /* ── Section panels ── */
-  .section-panel {
-    position: relative;
-    isolation: isolate;
-  }
-
   /* ── Page typography (aligned with portfolio .heading-page / .heading-section / .lead) ── */
   .page-title {
     font-family: var(--font-display);
@@ -208,58 +186,12 @@
     color: var(--color-muted);
   }
 
-  /* ── Article list items ── */
-  .article-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--color-border);
-    text-decoration: none;
-    color: var(--color-text);
-    transition: color 200ms ease;
-  }
-  .article-item:hover {
-    color: var(--color-primary-400);
-  }
   .article-title {
     font-size: 1.125rem;
     font-weight: 600;
   }
   .article-meta {
     font-size: var(--font-size-sm);
-    color: var(--color-muted);
-  }
-
-  /* ── Stat items ── */
-  .stat-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 1rem 1.25rem;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    font-size: var(--font-size-base);
-    color: var(--color-text);
-    animation: ambientGlow 4s ease-in-out infinite;
-  }
-  .stat-item:nth-child(2) {
-    animation-delay: 0.6s;
-  }
-  .stat-item:nth-child(3) {
-    animation-delay: 1.2s;
-  }
-  .stat-item:nth-child(4) {
-    animation-delay: 1.8s;
-  }
-  .stat-item .value {
-    font-size: var(--font-size-xl);
-    font-weight: 700;
-    color: var(--color-primary-400);
-    white-space: nowrap;
-  }
-  .stat-item .label {
     color: var(--color-muted);
   }
 
@@ -270,172 +202,8 @@
     gap: 1rem;
     flex-wrap: wrap;
   }
-  .social-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: var(--font-size-sm);
-    color: var(--color-muted);
-    text-decoration: none;
-    transition: color 200ms ease;
-  }
-  .social-link:hover {
-    color: var(--color-primary-400);
-  }
 
-  /* ── Experience timeline ── */
-  .experience-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  .experience-item {
-    display: grid;
-    grid-template-columns: 2rem 1fr;
-    gap: 1.5rem;
-  }
-  .timeline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 4px;
-  }
-  .timeline-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--color-primary-400);
-    flex-shrink: 0;
-  }
-  .timeline-line {
-    flex: 1;
-    width: 1px;
-    background: var(--color-border);
-    margin-top: 6px;
-  }
-  .experience-item .body {
-    padding-bottom: 0.5rem;
-  }
-  .experience-item .role {
-    font-weight: 600;
-    font-size: var(--font-size-md);
-  }
-  .experience-item .meta {
-    display: flex;
-    gap: 0.75rem;
-    font-size: var(--font-size-sm);
-    color: var(--color-muted);
-    margin: 2px 0 8px;
-    flex-wrap: wrap;
-  }
-  .experience-item .company {
-    font-weight: 500;
-  }
-  .experience-item .bullets {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .experience-item .bullet {
-    font-size: var(--font-size-sm);
-    color: var(--color-muted);
-    padding-left: 1rem;
-    position: relative;
-  }
-  .experience-item .bullet::before {
-    content: "·";
-    position: absolute;
-    left: 0;
-    color: var(--color-primary-400);
-    font-weight: 700;
-  }
-
-  /* ── Education ── */
-  .education-list {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
-  .education-item {
-    padding: 1.25rem;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    animation: ambientGlowSubtle var(--glow-duration-subtle, 7s) ease-in-out infinite;
-  }
-
-  :root:not(.dark) .post-card,
-  :root:not(.dark) .stat-item,
-  :root:not(.dark) .education-item,
-  :root:not(.dark) .language-card {
+  :root:not(.dark) .post-card {
     box-shadow: 0 1px 2px rgb(from var(--color-text) r g b / 0.06);
-  }
-  .education-item .degree {
-    font-weight: 600;
-    font-size: var(--font-size-md);
-    margin-bottom: 4px;
-  }
-  .education-item .institution {
-    font-size: var(--font-size-base);
-    color: var(--color-muted);
-  }
-  .education-item .detail {
-    font-size: var(--font-size-sm);
-    color: var(--color-muted);
-    opacity: 0.7;
-    margin-top: 2px;
-  }
-
-  /* ── Languages ── */
-  .language-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0.75rem;
-  }
-  .language-card {
-    padding: 1rem 1.25rem;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .language-card .name {
-    font-weight: 600;
-    font-size: var(--font-size-base);
-  }
-  .language-card .level {
-    font-size: var(--font-size-sm);
-    color: var(--color-muted);
-  }
-
-  /* ── Projects grids ── */
-  .featured-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-  .projects-grid {
-    display: grid;
-    gap: 1.25rem;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  }
-
-  /* ── Quick facts ── */
-  .quick-facts {
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-  .quick-fact {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: var(--font-size-base);
-    color: var(--color-muted);
   }
 }

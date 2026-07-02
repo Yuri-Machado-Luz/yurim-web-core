@@ -59,9 +59,6 @@ export default defineConfig({
         "@components": fileURLToPath(
           new URL("./src/components", import.meta.url),
         ),
-        "@home": fileURLToPath(
-          new URL("./src/components/home", import.meta.url),
-        ),
         "@ui": fileURLToPath(new URL("./src/components/ui", import.meta.url)),
         "@shared": fileURLToPath(
           new URL("./src/components/shared", import.meta.url),
