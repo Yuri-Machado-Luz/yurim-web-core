@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 
 import { Footer, Navbar, ThemeProvider } from "@/components";
+import { CopyProtection } from "@/components/copy-protection";
 import CONFIG from "@/lib/config";
 import { defaultOgImage } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
@@ -68,6 +69,7 @@ export default function RootLayout({
           storageKey="theme"
           disableTransitionOnChange
         >
+          <CopyProtection />
           <Navbar />
           <main className="relative z-1 flex-1 pt-16 md:pt-20">{children}</main>
           <Footer />
