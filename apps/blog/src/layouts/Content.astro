@@ -3,6 +3,7 @@ import Sidebar from "@ui/Sidebar.astro";
 import TOC from "@ui/TOC.astro";
 import Footer from "./Footer.astro";
 import type { SidebarEntry } from "../types";
+import ThemeInit from "@shared/ThemeInit.astro";
 import Head from "./Head.astro";
 import { ChevronLeftRaw, CloseRaw, MenuRaw } from "@assets";
 
@@ -26,6 +27,7 @@ const hasToc =
 ---
 
 <html lang="pt-BR">
+  <ThemeInit />
   <Head title={title} description={description} />
 
   <body>
@@ -241,20 +243,26 @@ const hasToc =
   }
 
   .docs-title {
+    font-family: var(--font-display);
     font-size: 2.25rem;
     font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
     color: var(--color-text);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 40rem) {
+    .docs-title {
+      font-size: 3rem;
+    }
   }
 
   .docs-lead {
-    font-size: 1.0625rem;
+    font-size: 1.25rem;
     color: var(--color-muted);
-    font-style: italic;
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
+    line-height: 1.625;
+    margin-bottom: 2rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--color-border);
   }

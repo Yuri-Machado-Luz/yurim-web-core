@@ -1,0 +1,37 @@
+---
+/** Blocking theme init + icon visibility — must render before global.css. */
+---
+<script is:inline>
+  (function () {
+    var key = "theme";
+    try {
+      var stored = localStorage.getItem(key);
+      var prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      var isDark =
+        stored === "dark" || (stored !== "light" && prefersDark);
+      var theme = isDark ? "dark" : "light";
+      var root = document.documentElement;
+      root.classList.toggle("dark", isDark);
+      root.dataset.theme = theme;
+    } catch (_) {}
+  })();
+</script>
+<style is:inline>
+  [data-theme-icon="sun"] {
+    display: none !important;
+  }
+  [data-theme-icon="moon"] {
+    display: inline-flex !important;
+  }
+  html[data-theme="dark"] [data-theme-icon="sun"] {
+    display: inline-flex !important;
+  }
+  html[data-theme="dark"] [data-theme-icon="moon"] {
+    display: none !important;
+  }
+  [data-theme-icon] {
+    transition: none !important;
+  }
+</style>

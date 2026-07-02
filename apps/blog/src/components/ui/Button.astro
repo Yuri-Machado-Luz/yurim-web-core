@@ -24,22 +24,22 @@ const {
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-primary-700 text-white [animation:ambientGlow_3s_ease-in-out_infinite] hover:bg-primary-600 hover:scale-[1.02] active:scale-[0.98] active:bg-primary-700/90",
+    "border border-transparent bg-primary-400 text-[#f2f4f3] [animation:ambientGlow_3s_ease-in-out_infinite] hover:bg-primary-400/80 hover:scale-[1.02] active:scale-[0.98]",
   outline:
-    "text-white border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/30 hover:scale-[1.02] active:scale-[0.98] active:opacity-70",
+    "border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:border-primary-400/50 hover:bg-[var(--color-surface-strong)] hover:text-[var(--color-text)] hover:shadow-[var(--shadow-link-hover)] active:scale-[0.98] dark:bg-transparent dark:hover:bg-[rgb(255_255_255/0.08)]",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "text-sm px-4 py-1.5",
-  md: "text-sm px-5 py-2.5",
-  lg: "text-base px-6 py-3",
-  xl: "text-lg px-8 py-4",
+  sm: "h-8 gap-1 px-3 text-sm",
+  md: "h-9 gap-1.5 px-3 text-sm",
+  lg: "h-10 gap-1.5 px-4 text-sm",
+  xl: "h-10 gap-1.5 px-4 text-base",
 };
 ---
 
 <a
   class={cn(
-    "inline-flex items-center gap-2 w-fit cursor-pointer rounded-full select-none transition-all duration-200 ease-out",
+    "inline-flex shrink-0 items-center justify-center w-fit cursor-pointer rounded-[calc(var(--radius-lg)*2.6)] border border-transparent font-medium whitespace-nowrap select-none transition-all outline-none duration-200 ease-out",
     variants[variant],
     sizes[size],
     className,

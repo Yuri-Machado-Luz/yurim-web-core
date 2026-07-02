@@ -1,0 +1,58 @@
+---
+import { MoonRaw, SunRaw } from "@assets";
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  class="theme-toggle flex size-9 items-center justify-center rounded-lg text-muted transition-colors hover:text-primary"
+  aria-label="Alternar tema"
+>
+  <span
+    data-theme-icon="sun"
+    class="size-5"
+    aria-hidden
+    set:html={SunRaw}
+  />
+  <span
+    data-theme-icon="moon"
+    class="size-5"
+    aria-hidden
+    set:html={MoonRaw}
+  />
+</button>
+
+<script>
+  import {
+    getCurrentTheme,
+    toggleTheme,
+  } from "@shared/handlers/theme";
+
+  function syncToggleLabels() {
+    const isDark = getCurrentTheme() === "dark";
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+    document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
+      toggle.setAttribute(
+        "aria-label",
+        isDark ? "Ativar tema claro" : "Ativar tema escuro",
+      );
+    });
+  }
+
+  function initThemeToggle() {
+    syncToggleLabels();
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-theme-toggle]")
+      .forEach((toggle) => {
+        if (toggle.dataset.themeInit) return;
+        toggle.dataset.themeInit = "1";
+        toggle.addEventListener("click", () => {
+          toggleTheme();
+          syncToggleLabels();
+        });
+      });
+  }
+
+  document.addEventListener("astro:page-load", initThemeToggle);
+  document.addEventListener("astro:after-swap", syncToggleLabels);
+</script>

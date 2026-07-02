@@ -3,12 +3,12 @@
   .card-interactive,
   .card-accent,
   .card-flat {
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     border: 1px solid var(--color-border);
     transition:
-      transform var(--duration-slow) ease,
-      box-shadow var(--duration-slow) ease,
-      border-color var(--duration-slow) ease;
+      transform 300ms ease,
+      box-shadow 300ms ease,
+      border-color 300ms ease;
   }
 
   .card,
@@ -26,13 +26,17 @@
   }
 
   .card-interactive:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-card-hover);
+    border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+    box-shadow: var(--shadow-card-hover-subtle);
     transform: translateY(-2px);
   }
 
   .card-accent:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-card-accent-hover);
+    border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+    box-shadow: var(--shadow-card-hover-subtle);
+  }
+
+  .card-glow-subtle {
+    animation: ambientGlowSubtle var(--glow-duration-subtle, 7s) ease-in-out infinite;
   }
 }

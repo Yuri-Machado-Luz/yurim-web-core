@@ -2,6 +2,8 @@
 @import "tailwind-animations";
 @import "rehype-callouts/theme/github";
 
+@custom-variant dark (&:is(.dark *));
+
 @import "./base/tokens.css";
 @import "./base/reset.css";
 @import "./base/prose.css";
@@ -48,9 +50,6 @@
     font-family: var(--font-mono);
   }
 
-  .container {
-    @apply mx-auto w-full max-w-7xl px-6 sm:px-10 md:px-16 lg:px-24;
-  }
 }
 
 @layer utilities {
@@ -96,6 +95,20 @@
 }
 
 @layer components {
+  /* Tailwind v4 reserves .container — use site-container (matches portfolio max-w-6xl) */
+  .site-container {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 72rem;
+    padding-inline: 1rem;
+  }
+
+  @media (width >= 40rem) {
+    .site-container {
+      padding-inline: 1.5rem;
+    }
+  }
+
   /* ── Hero ── */
   .hero-picture-wrap {
     position: relative;
@@ -128,35 +141,71 @@
     border-bottom-color: var(--color-border);
   }
 
+  :root:not(.dark) .navbar.is-scrolled {
+    background: rgb(from var(--color-bg) r g b / 0.92);
+  }
+
+  .nav-link {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-muted);
+    transition: color var(--duration-base) ease;
+  }
+
+  .nav-link:hover,
+  .nav-link-active {
+    color: var(--color-primary-400);
+  }
+
+  .mobile-nav-link {
+    color: var(--color-muted);
+    transition:
+      background-color var(--duration-base) ease,
+      color var(--duration-base) ease;
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link-active {
+    background: var(--color-surface-strong);
+    color: var(--color-primary-400);
+  }
+
   /* ── Section panels ── */
   .section-panel {
     position: relative;
     isolation: isolate;
   }
 
-  /* ── Page typography ── */
+  /* ── Page typography (aligned with portfolio .heading-page / .heading-section / .lead) ── */
   .page-title {
-    font-size: var(--font-size-3xl);
+    font-family: var(--font-display);
+    font-size: 2.25rem;
     font-weight: 700;
     line-height: 1.15;
   }
+  @media (min-width: 40rem) {
+    .page-title {
+      font-size: 3rem;
+    }
+  }
   .page-lead {
-    font-size: var(--font-size-lg);
+    font-size: 1.25rem;
     color: var(--color-muted);
     max-width: 52ch;
     line-height: 1.7;
   }
   .section-title {
-    font-size: var(--font-size-2xl);
+    font-family: var(--font-display);
+    font-size: 1.875rem;
     font-weight: 700;
     line-height: 1.2;
   }
   .eyebrow {
-    font-size: var(--font-size-xs);
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--color-primary-400);
+    color: var(--color-muted);
   }
 
   /* ── Article list items ── */
@@ -174,8 +223,8 @@
     color: var(--color-primary-400);
   }
   .article-title {
-    font-size: var(--font-size-md);
-    font-weight: 500;
+    font-size: 1.125rem;
+    font-weight: 600;
   }
   .article-meta {
     font-size: var(--font-size-sm);
@@ -188,7 +237,7 @@
     align-items: center;
     gap: 12px;
     padding: 1rem 1.25rem;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     font-size: var(--font-size-base);
@@ -312,9 +361,17 @@
   }
   .education-item {
     padding: 1.25rem;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     border: 1px solid var(--color-border);
     background: var(--color-surface);
+    animation: ambientGlowSubtle var(--glow-duration-subtle, 7s) ease-in-out infinite;
+  }
+
+  :root:not(.dark) .post-card,
+  :root:not(.dark) .stat-item,
+  :root:not(.dark) .education-item,
+  :root:not(.dark) .language-card {
+    box-shadow: 0 1px 2px rgb(from var(--color-text) r g b / 0.06);
   }
   .education-item .degree {
     font-weight: 600;
@@ -340,7 +397,7 @@
   }
   .language-card {
     padding: 1rem 1.25rem;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     display: flex;

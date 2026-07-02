@@ -45,6 +45,16 @@
   }
 }
 
+@keyframes ambientGlowSubtle {
+  0%,
+  100% {
+    box-shadow: var(--shadow-ambient-subtle-min);
+  }
+  50% {
+    box-shadow: var(--shadow-ambient-subtle-max);
+  }
+}
+
 @layer components {
   .bg-glow {
     --glow-duration: var(--glow-duration-normal);
@@ -145,5 +155,11 @@ html[data-vt-cross="docs-home"] ::view-transition-old(page-content) {
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none;
+  }
+
+  .card-glow-subtle,
+  .post-card {
+    animation: none;
+    box-shadow: var(--shadow-card-subtle);
   }
 }

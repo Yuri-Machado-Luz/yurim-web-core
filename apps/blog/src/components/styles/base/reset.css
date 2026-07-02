@@ -21,13 +21,23 @@
     background:
       radial-gradient(
         ellipse at center,
+        color-mix(in srgb, var(--color-primary) 17%, transparent),
+        transparent 50%
+      ),
+      linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg) 100%);
+    position: relative;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .dark body {
+    background:
+      radial-gradient(
+        ellipse at center,
         color-mix(in srgb, var(--color-primary) 20%, transparent),
         transparent 50%
       ),
       linear-gradient(180deg, #0a0707 0%, var(--color-bg) 100%);
-    position: relative;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
   }
 
   /* Subtle top glow orb */
@@ -41,7 +51,7 @@
     height: 16rem;
     background: radial-gradient(
       circle,
-      color-mix(in srgb, var(--color-primary) 8%, transparent),
+      color-mix(in srgb, var(--color-primary) 15%, transparent),
       transparent
     );
     border-radius: 9999px;
@@ -50,18 +60,34 @@
     z-index: 0;
   }
 
+  .dark body::before {
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-primary) 8%, transparent),
+      transparent
+    );
+  }
+
   /* Subtle grid overlay */
   body::after {
     content: "";
     position: fixed;
     inset: 0;
     background:
+      linear-gradient(to right, #6666 1px, transparent 1px),
+      linear-gradient(to bottom, #6666 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.24;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .dark body::after {
+    background:
       linear-gradient(to right, #8882 1px, transparent 1px),
       linear-gradient(to bottom, #8882 1px, transparent 1px);
     background-size: 16px 16px;
     opacity: 0.15;
-    pointer-events: none;
-    z-index: 0;
   }
 
   main {
@@ -103,9 +129,9 @@
   h6 {
     margin: 0;
     color: var(--color-text);
-    font-family: var(--font-sans);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
   }
 
   p {

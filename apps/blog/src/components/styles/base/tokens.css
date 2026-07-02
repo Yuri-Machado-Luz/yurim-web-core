@@ -11,15 +11,15 @@
 @theme {
   --color-*: initial;
 
-  /* Background / Surface */
-  --color-bg: #050404;
-  --color-surface: #110f0f;
-  --color-surface-strong: #1b1919;
-  --color-border: rgba(255, 255, 255, 0.12);
+  /* Background / Surface — light default; .dark overrides below */
+  --color-bg: #ffffff;
+  --color-surface: #fafaf9;
+  --color-surface-strong: #f0eeec;
+  --color-border: #d4d0cd;
 
   /* Text */
-  --color-text: #f2f4f3;
-  --color-muted: #b8b2b2;
+  --color-text: rgba(10, 10, 10, 1);
+  --color-muted: rgba(42, 38, 38, 1);
 
   /* Primary — Red */
   --color-primary: rgba(210, 28, 28, 1);
@@ -118,7 +118,7 @@
 
   /* Transition durations */
   --duration-fast: 150ms;
-  --duration-base: 250ms;
+  --duration-base: 200ms;
   --duration-slow: 400ms;
   --duration-enter: 500ms;
   --duration-leave: 350ms;
@@ -169,7 +169,7 @@
   --font-sans:
     "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
-  --font-display: "Cinzel", Georgia, "Times New Roman", serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
   --font-mono:
     "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, Courier,
     monospace;
@@ -271,9 +271,29 @@
     --shadow-hero-ring: 0 0 0 3px rgb(from var(--color-primary) r g b / 0.12), 0 0 64px rgb(from var(--color-primary) r g b / 0.1);
     --shadow-ambient-min: 0 0 18px rgb(from var(--color-primary) r g b / 0.08);
     --shadow-ambient-max: 0 0 36px rgb(from var(--color-primary) r g b / 0.22);
+    --shadow-ambient-subtle-min: 0 0 10px rgb(from var(--color-primary) r g b / 0.04);
+    --shadow-ambient-subtle-max: 0 0 22px rgb(from var(--color-primary) r g b / 0.11);
+    --shadow-card-subtle: 0 0 12px rgb(from var(--color-primary) r g b / 0.05);
+    --shadow-card-hover-subtle:
+      0 0 0 1px color-mix(in srgb, var(--color-primary) 45%, transparent),
+      0 0 16px rgb(from var(--color-primary) r g b / 0.18);
+    --shadow-link-hover:
+      0 0 0 1px color-mix(in srgb, var(--color-primary) 55%, transparent),
+      0 0 14px rgb(from var(--color-primary) r g b / 0.24);
+    --glow-duration-subtle: 7s;
 
     /* Layout */
     --prose-width: 72ch;
-    --container-max: 1280px;
+    --container-max: 72rem;
   }
+
+}
+
+.dark {
+  --color-bg: rgba(5, 4, 4, 1);
+  --color-surface: rgba(17, 15, 15, 1);
+  --color-surface-strong: rgba(27, 25, 25, 1);
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-text: #f2f4f3;
+  --color-muted: rgba(184, 178, 178, 1);
 }

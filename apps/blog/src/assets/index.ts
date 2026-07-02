@@ -6,6 +6,9 @@ export { default as GitHubRaw } from "./icons/github-alt.svg?raw";
 export { default as HamburgerRaw } from "./icons/hamburger.svg?raw";
 export { default as LinkedInRaw } from "./icons/linkedin.svg?raw";
 export { default as MenuRaw } from "./icons/menu.svg?raw";
+export { default as MoonRaw } from "./icons/moon.svg?raw";
+export { default as SunRaw } from "./icons/sun.svg?raw";
+export { default as LogoTextDark } from "./icons/text-logo-dark.svg";
 export { default as LogoText } from "./icons/text-logo-light.svg";
 
 // Tech stack icons

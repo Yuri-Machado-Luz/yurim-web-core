@@ -1,5 +1,6 @@
 ---
 import { Footer, Navbar } from "@layouts";
+import ThemeInit from "@shared/ThemeInit.astro";
 import Head from "./Head.astro";
 
 interface Props {
@@ -14,6 +15,7 @@ const { title, description, image, canonicalUrl, noindex } = Astro.props;
 ---
 
 <html lang="pt-BR">
+  <ThemeInit />
   <Head
     title={title}
     description={description}
@@ -24,11 +26,13 @@ const { title, description, image, canonicalUrl, noindex } = Astro.props;
 
   <body>
     <Navbar transition:persist="navbar" />
-    <slot
-      id="page-content"
-      transition:name="page-content"
-      transition:animate="slide"
-    />
+    <main class="relative z-1 flex flex-1 flex-col pt-16 md:pt-20">
+      <slot
+        id="page-content"
+        transition:name="page-content"
+        transition:animate="slide"
+      />
+    </main>
     <Footer />
   </body>
 </html>
