@@ -1,3 +1,4 @@
+import CONFIG from "@/lib/config";
 import type { ProjectItem } from "@/types";
 
 export const projects: ProjectItem[] = [
@@ -11,6 +12,17 @@ export const projects: ProjectItem[] = [
     github: "https://github.com/Yuri-Machado-Luz/portfolio",
     live: "https://www.yurimachado.dev.br",
     tags: ["Next.js", "React", "Tailwind", "TypeScript", "Vercel"],
+  },
+  {
+    id: "blog",
+    title: "Blog",
+    description:
+      "Devlogs, notas técnicas e publicações sobre desenvolvimento web, APIs e automações.",
+    status: "ativo",
+    featured: true,
+    github: "https://github.com/Yuri-Machado-Luz/personal--blog",
+    live: CONFIG.sites.blog,
+    tags: ["Astro", "MDX", "Tailwind CSS", "TypeScript", "Vercel"],
   },
   {
     id: "sistema-gestao-loja-games",
