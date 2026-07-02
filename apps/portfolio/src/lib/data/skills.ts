@@ -5,10 +5,10 @@ export const skills: SkillCategory[] = [
     label: "Frontend & UI",
     skills: [
       { icon: "react", name: "React" },
-      { icon: "code", name: "TypeScript" },
-      { icon: "layout", name: "HTML / CSS" },
-      { icon: "wind", name: "Tailwind CSS" },
-      { icon: "flame", name: "Astro" },
+      { icon: "typescript", name: "TypeScript" },
+      { icon: "html5", name: "HTML / CSS" },
+      { icon: "tailwind", name: "Tailwind CSS" },
+      { icon: "astro", name: "Astro" },
       { icon: "sparkles", name: "Framer Motion" },
       { icon: "figma", name: "Figma" },
     ],
@@ -16,11 +16,11 @@ export const skills: SkillCategory[] = [
   {
     label: "Backend & Dados",
     skills: [
-      { icon: "server", name: "Node.js" },
-      { icon: "terminal", name: "Python" },
+      { icon: "nodejs", name: "Node.js" },
+      { icon: "python", name: "Python" },
       { icon: "network", name: "Express" },
-      { icon: "zap", name: "FastAPI" },
-      { icon: "database", name: "PostgreSQL" },
+      { icon: "fastapi", name: "FastAPI" },
+      { icon: "postgresql", name: "PostgreSQL" },
       { icon: "database", name: "Supabase" },
       { icon: "table", name: "Pandas" },
     ],
@@ -28,13 +28,13 @@ export const skills: SkillCategory[] = [
   {
     label: "Ferramentas",
     skills: [
-      { icon: "git-branch", name: "Git" },
+      { icon: "git", name: "Git" },
       { icon: "infinity", name: "CI/CD" },
       { icon: "settings-2", name: "Power Automate" },
       { icon: "monitor", name: "Linux / CLI" },
       { icon: "terminal", name: "Shell (Bash/Zsh)" },
       { icon: "zap", name: "Vercel" },
-      { icon: "flame", name: "Cloudflare" },
+      { icon: "cloudflare", name: "Cloudflare" },
     ],
   },
 ];

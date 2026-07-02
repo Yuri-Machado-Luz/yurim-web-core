@@ -1,49 +1,5 @@
-import {
-  Brain,
-  Briefcase,
-  Calendar,
-  CircleCheck,
-  Code,
-  Database,
-  Flame,
-  GitBranch,
-  Infinity as InfinityIcon,
-  Layout,
-  type LucideIcon,
-  MapPin,
-  Monitor,
-  Network,
-  Palette,
-  Server,
-  Settings2,
-  Sparkles,
-  Table,
-  Terminal,
-  Wind,
-  Zap,
-} from "lucide-react";
+import { type IconName,iconRegistry } from "@/assets/icons/registry";
 
-export const iconMap: Record<string, LucideIcon> = {
-  briefcase: Briefcase,
-  "circle-check": CircleCheck,
-  "map-pin": MapPin,
-  calendar: Calendar,
-  code: Code,
-  react: Code,
-  layout: Layout,
-  wind: Wind,
-  figma: Palette,
-  sparkles: Sparkles,
-  server: Server,
-  terminal: Terminal,
-  network: Network,
-  zap: Zap,
-  database: Database,
-  table: Table,
-  "git-branch": GitBranch,
-  infinity: InfinityIcon,
-  "settings-2": Settings2,
-  brain: Brain,
-  monitor: Monitor,
-  flame: Flame,
-};
+export const iconMap = iconRegistry;
+
+export type { IconName };

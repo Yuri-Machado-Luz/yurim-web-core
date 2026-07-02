@@ -1,7 +1,8 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 
+import type { IconName } from "@/assets/icons";
+import { Icon } from "@/components/ui/icon";
 import { cn } from "@/lib/utils";
 
 const iconLinkVariants = cva(
@@ -28,7 +29,7 @@ const iconSize = {
 type IconLinkProps = VariantProps<typeof iconLinkVariants> & {
   href: string;
   label: string;
-  icon: ImageProps["src"];
+  icon: IconName;
   external?: boolean;
   size?: keyof typeof iconSize;
   className?: string;
@@ -52,7 +53,7 @@ export function IconLink({
       className={cn(iconLinkVariants({ variant, className }))}
       {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
     >
-      <Image src={icon} alt={label} className={cn(iconSize[size], "dark:invert")} />
+      <Icon name={icon} className={iconSize[size]} />
     </Link>
   );
 }

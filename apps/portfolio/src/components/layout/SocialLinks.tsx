@@ -1,6 +1,5 @@
-import type { ImageProps } from "next/image";
-
 import { ICON } from "@/assets";
+import type { IconName } from "@/assets/icons";
 import { IconLink } from "@/components/ui/icon-link";
 import CONFIG from "@/lib/config";
 import { cn } from "@/lib/utils";
@@ -15,7 +14,7 @@ const whatsappMessage = encodeURIComponent(
 
 const CHANNELS: Record<
   Channel,
-  { href: string; icon: ImageProps["src"]; label: string }
+  { href: string; icon: IconName; label: string }
 > = {
   github: { href: github, icon: ICON.github, label: "GitHub" },
   linkedin: { href: linkedin, icon: ICON.linkedin, label: "LinkedIn" },

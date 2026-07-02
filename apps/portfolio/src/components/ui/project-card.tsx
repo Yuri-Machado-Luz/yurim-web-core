@@ -1,9 +1,8 @@
-import { BookOpen, ExternalLink } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { ICON } from "@/assets";
-import { Badge } from "@/components";
+import { Badge, Button, Icon } from "@/components";
+import { cn } from "@/lib/utils";
 
 const statusVariants = {
   ativo: "default",
@@ -34,7 +33,14 @@ export function ProjectCard({
   const hasLinks = live || github || documentation;
 
   return (
-    <article className="flex h-full flex-col gap-4 rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:shadow-md">
+    <article
+      className={cn(
+        "card-glow-subtle flex h-full flex-col gap-4 rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-0.5",
+        hasLinks
+          ? "hover:border-primary/50 hover:shadow-[var(--shadow-card-hover-subtle)]"
+          : "hover:border-primary/35 hover:shadow-[var(--shadow-card-subtle)]",
+      )}
+    >
       <div className="flex items-start justify-between gap-4">
         <h3 className="text-lg font-semibold leading-snug">{title}</h3>
         <Badge variant={statusVariants[status]} className="shrink-0">
@@ -62,41 +68,30 @@ export function ProjectCard({
       )}
 
       {hasLinks && (
-        <div className="mt-auto flex gap-5 pt-2">
+        <div className="mt-auto flex flex-wrap gap-2 pt-2">
           {live && (
-            <Link
-              href={live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-primary transition-opacity hover:opacity-70"
-            >
-              <ExternalLink className="h-3.5 w-3.5" aria-hidden />
-              Live
-            </Link>
+            <Button asChild variant="outline" size="xs">
+              <Link href={live} target="_blank" rel="noopener noreferrer">
+                <Icon name="external-link" className="h-3.5 w-3.5" />
+                Live
+              </Link>
+            </Button>
           )}
           {github && (
-            <Link
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-muted-foreground transition-opacity hover:opacity-70"
-            >
-              <Image
-                src={ICON.github}
-                alt="GitHub"
-                className="h-3.5 w-3.5 dark:invert"
-              />
-              GitHub
-            </Link>
+            <Button asChild variant="outline" size="xs">
+              <Link href={github} target="_blank" rel="noopener noreferrer">
+                <Icon name={ICON.github} className="h-3.5 w-3.5" />
+                GitHub
+              </Link>
+            </Button>
           )}
           {documentation && (
-            <Link
-              href={documentation}
-              className="flex items-center gap-1.5 text-sm text-muted-foreground transition-opacity hover:opacity-70"
-            >
-              <BookOpen className="h-3.5 w-3.5 dark:invert" aria-hidden />
-              Docs
-            </Link>
+            <Button asChild variant="outline" size="xs">
+              <Link href={documentation}>
+                <Icon name="book-open" className="h-3.5 w-3.5" />
+                Docs
+              </Link>
+            </Button>
           )}
         </div>
       )}

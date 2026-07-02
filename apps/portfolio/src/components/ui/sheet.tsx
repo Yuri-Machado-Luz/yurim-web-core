@@ -1,10 +1,9 @@
 "use client";
 
-import { XIcon } from "lucide-react";
 import { Dialog as SheetPrimitive } from "radix-ui";
 import * as React from "react";
 
-import { Button } from "@/components";
+import { Button, Icon } from "@/components";
 import { cn } from "@/lib/utils";
 
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
@@ -75,7 +74,7 @@ function SheetContent({
               className="absolute top-4 right-4 bg-secondary"
               size="icon-sm"
             >
-              <XIcon />
+              <Icon name="close" className="h-4 w-4" />
               <span className="sr-only">Close</span>
             </Button>
           </SheetPrimitive.Close>

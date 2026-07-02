@@ -1,3 +1,3 @@
 export * as BRAND from "./brand";
-export * as ICON from "./icons";
+export { ICON, iconRegistry, type IconName } from "./icons";
 export * as IMAGE from "./imgs";

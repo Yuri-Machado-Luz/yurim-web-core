@@ -1,21 +1,28 @@
-export { default as astro } from "./astro.svg";
-export { default as chevronLeft } from "./chevron-left.svg";
-export { default as close } from "./close.svg";
-export { default as docker } from "./docker.svg";
-export { default as envelope } from "./envelope.svg";
-export { default as fastapi } from "./fastapi.svg";
-export { default as favicon } from "./favicon.svg";
-export { default as git } from "./git.svg";
-export { default as github } from "./github.svg";
-export { default as hamburger } from "./hamburger.svg";
-export { default as linkedin } from "./linkedin.svg";
-export { default as menu } from "./menu.svg";
-export { default as nextjs } from "./nextjs.svg";
-export { default as nodejs } from "./nodejs.svg";
-export { default as python } from "./python.svg";
-export { default as react } from "./react.svg";
-export { default as tailwind } from "./tailwind.svg";
-export { default as textLogoLight } from "./text-logo-light.svg";
-export { default as typescript } from "./typescript.svg";
-export { default as vite } from "./vite.svg";
-export { default as whatsapp } from "./whatsapp.svg";
+import type { IconName } from "./registry";
+
+export { iconRegistry, type IconName } from "./registry";
+
+/** Icon name constants for data-driven usage (tech stack, social links, etc.) */
+export const ICON = {
+  astro: "astro",
+  cloudflare: "cloudflare",
+  css3: "css3",
+  database: "database",
+  envelope: "envelope",
+  fastapi: "fastapi",
+  figma: "figma",
+  git: "git",
+  github: "github",
+  html5: "html5",
+  linkedin: "linkedin",
+  nextjs: "nextjs",
+  nodejs: "nodejs",
+  postgresql: "postgresql",
+  python: "python",
+  react: "react",
+  sparkles: "sparkles",
+  tailwind: "tailwind",
+  typescript: "typescript",
+  whatsapp: "whatsapp",
+  zap: "zap",
+} as const satisfies Record<string, IconName>;
