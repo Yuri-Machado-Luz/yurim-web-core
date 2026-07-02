@@ -5,6 +5,7 @@ import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 
 import { Footer, Navbar, ThemeProvider } from "@/components";
 import { CopyProtection } from "@/components/copy-protection";
+import { SiteContextMenu } from "@/components/site-context-menu";
 import CONFIG from "@/lib/config";
 import { defaultOgImage } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
@@ -70,9 +71,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <CopyProtection />
-          <Navbar />
-          <main className="relative z-1 flex-1 pt-16 md:pt-20">{children}</main>
-          <Footer />
+          <SiteContextMenu>
+            <Navbar />
+            <main className="relative z-1 flex-1 pt-16 md:pt-20">
+              {children}
+            </main>
+            <Footer />
+          </SiteContextMenu>
         </ThemeProvider>
       </body>
     </html>
