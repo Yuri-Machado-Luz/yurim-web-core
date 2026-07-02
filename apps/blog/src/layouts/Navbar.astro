@@ -1,9 +1,30 @@
 ---
 import { CONFIG } from "@config";
-import { MenuRaw, CloseRaw } from "@assets";
+import { LogoText, LogoTextDark, MenuRaw, CloseRaw } from "@assets";
 import Button from "@ui/Button.astro";
+import ThemeToggle from "@ui/ThemeToggle.astro";
 
 const currentPath = Astro.url.pathname;
+
+const navLinks = CONFIG.nav.pages.filter((p) => !p.cta);
+const ctaPage = CONFIG.nav.pages.find((p) => p.cta);
+
+function isBlogRoute(path: string) {
+  return path === "/" || path.startsWith("/docs/notes/");
+}
+
+function isActive(href: string, external?: boolean) {
+  if (external) return false;
+  if (href === "/") return isBlogRoute(currentPath);
+  return (
+    currentPath === href ||
+    (href !== "/" && currentPath.startsWith(href + "/"))
+  );
+}
+
+function linkProps(external?: boolean) {
+  return external ? { target: "_self" as const } : {};
+}
 ---
 
 <nav
@@ -11,111 +32,122 @@ const currentPath = Astro.url.pathname;
   class="navbar fixed top-0 left-0 z-50 w-full backdrop-blur-3xl will-change-transform"
 >
   <div
-    class="container flex items-center justify-between py-4 font-medium md:py-5"
+    class="site-container flex items-center justify-between py-4 font-medium md:py-5"
   >
-    <a href={CONFIG.nav.logo.href}>
+    <a
+      href={CONFIG.nav.logo.href}
+      aria-label={CONFIG.nav.logo.alt}
+      class="transition-opacity duration-200 hover:opacity-80"
+    >
       <img
-        src={CONFIG.nav.logo.src}
+        src={LogoTextDark.src}
         alt={CONFIG.nav.logo.alt}
-        class="h-8 md:h-10"
+        class="h-8 w-auto md:h-10 dark:hidden"
+      />
+      <img
+        src={LogoText.src}
+        alt={CONFIG.nav.logo.alt}
+        class="hidden h-8 w-auto md:h-10 dark:block"
       />
     </a>
 
-    <!-- Desktop nav -->
-    <ul class="text-md hidden items-center gap-6 md:flex">
-      {
-        CONFIG.nav.pages.map(({ label, href, cta }) => (
-          <li>
-            {cta ? (
-              <Button href={href} variant="primary" size="sm">
-                {label}
-              </Button>
-            ) : (
-              <a
-                href={href}
-                data-nav-link
-                class:list={[
-                  "transition-colors duration-200",
-                  currentPath === href || currentPath.startsWith(href + "/")
-                    ? "text-primary-400"
-                    : "text-muted hover:text-primary-400",
-                ]}
-              >
-                {label}
-              </a>
-            )}
-          </li>
-        ))
-      }
-    </ul>
-
-    <!-- Mobile toggle -->
-    <button
-      data-menu-btn
-      class="border-base flex items-center justify-center rounded-lg p-2 text-muted transition-colors hover:text-primary-400 md:hidden"
-      aria-label="Abrir menu"
-      aria-expanded="false"
-    >
-      <span data-icon-menu aria-hidden set:html={MenuRaw} />
-      <span data-icon-close class="hidden" aria-hidden set:html={CloseRaw} />
-    </button>
-  </div>
-
-  <!-- Mobile drawer -->
-  <div
-    data-menu-drawer
-    class="overflow-hidden md:hidden"
-    style="height: 0; visibility: hidden; border-bottom: 1px solid var(--color-border); background: rgb(from var(--color-bg) r g b / 0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);"
-    aria-hidden="true"
-  >
-    <nav class="flex flex-col gap-1 px-4 pt-3 pb-5">
-      <!-- Início — não está no CONFIG.nav.pages, mas é útil no mobile -->
-      <a
-        href="/"
-        data-nav-link-mobile
-        class:list={[
-          "flex items-center rounded-lg px-3 py-3 text-base font-medium transition-colors duration-200",
-          currentPath === "/"
-            ? "bg-surface text-primary-400"
-            : "text-muted hover:bg-surface hover:text-primary-400",
-        ]}
-      >
-        Início
-      </a>
+    <div class="flex items-center gap-1">
+      <div class="hidden items-center gap-1 md:flex">
+        <ul class="text-md flex items-center gap-1">
+          {
+            navLinks.map(({ label, href, external }) => (
+              <li>
+                <a
+                  href={href}
+                  data-nav-link
+                  data-external={external ? "true" : undefined}
+                  class:list={[
+                    "nav-link px-3 py-2",
+                    isActive(href, external) && "nav-link-active",
+                  ]}
+                  {...linkProps(external)}
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
 
       {
-        CONFIG.nav.pages.map(({ label, href, cta }) =>
-          cta ? null : (
-            <a
-              href={href}
-              data-nav-link-mobile
-              class:list={[
-                "flex items-center rounded-lg px-3 py-3 text-base font-medium transition-colors duration-200",
-                currentPath === href || currentPath.startsWith(href + "/")
-                  ? "bg-surface text-primary-400"
-                  : "text-muted hover:bg-surface hover:text-primary-400",
-              ]}
-            >
-              {label}
-            </a>
-          )
+        ctaPage && (
+          <Button
+            href={ctaPage.href}
+            variant="primary"
+            class="ml-2 hidden md:inline-flex"
+            {...linkProps(ctaPage.external)}
+          >
+            {ctaPage.label}
+          </Button>
         )
       }
 
-      <div class="border-t-base my-2"></div>
+      <ThemeToggle />
 
-      {
-        CONFIG.nav.pages
-          .filter(({ cta }) => cta)
-          .map(({ label, href }) => (
-            <Button href={href} variant="primary" size="sm" class="w-full justify-center">
-              {label}
-            </Button>
-          ))
-      }
-    </nav>
+      <button
+        type="button"
+        data-menu-btn
+        class="flex items-center justify-center rounded-lg border border-[var(--color-border)] p-2 text-muted transition-colors hover:text-primary md:hidden"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+      >
+        <span data-icon-menu aria-hidden set:html={MenuRaw} />
+        <span data-icon-close class="hidden" aria-hidden set:html={CloseRaw} />
+      </button>
+    </div>
   </div>
 </nav>
+
+<!-- Mobile drawer (side panel) -->
+<div
+  data-menu-overlay
+  class="mobile-drawer-overlay pointer-events-none fixed inset-0 z-40 bg-black/50 opacity-0 transition-opacity duration-300 md:hidden"
+  aria-hidden="true"
+></div>
+<aside
+  data-menu-drawer
+  class="mobile-drawer-panel fixed top-0 right-0 z-50 flex h-full w-[min(100%,20rem)] translate-x-full flex-col border-l border-[var(--color-border)] bg-[rgb(from_var(--color-bg)_r_g_b/0.97)] backdrop-blur-2xl transition-transform duration-300 md:hidden"
+  aria-hidden="true"
+>
+  <nav class="flex flex-col gap-1 px-4 pt-6">
+    {
+      navLinks.map(({ label, href, external }) => (
+        <a
+          href={href}
+          data-nav-link-mobile
+          data-external={external ? "true" : undefined}
+          class:list={[
+            "mobile-nav-link",
+            isActive(href, external) && "mobile-nav-link-active",
+          ]}
+          {...linkProps(external)}
+        >
+          {label}
+        </a>
+      ))
+    }
+  </nav>
+  {
+    ctaPage && (
+      <div class="mt-auto border-t border-[var(--color-border)] px-4 py-6">
+        <Button
+          href={ctaPage.href}
+          variant="primary"
+          class="w-full justify-center"
+          {...linkProps(ctaPage.external)}
+        >
+          {ctaPage.label}
+        </Button>
+      </div>
+    )
+  }
+</aside>
 
 <script>
   import gsap from "gsap";
@@ -128,28 +160,43 @@ const currentPath = Astro.url.pathname;
   let lastScrollY = 0;
   let lastAnimDir: "up" | "down" | null = null;
 
+  function isBlogRoute(path: string) {
+    return path === "/" || path.startsWith("/docs/notes/");
+  }
+
   function updateActiveLinks(path: string) {
     document
       .querySelectorAll<HTMLAnchorElement>("[data-nav-link]")
       .forEach((link) => {
-        const href = link.getAttribute("href") ?? "";
-        const isActive = path === href || path.startsWith(href + "/");
-        link.classList.toggle("text-primary-400", isActive);
-        if (isActive) {
-          link.style.removeProperty("color");
-        } else {
-          link.style.color = "var(--color-muted)";
+        if (link.dataset.external === "true") {
+          link.classList.remove("nav-link-active");
+          return;
         }
+
+        const href = link.getAttribute("href") ?? "";
+        const active =
+          href === "/"
+            ? isBlogRoute(path)
+            : path === href ||
+              (href !== "/" && path.startsWith(href + "/"));
+        link.classList.toggle("nav-link-active", active);
       });
 
     document
       .querySelectorAll<HTMLAnchorElement>("[data-nav-link-mobile]")
       .forEach((link) => {
+        if (link.dataset.external === "true") {
+          link.classList.remove("mobile-nav-link-active");
+          return;
+        }
+
         const href = link.getAttribute("href") ?? "";
-        const isActive = path === href || (href !== "/" && path.startsWith(href + "/"));
-        link.classList.toggle("text-primary-400", isActive);
-        link.classList.toggle("bg-surface", isActive);
-        link.style.removeProperty("color");
+        const active =
+          href === "/"
+            ? isBlogRoute(path)
+            : path === href ||
+              (href !== "/" && path.startsWith(href + "/"));
+        link.classList.toggle("mobile-nav-link-active", active);
       });
   }
 
@@ -200,12 +247,10 @@ const currentPath = Astro.url.pathname;
   }
 
   function initMobileMenu() {
-    const nav = document.querySelector<HTMLElement>("#navbar");
-    if (!nav) return;
-    const btn = nav.querySelector<HTMLButtonElement>("[data-menu-btn]");
-    const drawer = nav.querySelector<HTMLDivElement>("[data-menu-drawer]");
-    if (!btn || !drawer) return;
-
+    const btn = document.querySelector<HTMLButtonElement>("[data-menu-btn]");
+    const drawer = document.querySelector<HTMLElement>("[data-menu-drawer]");
+    const overlay = document.querySelector<HTMLElement>("[data-menu-overlay]");
+    if (!btn || !drawer || !overlay) return;
     if (btn.dataset.menuInit) return;
     btn.dataset.menuInit = "1";
 
@@ -213,42 +258,31 @@ const currentPath = Astro.url.pathname;
     const iconMenu = btn.querySelector<SVGElement>("[data-icon-menu]")!;
     const iconClose = btn.querySelector<SVGElement>("[data-icon-close]")!;
 
-    function openMenu() {
-      menuOpen = true;
-      btn!.setAttribute("aria-expanded", "true");
-      btn!.setAttribute("aria-label", "Fechar menu");
-      drawer!.setAttribute("aria-hidden", "false");
-      iconMenu.classList.add("hidden");
-      iconClose.classList.remove("hidden");
-      gsap.fromTo(
-        drawer!,
-        { height: 0, autoAlpha: 0 },
-        { height: "auto", autoAlpha: 1, duration: 0.25, ease: "power2.out" },
-      );
+    function setOpen(open: boolean) {
+      menuOpen = open;
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+      drawer.setAttribute("aria-hidden", open ? "false" : "true");
+      overlay.setAttribute("aria-hidden", open ? "false" : "true");
+      iconMenu.classList.toggle("hidden", open);
+      iconClose.classList.toggle("hidden", !open);
+      drawer.classList.toggle("translate-x-full", !open);
+      drawer.classList.toggle("translate-x-0", open);
+      overlay.classList.toggle("pointer-events-none", !open);
+      overlay.classList.toggle("opacity-0", !open);
+      overlay.classList.toggle("opacity-100", open);
+      document.body.style.overflow = open ? "hidden" : "";
     }
 
     function closeMenu() {
-      if (!menuOpen) return;
-      btn!.setAttribute("aria-expanded", "false");
-      btn!.setAttribute("aria-label", "Abrir menu");
-      drawer!.setAttribute("aria-hidden", "true");
-      iconMenu.classList.remove("hidden");
-      iconClose.classList.add("hidden");
-      gsap.to(drawer!, {
-        height: 0,
-        autoAlpha: 0,
-        duration: 0.2,
-        ease: "power2.in",
-        onComplete: () => {
-          menuOpen = false;
-        },
-      });
+      if (menuOpen) setOpen(false);
     }
 
-    btn.addEventListener("click", () => (menuOpen ? closeMenu() : openMenu()));
-    drawer
-      .querySelectorAll("a")
-      .forEach((a) => a.addEventListener("click", closeMenu));
+    btn.addEventListener("click", () => setOpen(!menuOpen));
+    overlay.addEventListener("click", closeMenu);
+    drawer.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", closeMenu),
+    );
   }
 
   document.addEventListener("astro:page-load", () => {
@@ -260,6 +294,17 @@ const currentPath = Astro.url.pathname;
 
   document.addEventListener("astro:before-preparation", () => {
     isTransitioning = true;
+    const drawer = document.querySelector<HTMLElement>("[data-menu-drawer]");
+    const overlay = document.querySelector<HTMLElement>("[data-menu-overlay]");
+    if (drawer) {
+      drawer.classList.add("translate-x-full");
+      drawer.classList.remove("translate-x-0");
+    }
+    if (overlay) {
+      overlay.classList.add("opacity-0", "pointer-events-none");
+      overlay.classList.remove("opacity-100");
+    }
+    document.body.style.overflow = "";
   });
 
   document.addEventListener("astro:after-swap", () => {
