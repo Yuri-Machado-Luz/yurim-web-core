@@ -1,17 +1,21 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { BRAND } from "@/assets";
 import {
   Button,
+  Icon,
   Section,
+  Separator,
   Sheet,
+  SheetClose,
   SheetContent,
+  SheetFooter,
   SheetTrigger,
   ThemeToggle,
 } from "@/components";
@@ -23,31 +27,96 @@ const ctaPage = CONFIG.nav.pages.find((p) => "cta" in p && p.cta);
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const lastScrollY = useRef(0);
+  const lastAnimDir = useRef<"up" | "down" | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setIsScrolled(y > 0);
+
+      const delta = y - lastScrollY.current;
+      lastScrollY.current = y;
+
+      if (Math.abs(delta) < 4) return;
+
+      if (delta > 0 && y > 60) {
+        if (lastAnimDir.current === "down") return;
+        lastAnimDir.current = "down";
+        setNavHidden(true);
+      } else if (delta < 0) {
+        if (lastAnimDir.current === "up") return;
+        lastAnimDir.current = "up";
+        setNavHidden(false);
+      }
+    };
+
+    lastScrollY.current = window.scrollY;
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (href: string) => pathname === href;
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+    lastAnimDir.current = null;
+    const frame = requestAnimationFrame(() => setNavHidden(false));
+    return () => cancelAnimationFrame(frame);
+  }, [pathname]);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  const isActive = (href: string, external?: boolean) => {
+    if (external) return false;
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
+  const renderNavLink = (
+    page: (typeof navLinks)[number],
+    className: string,
+    onClick?: () => void,
+  ) => {
+    const active = isActive(page.href, "external" in page && page.external);
+    const classes = cn(className, active && "nav-link-active");
+
+    if ("external" in page && page.external) {
+      return (
+        <a href={page.href} className={classes} onClick={onClick}>
+          {page.label}
+        </a>
+      );
+    }
+
+    return (
+      <Link href={page.href} className={classes} onClick={onClick}>
+        {page.label}
+      </Link>
+    );
+  };
 
   return (
-    <header
+    <motion.header
+      id="navbar"
       className={cn(
-        "sticky top-0 z-40 w-full border-b transition-all",
-        isScrolled
-          ? "border-border bg-background/80 backdrop-blur-md"
-          : "border-transparent bg-background",
+        "navbar fixed top-0 left-0 z-50 w-full backdrop-blur-3xl will-change-transform",
+        isScrolled && "is-scrolled",
       )}
+      initial={false}
+      animate={{ y: navHidden ? "-100%" : "0%" }}
+      transition={{
+        duration: 0.3,
+        ease: navHidden ? [0.4, 0, 1, 1] : [0, 0, 0.2, 1],
+      }}
     >
       <Section
         as="nav"
         spacing="none"
-        className="flex h-16 items-center justify-between"
+        className="flex items-center justify-between py-4 font-medium md:py-5"
       >
-        {/* Logo */}
         <Link
           href="/"
           aria-label="Início"
@@ -57,30 +126,20 @@ export function Navbar() {
             src={BRAND.textLogoDark}
             loading="eager"
             alt="YML"
-            className="h-6 w-auto dark:hidden"
+            className="h-8 w-auto md:h-10 dark:hidden"
           />
           <Image
             src={BRAND.textLogoLight}
             loading="eager"
             alt="YML"
-            className="hidden h-6 w-auto dark:block"
+            className="hidden h-8 w-auto md:h-10 dark:block"
           />
         </Link>
 
-        {/* Right: nav links + CTA (desktop) + ThemeToggle + Sheet (mobile) */}
         <div className="flex items-center gap-1">
           <div className="hidden items-center gap-1 md:flex">
             {navLinks.map((page) => (
-              <Link
-                key={page.href}
-                href={page.href}
-                className={cn(
-                  "nav-link",
-                  isActive(page.href) && "text-foreground",
-                )}
-              >
-                {page.label}
-              </Link>
+              <span key={page.href}>{renderNavLink(page, "nav-link")}</span>
             ))}
           </div>
           {ctaPage && (
@@ -89,31 +148,57 @@ export function Navbar() {
             </Button>
           )}
           <ThemeToggle />
-          <Sheet>
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-5 w-5" />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-lg border border-border text-muted-foreground hover:text-primary md:hidden"
+                aria-label="Abrir menu"
+              >
+                <Icon name="menu" className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-64">
-              <nav className="mt-8 flex flex-col gap-4">
-                {CONFIG.nav.pages.map((page) => (
+            <SheetContent
+              side="right"
+              className="flex w-[min(100%,20rem)] flex-col gap-0 border-border bg-background/97 p-0 backdrop-blur-2xl"
+            >
+              <nav className="flex flex-col gap-1 px-4 pt-6">
+                <SheetClose asChild>
                   <Link
-                    key={page.href}
-                    href={page.href}
+                    href="/"
                     className={cn(
-                      "nav-link",
-                      isActive(page.href) && "text-foreground",
+                      "mobile-nav-link",
+                      pathname === "/" && "mobile-nav-link-active",
                     )}
                   >
-                    {page.label}
+                    Início
                   </Link>
+                </SheetClose>
+                {navLinks.map((page) => (
+                  <span key={page.href}>
+                    {renderNavLink(page, "mobile-nav-link", () =>
+                      setMobileOpen(false),
+                    )}
+                  </span>
                 ))}
               </nav>
+              {ctaPage && (
+                <>
+                  <Separator className="mx-4 my-3" />
+                  <SheetFooter className="px-4 pb-6">
+                    <SheetClose asChild>
+                      <Button asChild className="w-full">
+                        <Link href={ctaPage.href}>{ctaPage.label}</Link>
+                      </Button>
+                    </SheetClose>
+                  </SheetFooter>
+                </>
+              )}
             </SheetContent>
           </Sheet>
         </div>
       </Section>
-    </header>
+    </motion.header>
   );
 }
