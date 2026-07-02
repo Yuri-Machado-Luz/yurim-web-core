@@ -8,13 +8,24 @@ export const pt = {
     },
   },
   about: {
+    eyebrow: "Sobre",
     title: "Sobre mim",
+    lead: "Desenvolvedor Full-Stack · Analista de Sistemas · São Paulo, Brasil",
     bio: [
-      "Desenvolvedor full-stack autônomo. Sistemas web, APIs e automações, do back-end à interface.",
-      "Em 2024-2025, passei pela IBM, redesenhando o onboarding e reduzindo o tempo de integração de 7 para 3 dias (−57%).",
-      "Paralelo ao desenvolvimento: identidade visual, prototipagem UI/UX e documentação técnica.",
+      "Desenvolvedor full-stack autônomo desde 2020. Construo sistemas web, APIs e automações para pequenas empresas e projetos próprios — do back-end à interface.",
+      "Em 2024-2025, passei pela IBM como Assistente Administrativo, redesenhando o onboarding e reduzindo o tempo de integração de 7 para 3 dias (−57%). Automatizei arquivamento em massa com Python e desenvolvi dashboard de KPIs em Excel/VBA.",
+      "Paralelo ao desenvolvimento: identidade visual, prototipagem UI/UX e produção de conteúdo técnico e acadêmico para clientes sob NDA.",
     ],
+    sections: {
+      bio: "Bio",
+      skills: "Habilidades",
+      skillsLead: "Stack e ferramentas que uso em produção.",
+      experience: "Experiência",
+      education: "Formação",
+      languages: "Idiomas",
+    },
     cta: "Ver histórico completo →",
+    ctaTitle: "Vamos conversar?",
   },
   projects: {
     eyebrow: "Projetos",
