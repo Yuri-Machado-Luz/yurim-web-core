@@ -1,6 +1,5 @@
 import { ProjectCard, Section } from "@/components";
 import { projects } from "@/lib/data";
-
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata(
@@ -24,9 +23,6 @@ export default function ProjectsPage() {
       {/* Featured */}
       {featured.length > 0 && (
         <Section spacing="none" className="pb-12">
-          <h2 className="heading-group mb-6">
-            Em Destaque
-          </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((project) => (
               <ProjectCard
@@ -47,9 +43,7 @@ export default function ProjectsPage() {
       {/* Others */}
       {others.length > 0 && (
         <Section spacing="none" className="pb-12">
-          <h2 className="heading-group mb-6">
-            Outros Projetos
-          </h2>
+          <h2 className="heading-group mb-6">Outros Projetos</h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((project) => (
               <ProjectCard
