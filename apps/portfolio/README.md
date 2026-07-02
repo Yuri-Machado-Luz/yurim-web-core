@@ -40,7 +40,10 @@ pnpm dev   # http://localhost:3000
 pnpm build
 ```
 
-Em dev, links para o blog apontam para `http://localhost:5000` (override via `NEXT_PUBLIC_BLOG_URL` em `.env.development`). Produção: `https://blog.yurimachado.dev.br`.
+> [!TIP]
+> Em dev, links para o blog apontam para `http://localhost:5000` (override via `NEXT_PUBLIC_BLOG_URL` em `.env.development`). 
+
+Produção: `https://blog.yurimachado.dev.br`.
 
 ## Versões
 
