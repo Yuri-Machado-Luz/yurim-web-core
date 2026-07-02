@@ -19,14 +19,6 @@ export {
   CardTitle,
 } from "./card";
 export { ContactForm } from "./contact-form";
-export {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuSeparator,
-  ContextMenuTrigger,
-} from "./context-menu";
 export { Icon } from "./icon";
 export { IconLink } from "./icon-link";
 export { Input } from "./input";
