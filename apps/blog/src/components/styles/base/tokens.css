@@ -1,171 +1,72 @@
-/* ─────────────────────────────────────────────────────────────────────────
-   Tokens consolidated from the design system at D:\Control\DesignSystem.
-   Values mirror dist/css/tokens.standard.css (raw, --color-* naming).
-   Primary is canonical at step 400 (#d21c1c); the old "shadow" scale is now "rose".
-   ───────────────────────────────────────────────────────────────────────── */
-/* ── DESIGN TOKENS ──────────────────────────────────────────────────────────
-   Merged from: base/colors.css + base/tokens.css
-   Removed: shadcn alias vars, @theme inline block, shadcn @layer base reset
-   ───────────────────────────────────────────────────────────────────────── */
+/* Blog token layer — Shadcn brand-tokens + compat aliases for legacy --color-* */
 
-@theme {
-  --color-*: initial;
+@import "../../../styles/brand-tokens.css";
 
-  /* Background / Surface — light default; .dark overrides below */
-  --color-bg: #ffffff;
-  --color-surface: #fafaf9;
-  --color-surface-strong: #f0eeec;
-  --color-border: #d4d0cd;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Text */
-  --color-text: rgba(10, 10, 10, 1);
-  --color-muted: rgba(42, 38, 38, 1);
+  --color-bg: var(--background);
+  --color-text: var(--foreground);
+  --color-surface: var(--card);
+  --color-surface-strong: var(--secondary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-deep: var(--primary-deep);
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary-950: var(--primary-950);
+  --color-shock: var(--shock);
+  --color-tone-note: var(--tone-note);
+  --color-tone-tip: var(--tone-tip);
+  --color-tone-caution: var(--tone-caution);
+  --color-tone-danger: var(--tone-danger);
+  --color-tone-success: var(--tone-success);
 
-  /* Primary — Red */
-  --color-primary: rgba(210, 28, 28, 1);
-  --color-primary-light: #f64646;
-  --color-primary-dark: #ba1313;
-  --color-primary-deep: #a40c0c;
-
-  /* Shock — Hot Pink */
-  --color-shock: #e82771;
-  --color-shock-light: #f54689;
-
-  /* Tones — callouts */
-  --color-tone-note: #7dffd8;
-  --color-tone-tip: #1bd19a;
-  --color-tone-caution: #e8a827;
-  --color-tone-danger: #e82828;
-  --color-tone-success: #3ae827;
-
-  /* Primary scale */
-  --color-primary-50: rgba(255, 125, 125, 1);
-  --color-primary-100: rgba(251, 101, 101, 1);
-  --color-primary-200: rgba(246, 70, 70, 1);
-  --color-primary-300: rgba(232, 40, 40, 1);
-  --color-primary-400: rgba(210, 28, 28, 1);
-  --color-primary-500: rgba(186, 19, 19, 1);
-  --color-primary-600: rgba(164, 12, 12, 1);
-  --color-primary-700: rgba(148, 9, 9, 1);
-  --color-primary-800: rgba(118, 3, 3, 1);
-  --color-primary-900: rgba(93, 0, 0, 1);
-  --color-primary-950: rgba(56, 0, 0, 1);
-
-  /* Rose scale (renamed from "shadow": it is a muted-rose color scale, not box-shadows) */
-  --color-rose-50: rgba(205, 183, 183, 1);
-  --color-rose-100: rgba(201, 161, 161, 1);
-  --color-rose-200: rgba(199, 144, 144, 1);
-  --color-rose-300: rgba(194, 119, 119, 1);
-  --color-rose-400: rgba(162, 84, 84, 1);
-  --color-rose-500: rgba(84, 28, 28, 1);
-  --color-rose-600: rgba(59, 16, 16, 1);
-  --color-rose-700: rgba(42, 9, 9, 1);
-  --color-rose-800: rgba(27, 5, 5, 1);
-  --color-rose-900: rgba(18, 2, 2, 1);
-  --color-rose-950: rgba(8, 0, 0, 1);
-
-  /* Neutral scale */
-  --color-neutral-50: rgba(197, 191, 191, 1);
-  --color-neutral-100: rgba(184, 178, 178, 1);
-  --color-neutral-200: rgba(176, 169, 169, 1);
-  --color-neutral-300: rgba(161, 153, 153, 1);
-  --color-neutral-400: rgba(127, 118, 118, 1);
-  --color-neutral-500: rgba(58, 53, 53, 1);
-  --color-neutral-600: rgba(39, 36, 36, 1);
-  --color-neutral-700: rgba(27, 25, 25, 1);
-  --color-neutral-800: rgba(17, 15, 15, 1);
-  --color-neutral-900: rgba(10, 10, 10, 1);
-  --color-neutral-950: rgba(5, 4, 4, 1);
-
-  /* Shock scale */
-  --color-shock-50: rgba(255, 125, 175, 1);
-  --color-shock-100: rgba(251, 101, 159, 1);
-  --color-shock-200: rgba(245, 70, 137, 1);
-  --color-shock-300: rgba(232, 39, 113, 1);
-  --color-shock-400: rgba(210, 28, 97, 1);
-  --color-shock-500: rgba(187, 20, 84, 1);
-  --color-shock-600: rgba(163, 12, 71, 1);
-  --color-shock-700: rgba(148, 9, 62, 1);
-  --color-shock-800: rgba(118, 3, 46, 1);
-  --color-shock-900: rgba(93, 0, 35, 1);
-  --color-shock-950: rgba(55, 0, 21, 1);
-
-  /* Cyan scale */
-  --color-cyan-50: rgba(125, 255, 216, 1);
-  --color-cyan-100: rgba(101, 251, 206, 1);
-  --color-cyan-200: rgba(70, 245, 193, 1);
-  --color-cyan-300: rgba(39, 232, 174, 1);
-  --color-cyan-400: rgba(27, 209, 154, 1);
-  --color-cyan-500: rgba(19, 187, 137, 1);
-  --color-cyan-600: rgba(13, 164, 118, 1);
-  --color-cyan-700: rgba(9, 148, 106, 1);
-  --color-cyan-800: rgba(3, 118, 84, 1);
-  --color-cyan-900: rgba(0, 93, 65, 1);
-  --color-cyan-950: rgba(0, 55, 39, 1);
-
-  /* Green scale */
-  --color-green-50: rgba(138, 255, 125, 1);
-  --color-green-100: rgba(116, 251, 101, 1);
-  --color-green-200: rgba(88, 245, 69, 1);
-  --color-green-300: rgba(58, 232, 39, 1);
-  --color-green-400: rgba(46, 210, 28, 1);
-  --color-green-500: rgba(37, 187, 20, 1);
-  --color-green-600: rgba(28, 164, 12, 1);
-  --color-green-700: rgba(23, 149, 9, 1);
-  --color-green-800: rgba(14, 118, 3, 1);
-  --color-green-900: rgba(9, 93, 0, 1);
-  --color-green-950: rgba(5, 55, 0, 1);
-
-  /* Transition durations */
-  --duration-fast: 150ms;
-  --duration-base: 200ms;
-  --duration-slow: 400ms;
-  --duration-enter: 500ms;
-  --duration-leave: 350ms;
-  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  /* Layout */
-  --section-gap: 8rem;
-  --section-gap-sm: 5rem;
-  --navbar-height: 6rem;
-  --drawer-top: 5.5rem;
-
-  /* Border Radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-full: 9999px;
-
-  /* Z-index */
-  --z-base: 1;
-  --z-behind: 0;
-  --z-above: 2;
-  --z-navbar: 50;
-
-  /* Opacity */
-  --opacity-faint: 0.2;
-
-  /* Breakpoints */
-  --breakpoint-sm: 40rem;
-  --breakpoint-md: 48rem;
-  --breakpoint-base: 56rem;
-  --breakpoint-lg: 64rem;
-  --breakpoint-xl: 80rem;
-  --breakpoint-2xl: 96rem;
-
-  /* Font sizes */
-  --font-size-xs:   0.75rem;
-  --font-size-sm:   0.8125rem;
-  --font-size-base: 0.875rem;
-  --font-size-md:   0.9375rem;
-  --font-size-lg:   1.0625rem;
-  --font-size-xl:   1.25rem;
-  --font-size-2xl:  2rem;
-  --font-size-3xl:  clamp(2.5rem, 5vw, 4rem);
-
-  /* Fonts */
   --font-sans:
     "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
@@ -173,127 +74,53 @@
   --font-mono:
     "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, Courier,
     monospace;
+  --font-heading: var(--font-display);
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.8125rem;
+  --font-size-base: 0.875rem;
+  --font-size-md: 0.9375rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: clamp(2.5rem, 5vw, 4rem);
+
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 400ms;
+  --section-gap: 8rem;
+  --section-gap-sm: 5rem;
+  --navbar-height: 5rem;
+  --drawer-top: 5.5rem;
+  --z-navbar: 50;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
 }
 
 @layer base {
   :root {
-    /* Glow colors */
+    --color-muted: var(--muted-foreground);
     --primary-glow: rgba(232, 40, 40, 0.18);
     --accent-glow: rgba(27, 209, 154, 0.15);
-
-    /* Callout tone aliases */
-    --tone-note: var(--color-tone-note);
-    --tone-tip: var(--color-tone-tip);
-    --tone-caution: var(--color-tone-caution);
-    --tone-danger: var(--color-tone-danger);
-    --tone-success: var(--color-tone-success);
-    --tone-info: var(--color-tone-tip);
-
-    /* Soft tone variants for callout backgrounds */
-    --tone-note-soft: color-mix(
-      in srgb,
-      var(--color-tone-note) 10%,
-      var(--color-surface-strong)
-    );
-    --tone-tip-soft: color-mix(
-      in srgb,
-      var(--color-tone-tip) 10%,
-      var(--color-surface-strong)
-    );
-    --tone-caution-soft: color-mix(
-      in srgb,
-      var(--color-tone-caution) 10%,
-      var(--color-surface-strong)
-    );
-    --tone-danger-soft: color-mix(
-      in srgb,
-      var(--color-tone-danger) 10%,
-      var(--color-surface-strong)
-    );
-    --tone-success-soft: color-mix(
-      in srgb,
-      var(--color-tone-success) 10%,
-      var(--color-surface-strong)
-    );
-    --tone-info-soft: color-mix(
-      in srgb,
-      var(--color-tone-tip) 10%,
-      var(--color-surface-strong)
-    );
-
-    /* Status feedback */
-    --color-success: var(--color-tone-success);
-    --color-success-bg: color-mix(
-      in srgb,
-      var(--color-tone-success) 12%,
-      var(--color-surface)
-    );
-    --color-error: var(--color-primary);
-    --color-error-bg: color-mix(
-      in srgb,
-      var(--color-primary) 12%,
-      var(--color-surface)
-    );
-
-    /* Glow animation durations */
-    --glow-duration-1: 0.2s;
-    --glow-duration-2: 0.4s;
-    --glow-duration-3: 0.6s;
-    --glow-duration-4: 0.8s;
-    --glow-duration-5: 1s;
-    --glow-duration-6: 1.2s;
-    --glow-duration-7: 1.5s;
-    --glow-duration-8: 2s;
-    --glow-duration-9: 2.5s;
-    --glow-duration-10: 3s;
-    --glow-duration-11: 3.5s;
-    --glow-duration-12: 4s;
-    --glow-duration-13: 4.5s;
-    --glow-duration-14: 5s;
-    --glow-duration-15: 5.5s;
-    --glow-duration-16: 6s;
-    --glow-duration-17: 7s;
-    --glow-duration-18: 8s;
-    --glow-duration-19: 10s;
-    --glow-duration-20: 12s;
-    --glow-duration-fast: var(--glow-duration-8);
-    --glow-duration-normal: var(--glow-duration-12);
-    --glow-duration-slow: var(--glow-duration-16);
-    --glow-duration-very-slow: var(--glow-duration-20);
-
-    /* Danger aliases (Contact.tsx uses --color-danger-*) */
+    --tone-info: var(--tone-tip);
+    --tone-note-soft: color-mix(in srgb, var(--tone-note) 10%, var(--secondary));
+    --tone-tip-soft: color-mix(in srgb, var(--tone-tip) 10%, var(--secondary));
+    --tone-caution-soft: color-mix(in srgb, var(--tone-caution) 10%, var(--secondary));
+    --tone-danger-soft: color-mix(in srgb, var(--tone-danger) 10%, var(--secondary));
+    --tone-success-soft: color-mix(in srgb, var(--tone-success) 10%, var(--secondary));
+    --tone-info-soft: var(--tone-tip-soft);
+    --color-success: var(--tone-success);
+    --color-success-bg: color-mix(in srgb, var(--tone-success) 12%, var(--card));
+    --color-error: var(--primary);
+    --color-error-bg: color-mix(in srgb, var(--primary) 12%, var(--card));
     --color-danger: var(--color-error);
     --color-danger-bg: var(--color-error-bg);
-
-    /* Shadows (track --color-primary) */
-    --shadow-card-hover: 0 0 0 1px var(--color-primary), 0 0 24px rgb(from var(--color-primary) r g b / 0.35);
-    --shadow-card-accent-hover: 0 0 0 1px var(--color-primary), 0 0 20px rgb(from var(--color-primary) r g b / 0.35);
-    --shadow-hero-ring: 0 0 0 3px rgb(from var(--color-primary) r g b / 0.12), 0 0 64px rgb(from var(--color-primary) r g b / 0.1);
-    --shadow-ambient-min: 0 0 18px rgb(from var(--color-primary) r g b / 0.08);
-    --shadow-ambient-max: 0 0 36px rgb(from var(--color-primary) r g b / 0.22);
-    --shadow-ambient-subtle-min: 0 0 10px rgb(from var(--color-primary) r g b / 0.04);
-    --shadow-ambient-subtle-max: 0 0 22px rgb(from var(--color-primary) r g b / 0.11);
-    --shadow-card-subtle: 0 0 12px rgb(from var(--color-primary) r g b / 0.05);
-    --shadow-card-hover-subtle:
-      0 0 0 1px color-mix(in srgb, var(--color-primary) 45%, transparent),
-      0 0 16px rgb(from var(--color-primary) r g b / 0.18);
-    --shadow-link-hover:
-      0 0 0 1px color-mix(in srgb, var(--color-primary) 55%, transparent),
-      0 0 14px rgb(from var(--color-primary) r g b / 0.24);
-    --glow-duration-subtle: 7s;
-
-    /* Layout */
     --prose-width: 72ch;
     --container-max: 72rem;
+    --glow-duration-normal: 4s;
+    --glow-duration-subtle: 7s;
   }
-
-}
-
-.dark {
-  --color-bg: rgba(5, 4, 4, 1);
-  --color-surface: rgba(17, 15, 15, 1);
-  --color-surface-strong: rgba(27, 25, 25, 1);
-  --color-border: rgba(255, 255, 255, 0.12);
-  --color-text: #f2f4f3;
-  --color-muted: rgba(184, 178, 178, 1);
 }

@@ -1,9 +1,12 @@
 @import "tailwindcss";
 @import "tailwind-animations";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 @import "rehype-callouts/theme/github";
 
 @custom-variant dark (&:is(.dark *));
 
+@import "../../styles/brand-tokens.css";
 @import "./base/tokens.css";
 @import "./base/reset.css";
 @import "./base/prose.css";
@@ -17,27 +20,27 @@
 /* ── Scrollbar ── */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border) var(--color-bg);
+  scrollbar-color: var(--border) var(--background);
 }
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-bg);
+  background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: var(--border);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-700);
+  background: var(--primary-700, var(--primary));
 }
 
 @layer base {
   body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
+    background-color: var(--background);
+    color: var(--foreground);
   }
   html {
     font-family: var(--font-sans);
@@ -49,7 +52,6 @@
   samp {
     font-family: var(--font-mono);
   }
-
 }
 
 @layer utilities {
@@ -60,7 +62,7 @@
     font-family: var(--font-mono);
   }
   .text-muted {
-    color: var(--color-muted);
+    color: var(--muted-foreground);
   }
   .text-primary {
     color: var(--color-primary-400);

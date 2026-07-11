@@ -1,0 +1,128 @@
+/* Canonical brand tokens — Shadcn CSS variables.
+   Source of truth for Portfolio + Blog. Sync via scripts/sync-tokens.mjs */
+
+:root {
+  --background: #ffffff;
+  --foreground: rgba(10, 10, 10, 1);
+  --card: #fafaf9;
+  --card-foreground: rgba(10, 10, 10, 1);
+  --popover: #ffffff;
+  --popover-foreground: rgba(10, 10, 10, 1);
+  --primary: rgba(210, 28, 28, 1);
+  --primary-foreground: #f2f4f3;
+  --secondary: #f0eeec;
+  --secondary-foreground: rgba(17, 15, 15, 1);
+  --muted: #f0eeec;
+  --muted-foreground: rgba(42, 38, 38, 1);
+  --accent: #f0eeec;
+  --accent-foreground: rgba(17, 15, 15, 1);
+  --destructive: rgba(232, 40, 40, 1);
+  --border: #d4d0cd;
+  --input: #d4d0cd;
+  --ring: rgba(210, 28, 28, 1);
+  --chart-1: rgba(210, 28, 28, 1);
+  --chart-2: rgba(232, 39, 113, 1);
+  --chart-3: rgba(27, 209, 154, 1);
+  --chart-4: rgba(46, 210, 28, 1);
+  --chart-5: rgba(162, 84, 84, 1);
+  --sidebar: #f8f7f6;
+  --sidebar-foreground: rgba(10, 10, 10, 1);
+  --sidebar-primary: rgba(210, 28, 28, 1);
+  --sidebar-primary-foreground: #f2f4f3;
+  --sidebar-accent: #f0eeec;
+  --sidebar-accent-foreground: rgba(17, 15, 15, 1);
+  --sidebar-border: #d4d0cd;
+  --sidebar-ring: rgba(210, 28, 28, 1);
+  --radius: 0.75rem;
+
+  /* Layout chrome */
+  --navbar-height: 5rem;
+  --section-gap: 8rem;
+  --section-gap-sm: 5rem;
+  --container-max: 72rem;
+  --prose-width: 72ch;
+  --z-base: 1;
+  --z-behind: 0;
+  --z-above: 2;
+  --z-navbar: 50;
+  --duration-base: 200ms;
+  --duration-fast: 150ms;
+  --duration-slow: 400ms;
+
+  /* Brand scales (shared) */
+  --primary-light: #f64646;
+  --primary-dark: #ba1313;
+  --primary-deep: #a40c0c;
+  --shock: #e82771;
+  --tone-note: #7dffd8;
+  --tone-tip: #1bd19a;
+  --tone-caution: #e8a827;
+  --tone-danger: #e82828;
+  --tone-success: #3ae827;
+
+  --primary-50: rgba(255, 125, 125, 1);
+  --primary-100: rgba(251, 101, 101, 1);
+  --primary-200: rgba(246, 70, 70, 1);
+  --primary-300: rgba(232, 40, 40, 1);
+  --primary-400: rgba(210, 28, 28, 1);
+  --primary-500: rgba(186, 19, 19, 1);
+  --primary-600: rgba(164, 12, 12, 1);
+  --primary-700: rgba(148, 9, 9, 1);
+  --primary-800: rgba(118, 3, 3, 1);
+  --primary-900: rgba(93, 0, 0, 1);
+  --primary-950: rgba(56, 0, 0, 1);
+
+  /* Shadows */
+  --shadow-hero-ring:
+    0 0 0 3px rgb(from var(--primary) r g b / 0.12),
+    0 0 64px rgb(from var(--primary) r g b / 0.1);
+  --shadow-ambient-min: 0 0 18px rgb(from var(--primary) r g b / 0.08);
+  --shadow-ambient-max: 0 0 36px rgb(from var(--primary) r g b / 0.22);
+  --shadow-card-subtle: 0 0 12px rgb(from var(--primary) r g b / 0.05);
+  --shadow-ambient-subtle-min: 0 0 10px rgb(from var(--primary) r g b / 0.04);
+  --shadow-ambient-subtle-max: 0 0 22px rgb(from var(--primary) r g b / 0.11);
+  --shadow-card-hover:
+    0 0 0 1px var(--primary), 0 0 24px rgb(from var(--primary) r g b / 0.35);
+  --shadow-card-hover-subtle:
+    0 0 0 1px color-mix(in srgb, var(--primary) 45%, transparent),
+    0 0 16px rgb(from var(--primary) r g b / 0.18);
+  --shadow-link-hover:
+    0 0 0 1px color-mix(in srgb, var(--primary) 55%, transparent),
+    0 0 14px rgb(from var(--primary) r g b / 0.24);
+  --glow-duration-normal: 4s;
+  --glow-duration-subtle: 7s;
+}
+
+.dark {
+  --background: rgba(5, 4, 4, 1);
+  --foreground: #f2f4f3;
+  --card: rgba(17, 15, 15, 1);
+  --card-foreground: #f2f4f3;
+  --popover: rgba(17, 15, 15, 1);
+  --popover-foreground: #f2f4f3;
+  --primary: rgba(210, 28, 28, 1);
+  --primary-foreground: #f2f4f3;
+  --secondary: rgba(27, 25, 25, 1);
+  --secondary-foreground: #f2f4f3;
+  --muted: rgba(27, 25, 25, 1);
+  --muted-foreground: rgba(184, 178, 178, 1);
+  --accent: rgba(27, 25, 25, 1);
+  --accent-foreground: #f2f4f3;
+  --destructive: rgba(232, 40, 40, 1);
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: rgba(210, 28, 28, 1);
+  --chart-1: rgba(210, 28, 28, 1);
+  --chart-2: rgba(232, 39, 113, 1);
+  --chart-3: rgba(27, 209, 154, 1);
+  --chart-4: rgba(46, 210, 28, 1);
+  --chart-5: rgba(162, 84, 84, 1);
+  --sidebar: rgba(10, 10, 10, 1);
+  --sidebar-foreground: #f2f4f3;
+  --sidebar-primary: rgba(210, 28, 28, 1);
+  --sidebar-primary-foreground: #f2f4f3;
+  --sidebar-accent: rgba(27, 25, 25, 1);
+  --sidebar-accent-foreground: #f2f4f3;
+  --sidebar-border: rgba(255, 255, 255, 0.12);
+  --sidebar-ring: rgba(210, 28, 28, 1);
+}
