@@ -149,6 +149,14 @@
     @apply bg-secondary text-primary;
   }
 
+  .nav-icon-btn {
+    @apply inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground;
+  }
+
+  .nav-icon-btn svg {
+    @apply size-5;
+  }
+
   /* ── Page typography (aligned with portfolio .heading-page / .heading-section / .lead) ── */
   .page-title {
     font-family: var(--font-display);

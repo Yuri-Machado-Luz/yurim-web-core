@@ -9,6 +9,7 @@ export const pt = {
     portfolio: "Portfólio",
     projects: "Projetos",
     about: "Sobre",
+    services: "Serviços",
     blog: "Blog",
     contact: "Contato",
     openMenu: "Abrir menu",

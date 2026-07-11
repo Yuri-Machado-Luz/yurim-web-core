@@ -14,11 +14,6 @@ const portfolioPrefix = locale === "en" ? "/en" : "";
 
 const localizedNavLinks = [
   {
-    label: messages.nav.portfolio,
-    href: portfolioUrl(portfolioPrefix || "/"),
-    external: true,
-  },
-  {
     label: messages.nav.projects,
     href: portfolioUrl(`${portfolioPrefix}/projetos`),
     external: true,
@@ -29,9 +24,14 @@ const localizedNavLinks = [
     external: true,
   },
   {
-    label: messages.nav.blog,
-    href: locale === "en" ? "/en" : "/",
-    external: false,
+    label: messages.nav.services,
+    href: portfolioUrl(`${portfolioPrefix}/servicos`),
+    external: true,
+  },
+  {
+    label: messages.nav.portfolio,
+    href: portfolioUrl(portfolioPrefix || "/"),
+    external: true,
   },
 ];
 
@@ -42,21 +42,12 @@ const localizedCta = {
   cta: true,
 };
 
-function isBlogRoute(path: string) {
-  return (
-    path === "/" ||
-    path === "/en" ||
-    path.startsWith("/en/") ||
-    path.startsWith("/posts/")
-  );
-}
-
+/** Active only for in-site routes. Cross-site links never highlight. */
 function isActive(href: string, external?: boolean) {
   if (external) return false;
-  if (href === "/" || href === "/en") return isBlogRoute(currentPath);
   return (
     currentPath === href ||
-    (href !== "/" && currentPath.startsWith(href + "/"))
+    (href !== "/" && href !== "/en" && currentPath.startsWith(href + "/"))
   );
 }
 
@@ -133,22 +124,12 @@ function linkProps(external?: boolean) {
       <button
         type="button"
         data-menu-btn
-        class="inline-flex size-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:text-primary md:hidden"
+        class="nav-icon-btn border border-border md:hidden"
         aria-label={messages.nav.openMenu}
         aria-expanded="false"
       >
-        <span
-          data-icon-menu
-          class="size-5 [&_svg]:size-5"
-          aria-hidden
-          set:html={MenuRaw}
-        />
-        <span
-          data-icon-close
-          class="hidden size-5 [&_svg]:size-5"
-          aria-hidden
-          set:html={CloseRaw}
-        />
+        <span data-icon-menu aria-hidden set:html={MenuRaw} />
+        <span data-icon-close class="hidden" aria-hidden set:html={CloseRaw} />
       </button>
     </div>
   </div>
@@ -211,15 +192,6 @@ function linkProps(external?: boolean) {
   let lastScrollY = 0;
   let lastAnimDir: "up" | "down" | null = null;
 
-  function isBlogRoute(path: string) {
-    return (
-      path === "/" ||
-      path === "/en" ||
-      path.startsWith("/en/") ||
-      path.startsWith("/posts/")
-    );
-  }
-
   function updateActiveLinks(path: string) {
     document
       .querySelectorAll<HTMLAnchorElement>("[data-nav-link]")
@@ -231,10 +203,8 @@ function linkProps(external?: boolean) {
 
         const href = link.getAttribute("href") ?? "";
         const active =
-          href === "/" || href === "/en"
-            ? isBlogRoute(path)
-            : path === href ||
-              (href !== "/" && path.startsWith(href + "/"));
+          path === href ||
+          (href !== "/" && href !== "/en" && path.startsWith(href + "/"));
         link.classList.toggle("nav-link-active", active);
       });
 
@@ -248,10 +218,8 @@ function linkProps(external?: boolean) {
 
         const href = link.getAttribute("href") ?? "";
         const active =
-          href === "/" || href === "/en"
-            ? isBlogRoute(path)
-            : path === href ||
-              (href !== "/" && path.startsWith(href + "/"));
+          path === href ||
+          (href !== "/" && href !== "/en" && path.startsWith(href + "/"));
         link.classList.toggle("mobile-nav-link-active", active);
       });
   }

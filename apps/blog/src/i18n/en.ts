@@ -11,6 +11,7 @@ export const en: Messages = {
     portfolio: "Portfolio",
     projects: "Projects",
     about: "About",
+    services: "Services",
     blog: "Blog",
     contact: "Contact",
     openMenu: "Open menu",
