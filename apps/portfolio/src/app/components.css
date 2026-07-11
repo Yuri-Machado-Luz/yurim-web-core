@@ -4,6 +4,7 @@
     @apply px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-primary;
   }
 
+  .nav-link:hover,
   .nav-link-active {
     @apply text-primary;
   }
@@ -12,8 +13,18 @@
     @apply flex items-center rounded-lg px-3 py-3 text-base font-medium text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-primary;
   }
 
+  .mobile-nav-link:hover,
   .mobile-nav-link-active {
     @apply bg-secondary text-primary;
+  }
+
+  /* Locale + theme icon buttons (shared with blog) */
+  .nav-icon-btn {
+    @apply inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground;
+  }
+
+  .nav-icon-btn svg {
+    @apply size-5;
   }
 
   /* Link/ícone com currentColor que escurece no hover */

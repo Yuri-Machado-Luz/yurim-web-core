@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Button } from "@/components";
 import { useLocale, useMessages } from "@/components/locale-provider";
 import { writeLocaleCookie } from "@/lib/locale-cookie";
 import { switchLocalePath } from "@/lib/locale-path";
@@ -16,15 +15,13 @@ export function LocaleToggle() {
   const href = switchLocalePath(pathname, next);
 
   return (
-    <Button variant="ghost" size="icon" asChild>
-      <Link
-        href={href}
-        aria-label={messages.nav.toggleLocale}
-        onClick={() => writeLocaleCookie(next)}
-        className="font-mono text-xs font-semibold tracking-wide"
-      >
-        {messages.locale.other}
-      </Link>
-    </Button>
+    <Link
+      href={href}
+      aria-label={messages.nav.toggleLocale}
+      onClick={() => writeLocaleCookie(next)}
+      className="nav-icon-btn font-mono text-xs font-semibold tracking-wide"
+    >
+      {messages.locale.other}
+    </Link>
   );
 }

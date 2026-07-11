@@ -173,31 +173,19 @@ export function Navbar() {
           <ThemeToggle />
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-lg border border-border text-muted-foreground hover:text-primary md:hidden"
+              <button
+                type="button"
+                className="nav-icon-btn border border-border md:hidden"
                 aria-label={messages.nav.openMenu}
               >
-                <Icon name="menu" className="h-5 w-5" />
-              </Button>
+                <Icon name="menu" />
+              </button>
             </SheetTrigger>
             <SheetContent
               side="right"
               className="flex w-[min(100%,20rem)] flex-col gap-0 border-border bg-background/97 p-0 backdrop-blur-2xl"
             >
               <nav className="flex flex-col gap-1 px-4 pt-6">
-                <SheetClose asChild>
-                  <Link
-                    href={homeHref}
-                    className={cn(
-                      "mobile-nav-link",
-                      basePath === "/" && "mobile-nav-link-active",
-                    )}
-                  >
-                    {messages.nav.home}
-                  </Link>
-                </SheetClose>
                 {navLinks.map((page) => (
                   <span key={page.href}>
                     {renderNavLink(page, "mobile-nav-link", () =>
