@@ -41,21 +41,13 @@ async function buildGroup(
     const links = entries
       .map((entry) => {
         const type = "type" in entry.data ? entry.data.type : "doc";
-        const href =
-          type === "changelog"
-            ? "/posts/changelog"
-            : postHref(collectionName, entry.id);
+        const href = postHref(collectionName, entry.id);
         const label = type === "changelog" ? "Changelog" : "Sobre";
         return {
           type: "link" as const,
           label,
           href,
-          isCurrent:
-            type === "changelog"
-              ? currentPath === "/posts/changelog" ||
-                (Boolean(currentPath?.startsWith("/posts/portfolio/")) &&
-                  Boolean(currentPath?.endsWith("/changelog")))
-              : currentPath === href,
+          isCurrent: currentPath === href,
           _sort: type === "changelog" ? 1 : 0,
         };
       })
