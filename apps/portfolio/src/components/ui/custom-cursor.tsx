@@ -78,18 +78,14 @@ export function CustomCursor() {
     <div
       ref={cursorRef}
       aria-hidden="true"
-      className="pointer-events-none fixed top-0 left-0 z-[9999] will-change-transform"
+      className={cn(
+        "pointer-events-none fixed top-0 left-0 z-[9999] flex size-10 items-center justify-center will-change-transform",
+        pressed && "is-pressed",
+        hovering && !pressed && "is-pointer",
+      )}
     >
-      <span
-        className={cn(
-          "block h-6 w-6 rounded-full border-2 border-primary/45",
-          pressed
-            ? "custom-cursor-press"
-            : hovering
-              ? "custom-cursor-idle custom-cursor-pointer"
-              : "custom-cursor-idle",
-        )}
-      />
+      <span className="custom-cursor-core relative z-10" />
+      <span className="custom-cursor-ring" />
     </div>
   );
 }

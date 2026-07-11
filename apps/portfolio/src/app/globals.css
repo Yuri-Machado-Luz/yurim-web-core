@@ -317,27 +317,86 @@ body.custom-cursor-active * {
   cursor: none !important;
 }
 
-.custom-cursor-idle {
-  animation: picture-ring-pulse 2.8s ease-out infinite;
-  background: transparent;
-  transform-origin: center;
-}
-
-.custom-cursor-press {
-  width: 1.25rem;
-  height: 1.25rem;
-  background: color-mix(in srgb, var(--primary) 55%, transparent);
-  border-color: var(--primary);
+.custom-cursor-core {
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--primary) 72%, transparent);
+  border: 1.5px solid var(--primary);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--background) 55%, transparent);
   transition:
-    width 120ms ease,
-    height 120ms ease,
-    background 120ms ease;
+    width 140ms ease,
+    height 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease,
+    transform 140ms ease;
 }
 
-.custom-cursor-pointer {
-  animation: picture-ring-pulse 1.4s ease-out infinite;
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 25%, transparent);
-  border-width: 2.5px;
+.custom-cursor-ring {
+  position: absolute;
+  inset: 50%;
+  width: 1.65rem;
+  height: 1.65rem;
+  margin: -0.825rem 0 0 -0.825rem;
+  border-radius: 9999px;
+  border: 1.5px solid color-mix(in srgb, var(--primary) 55%, transparent);
+  animation: custom-cursor-pulse 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+.is-pointer .custom-cursor-core {
+  width: 0.95rem;
+  height: 0.95rem;
+  background: color-mix(in srgb, var(--primary) 88%, transparent);
+  border-color: var(--primary);
+}
+
+.is-pointer .custom-cursor-ring {
+  width: 2.35rem;
+  height: 2.35rem;
+  margin: -1.175rem 0 0 -1.175rem;
+  border-width: 2px;
+  border-color: color-mix(in srgb, var(--primary) 80%, transparent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--primary) 18%, transparent);
+  animation: custom-cursor-pulse-strong 0.9s ease-out infinite;
+}
+
+.is-pressed .custom-cursor-core {
+  width: 0.45rem;
+  height: 0.45rem;
+  background: var(--primary);
+  transform: scale(0.92);
+}
+
+.is-pressed .custom-cursor-ring {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: -0.55rem 0 0 -0.55rem;
+  opacity: 0.35;
+  animation: none;
+}
+
+@keyframes custom-cursor-pulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+@keyframes custom-cursor-pulse-strong {
+  0% {
+    transform: scale(0.88);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -348,8 +407,7 @@ body.custom-cursor-active * {
   .education-item,
   .language-card,
   .quick-facts-card,
-  .custom-cursor-idle,
-  .custom-cursor-pointer {
+  .custom-cursor-ring {
     animation: none;
   }
 
