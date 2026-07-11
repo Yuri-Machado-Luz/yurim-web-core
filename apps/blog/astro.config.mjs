@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
+import react from "@astrojs/react";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
@@ -18,6 +19,13 @@ const rehypePlugins = [rehypeSlug, rehypeCallouts, rehypeWrapTables];
 
 export default defineConfig({
   site: "https://blog.yurimachado.dev.br",
+  i18n: {
+    defaultLocale: "pt",
+    locales: ["pt", "en"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   prefetch: {
     defaultStrategy: "hover",
     prefetchAll: false,
@@ -31,12 +39,14 @@ export default defineConfig({
   },
 
   integrations: [
+    react(),
     icon(),
     mdx({ extendMarkdownConfig: true }),
     sitemap({
       filter: (page) =>
-        page.startsWith("https://blog.yurimachado.dev.br/docs/notes/") ||
-        page === "https://blog.yurimachado.dev.br/",
+        page === "https://blog.yurimachado.dev.br/" ||
+        page.startsWith("https://blog.yurimachado.dev.br/docs/") ||
+        page.startsWith("https://blog.yurimachado.dev.br/en"),
     }),
   ],
 
@@ -56,6 +66,7 @@ export default defineConfig({
     },
     resolve: {
       alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
         "@components": fileURLToPath(
           new URL("./src/components", import.meta.url),
         ),
