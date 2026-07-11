@@ -1,16 +1,29 @@
 ---
-/** Blocking theme init + icon visibility — must render before global.css. */
+/** Blocking theme init + icon visibility — must render before global.css.
+ *  Resolution: cookie → localStorage → prefers-color-scheme
+ */
 ---
 <script is:inline>
   (function () {
     var key = "theme";
     try {
-      var stored = localStorage.getItem(key);
+      var cookieMatch = document.cookie.match(/(?:^|;\s*)theme=(light|dark|system)(?:;|$)/);
+      var fromCookie = cookieMatch ? cookieMatch[1] : null;
+      var fromStorage = localStorage.getItem(key);
+      var stored =
+        fromCookie ||
+        (fromStorage === "light" ||
+        fromStorage === "dark" ||
+        fromStorage === "system"
+          ? fromStorage
+          : null);
       var prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)",
       ).matches;
-      var isDark =
-        stored === "dark" || (stored !== "light" && prefersDark);
+      var isDark = prefersDark;
+      if (stored === "light") isDark = false;
+      else if (stored === "dark") isDark = true;
+      else isDark = prefersDark;
       var theme = isDark ? "dark" : "light";
       var root = document.documentElement;
       root.classList.toggle("dark", isDark);

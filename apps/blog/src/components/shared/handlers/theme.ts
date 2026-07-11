@@ -1,6 +1,10 @@
-/** localStorage key — matches next-themes default used by the portfolio site */
-export const THEME_STORAGE_KEY = "theme";
+import {
+  THEME_STORAGE_KEY,
+  writeThemeCookie,
+  type ThemeValue,
+} from "@/lib/theme-cookie";
 
+export { THEME_STORAGE_KEY };
 export type Theme = "light" | "dark";
 
 export function getSystemTheme(): Theme {
@@ -28,6 +32,7 @@ export function applyTheme(theme: Theme) {
 export function setTheme(theme: Theme) {
   applyTheme(theme);
   localStorage.setItem(THEME_STORAGE_KEY, theme);
+  writeThemeCookie(theme as ThemeValue);
 }
 
 export function getCurrentTheme(): Theme {
