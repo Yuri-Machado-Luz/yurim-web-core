@@ -26,6 +26,7 @@ export function ProjectsPageContent() {
                 description={project.description}
                 status={project.status}
                 tags={project.tags ?? []}
+                badge={project.badge ? messages.projects.demoSoon : undefined}
                 github={project.github}
                 live={project.live}
                 documentation={project.documentation}
@@ -46,6 +47,7 @@ export function ProjectsPageContent() {
                 description={project.description}
                 status={project.status}
                 tags={project.tags ?? []}
+                badge={project.badge ? messages.projects.demoSoon : undefined}
                 github={project.github}
                 live={project.live}
                 documentation={project.documentation}

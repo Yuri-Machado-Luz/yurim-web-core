@@ -10,10 +10,9 @@ const blogBase = (
 export const CONFIG = {
   meta: {
     author: "Yuri Machado Luz",
-    suffix: " — Yuri Machado Luz",
-    description: "Sistemas web, APIs e automações — do back-end à interface.",
-    descriptionEn:
-      "Web systems, APIs, and automations — from back-end to interface.",
+    suffix: ": Yuri Machado Luz",
+    description: "Sistemas web, APIs e automações.",
+    descriptionEn: "Web systems, APIs, and automations.",
     locale: "pt-BR",
     localeEn: "en-US",
     siteUrl: "https://www.yurimachado.dev.br",
@@ -35,6 +34,7 @@ export const CONFIG = {
 
   sites: {
     blog: blogBase,
+    changelog: `${blogBase}/posts/portfolio/portfolio-hub/changelog`,
   },
 
   nav: {
@@ -43,6 +43,11 @@ export const CONFIG = {
       { key: "about" as const, href: "/sobre" },
       { key: "services" as const, href: "/servicos" },
       { key: "blog" as const, href: blogBase, external: true },
+      {
+        key: "changelog" as const,
+        href: `${blogBase}/posts/portfolio/portfolio-hub/changelog`,
+        external: true,
+      },
       { key: "contact" as const, href: "/contato", cta: true },
     ],
   },

@@ -47,6 +47,7 @@ export interface SkillCategory {
 }
 
 export interface ProjectItem {
+  badge?: string;
   id: string;
   title: string;
   description: string;

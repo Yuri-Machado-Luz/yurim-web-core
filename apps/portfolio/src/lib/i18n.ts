@@ -3,13 +3,12 @@ export type LocaleCode = "pt" | "en";
 export const pt = {
   meta: {
     homeTitle: "Portfólio",
-    description:
-      "Sistemas web, APIs e automações, do back-end à interface.",
+    description: "Sistemas web, APIs e automações.",
   },
   hero: {
     badge: "Full-Stack Developer",
     paragraph:
-      "Consultor e desenvolvedor independente. Sistemas web, APIs e automações — do back-end à interface. Passagens pela IBM, Cielo e Santander.",
+      "Consultor e desenvolvedor independente. Sistemas web, APIs e automações. Passagens pela IBM, Cielo e Santander.",
     cta: {
       primary: "Sobre",
       secondary: "Projetos",
@@ -20,15 +19,15 @@ export const pt = {
     title: "Sobre mim",
     lead: "Desenvolvedor Full-Stack · Analista de Sistemas · São Paulo, Brasil",
     bio: [
-      "Desenvolvedor full-stack autônomo desde 2020. Construo sistemas web, APIs e automações para pequenas empresas e projetos próprios — do back-end à interface.",
+      "Desenvolvedor full-stack autônomo desde 2020. Construo sistemas web, APIs e automações para pequenas empresas e projetos próprios.",
       "Em 2024–2025, na IBM, redesenhei o onboarding e reduzi o tempo de integração de 7 para 3 dias (−57%). Automatizei arquivamento em massa com Python e montei dashboard de KPIs em Excel/VBA.",
       "Em paralelo: identidade visual, prototipagem UI/UX e documentação técnica para clientes sob NDA.",
     ],
     teaser: {
       eyebrow: "Sobre",
-      title: "Quem constrói",
-      body: "Histórico, stack e formação — o que construí e onde atuei.",
-      cta: "Ver sobre completo →",
+      title: "A pessoa por trás do código",
+      body: "Histórico, stack e formação: o que construí e onde atuei.",
+      cta: "Sobre mim",
     },
     sections: {
       bio: "Bio",
@@ -38,32 +37,34 @@ export const pt = {
       education: "Formação",
       languages: "Idiomas",
     },
-    cta: "Ver histórico completo →",
+    cta: "Ver histórico",
     ctaTitle: "Vamos conversar?",
   },
   projects: {
     eyebrow: "Projetos",
-    title: "Trabalho selecionado",
-    description:
-      "Projetos em produção e em andamento — com escopo e stack claros.",
-    cta: "Ver todos →",
+    title: "Projetos",
+    description: "Trabalho em produção, em andamento e ferramentas próprias.",
+    cta: "Ver todos",
     pageTitle: "Projetos",
     pageLead: "Seleção de trabalho em produção, em andamento e ferramentas.",
     others: "Outros",
     empty: "Nenhum projeto listado no momento.",
+    demoSoon: "Demonstração pública em breve",
   },
   services: {
     eyebrow: "Serviços",
     title: "Serviços",
     pageTitle: "Serviços",
     pageLead:
-      "Ofertas self-service com escopo definido. Escolha o que precisa; o restante alinhamos no contato.",
+      "Sistemas web, APIs, automações e documentação. Escopo alinhado no contato.",
     teaser: {
       eyebrow: "Serviços",
-      title: "O que posso entregar",
-      body: "Sistemas, APIs, automações e documentação — pacotes com entrega clara.",
-      cta: "Ver serviços →",
+      title: "O que construo",
+      body: "Sistemas, APIs, automações e documentação técnica.",
+      cta: "Ver serviços",
     },
+    cta: "Solicitar orçamento",
+    ctaHint: "Conversa sem compromisso.",
     empty: "Nenhum serviço listado no momento.",
   },
   contact: {
@@ -76,13 +77,14 @@ export const pt = {
     location: "São Paulo, Brasil",
     socialTitle: "Redes",
     formTitle: "Mensagem",
-    whatsappMessage: "Olá, Yuri — vi o portfólio e quero conversar sobre um projeto.",
+    whatsappMessage:
+      "Olá, Yuri. Vi o portfólio e quero conversar sobre um projeto.",
   },
   notes: {
     eyebrow: "Notas",
     title: "Publicações recentes",
     empty: "Nenhuma publicação disponível ainda.",
-    cta: "Ver publicações →",
+    cta: "Ver publicações",
   },
   cta: {
     title: "Tem um projeto em mente?",
@@ -94,6 +96,7 @@ export const pt = {
     about: "Sobre",
     services: "Serviços",
     blog: "Blog",
+    changelog: "Changelog",
     contact: "Contato",
     openMenu: "Abrir menu",
     toggleTheme: "Alternar tema",
@@ -104,6 +107,7 @@ export const pt = {
   },
   footer: {
     rights: "Todos os direitos reservados.",
+    changelog: "Changelog",
   },
 };
 
@@ -112,12 +116,12 @@ export type Messages = typeof pt;
 export const en: Messages = {
   meta: {
     homeTitle: "Portfolio",
-    description: "Web systems, APIs, and automations — from back-end to interface.",
+    description: "Web systems, APIs, and automations.",
   },
   hero: {
     badge: "Full-Stack Developer",
     paragraph:
-      "Independent consultant and developer. Web systems, APIs, and automations — from back-end to interface. Experience at IBM, Cielo, and Santander.",
+      "Independent consultant and developer. Web systems, APIs, and automations. Experience at IBM, Cielo, and Santander.",
     cta: {
       primary: "About",
       secondary: "Projects",
@@ -128,15 +132,15 @@ export const en: Messages = {
     title: "About me",
     lead: "Full-Stack Developer · Systems Analyst · São Paulo, Brazil",
     bio: [
-      "Independent full-stack developer since 2020. I build web systems, APIs, and automations for small businesses and my own products — from back-end to interface.",
+      "Independent full-stack developer since 2020. I build web systems, APIs, and automations for small businesses and my own products.",
       "In 2024–2025 at IBM, I redesigned onboarding and cut integration time from 7 to 3 days (−57%). I automated bulk archiving with Python and built a KPI dashboard in Excel/VBA.",
       "Alongside engineering: visual identity, UI/UX prototyping, and technical documentation for NDA clients.",
     ],
     teaser: {
       eyebrow: "About",
-      title: "Who builds this",
-      body: "Background, stack, and education — what I built and where I worked.",
-      cta: "Full about page →",
+      title: "The person behind the code",
+      body: "Background, stack, and education: what I built and where I worked.",
+      cta: "About me",
     },
     sections: {
       bio: "Bio",
@@ -146,31 +150,34 @@ export const en: Messages = {
       education: "Education",
       languages: "Languages",
     },
-    cta: "See full background →",
+    cta: "See background",
     ctaTitle: "Want to talk?",
   },
   projects: {
     eyebrow: "Projects",
-    title: "Selected work",
-    description: "Shipped and in-progress projects — clear scope and stack.",
-    cta: "View all →",
+    title: "Projects",
+    description: "Work in production, in progress, and personal tooling.",
+    cta: "View all",
     pageTitle: "Projects",
     pageLead: "Work in production, in progress, and tooling.",
     others: "Other",
     empty: "No projects listed right now.",
+    demoSoon: "Public demo coming soon",
   },
   services: {
     eyebrow: "Services",
     title: "Services",
     pageTitle: "Services",
     pageLead:
-      "Self-service offerings with defined scope. Pick what you need; we align the rest on contact.",
+      "Web systems, APIs, automations, and documentation. Scope aligned on contact.",
     teaser: {
       eyebrow: "Services",
-      title: "What I can deliver",
-      body: "Systems, APIs, automations, and docs — packages with clear delivery.",
-      cta: "View services →",
+      title: "What I build",
+      body: "Systems, APIs, automations, and technical documentation.",
+      cta: "View services",
     },
+    cta: "Request a quote",
+    ctaHint: "No-commitment conversation.",
     empty: "No services listed right now.",
   },
   contact: {
@@ -184,13 +191,13 @@ export const en: Messages = {
     socialTitle: "Social",
     formTitle: "Message",
     whatsappMessage:
-      "Hi Yuri — I saw your portfolio and want to talk about a project.",
+      "Hi Yuri. I saw your portfolio and want to talk about a project.",
   },
   notes: {
     eyebrow: "Notes",
     title: "Recent posts",
     empty: "No posts available yet.",
-    cta: "View posts →",
+    cta: "View posts",
   },
   cta: {
     title: "Got a project in mind?",
@@ -202,6 +209,7 @@ export const en: Messages = {
     about: "About",
     services: "Services",
     blog: "Blog",
+    changelog: "Changelog",
     contact: "Contact",
     openMenu: "Open menu",
     toggleTheme: "Toggle theme",
@@ -212,6 +220,7 @@ export const en: Messages = {
   },
   footer: {
     rights: "All rights reserved.",
+    changelog: "Changelog",
   },
 };
 

@@ -26,11 +26,12 @@ export const projects: ProjectItem[] = [
   },
   {
     id: "sistema-gestao-loja-games",
-    title: "Sistema de Gestão — Loja de Games & Eletrônicos",
+    title: "Gestão: loja de games",
     description:
-      "Backoffice completo para loja de consoles, jogos, computadores e acessórios: catálogo CRUD, controle de estoque, histórico de manutenção e gestão de técnicos. MVP entregue como PWA com Service Worker.",
+      "Backoffice para loja de consoles, jogos e acessórios: catálogo, estoque, manutenção e técnicos. MVP como PWA.",
     status: "beta",
     featured: true,
+    badge: "Demonstração pública em breve",
     tags: [
       "Next.js",
       "TypeScript",

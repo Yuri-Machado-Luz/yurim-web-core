@@ -6,7 +6,7 @@ export const experience: ExperienceItem[] = [
     company: "Autônomo",
     period: "Jan 2020 – Presente",
     bullets: [
-      "Desenvolvimento Full-Stack: Portfólios, sistemas internos, integrações e automações — incluindo refatoração de produtos. Foco em performance, SEO e CI/CD, com deploy adaptado ao ambiente de cada cliente.",
+      "Desenvolvimento Full-Stack: Portfólios, sistemas internos, integrações e automações, incluindo refatoração de produtos. Foco em performance, SEO e CI/CD, com deploy adaptado ao ambiente de cada cliente.",
       "Design gráfico: Identidade visual, peças gráficas e materiais institucionais para clientes (Adobe Suite, Figma, Canva, +).",
       "Redação acadêmica: Revisão e coautoria de artigos, monografias e trabalhos científicos sob encomenda, focado em conformidade às normas ABNT e requisitos técnicos.",
     ],

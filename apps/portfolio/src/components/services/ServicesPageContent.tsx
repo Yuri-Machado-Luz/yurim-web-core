@@ -6,9 +6,7 @@ import {
   Badge,
   Button,
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
   Section,
@@ -29,7 +27,7 @@ export function ServicesPageContent() {
         <p className="lead max-w-2xl">{messages.services.pageLead}</p>
       </Section>
 
-      <Section spacing="none" className="pb-20">
+      <Section spacing="none" className="pb-12">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <Card key={service.id} className="h-full">
@@ -46,16 +44,23 @@ export function ServicesPageContent() {
                   {service.description[locale]}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex-1" />
-              <CardFooter>
-                <Button asChild variant="outline" className="w-full">
-                  <Link href={localizedPath(service.href, locale)}>
-                    {service.cta[locale]}
-                  </Link>
-                </Button>
-              </CardFooter>
             </Card>
           ))}
+        </div>
+      </Section>
+
+      <Section spacing="none" className="pb-20">
+        <div className="mx-auto max-w-xl text-center">
+          {messages.services.ctaHint && (
+            <p className="mb-4 text-sm text-muted-foreground">
+              {messages.services.ctaHint}
+            </p>
+          )}
+          <Button asChild size="lg">
+            <Link href={localizedPath("/contato", locale)}>
+              {messages.services.cta}
+            </Link>
+          </Button>
         </div>
       </Section>
     </>

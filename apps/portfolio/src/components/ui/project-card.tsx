@@ -16,6 +16,7 @@ interface ProjectCardProps {
   description?: string;
   status: "ativo" | "dev" | "arquivado" | "beta";
   tags: string[];
+  badge?: string;
   github?: string;
   live?: string;
   documentation?: string;
@@ -26,11 +27,12 @@ export function ProjectCard({
   description,
   status,
   tags,
+  badge,
   github,
   live,
   documentation,
 }: ProjectCardProps) {
-  const hasLinks = live || github || documentation;
+  const hasLinks = Boolean(live || github || documentation);
 
   return (
     <article
@@ -67,10 +69,15 @@ export function ProjectCard({
         </div>
       )}
 
-      {hasLinks && (
-        <div className="mt-auto flex flex-wrap gap-2 pt-2">
+      {(badge || hasLinks) && (
+        <div className="mt-auto flex flex-wrap items-center justify-end gap-2 pt-2">
+          {badge && (
+            <Badge variant="outline" className="font-normal">
+              {badge}
+            </Badge>
+          )}
           {live && (
-            <Button asChild variant="outline" size="xs">
+            <Button asChild variant="default" size="sm">
               <Link href={live} target="_blank" rel="noopener noreferrer">
                 <Icon name="external-link" className="h-3.5 w-3.5" />
                 Live
@@ -78,7 +85,7 @@ export function ProjectCard({
             </Button>
           )}
           {github && (
-            <Button asChild variant="outline" size="xs">
+            <Button asChild variant="outline" size="sm">
               <Link href={github} target="_blank" rel="noopener noreferrer">
                 <Icon name={ICON.github} className="h-3.5 w-3.5" />
                 GitHub
@@ -86,7 +93,7 @@ export function ProjectCard({
             </Button>
           )}
           {documentation && (
-            <Button asChild variant="outline" size="xs">
+            <Button asChild variant="outline" size="sm">
               <Link href={documentation}>
                 <Icon name="book-open" className="h-3.5 w-3.5" />
                 Docs

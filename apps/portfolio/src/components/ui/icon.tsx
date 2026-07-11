@@ -11,7 +11,7 @@ export function Icon({ name, className, ...props }: IconProps) {
   const Svg = iconRegistry[name] ?? iconRegistry.code;
 
   if (!iconRegistry[name] && process.env.NODE_ENV === "development") {
-    console.warn(`[Icon] Unknown icon "${name}" — falling back to "code".`);
+    console.warn(`[Icon] Unknown icon "${name}": falling back to "code".`);
   }
 
   return (

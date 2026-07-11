@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { Section, SocialLinks } from "@/components";
 import { useMessages } from "@/components/locale-provider";
+import CONFIG from "@/lib/config";
 import { stripLocalePrefix } from "@/lib/locale-path";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +22,17 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             © {currentYear} Yuri Machado Luz. {messages.footer.rights}
           </p>
-          <SocialLinks className={cn(isContatoPage && "hidden")} />
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <Link
+              href={CONFIG.sites.changelog}
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {messages.nav.changelog}
+            </Link>
+            <SocialLinks className={cn(isContatoPage && "hidden")} />
+          </div>
         </div>
       </Section>
     </footer>
