@@ -4,14 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { Section, SocialLinks } from "@/components";
-import { useMessages } from "@/components/locale-provider";
-import CONFIG from "@/lib/config";
-import { stripLocalePrefix } from "@/lib/locale-path";
+import { useLocale, useMessages } from "@/components/locale-provider";
+import { localizedPath, stripLocalePrefix } from "@/lib/locale-path";
 import { cn } from "@/lib/utils";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const pathname = usePathname();
+  const locale = useLocale();
   const messages = useMessages();
   const isContatoPage = stripLocalePrefix(pathname) === "/contato";
 
@@ -24,12 +24,10 @@ export function Footer() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
             <Link
-              href={CONFIG.sites.changelog}
+              href={localizedPath("/changelog", locale)}
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              target="_blank"
-              rel="noopener noreferrer"
             >
-              {messages.nav.changelog}
+              {messages.footer.changelog}
             </Link>
             <SocialLinks className={cn(isContatoPage && "hidden")} />
           </div>
