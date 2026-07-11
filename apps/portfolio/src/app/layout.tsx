@@ -7,6 +7,7 @@ import { Footer, Navbar, ThemeProvider } from "@/components";
 import { CopyProtection } from "@/components/copy-protection";
 import { LocaleProvider } from "@/components/locale-provider";
 import { SiteContextMenu } from "@/components/site-context-menu";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 import CONFIG from "@/lib/config";
 import { defaultOgImage, languageAlternates, personJsonLd } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
@@ -79,6 +80,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LocaleProvider>
+            <CustomCursor />
             <CopyProtection />
             <SiteContextMenu>
               <Navbar />

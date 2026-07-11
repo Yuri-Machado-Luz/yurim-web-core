@@ -23,6 +23,7 @@ export { Icon } from "./icon";
 export { IconLink } from "./icon-link";
 export { Input } from "./input";
 export { ProjectCard } from "./project-card";
+export { CustomCursor } from "./custom-cursor";
 export { Separator } from "./separator";
 export {
   Sheet,

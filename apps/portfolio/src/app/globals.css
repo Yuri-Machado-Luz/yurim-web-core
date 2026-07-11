@@ -310,6 +310,36 @@
   }
 }
 
+html.custom-cursor-active,
+html.custom-cursor-active *,
+body.custom-cursor-active,
+body.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.custom-cursor-idle {
+  animation: picture-ring-pulse 2.8s ease-out infinite;
+  background: transparent;
+  transform-origin: center;
+}
+
+.custom-cursor-press {
+  width: 1.25rem;
+  height: 1.25rem;
+  background: color-mix(in srgb, var(--primary) 55%, transparent);
+  border-color: var(--primary);
+  transition:
+    width 120ms ease,
+    height 120ms ease,
+    background 120ms ease;
+}
+
+.custom-cursor-pointer {
+  animation: picture-ring-pulse 1.4s ease-out infinite;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 25%, transparent);
+  border-width: 2.5px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-picture-wrap [data-slot="avatar"],
   .picture-ring,
@@ -317,7 +347,9 @@
   .skill-card,
   .education-item,
   .language-card,
-  .quick-facts-card {
+  .quick-facts-card,
+  .custom-cursor-idle,
+  .custom-cursor-pointer {
     animation: none;
   }
 
