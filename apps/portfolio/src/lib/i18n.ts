@@ -89,15 +89,6 @@ export const pt = {
     title: "Tem um projeto em mente?",
     button: "Entrar em contato",
   },
-  changelog: {
-    eyebrow: "Portfólio",
-    pageTitle: "Changelog",
-    pageLead:
-      "Histórico de versões deste site (Next.js). O blog tem versionamento próprio.",
-    added: "Adicionado",
-    changed: "Alterado",
-    removed: "Removido",
-  },
   nav: {
     home: "Início",
     projects: "Projetos",
@@ -209,15 +200,6 @@ export const en: Messages = {
   cta: {
     title: "Got a project in mind?",
     button: "Get in touch",
-  },
-  changelog: {
-    eyebrow: "Portfolio",
-    pageTitle: "Changelog",
-    pageLead:
-      "Version history for this site (Next.js). The blog keeps its own changelog.",
-    added: "Added",
-    changed: "Changed",
-    removed: "Removed",
   },
   nav: {
     home: "Home",

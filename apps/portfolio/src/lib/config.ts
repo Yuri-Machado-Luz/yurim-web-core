@@ -34,6 +34,7 @@ export const CONFIG = {
 
   sites: {
     blog: blogBase,
+    changelog: `${blogBase}/posts/portfolio/changelog`,
   },
 
   nav: {

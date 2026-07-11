@@ -9,8 +9,9 @@ export const projects: ProjectItem[] = [
       "Site pessoal com apresentação, histórico de projetos e seções de contato.",
     status: "ativo",
     featured: true,
-    github: "https://github.com/Yuri-Machado-Luz/portfolio",
+    github: "https://github.com/Yuri-Machado-Luz/personal--portfolio",
     live: "https://www.yurimachado.dev.br",
+    documentation: `${CONFIG.sites.blog}/posts/portfolio/sobre`,
     tags: ["Next.js", "React", "Tailwind", "TypeScript", "Vercel"],
   },
   {
