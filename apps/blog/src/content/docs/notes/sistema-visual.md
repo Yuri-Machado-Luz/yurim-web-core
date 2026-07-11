@@ -2,66 +2,44 @@
 title: Sistema visual do projeto
 description: Tokens CSS com Tailwind v4, paleta de cores, tipografia e componentes semânticos adotados no site.
 pubDate: 2026-06-07
-updatedAt: 2026-06-19
+updatedAt: 2026-07-10
 draft: false
 tags: [devlog, design]
 ---
 
-Documentação do sistema visual — como tokens, tipografia e componentes foram organizados para manter coerência visual sem acoplamento com frameworks externos.
+Documentação do sistema visual — como tokens, tipografia e componentes foram organizados para manter coerência entre portfólio e blog sem acoplamento rígido a um único framework.
 
-## Tokens via Tailwind v4
+## Tokens canônicos
 
-O Tailwind v4 abandona o arquivo `tailwind.config.js` em favor de `@theme` no CSS. Os tokens são variáveis CSS nativas — não há processo de resolução em JavaScript.
+A fonte da verdade é `brand-tokens.css` (sincronizado do portfólio). O blog importa esses tokens e expõe aliases Shadcn (`--background`, `--foreground`, `--primary`…) mais compatibilidade legada (`--color-bg`, `--color-text`, `--color-surface`).
 
 ```css
-@theme {
-  --color-bg:      #050404;
-  --color-surface: #0e0d0d;
-  --color-primary: #E82828;
-  --color-accent:  #1BD19A;
-  --color-muted:   #9ca3af;
+@import "../../styles/brand-tokens.css";
 
-  --font-sans: 'Be Vietnam', sans-serif;
-  --font-mono: 'Fira Code', monospace;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  /* … */
+  --color-bg: var(--background);
+  --color-text: var(--foreground);
 }
 ```
 
-Com isso, `text-primary`, `bg-accent`, `font-mono` funcionam como utilitárias nativas sem plugins adicionais. As variáveis também ficam disponíveis em qualquer CSS via `var(--color-primary)`.
-
-## Paleta
-
-| Token | Valor | Papel |
-| --- | --- | --- |
-| `--color-bg` | `#050404` | Fundo principal |
-| `--color-surface` | `#0e0d0d` | Cards, painéis, inputs |
-| `--color-primary` | `#E82828` | Destaque, CTAs, links ativos |
-| `--color-accent` | `#1BD19A` | Accent secundário, badges |
-| `--color-muted` | `#9ca3af` | Texto secundário, legendas |
-
-O fundo usa `#050404` em vez de preto puro (`#000000`). A diferença é pequena visualmente mas o quasi-preto permite gradientes sutis e reduz fadiga em telas com brilho alto.
+Tailwind v4 consome as variáveis via `@theme` — sem `tailwind.config.js`. Utilitárias como `bg-background`, `text-primary` e `border-border` saem direto do CSS.
 
 ## Tipografia
 
-**Be Vietnam Pro** — fonte principal. Boa legibilidade em tamanhos pequenos, tracking adequado para headings em uppercase. Sem serif, sem peso excessivo.
+**Fraunces** — display (títulos, brand signal).  
+**Inter** — corpo e UI.  
+**JetBrains Mono** — código.
 
-**Fira Code** — monospace para blocos de código. Suporta ligaduras (desativadas por padrão no site para consistência com output de terminais).
+A escala tipográfica usa classes semânticas (`.page-title`, `.page-lead`, `.eyebrow`) em `@layer components`, não um acúmulo de utilitárias por template.
 
-A escala tipográfica usa variáveis CSS em vez de classes do Tailwind (`--font-size-sm`, `--font-size-base`, `--font-size-lg`), o que permite ajustes granulares sem recompilar utilitárias.
+## Componentes
 
-## Componentes semânticos
+Botões e toggles alinham ao portfólio (variantes primary/outline/ghost, ThemeToggle, LocaleToggle). O cookie de tema (`theme`, Domain=`.yurimachado.dev.br`) mantém light/dark entre subdomínios.
 
-Definidos em `@layer components` — classes com significado semântico em vez de acúmulo de utilitárias inline:
+## Estado atual
 
-```css
-@layer components {
-  .btn-primary { ... }
-  .btn-outline { ... }
-  .card { ... }
-  .eyebrow { ... }        /* label pequena acima de títulos */
-  .section-title { ... }  /* H2 de seção */
-  .page-title { ... }     /* H1 de página */
-  .page-lead { ... }      /* subtítulo de página */
-}
-```
-
-O benefício não é só reutilização — é que alterações de design são feitas em um lugar só, não espalhadas por todos os templates.
+Portfólio (Next.js + Shadcn) e blog (Astro) compartilham a mesma paleta, tipografia e toggles (tema + locale). Mudanças de marca entram primeiro em `brand-tokens.css` e são sincronizadas para o blog; cookies de tema e idioma usam o domínio pai para manter preferência entre subdomínios.

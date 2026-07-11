@@ -2,7 +2,7 @@
 title: Introdução ao site
 description: Decisões de arquitetura que guiam o desenvolvimento do site — layouts, routing, content collections e o porquê de cada escolha.
 pubDate: 2026-06-07
-updatedAt: 2026-06-19
+updatedAt: 2026-07-10
 draft: false
 tags: [devlog, arquitetura]
 ---
@@ -37,4 +37,9 @@ O slug de cada entrada é gerado pelo loader Astro com base no caminho do arquiv
 
 ## Estado atual
 
-O site está em desenvolvimento ativo. Novas seções e projetos são adicionados conforme ficam prontos. A estrutura de docs existe para registrar decisões técnicas enquanto o projeto evolui — não como documentação final.
+O ecossistema está dividido em dois sites:
+
+- **Portfólio** (`www.yurimachado.dev.br`) — Next.js: home, projetos, sobre, serviços, contato e rotas `/en`.
+- **Blog** (`blog.yurimachado.dev.br`) — Astro: notas, docs de projetos, automações, changelog e home em inglês.
+
+As content collections e o layout `Content` (sidebar + TOC) continuam no blog. Tokens de marca, cookie de tema e cookie de locale (`locale`, Domain=`.yurimachado.dev.br`) são compartilhados entre os subdomínios. Novas seções entram conforme ficam prontas — este registro acompanha as decisões, não pretende ser documentação final.

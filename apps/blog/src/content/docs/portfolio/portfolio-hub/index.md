@@ -14,15 +14,16 @@ order: 1
 tags: [astro, react, tailwind, typescript, vercel]
 ---
 
-Site pessoal construído do zero, usado como vitrine de projetos e ambiente de testes de stack. O próprio site é o projeto mais complexo documentado aqui.
+Site pessoal e blog técnico. O portfólio editorial roda em Next.js (`www`); este repositório (Astro) concentra notas, docs de projetos, automações e changelog.
 
 ## Stack
 
 | Camada | Tecnologia |
 | -------- | ------ |
-| Framework | Astro 6 (SSG) |
-| UI | Astro Components + Islands |
-| Estilo | Tailwind CSS v4 + tokens nativos via `@theme` |
+| Framework | Astro 6 (SSG) — blog / docs |
+| Portfólio | Next.js (site principal) |
+| UI | Astro Components + React islands |
+| Estilo | Tailwind CSS v4 + `brand-tokens.css` compartilhado |
 | Animações | GSAP 3 + ScrollTrigger |
 | Conteúdo | Markdown + Astro Content Collections |
 | Deploy | Vercel (`@astrojs/vercel`) |

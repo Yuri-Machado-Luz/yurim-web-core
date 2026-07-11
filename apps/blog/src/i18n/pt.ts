@@ -1,15 +1,56 @@
 export const pt = {
-  home: {
-    eyebrow: "Blog",
-    title: "Publicações",
-    lead: "Devlogs e registros técnicos. Para portfólio, projetos e contato, visite o site principal.",
-    portfolioCta: "Ir para o portfólio →",
+  meta: {
+    description:
+      "Devlogs, notas técnicas e documentação de projetos — sistemas web, APIs e automações.",
+    siteName: "Yuri Machado Luz",
+    brand: "Yuri Machado Luz",
   },
-  notes: {
-    eyebrow: "Notas",
-    title: "Publicações recentes",
-    empty: "Nenhuma publicação disponível ainda.",
-    cta: "Ver publicações →",
+  nav: {
+    home: "Início",
+    projects: "Projetos",
+    about: "Sobre",
+    blog: "Blog",
+    contact: "Contato",
+    openMenu: "Abrir menu",
+    closeMenu: "Fechar menu",
+    toggleLocale: "Switch to English",
+    toggleTheme: "Alternar tema",
+  },
+  home: {
+    brand: "Yuri Machado Luz",
+    headline: "Registro técnico do que construo",
+    lead: "Devlogs, decisões de arquitetura e documentação de projetos — sistemas web, APIs e automações.",
+    portfolioCta: "Ir para o portfólio →",
+    changelogCta: "Ver changelog →",
+  },
+  collections: {
+    notes: {
+      title: "Notas",
+      empty: "Nenhuma nota publicada ainda.",
+    },
+    portfolio: {
+      title: "Portfólio",
+      empty: "Nenhum projeto documentado ainda.",
+    },
+    automation: {
+      title: "Automação",
+      empty: "Nenhuma ferramenta publicada ainda.",
+    },
+  },
+  changelog: {
+    title: "Changelog",
+    lead: "Histórico consolidado de versões e mudanças.",
+    teaserTitle: "Changelog",
+    teaserLead: "Versões e mudanças dos projetos documentados aqui.",
+    teaserCta: "Ver changelog →",
+    empty: "Nenhuma entrada de changelog ainda.",
+  },
+  footer: {
+    rights: "Todos os direitos reservados.",
+  },
+  locale: {
+    code: "PT",
+    other: "EN",
   },
   /** @deprecated Legacy portfolio-home copy — components retained but unused */
   hero: {
@@ -33,10 +74,16 @@ export const pt = {
     description: "Uma seleção de projetos em produção e em andamento.",
     cta: "Ver todos →",
   },
+  notes: {
+    eyebrow: "Notas",
+    title: "Publicações recentes",
+    empty: "Nenhuma publicação disponível ainda.",
+    cta: "Ver publicações →",
+  },
   cta: {
     title: "Tem um projeto em mente ou quer conversar?",
     button: "Entre em contato",
   },
 } as const;
 
-export type Locale = typeof pt;
+export type Messages = typeof pt;

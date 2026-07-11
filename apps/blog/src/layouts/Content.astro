@@ -6,6 +6,7 @@ import type { SidebarEntry } from "../types";
 import ThemeInit from "@shared/ThemeInit.astro";
 import Head from "./Head.astro";
 import { ChevronLeftRaw, CloseRaw, MenuRaw } from "@assets";
+import { htmlLang } from "@i18n/index";
 
 interface Heading {
   depth: number;
@@ -26,9 +27,9 @@ const hasToc =
   headings.filter((h) => h.depth === 2 || h.depth === 3).length > 0;
 ---
 
-<html lang="pt-BR">
+<html lang={htmlLang("pt")}>
   <ThemeInit />
-  <Head title={title} description={description} />
+  <Head title={title} description={description} locale="pt" />
 
   <body>
     <main

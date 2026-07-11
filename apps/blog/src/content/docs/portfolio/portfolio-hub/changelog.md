@@ -9,10 +9,20 @@ draft: false
 
 ### Adicionado
 
-- Changelog por projeto como sub-página da collection `portfolio`
-- Seção "Ferramentas & Contribuições" na página `/projetos`
-- Estilos de tabela, blockquote, hr e marcadores no sistema de prose
-- Tags nas notas para categorização por tipo
+- Changelog consolidado em `/docs/changelog`
+- Landing do blog agrupada por collection (`notes`, `portfolio`, `automation`)
+- i18n pt/en na home (`/en`) com LocaleToggle e cookie `locale`
+- Tokens de marca compartilhados com o portfólio (Next.js) via `brand-tokens.css`
+- Theme cookie cross-subdomain (`Domain=.yurimachado.dev.br`)
+
+### Alterado
+
+- Portfólio editorial migrado para Next.js; blog permanece em Astro
+- Sidebar de docs inclui notes, portfolio e automation (sandbox draft omitido)
+
+### Removido
+
+- Home flat só de notas (substituída por seções por collection)
 
 ---
 

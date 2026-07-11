@@ -1,18 +1,34 @@
 ---
 import ClientRouter from "astro/components/ClientRouter.astro";
-import { Logo } from "@assets";
 import { CONFIG } from "@config";
 import "@styles/global.css";
 import Analytics from "@vercel/analytics/astro";
+import { localeFromPath } from "@/lib/locale-cookie";
+import { getMessages, htmlLang } from "@i18n/index";
+
+interface Props {
+  title?: string;
+  description?: string;
+  prefix?: string;
+  image?: string;
+  canonicalUrl?: string;
+  noindex?: boolean;
+  locale?: "pt" | "en";
+}
 
 const {
   title,
-  description = CONFIG.meta.description,
+  description,
   prefix = CONFIG.meta.suffix,
   image,
   canonicalUrl: customCanonicalUrl,
   noindex = false,
+  locale: localeProp,
 } = Astro.props;
+
+const locale = localeProp ?? localeFromPath(Astro.url.pathname);
+const messages = getMessages(locale);
+const pageDescription = description ?? messages.meta.description;
 
 const canonicalUrl = customCanonicalUrl
   ? customCanonicalUrl
@@ -24,13 +40,54 @@ const ogImagePath = image ?? CONFIG.meta.og.default;
 const ogImageUrl = Astro.site
   ? new URL(ogImagePath, Astro.site).toString()
   : ogImagePath;
+
+const siteOrigin = Astro.site?.origin ?? "https://blog.yurimachado.dev.br";
+const ptUrl = `${siteOrigin}/`;
+const enUrl = `${siteOrigin}/en`;
+const pageTitle = title
+  ? `${title}${prefix}`
+  : messages.meta.siteName;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteOrigin}/#website`,
+      url: siteOrigin,
+      name: messages.meta.siteName,
+      description: messages.meta.description,
+      inLanguage: htmlLang(locale),
+      publisher: {
+        "@type": "Person",
+        name: CONFIG.meta.author,
+        url: CONFIG.sites.portfolio,
+      },
+    },
+    {
+      "@type": "Blog",
+      "@id": `${siteOrigin}/#blog`,
+      url: siteOrigin,
+      name: messages.meta.siteName,
+      description: messages.meta.description,
+      inLanguage: htmlLang(locale),
+      author: {
+        "@type": "Person",
+        name: CONFIG.meta.author,
+        url: CONFIG.sites.portfolio,
+      },
+    },
+  ],
+};
 ---
 
 <head>
   <meta charset="utf-8" />
   <ClientRouter />
   <meta name="viewport" content="width=device-width" />
-  <link rel="icon" type="image/svg+xml" href={Logo.src} />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,20 +97,27 @@ const ogImageUrl = Astro.site
   />
 
   <link rel="canonical" href={canonicalUrl} />
+  <link rel="alternate" hreflang="pt-BR" href={ptUrl} />
+  <link rel="alternate" hreflang="en" href={enUrl} />
+  <link rel="alternate" hreflang="x-default" href={ptUrl} />
   <link rel="sitemap" href="/sitemap-index.xml" />
-  <title>{title ? `${title}${prefix}` : "Yuri Machado"}</title>
-  <meta name="description" content={description} />
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription} />
   {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-  <meta property="og:title" content={title ?? "Yuri Machado"} />
+  <meta property="og:title" content={title ?? messages.meta.siteName} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:description" content={description} />
+  <meta property="og:description" content={pageDescription} />
   <meta property="og:image" content={ogImageUrl} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content={htmlLang(locale).replace("-", "_")} />
+  <meta property="og:site_name" content={messages.meta.siteName} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content={ogImageUrl} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <Analytics />
 </head>
 

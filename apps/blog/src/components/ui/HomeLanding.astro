@@ -1,0 +1,192 @@
+---
+import { Base } from "@layouts";
+import { portfolioUrl } from "@config";
+import { getLandingCollections } from "@shared";
+import Button from "@ui/Button.astro";
+import { getMessages } from "@i18n/index";
+import type { LocaleCode } from "@/lib/locale-cookie";
+
+interface Props {
+  locale?: LocaleCode;
+}
+
+const { locale = "pt" } = Astro.props as Props;
+const messages = getMessages(locale);
+const collections = await getLandingCollections(locale);
+const dateLocale = locale === "en" ? "en-US" : "pt-BR";
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString(dateLocale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+const sections = [
+  {
+    key: "notes" as const,
+    title: messages.collections.notes.title,
+    empty: messages.collections.notes.empty,
+    items: collections.notes,
+  },
+  {
+    key: "portfolio" as const,
+    title: messages.collections.portfolio.title,
+    empty: messages.collections.portfolio.empty,
+    items: collections.portfolio,
+  },
+  {
+    key: "automation" as const,
+    title: messages.collections.automation.title,
+    empty: messages.collections.automation.empty,
+    items: collections.automation,
+  },
+];
+---
+
+<Base
+  title={messages.home.headline}
+  description={messages.meta.description}
+  locale={locale}
+>
+  <header class="site-container pb-12 pt-16 md:pb-16 md:pt-20">
+    <p class="brand-signal mb-4">{messages.home.brand}</p>
+    <h1 class="page-title mb-4">{messages.home.headline}</h1>
+    <p class="page-lead max-w-2xl">{messages.home.lead}</p>
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <Button href={portfolioUrl()} variant="primary" size="lg">
+        {messages.home.portfolioCta}
+      </Button>
+      <Button href="/docs/changelog" variant="outline" size="lg">
+        {messages.home.changelogCta}
+      </Button>
+    </div>
+  </header>
+
+  <section class="site-container space-y-14 pb-16 md:pb-20">
+    {
+      sections.map((section) => (
+        <div>
+          <h2 class="section-title mb-6">{section.title}</h2>
+          {section.items.length > 0 ? (
+            <ul class="posts-list list-none m-0 p-0">
+              {section.items.map((item) => (
+                <li class="post-item">
+                  <a href={item.href} class="post-card card-glow-subtle">
+                    <span class="article-title">{item.title}</span>
+                    {(item.description ||
+                      ("pubDate" in item && item.pubDate)) && (
+                      <span class="article-meta">
+                        {item.description}
+                        {item.description &&
+                          "pubDate" in item &&
+                          item.pubDate &&
+                          " — "}
+                        {"pubDate" in item &&
+                          item.pubDate &&
+                          formatDate(new Date(item.pubDate))}
+                      </span>
+                    )}
+                    {"tags" in item &&
+                      item.tags &&
+                      item.tags.length > 0 && (
+                        <span class="post-tags">
+                          {item.tags.map((tag: string) => (
+                            <span class="post-tag">{tag}</span>
+                          ))}
+                        </span>
+                      )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="article-meta">{section.empty}</p>
+          )}
+        </div>
+      ))
+    }
+
+    <aside class="changelog-teaser">
+      <div>
+        <h2 class="section-title mb-2">{messages.changelog.teaserTitle}</h2>
+        <p class="article-meta m-0">{messages.changelog.teaserLead}</p>
+      </div>
+      <Button href="/docs/changelog" variant="outline">
+        {messages.changelog.teaserCta}
+      </Button>
+    </aside>
+  </section>
+</Base>
+
+<style>
+  .brand-signal {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-text);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: color 200ms ease;
+  }
+
+  .post-card:hover {
+    color: var(--color-primary-400);
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 0.5rem;
+  }
+
+  .post-tag {
+    font-size: 0.6875rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-muted);
+  }
+
+  .changelog-teaser {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 40rem) {
+    .changelog-teaser {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>

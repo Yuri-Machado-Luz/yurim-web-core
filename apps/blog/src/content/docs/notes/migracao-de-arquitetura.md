@@ -2,7 +2,7 @@
 title: Migração de Arquitetura
 draft: false
 description: Reflexões sobre a decisão de abandonar Quartz e migrar para sistema próprio. Motivações, desafios técnicos e o que realmente está envolvido nesse processo.
-updatedAt: 2026-06-19
+updatedAt: 2026-07-10
 tags: [devlog, reflexao, arquitetura]
 ---
 
@@ -78,3 +78,7 @@ Enfim, essa é minha jornada até agora. Espero que, se você estiver nessa mesm
 ## **Atualização (junho 2026)**
 
 A migração foi concluída com Astro 6. O pipeline de build customizado ficou no papel — o Astro resolve processamento de Markdown, roteamento e bundling de forma muito mais sólida do que qualquer coisa que eu construiria do zero. A decisão final foi: Astro como base, React islands onde necessário, Tailwind CSS v4 com design tokens nativos. O masoquismo teve um limite razoável.
+
+## **Atualização (julho 2026)**
+
+O monólito portfólio+blog no Astro foi separado: o portfólio migrou para Next.js; o blog permanece em Astro com as content collections. Tokens de marca, cookie de tema e favicon ficam alinhados entre `www` e `blog`. Continua valendo a regra: documentar a decisão quando ela muda — não fingir que o plano original sobreviveu intacto.

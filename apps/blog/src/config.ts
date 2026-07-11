@@ -18,7 +18,7 @@ export const CONFIG = {
     author: "Yuri Machado Luz",
     suffix: " — Yuri Machado Luz",
     description:
-      "Devlogs, notas técnicas e publicações sobre desenvolvimento web, APIs e automações.",
+      "Devlogs, notas técnicas e documentação de projetos — sistemas web, APIs e automações.",
     locale: "pt-BR",
     og: {
       default: "/og/blog.png",
