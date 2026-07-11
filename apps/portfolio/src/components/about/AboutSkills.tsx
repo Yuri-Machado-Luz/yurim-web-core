@@ -1,20 +1,24 @@
 "use client";
 
 import { Icon } from "@/components/ui/icon";
+import { useMessages } from "@/components/locale-provider";
 import { skills } from "@/lib/data";
-import { pt } from "@/lib/i18n";
 import type { IconName } from "@/lib/icons";
 import { iconMap } from "@/lib/icons";
 
 import { FadeIn } from "./FadeIn";
 
 export function AboutSkills() {
+  const messages = useMessages();
+
   return (
     <section id="habilidades" className="mb-20">
       <FadeIn>
-        <h2 className="heading-section mb-2">{pt.about.sections.skills}</h2>
+        <h2 className="heading-section mb-2">
+          {messages.about.sections.skills}
+        </h2>
         <p className="mb-10 text-muted-foreground">
-          {pt.about.sections.skillsLead}
+          {messages.about.sections.skillsLead}
         </p>
       </FadeIn>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

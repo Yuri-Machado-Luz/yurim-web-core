@@ -1,13 +1,16 @@
+"use client";
+
 import Link from "next/link";
 
 import { ICON } from "@/assets";
 import { Button, Icon } from "@/components";
+import { useMessages } from "@/components/locale-provider";
 import CONFIG from "@/lib/config";
-import { pt } from "@/lib/i18n";
 
 import { QuickFactsCard } from "./QuickFactsCard";
 
 export function AboutHeader() {
+  const messages = useMessages();
   const { email, github, linkedin } = CONFIG.meta.social;
 
   return (
@@ -15,7 +18,7 @@ export function AboutHeader() {
       <div className="grid items-center gap-8 md:grid-cols-[1fr_auto]">
         <div className="flex flex-col gap-4">
           <h1 className="heading-page">{CONFIG.meta.author}</h1>
-          <p className="lead max-w-2xl">{pt.about.lead}</p>
+          <p className="lead max-w-2xl">{messages.about.lead}</p>
           <nav className="mt-2 flex flex-wrap gap-3">
             <Button asChild variant="outline" size="sm">
               <Link href={github} target="_blank" rel="noopener noreferrer">

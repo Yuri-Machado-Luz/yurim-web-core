@@ -1,15 +1,19 @@
 "use client";
 
+import { useMessages } from "@/components/locale-provider";
 import { education } from "@/lib/data";
-import { pt } from "@/lib/i18n";
 
 import { FadeIn } from "./FadeIn";
 
 export function AboutEducation() {
+  const messages = useMessages();
+
   return (
     <section id="formacao" className="mb-20">
       <FadeIn>
-        <h2 className="heading-section mb-8">{pt.about.sections.education}</h2>
+        <h2 className="heading-section mb-8">
+          {messages.about.sections.education}
+        </h2>
       </FadeIn>
       <div className="education-list">
         {education.map((edu, idx) => (

@@ -1,11 +1,14 @@
 import { AboutPageContent } from "@/components/about";
-
+import { getMessages } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/metadata";
 
+const messages = getMessages("pt");
+
 export const metadata = pageMetadata(
-  "Sobre",
-  "Desenvolvedor Full-Stack com formação em Psicologia e ADS. Freelancer desde 2020, ex-IBM. São Paulo.",
+  messages.nav.about,
+  messages.about.lead,
   "sobre",
+  { locale: "pt", path: "/sobre" },
 );
 
 export default function AboutPage() {

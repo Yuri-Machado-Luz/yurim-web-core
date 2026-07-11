@@ -2,17 +2,19 @@
 
 import { motion } from "framer-motion";
 
+import { useMessages } from "@/components/locale-provider";
 import { experience } from "@/lib/data";
-import { pt } from "@/lib/i18n";
 
 import { FadeIn } from "./FadeIn";
 
 export function ExperienceTimeline() {
+  const messages = useMessages();
+
   return (
     <section id="experiencia" className="mb-20">
       <FadeIn>
         <h2 className="heading-section mb-10">
-          {pt.about.sections.experience}
+          {messages.about.sections.experience}
         </h2>
       </FadeIn>
       <div className="experience-list">
