@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -11,7 +12,9 @@ import { createPortal } from "react-dom";
 
 import type { IconName } from "@/assets/icons";
 import { Icon } from "@/components/ui";
+import { useLocale, useMessages } from "@/components/locale-provider";
 import CONFIG from "@/lib/config";
+import { localizedPath } from "@/lib/locale-path";
 import { cn } from "@/lib/utils";
 
 function isFormField(target: EventTarget | null): boolean {
@@ -25,19 +28,6 @@ function isFormField(target: EventTarget | null): boolean {
     target.closest("input, textarea, select, [contenteditable='true']"),
   );
 }
-
-const NAV_ITEMS: {
-  label: string;
-  href: string;
-  icon: IconName;
-  external?: boolean;
-}[] = [
-  { label: "Início", href: "/", icon: "layout" },
-  { label: "Projetos", href: "/projetos", icon: "briefcase" },
-  { label: "Sobre", href: "/sobre", icon: "brain" },
-  { label: "Blog", href: CONFIG.sites.blog, icon: "book-open", external: true },
-  { label: "Contato", href: "/contato", icon: "envelope" },
-];
 
 type MenuState = {
   x: number;
@@ -58,6 +48,46 @@ export function SiteContextMenu({ children }: { children: React.ReactNode }) {
   const [copied, setCopied] = useState(false);
   const [mounted, setMounted] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale();
+  const messages = useMessages();
+
+  const navItems = useMemo(
+    () =>
+      [
+        {
+          label: messages.nav.home,
+          href: localizedPath("/", locale),
+          icon: "layout" as IconName,
+        },
+        {
+          label: messages.nav.projects,
+          href: localizedPath("/projetos", locale),
+          icon: "briefcase" as IconName,
+        },
+        {
+          label: messages.nav.about,
+          href: localizedPath("/sobre", locale),
+          icon: "brain" as IconName,
+        },
+        {
+          label: messages.nav.services,
+          href: localizedPath("/servicos", locale),
+          icon: "server" as IconName,
+        },
+        {
+          label: messages.nav.blog,
+          href: CONFIG.sites.blog,
+          icon: "book-open" as IconName,
+          external: true,
+        },
+        {
+          label: messages.nav.contact,
+          href: localizedPath("/contato", locale),
+          icon: "envelope" as IconName,
+        },
+      ] as const,
+    [locale, messages],
+  );
 
   useEffect(() => setMounted(true), []);
 
@@ -151,10 +181,10 @@ export function SiteContextMenu({ children }: { children: React.ReactNode }) {
             }}
           >
             <p className="px-2.5 py-1.5 text-xs font-semibold text-muted-foreground">
-              Navegar para
+              {locale === "en" ? "Navigate to" : "Navegar para"}
             </p>
-            {NAV_ITEMS.map((item) =>
-              item.external ? (
+            {navItems.map((item) =>
+              "external" in item && item.external ? (
                 <a
                   key={item.href}
                   href={item.href}
@@ -190,7 +220,7 @@ export function SiteContextMenu({ children }: { children: React.ReactNode }) {
               onClick={handleShare}
             >
               <Icon name="share" className="h-4 w-4" />
-              Compartilhar
+              {locale === "en" ? "Share" : "Compartilhar"}
             </button>
           </div>,
           document.body,
@@ -198,7 +228,7 @@ export function SiteContextMenu({ children }: { children: React.ReactNode }) {
 
       {copied && (
         <div className="fixed bottom-6 left-1/2 z-[100] -translate-x-1/2 rounded-full border border-border bg-popover px-4 py-2 text-sm text-popover-foreground shadow-lg">
-          Link copiado!
+          {locale === "en" ? "Link copied!" : "Link copiado!"}
         </div>
       )}
     </>

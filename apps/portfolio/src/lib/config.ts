@@ -11,14 +11,18 @@ export const CONFIG = {
   meta: {
     author: "Yuri Machado Luz",
     suffix: " — Yuri Machado Luz",
-    description: "Sistemas web, APIs e automações, do back-end à interface.",
+    description: "Sistemas web, APIs e automações — do back-end à interface.",
+    descriptionEn:
+      "Web systems, APIs, and automations — from back-end to interface.",
     locale: "pt-BR",
+    localeEn: "en-US",
     siteUrl: "https://www.yurimachado.dev.br",
     og: {
       portfolio: "/og/portfolio.png",
       projetos: "/og/projetos.png",
       sobre: "/og/sobre.png",
       contato: "/og/contato.png",
+      servicos: "/og/projetos.png",
     },
     social: {
       github: "https://github.com/Yuri-Machado-Luz",
@@ -35,10 +39,11 @@ export const CONFIG = {
 
   nav: {
     pages: [
-      { label: "Projetos", href: "/projetos" },
-      { label: "Sobre", href: "/sobre" },
-      { label: "Blog", href: blogBase, external: true },
-      { label: "Contato", href: "/contato", cta: true },
+      { key: "projects" as const, href: "/projetos" },
+      { key: "about" as const, href: "/sobre" },
+      { key: "services" as const, href: "/servicos" },
+      { key: "blog" as const, href: blogBase, external: true },
+      { key: "contact" as const, href: "/contato", cta: true },
     ],
   },
 } as const;

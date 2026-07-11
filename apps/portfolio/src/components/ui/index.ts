@@ -36,3 +36,4 @@ export {
 } from "./sheet";
 export { Textarea } from "./text-area";
 export { ThemeToggle } from "./theme-toggle";
+export { LocaleToggle } from "./locale-toggle";

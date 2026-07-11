@@ -10,6 +10,7 @@ import { BRAND } from "@/assets";
 import {
   Button,
   Icon,
+  LocaleToggle,
   Section,
   Separator,
   Sheet,
@@ -19,11 +20,12 @@ import {
   SheetTrigger,
   ThemeToggle,
 } from "@/components";
+import { useLocale, useMessages } from "@/components/locale-provider";
 import CONFIG from "@/lib/config";
+import { localizedPath, stripLocalePrefix } from "@/lib/locale-path";
 import { cn } from "@/lib/utils";
 
-const navLinks = CONFIG.nav.pages.filter((p) => !("cta" in p && p.cta));
-const ctaPage = CONFIG.nav.pages.find((p) => "cta" in p && p.cta);
+type NavKey = (typeof CONFIG.nav.pages)[number]["key"];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,6 +34,14 @@ export function Navbar() {
   const lastScrollY = useRef(0);
   const lastAnimDir = useRef<"up" | "down" | null>(null);
   const pathname = usePathname();
+  const locale = useLocale();
+  const messages = useMessages();
+  const basePath = stripLocalePrefix(pathname);
+
+  const navLinks = CONFIG.nav.pages.filter((p) => !("cta" in p && p.cta));
+  const ctaPage = CONFIG.nav.pages.find((p) => "cta" in p && p.cta);
+
+  const labelFor = (key: NavKey) => messages.nav[key];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,7 +82,9 @@ export function Navbar() {
 
   const isActive = (href: string, external?: boolean) => {
     if (external) return false;
-    return pathname === href || pathname.startsWith(`${href}/`);
+    const localized = localizedPath(href, locale);
+    const targetBase = stripLocalePrefix(localized);
+    return basePath === targetBase || basePath.startsWith(`${targetBase}/`);
   };
 
   const renderNavLink = (
@@ -80,23 +92,31 @@ export function Navbar() {
     className: string,
     onClick?: () => void,
   ) => {
-    const active = isActive(page.href, "external" in page && page.external);
+    const external = "external" in page && page.external;
+    const active = isActive(page.href, external);
     const classes = cn(className, active && "nav-link-active");
+    const label = labelFor(page.key);
 
-    if ("external" in page && page.external) {
+    if (external) {
       return (
         <a href={page.href} className={classes} onClick={onClick}>
-          {page.label}
+          {label}
         </a>
       );
     }
 
     return (
-      <Link href={page.href} className={classes} onClick={onClick}>
-        {page.label}
+      <Link
+        href={localizedPath(page.href, locale)}
+        className={classes}
+        onClick={onClick}
+      >
+        {label}
       </Link>
     );
   };
+
+  const homeHref = localizedPath("/", locale);
 
   return (
     <motion.header
@@ -118,8 +138,8 @@ export function Navbar() {
         className="flex items-center justify-between py-4 font-medium md:py-5"
       >
         <Link
-          href="/"
-          aria-label="Início"
+          href={homeHref}
+          aria-label={messages.nav.home}
           className="transition-opacity hover:opacity-80"
         >
           <Image
@@ -144,9 +164,12 @@ export function Navbar() {
           </div>
           {ctaPage && (
             <Button asChild className="ml-2 hidden md:inline-flex">
-              <Link href={ctaPage.href}>{ctaPage.label}</Link>
+              <Link href={localizedPath(ctaPage.href, locale)}>
+                {labelFor(ctaPage.key)}
+              </Link>
             </Button>
           )}
+          <LocaleToggle />
           <ThemeToggle />
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
@@ -154,7 +177,7 @@ export function Navbar() {
                 variant="ghost"
                 size="icon"
                 className="rounded-lg border border-border text-muted-foreground hover:text-primary md:hidden"
-                aria-label="Abrir menu"
+                aria-label={messages.nav.openMenu}
               >
                 <Icon name="menu" className="h-5 w-5" />
               </Button>
@@ -166,13 +189,13 @@ export function Navbar() {
               <nav className="flex flex-col gap-1 px-4 pt-6">
                 <SheetClose asChild>
                   <Link
-                    href="/"
+                    href={homeHref}
                     className={cn(
                       "mobile-nav-link",
-                      pathname === "/" && "mobile-nav-link-active",
+                      basePath === "/" && "mobile-nav-link-active",
                     )}
                   >
-                    Início
+                    {messages.nav.home}
                   </Link>
                 </SheetClose>
                 {navLinks.map((page) => (
@@ -189,7 +212,9 @@ export function Navbar() {
                   <SheetFooter className="px-4 pb-6">
                     <SheetClose asChild>
                       <Button asChild className="w-full">
-                        <Link href={ctaPage.href}>{ctaPage.label}</Link>
+                        <Link href={localizedPath(ctaPage.href, locale)}>
+                          {labelFor(ctaPage.key)}
+                        </Link>
                       </Button>
                     </SheetClose>
                   </SheetFooter>

@@ -1,5 +1,6 @@
 import type { IconName } from "./registry";
 
+// eslint-disable-next-line simple-import-sort/exports
 export { iconRegistry, type IconName } from "./registry";
 
 /** Icon name constants for data-driven usage (tech stack, social links, etc.) */
