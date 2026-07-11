@@ -13,7 +13,8 @@ const changelogs = await getChangelogs();
 const rendered = await Promise.all(
   changelogs.map(async (entry) => {
     const { Content: Body } = await render(entry);
-    const projectSlug = entry.id.replace(/\/changelog$/, "");
+    const projectSlug =
+      entry.id === "changelog" ? "sobre" : entry.id.replace(/\/changelog$/, "");
     return {
       id: entry.id,
       title: entry.data.title,

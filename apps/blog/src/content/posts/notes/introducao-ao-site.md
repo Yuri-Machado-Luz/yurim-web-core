@@ -27,7 +27,7 @@ A separação é intencional: evita que a complexidade do layout de docs "vaze" 
 
 Quatro collections com schemas distintos: `portfolio`, `automation`, `sandbox`, `notes`. Cada uma tem seu próprio conjunto de campos obrigatórios e opcionais validados por Zod em tempo de build.
 
-A collection `portfolio` aceita sub-páginas via campo `type: "project" | "changelog" | "doc"`. Changelogs ficam fisicamente dentro da pasta do projeto (`portfolio-hub/changelog.md`) mas não aparecem nas queries de listagem: apenas no routing de `/posts/`.
+A collection `portfolio` guarda docs do site Next.js: `sobre` e `changelog` em `/posts/portfolio/`. Changelogs também entram na página agregada `/posts/changelog`.
 
 ## Routing
 
