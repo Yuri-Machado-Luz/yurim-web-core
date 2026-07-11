@@ -9,7 +9,7 @@ const locale = localeFromPath(Astro.url.pathname);
 const messages = getMessages(locale);
 ---
 
-<footer class="footer border-t border-border bg-background py-6 md:py-8">
+<footer class="border-t border-border bg-background py-6 md:py-8">
   <div
     class="site-container flex flex-col items-center justify-between gap-4 md:flex-row"
   >
@@ -19,12 +19,3 @@ const messages = getMessages(locale);
     <SocialLinks />
   </div>
 </footer>
-
-<style>
-  .footer {
-    margin-top: 4rem;
-  }
-  .footer :global([postsFooter]) {
-    margin-top: 0;
-  }
-</style>

@@ -91,7 +91,7 @@ function linkProps(external?: boolean) {
 
     <div class="flex items-center gap-1">
       <div class="hidden items-center gap-1 md:flex">
-        <ul class="text-md flex items-center gap-1">
+        <ul class="flex items-center gap-1">
           {
             localizedNavLinks.map(({ label, href, external }) => (
               <li>
@@ -118,6 +118,7 @@ function linkProps(external?: boolean) {
           <Button
             href={localizedCta.href}
             variant="primary"
+            size="md"
             class="ml-2 hidden md:inline-flex"
             {...linkProps(localizedCta.external)}
           >
@@ -132,12 +133,22 @@ function linkProps(external?: boolean) {
       <button
         type="button"
         data-menu-btn
-        class="flex size-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-muted transition-colors hover:text-primary md:hidden"
+        class="inline-flex size-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:text-primary md:hidden"
         aria-label={messages.nav.openMenu}
         aria-expanded="false"
       >
-        <span data-icon-menu aria-hidden set:html={MenuRaw} />
-        <span data-icon-close class="hidden" aria-hidden set:html={CloseRaw} />
+        <span
+          data-icon-menu
+          class="size-5 [&_svg]:size-5"
+          aria-hidden
+          set:html={MenuRaw}
+        />
+        <span
+          data-icon-close
+          class="hidden size-5 [&_svg]:size-5"
+          aria-hidden
+          set:html={CloseRaw}
+        />
       </button>
     </div>
   </div>

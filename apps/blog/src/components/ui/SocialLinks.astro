@@ -6,39 +6,29 @@ const { github, linkedin, email } = CONFIG.meta.social;
 
 const links = [
   { href: github, label: "GitHub", icon: "github" as const, external: true },
-  { href: linkedin, label: "LinkedIn", icon: "linkedin" as const, external: true },
+  {
+    href: linkedin,
+    label: "LinkedIn",
+    icon: "linkedin" as const,
+    external: true,
+  },
   { href: `mailto:${email}`, label: "Email", icon: "mail" as const },
 ];
 ---
 
-<nav aria-label="Redes sociais" class="social-links">
+<nav aria-label="Redes sociais" class="flex items-center gap-4">
   {
     links.map(({ href, label, icon, external }) => (
       <a
         href={href}
-        class="social-icon-link"
+        class="inline-flex items-center justify-center text-muted-foreground transition-opacity hover:opacity-70 hover:text-foreground"
         aria-label={label}
         {...(external
           ? { target: "_blank", rel: "noopener noreferrer" }
           : {})}
       >
-        <Icon name={icon} size={24} />
+        <Icon name={icon} size={24} class="size-6" />
       </a>
     ))
   }
 </nav>
-
-<style>
-  .social-icon-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-muted);
-    transition: opacity 200ms ease;
-  }
-
-  .social-icon-link:hover {
-    opacity: 0.7;
-    color: var(--color-primary-400);
-  }
-</style>

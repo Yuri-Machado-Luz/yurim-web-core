@@ -5,18 +5,18 @@ import { MoonRaw, SunRaw } from "@assets";
 <button
   type="button"
   data-theme-toggle
-  class="theme-toggle flex size-9 items-center justify-center rounded-lg text-muted transition-colors hover:text-primary"
+  class="inline-flex size-9 shrink-0 items-center justify-center rounded-4xl text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
   aria-label="Alternar tema"
 >
   <span
     data-theme-icon="sun"
-    class="size-5"
+    class="size-5 [&_svg]:size-5"
     aria-hidden
     set:html={SunRaw}
   />
   <span
     data-theme-icon="moon"
-    class="size-5"
+    class="size-5 [&_svg]:size-5"
     aria-hidden
     set:html={MoonRaw}
   />

@@ -17,7 +17,7 @@ const href = switchLocalePath(pathname, next);
   href={href}
   data-locale-toggle
   data-next-locale={next}
-  class="theme-toggle flex size-9 items-center justify-center rounded-lg font-mono text-xs font-semibold tracking-wide text-muted transition-colors hover:text-primary"
+  class="inline-flex size-9 shrink-0 items-center justify-center rounded-4xl font-mono text-xs font-semibold tracking-wide text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
   aria-label={messages.nav.toggleLocale}
 >
   {messages.locale.other}
