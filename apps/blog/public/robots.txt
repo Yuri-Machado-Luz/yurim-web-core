@@ -2,8 +2,8 @@ User-agent: *
 Allow: /$
 Allow: /en
 Allow: /en/$
-Allow: /docs/
-Allow: /docs/*
+Allow: /posts/
+Allow: /posts/*
 
 Disallow: /sobre
 Disallow: /projetos

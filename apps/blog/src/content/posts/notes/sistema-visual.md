@@ -7,7 +7,7 @@ draft: false
 tags: [devlog, design]
 ---
 
-Documentação do sistema visual — como tokens, tipografia e componentes foram organizados para manter coerência entre portfólio e blog sem acoplamento rígido a um único framework.
+Documentação do sistema visual: como tokens, tipografia e componentes foram organizados para manter coerência entre portfólio e blog sem acoplamento rígido a um único framework.
 
 ## Tokens canônicos
 
@@ -26,13 +26,13 @@ A fonte da verdade é `brand-tokens.css` (sincronizado do portfólio). O blog im
 }
 ```
 
-Tailwind v4 consome as variáveis via `@theme` — sem `tailwind.config.js`. Utilitárias como `bg-background`, `text-primary` e `border-border` saem direto do CSS.
+Tailwind v4 consome as variáveis via `@theme`: sem `tailwind.config.js`. Utilitárias como `bg-background`, `text-primary` e `border-border` saem direto do CSS.
 
 ## Tipografia
 
-**Fraunces** — display (títulos, brand signal).  
-**Inter** — corpo e UI.  
-**JetBrains Mono** — código.
+**Fraunces**: display (títulos, brand signal).  
+**Inter**: corpo e UI.  
+**JetBrains Mono**: código.
 
 A escala tipográfica usa classes semânticas (`.page-title`, `.page-lead`, `.eyebrow`) em `@layer components`, não um acúmulo de utilitárias por template.
 

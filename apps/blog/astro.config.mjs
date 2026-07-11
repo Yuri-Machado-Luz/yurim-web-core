@@ -45,7 +45,7 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         page === "https://blog.yurimachado.dev.br/" ||
-        page.startsWith("https://blog.yurimachado.dev.br/docs/") ||
+        page.startsWith("https://blog.yurimachado.dev.br/posts/") ||
         page.startsWith("https://blog.yurimachado.dev.br/en"),
     }),
   ],

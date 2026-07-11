@@ -147,7 +147,7 @@
   }
 }
 
-html[data-vt-cross="docs-home"] ::view-transition-old(page-content) {
+html[data-vt-cross="posts-home"] ::view-transition-old(page-content) {
   animation: 200ms ease both vtFadeOut;
 }
 

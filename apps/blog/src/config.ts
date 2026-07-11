@@ -16,9 +16,9 @@ export function portfolioUrl(path = ""): string {
 export const CONFIG = {
   meta: {
     author: "Yuri Machado Luz",
-    suffix: " — Yuri Machado Luz",
+    suffix: " · Yuri Machado Luz",
     description:
-      "Devlogs, notas técnicas e documentação de projetos — sistemas web, APIs e automações.",
+      "Devlogs, notas técnicas e documentação de projetos: sistemas web, APIs e automações.",
     locale: "pt-BR",
     og: {
       default: "/og/blog.png",
@@ -38,11 +38,11 @@ export const CONFIG = {
 
   nav: {
     logo: {
-      href: portfolioUrl(),
-      alt: "Logotipo — ir para o portfólio",
+      href: "/",
+      alt: "Logotipo: ir para o blog",
     },
     pages: [
-      { label: "Início", href: portfolioUrl(), external: true },
+      { label: "Portfólio", href: portfolioUrl(), external: true },
       { label: "Projetos", href: portfolioUrl("/projetos"), external: true },
       { label: "Sobre", href: portfolioUrl("/sobre"), external: true },
       { label: "Blog", href: "/" },

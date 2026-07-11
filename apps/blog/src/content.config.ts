@@ -3,7 +3,7 @@ import { z } from "astro/zod";
 import { defineCollection } from "astro:content";
 
 const notes = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/docs/notes" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts/notes" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -16,7 +16,7 @@ const notes = defineCollection({
 const portfolio = defineCollection({
   loader: glob({
     pattern: "**/*.{md,mdx}",
-    base: "./src/content/docs/portfolio",
+    base: "./src/content/posts/portfolio",
   }),
   schema: z.object({
     title: z.string(),
@@ -36,7 +36,7 @@ const portfolio = defineCollection({
 const sandbox = defineCollection({
   loader: glob({
     pattern: "**/*.{md,mdx}",
-    base: "./src/content/docs/sandbox",
+    base: "./src/content/posts/sandbox",
   }),
   schema: z.object({
     title: z.string(),
@@ -51,7 +51,7 @@ const sandbox = defineCollection({
 const automation = defineCollection({
   loader: glob({
     pattern: "**/*.{md,mdx}",
-    base: "./src/content/docs/automation",
+    base: "./src/content/posts/automation",
   }),
   schema: z.object({
     title: z.string(),

@@ -5,14 +5,14 @@ createdAt: 2026-06-08
 updatedAt: 2026-06-16
 status: ativo
 type: project
-github: https://github.com/Yuri-Machado-Luz/forks.opensource
+github: "https://github.com/Yuri-Machado-Luz/forks.opensource"
 featured: false
 draft: false
 order: 3
 tags: [vscode, typescript, open-source, extensao]
 ---
 
-Contribuição ao projeto [Explorer Sort](https://github.com/Jinchanghyeok/explorer-sort) — extensão VS Code para ordenação de arquivos e pastas por regras e prioridades configuráveis.
+Contribuição ao projeto [Explorer Sort](https://github.com/Jinchanghyeok/explorer-sort): extensão VS Code para ordenação de arquivos e pastas por regras e prioridades configuráveis.
 
 ## Contribuições
 
@@ -24,7 +24,7 @@ Agrupamento de arquivos relacionados com padrões glob e suporte a `${capture}`.
 
 ### Drag & Drop Reordering
 
-Reorganização intuitiva por arraste, incluindo o nível raiz do workspace. As prioridades de ordenação são salvas automaticamente em `.vscode/settings.json` — sem precisar editar o JSON manualmente após reorganizar.
+Reorganização intuitiva por arraste, incluindo o nível raiz do workspace. As prioridades de ordenação são salvas automaticamente em `.vscode/settings.json`: sem precisar editar o JSON manualmente após reorganizar.
 
 ### Suporte pt-BR
 

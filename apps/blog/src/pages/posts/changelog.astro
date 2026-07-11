@@ -18,7 +18,7 @@ const rendered = await Promise.all(
       id: entry.id,
       title: entry.data.title,
       description: entry.data.description,
-      projectHref: `/docs/portfolio/${projectSlug}`,
+      projectHref: `/posts/portfolio/${projectSlug}`,
       Body,
     };
   }),
@@ -40,7 +40,7 @@ const rendered = await Promise.all(
               <h2 class="changelog-project">
                 <a href={projectHref}>{title}</a>
               </h2>
-              {description && <p class="docs-lead-inline">{description}</p>}
+              {description && <p class="posts-lead-inline">{description}</p>}
             </header>
             <Body />
           </section>
@@ -90,7 +90,7 @@ const rendered = await Promise.all(
     color: var(--color-primary-400);
   }
 
-  .docs-lead-inline {
+  .posts-lead-inline {
     color: var(--color-muted);
     margin: 0;
     font-size: 1rem;

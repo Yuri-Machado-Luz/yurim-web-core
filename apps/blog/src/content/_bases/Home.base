@@ -8,8 +8,7 @@ formulas:
       if(file.folder == "pages", "/" + file.name.replace(".md", ""), 
         if(file.folder == "special", if(file.name.replace(".md", "") == "home", "/", "/" + file.name.replace(".md", "")), 
           if(file.folder == "projects", "/projects/" + file.name.replace(".md", ""), 
-            if(file.folder == "docs", "/docs/" + file.name.replace(".md", ""), 
-              "/" + file.folder)))))
+            "/" + file.folder))))
   Content Folder: |-
     if(file.name == "index",
       if(file.folder != "",

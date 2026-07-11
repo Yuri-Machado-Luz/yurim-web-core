@@ -124,10 +124,10 @@ const jsonLd = {
 <script>
   document.addEventListener("astro:before-preparation", (e) => {
     const { from, to } = e as unknown as { from: URL; to: URL };
-    const fromDocs = from.pathname.startsWith("/docs");
-    const toDocs = to.pathname.startsWith("/docs");
-    if (fromDocs !== toDocs) {
-      document.documentElement.dataset.vtCross = "docs-home";
+    const fromPosts = from.pathname.startsWith("/posts");
+    const toPosts = to.pathname.startsWith("/posts");
+    if (fromPosts !== toPosts) {
+      document.documentElement.dataset.vtCross = "posts-home";
     }
   });
   document.addEventListener("astro:after-swap", () => {

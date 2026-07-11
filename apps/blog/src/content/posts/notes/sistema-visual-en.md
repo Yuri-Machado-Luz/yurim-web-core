@@ -7,7 +7,7 @@ draft: false
 tags: [devlog, design]
 ---
 
-Documentation of the visual system — how tokens, typography, and components stay coherent across portfolio and blog without hard-coupling to a single framework.
+Documentation of the visual system: how tokens, typography, and components stay coherent across portfolio and blog without hard-coupling to a single framework.
 
 ## Canonical tokens
 
@@ -26,13 +26,13 @@ The source of truth is `brand-tokens.css` (synced from the portfolio). The blog 
 }
 ```
 
-Tailwind v4 consumes the variables via `@theme` — no `tailwind.config.js`. Utilities like `bg-background`, `text-primary`, and `border-border` come straight from CSS.
+Tailwind v4 consumes the variables via `@theme`: no `tailwind.config.js`. Utilities like `bg-background`, `text-primary`, and `border-border` come straight from CSS.
 
 ## Typography
 
-**Fraunces** — display (titles, brand signal).  
-**Inter** — body and UI.  
-**JetBrains Mono** — code.
+**Fraunces**: display (titles, brand signal).  
+**Inter**: body and UI.  
+**JetBrains Mono**: code.
 
 The type scale uses semantic classes (`.page-title`, `.page-lead`, `.eyebrow`) in `@layer components`, not a pile of utilities per template.
 

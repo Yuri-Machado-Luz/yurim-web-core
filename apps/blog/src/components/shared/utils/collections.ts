@@ -1,7 +1,7 @@
 import { getCollection } from "astro:content";
 
-function docHref(collection: string, id: string) {
-  return `/docs/${collection}/${id.replace(/\/index$/, "")}`;
+function postHref(collection: string, id: string) {
+  return `/posts/${collection}/${id.replace(/\/index$/, "")}`;
 }
 
 export async function getFeaturedProjects() {
@@ -71,21 +71,21 @@ export async function getLandingCollections(locale: "pt" | "en" = "pt") {
     notes: notes.map((entry) => ({
       title: entry.data.title,
       description: entry.data.description,
-      href: docHref("notes", entry.id),
+      href: postHref("notes", entry.id),
       tags: entry.data.tags,
       pubDate: entry.data.pubDate,
     })),
     portfolio: portfolio.map((entry) => ({
       title: entry.data.title,
       description: entry.data.description,
-      href: docHref("portfolio", entry.id),
+      href: postHref("portfolio", entry.id),
       tags: entry.data.tags,
       status: entry.data.status,
     })),
     automation: automation.map((entry) => ({
       title: entry.data.title,
       description: entry.data.description,
-      href: docHref("automation", entry.id),
+      href: postHref("automation", entry.id),
       tags: entry.data.tags,
       status: entry.data.status,
     })),
