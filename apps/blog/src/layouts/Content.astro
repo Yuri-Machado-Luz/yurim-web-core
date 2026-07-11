@@ -2,10 +2,11 @@
 import Sidebar from "@ui/Sidebar.astro";
 import TOC from "@ui/TOC.astro";
 import Footer from "./Footer.astro";
-import Navbar from "./Navbar.astro";
 import type { SidebarEntry } from "../types";
 import ThemeInit from "@shared/ThemeInit.astro";
 import Head from "./Head.astro";
+import ThemeToggle from "@ui/ThemeToggle.astro";
+import LocaleToggle from "@ui/LocaleToggle.astro";
 import { ChevronLeftRaw, CloseRaw, MenuRaw } from "@assets";
 import { localeFromPath } from "@/lib/locale-cookie";
 import { htmlLang } from "@i18n/index";
@@ -37,9 +38,8 @@ const hasToc =
   <Head title={title} description={description} locale={locale} />
 
   <body>
-    <Navbar transition:persist="navbar" />
     <main
-      class="posts-layout pt-16 md:pt-20"
+      class="posts-layout"
       data-has-sidebar={hasSidebar ? "true" : "false"}
       data-has-toc={hasToc ? "true" : "false"}
     >
@@ -47,6 +47,10 @@ const hasToc =
         hasSidebar && (
           <aside class="posts-sidebar" transition:name="posts-sidebar">
             <div class="posts-sidebar-header">
+              <div class="posts-sidebar-tools">
+                <LocaleToggle />
+                <ThemeToggle />
+              </div>
               <button
                 type="button"
                 class="posts-sidebar-close"
@@ -179,20 +183,13 @@ const hasToc =
 
   .posts-sidebar {
     position: sticky;
-    top: 4rem;
-    height: calc(100svh - 4rem);
+    top: 0;
+    height: 100svh;
     overflow-y: auto;
     border-right: 1px solid var(--color-border);
     transition:
       opacity 0.25s ease,
       padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  @media (min-width: 48rem) {
-    .posts-sidebar {
-      top: 5rem;
-      height: calc(100svh - 5rem);
-    }
   }
 
   .posts-layout.sidebar-collapsed .posts-sidebar {
@@ -201,7 +198,7 @@ const hasToc =
 
   .sidebar-toggle {
     position: fixed;
-    top: 6rem;
+    top: 1.25rem;
     left: 15.5rem;
     z-index: 60;
     display: flex;
@@ -239,6 +236,18 @@ const hasToc =
   }
 
   .posts-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 0.75rem 0.5rem;
+  }
+  .posts-sidebar-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .posts-sidebar-close {
     display: none;
   }
 
@@ -283,7 +292,7 @@ const hasToc =
 
   .posts-toc {
     position: sticky;
-    top: 6rem;
+    top: 1.5rem;
     padding: 0 1.5rem 3rem 0;
   }
 
@@ -317,13 +326,10 @@ const hasToc =
     .posts-sidebar {
       position: fixed;
       left: 0;
-      top: 4rem;
-      height: calc(100dvh - 4rem);
+      top: 0;
+      height: 100dvh;
       width: min(16rem, 85vw);
-      /* Stay below the fixed navbar (z-50) so the logo, ThemeToggle,
-         LocaleToggle and hamburger remain visible and clickable while
-         the sidebar drawer is open. */
-      z-index: 45;
+      z-index: 50;
       background: var(--color-bg);
       transform: translateX(-100%);
       transition: transform 0.25s ease;
@@ -341,7 +347,8 @@ const hasToc =
     .posts-sidebar-header {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between;
+      gap: 0.5rem;
       padding: 0.75rem 0.75rem 0.25rem;
     }
     .posts-sidebar-close {
@@ -372,7 +379,7 @@ const hasToc =
     .posts-mobile-bar {
       display: block;
       position: sticky;
-      top: 4rem;
+      top: 0;
       z-index: 40;
       padding: 1rem 1.25rem 0;
       background: linear-gradient(
@@ -426,7 +433,6 @@ const hasToc =
       display: block;
       position: fixed;
       inset: 0;
-      top: 4rem;
       z-index: 44;
       background: rgb(0 0 0 / 0.55);
       backdrop-filter: blur(4px);
