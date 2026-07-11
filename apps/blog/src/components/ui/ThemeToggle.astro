@@ -25,6 +25,7 @@ import { MoonRaw, SunRaw } from "@assets";
 <script>
   import {
     getCurrentTheme,
+    reapplyTheme,
     toggleTheme,
   } from "@shared/handlers/theme";
 
@@ -40,6 +41,7 @@ import { MoonRaw, SunRaw } from "@assets";
   }
 
   function initThemeToggle() {
+    reapplyTheme();
     syncToggleLabels();
     document
       .querySelectorAll<HTMLButtonElement>("[data-theme-toggle]")
@@ -53,6 +55,11 @@ import { MoonRaw, SunRaw } from "@assets";
       });
   }
 
+  function onAfterSwap() {
+    reapplyTheme();
+    syncToggleLabels();
+  }
+
   document.addEventListener("astro:page-load", initThemeToggle);
-  document.addEventListener("astro:after-swap", syncToggleLabels);
+  document.addEventListener("astro:after-swap", onAfterSwap);
 </script>

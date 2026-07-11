@@ -14,7 +14,7 @@ const portfolioPrefix = locale === "en" ? "/en" : "";
 
 const localizedNavLinks = [
   {
-    label: messages.nav.home,
+    label: messages.nav.portfolio,
     href: portfolioUrl(portfolioPrefix || "/"),
     external: true,
   },
@@ -47,7 +47,7 @@ function isBlogRoute(path: string) {
     path === "/" ||
     path === "/en" ||
     path.startsWith("/en/") ||
-    path.startsWith("/docs/")
+    path.startsWith("/posts/")
   );
 }
 
@@ -100,7 +100,7 @@ function linkProps(external?: boolean) {
                   data-nav-link
                   data-external={external ? "true" : undefined}
                   class:list={[
-                    "nav-link px-3 py-2",
+                    "nav-link",
                     isActive(href, external) && "nav-link-active",
                   ]}
                   {...linkProps(external)}
@@ -191,6 +191,7 @@ function linkProps(external?: boolean) {
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { setScrollLock } from "@shared/handlers/scroll-lock";
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -204,7 +205,7 @@ function linkProps(external?: boolean) {
       path === "/" ||
       path === "/en" ||
       path.startsWith("/en/") ||
-      path.startsWith("/docs/")
+      path.startsWith("/posts/")
     );
   }
 
@@ -315,7 +316,7 @@ function linkProps(external?: boolean) {
       overlay.classList.toggle("pointer-events-none", !open);
       overlay.classList.toggle("opacity-0", !open);
       overlay.classList.toggle("opacity-100", open);
-      document.body.style.overflow = open ? "hidden" : "";
+      setScrollLock("navbar-drawer", open);
     }
 
     function closeMenu() {
@@ -348,7 +349,7 @@ function linkProps(external?: boolean) {
       overlay.classList.add("opacity-0", "pointer-events-none");
       overlay.classList.remove("opacity-100");
     }
-    document.body.style.overflow = "";
+    setScrollLock("navbar-drawer", false);
   });
 
   document.addEventListener("astro:after-swap", () => {

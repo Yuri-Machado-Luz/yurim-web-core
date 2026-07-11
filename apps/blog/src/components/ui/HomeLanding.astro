@@ -51,14 +51,14 @@ const sections = [
   locale={locale}
 >
   <header class="site-container pb-12 pt-16 md:pb-16 md:pt-20">
-    <p class="brand-signal mb-4">{messages.home.brand}</p>
+    <p class="author-signal mb-4">{messages.home.author}</p>
     <h1 class="page-title mb-4">{messages.home.headline}</h1>
     <p class="page-lead max-w-2xl">{messages.home.lead}</p>
     <div class="mt-8 flex flex-wrap items-center gap-3">
       <Button href={portfolioUrl()} variant="primary" size="lg">
         {messages.home.portfolioCta}
       </Button>
-      <Button href="/docs/changelog" variant="outline" size="lg">
+      <Button href="/posts/changelog" variant="outline" size="lg">
         {messages.home.changelogCta}
       </Button>
     </div>
@@ -73,7 +73,10 @@ const sections = [
             <ul class="posts-list list-none m-0 p-0">
               {section.items.map((item) => (
                 <li class="post-item">
-                  <a href={item.href} class="post-card card-glow-subtle">
+                  <a
+                    href={item.href}
+                    class="post-card card-glow-subtle border border-border"
+                  >
                     <span class="article-title">{item.title}</span>
                     {(item.description ||
                       ("pubDate" in item && item.pubDate)) && (
@@ -82,7 +85,7 @@ const sections = [
                         {item.description &&
                           "pubDate" in item &&
                           item.pubDate &&
-                          " — "}
+                          " · "}
                         {"pubDate" in item &&
                           item.pubDate &&
                           formatDate(new Date(item.pubDate))}
@@ -113,7 +116,7 @@ const sections = [
         <h2 class="section-title mb-2">{messages.changelog.teaserTitle}</h2>
         <p class="article-meta m-0">{messages.changelog.teaserLead}</p>
       </div>
-      <Button href="/docs/changelog" variant="outline">
+      <Button href="/posts/changelog" variant="outline">
         {messages.changelog.teaserCta}
       </Button>
     </aside>
@@ -121,13 +124,11 @@ const sections = [
 </Base>
 
 <style>
-  .brand-signal {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    color: var(--color-text);
+  .author-signal {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--color-muted);
   }
 
   .section-title {
@@ -148,15 +149,18 @@ const sections = [
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--color-border);
+    padding: 1.25rem;
+    border-radius: var(--radius-lg, 0.75rem);
     text-decoration: none;
     color: var(--color-text);
-    transition: color 200ms ease;
+    transition:
+      color 200ms ease,
+      border-color 200ms ease;
   }
 
   .post-card:hover {
     color: var(--color-primary-400);
+    border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
   }
 
   .post-tags {

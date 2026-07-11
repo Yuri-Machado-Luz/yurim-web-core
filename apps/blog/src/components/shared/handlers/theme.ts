@@ -1,5 +1,7 @@
 import {
   THEME_STORAGE_KEY,
+  readThemeCookie,
+  resolveIsDark,
   writeThemeCookie,
   type ThemeValue,
 } from "@/lib/theme-cookie";
@@ -27,6 +29,24 @@ export function resolveTheme(stored: Theme | null, system: Theme): Theme {
 export function applyTheme(theme: Theme) {
   document.documentElement.classList.toggle("dark", theme === "dark");
   document.documentElement.dataset.theme = theme;
+}
+
+/** Re-read cookie → localStorage → system and apply (ClientRouter swaps). */
+export function reapplyTheme() {
+  if (typeof window === "undefined") return;
+  const fromCookie = readThemeCookie(document.cookie);
+  const fromStorage = localStorage.getItem(THEME_STORAGE_KEY);
+  const stored: ThemeValue | null =
+    fromCookie ??
+    (fromStorage === "light" ||
+    fromStorage === "dark" ||
+    fromStorage === "system"
+      ? (fromStorage as ThemeValue)
+      : null);
+  const prefersDark = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+  applyTheme(resolveIsDark(stored, prefersDark) ? "dark" : "light");
 }
 
 export function setTheme(theme: Theme) {

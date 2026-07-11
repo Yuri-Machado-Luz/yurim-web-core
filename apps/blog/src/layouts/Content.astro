@@ -2,10 +2,12 @@
 import Sidebar from "@ui/Sidebar.astro";
 import TOC from "@ui/TOC.astro";
 import Footer from "./Footer.astro";
+import Navbar from "./Navbar.astro";
 import type { SidebarEntry } from "../types";
 import ThemeInit from "@shared/ThemeInit.astro";
 import Head from "./Head.astro";
 import { ChevronLeftRaw, CloseRaw, MenuRaw } from "@assets";
+import { localeFromPath } from "@/lib/locale-cookie";
 import { htmlLang } from "@i18n/index";
 
 interface Heading {
@@ -19,31 +21,35 @@ interface Props {
   description?: string;
   sidebar?: SidebarEntry[];
   headings?: Heading[];
+  locale?: "pt" | "en";
 }
 
-const { title, description, sidebar, headings = [] } = Astro.props;
+const { title, description, sidebar, headings = [], locale: localeProp } =
+  Astro.props;
+const locale = localeProp ?? localeFromPath(Astro.url.pathname);
 const hasSidebar = sidebar && sidebar.length > 0;
 const hasToc =
   headings.filter((h) => h.depth === 2 || h.depth === 3).length > 0;
 ---
 
-<html lang={htmlLang("pt")}>
+<html lang={htmlLang(locale)}>
   <ThemeInit />
-  <Head title={title} description={description} locale="pt" />
+  <Head title={title} description={description} locale={locale} />
 
   <body>
+    <Navbar transition:persist="navbar" />
     <main
-      class="docs-layout"
+      class="posts-layout pt-16 md:pt-20"
       data-has-sidebar={hasSidebar ? "true" : "false"}
       data-has-toc={hasToc ? "true" : "false"}
     >
       {
         hasSidebar && (
-          <aside class="docs-sidebar" transition:name="docs-sidebar">
-            <div class="docs-sidebar-header">
+          <aside class="posts-sidebar" transition:name="posts-sidebar">
+            <div class="posts-sidebar-header">
               <button
                 type="button"
-                class="docs-sidebar-close"
+                class="posts-sidebar-close"
                 aria-label="Fechar navegação"
               >
                 <span aria-hidden="true" set:html={CloseRaw} />
@@ -89,7 +95,7 @@ const hasToc =
 
       {
         hasSidebar && (
-          <div class="docs-mobile-bar">
+          <div class="posts-mobile-bar">
             <button
               type="button"
               class="sidebar-mobile-toggle"
@@ -115,21 +121,21 @@ const hasToc =
 
       <div class="sidebar-backdrop"></div>
 
-      <article class="docs-content prose min-w-0">
-        <h1 class="docs-title">{title}</h1>
-        {description && <p class="docs-lead">{description}</p>}
+      <article class="posts-content prose min-w-0">
+        <h1 class="posts-title">{title}</h1>
+        {description && <p class="posts-lead">{description}</p>}
         <slot />
       </article>
 
       {
         hasToc && (
-          <aside class="docs-toc">
+          <aside class="posts-toc">
             <TOC headings={headings} />
           </aside>
         )
       }
 
-      <div class="docs-footer">
+      <div class="posts-footer">
         <Footer />
       </div>
     </main>
@@ -138,43 +144,43 @@ const hasToc =
 
 <style>
   /* Grid layout driven by data attributes */
-  .docs-layout {
+  .posts-layout {
     display: grid;
     min-height: 100svh;
     align-items: start;
     transition: grid-template-columns 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .docs-layout[data-has-sidebar="true"][data-has-toc="true"] {
+  .posts-layout[data-has-sidebar="true"][data-has-toc="true"] {
     grid-template-columns: 16rem 1fr 14rem;
   }
-  .docs-layout[data-has-sidebar="true"][data-has-toc="false"] {
+  .posts-layout[data-has-sidebar="true"][data-has-toc="false"] {
     grid-template-columns: 16rem 1fr;
   }
-  .docs-layout[data-has-sidebar="false"][data-has-toc="true"] {
+  .posts-layout[data-has-sidebar="false"][data-has-toc="true"] {
     grid-template-columns: 1fr 14rem;
   }
-  .docs-layout[data-has-sidebar="false"][data-has-toc="false"] {
+  .posts-layout[data-has-sidebar="false"][data-has-toc="false"] {
     grid-template-columns: 1fr;
   }
 
   /* Collapsed sidebar */
-  .docs-layout.sidebar-collapsed[data-has-toc="true"] {
+  .posts-layout.sidebar-collapsed[data-has-toc="true"] {
     grid-template-columns: 0 1fr 14rem;
   }
-  .docs-layout.sidebar-collapsed[data-has-toc="false"] {
+  .posts-layout.sidebar-collapsed[data-has-toc="false"] {
     grid-template-columns: 0 1fr;
   }
-  .docs-layout.sidebar-collapsed .docs-sidebar {
+  .posts-layout.sidebar-collapsed .posts-sidebar {
     border-right: none;
     overflow: hidden;
     padding: 0;
   }
 
-  .docs-sidebar {
+  .posts-sidebar {
     position: sticky;
-    top: 0;
-    height: 100svh;
+    top: 4rem;
+    height: calc(100svh - 4rem);
     overflow-y: auto;
     border-right: 1px solid var(--color-border);
     transition:
@@ -182,7 +188,14 @@ const hasToc =
       padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .docs-layout.sidebar-collapsed .docs-sidebar {
+  @media (min-width: 48rem) {
+    .posts-sidebar {
+      top: 5rem;
+      height: calc(100svh - 5rem);
+    }
+  }
+
+  .posts-layout.sidebar-collapsed .posts-sidebar {
     opacity: 0;
   }
 
@@ -212,7 +225,7 @@ const hasToc =
     color: var(--color-text);
     background: rgb(255 255 255 / 0.08);
   }
-  .docs-layout.sidebar-collapsed .sidebar-toggle {
+  .posts-layout.sidebar-collapsed .sidebar-toggle {
     left: 0;
     transform: rotate(180deg);
   }
@@ -221,11 +234,11 @@ const hasToc =
     display: none;
   }
 
-  .docs-mobile-bar {
+  .posts-mobile-bar {
     display: none;
   }
 
-  .docs-sidebar-header {
+  .posts-sidebar-header {
     display: none;
   }
 
@@ -237,13 +250,13 @@ const hasToc =
     display: none;
   }
 
-  .docs-content {
+  .posts-content {
     padding: 3rem;
     max-width: none;
     overflow-x: clip;
   }
 
-  .docs-title {
+  .posts-title {
     font-family: var(--font-display);
     font-size: 2.25rem;
     font-weight: 700;
@@ -254,12 +267,12 @@ const hasToc =
   }
 
   @media (min-width: 40rem) {
-    .docs-title {
+    .posts-title {
       font-size: 3rem;
     }
   }
 
-  .docs-lead {
+  .posts-lead {
     font-size: 1.25rem;
     color: var(--color-muted);
     line-height: 1.625;
@@ -268,46 +281,50 @@ const hasToc =
     border-bottom: 1px solid var(--color-border);
   }
 
-  .docs-toc {
+  .posts-toc {
     position: sticky;
-    top: 2rem;
+    top: 6rem;
     padding: 0 1.5rem 3rem 0;
   }
 
-  .docs-footer {
+  .posts-footer {
     grid-column: 1 / -1;
   }
-  .docs-layout[data-has-sidebar="true"] .docs-footer {
+  .posts-layout[data-has-sidebar="true"] .posts-footer {
     grid-column: 2 / -1;
   }
-  .docs-layout.sidebar-collapsed .docs-footer {
+  .posts-layout.sidebar-collapsed .posts-footer {
     grid-column: 1 / -1;
   }
-  .docs-footer :global(.footer) {
+  .posts-footer :global(.footer) {
     margin-top: 0;
   }
 
   /* Mobile */
   @media (max-width: 768px) {
-    .docs-layout[data-has-sidebar],
-    .docs-layout[data-has-sidebar="true"][data-has-toc="true"],
-    .docs-layout[data-has-sidebar="true"][data-has-toc="false"],
-    .docs-layout.sidebar-collapsed[data-has-toc="true"],
-    .docs-layout.sidebar-collapsed[data-has-toc="false"] {
+    .posts-layout[data-has-sidebar],
+    .posts-layout[data-has-sidebar="true"][data-has-toc="true"],
+    .posts-layout[data-has-sidebar="true"][data-has-toc="false"],
+    .posts-layout.sidebar-collapsed[data-has-toc="true"],
+    .posts-layout.sidebar-collapsed[data-has-toc="false"] {
       grid-template-columns: 1fr !important;
     }
 
-    .docs-toc {
+    .posts-toc {
       display: none;
     }
 
-    .docs-sidebar {
+    .posts-sidebar {
       position: fixed;
       left: 0;
-      top: 0;
-      height: 100dvh;
-      width: 16rem;
-      z-index: 50;
+      top: 4rem;
+      height: calc(100dvh - 4rem);
+      width: min(16rem, 85vw);
+      /* Stay below the fixed navbar (z-50) so the logo, ThemeToggle,
+         LocaleToggle and hamburger remain visible and clickable while
+         the sidebar drawer is open. */
+      z-index: 45;
+      background: var(--color-bg);
       transform: translateX(-100%);
       transition: transform 0.25s ease;
       border-right: 1px solid var(--color-border);
@@ -315,19 +332,19 @@ const hasToc =
       padding: 0;
       opacity: 1;
     }
-    .docs-sidebar.is-open {
+    .posts-sidebar.is-open {
       transform: translateX(0);
       overflow-y: auto;
       padding: initial;
     }
 
-    .docs-sidebar-header {
+    .posts-sidebar-header {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       padding: 0.75rem 0.75rem 0.25rem;
     }
-    .docs-sidebar-close {
+    .posts-sidebar-close {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -342,20 +359,20 @@ const hasToc =
         color 150ms ease,
         background 150ms ease;
     }
-    .docs-sidebar-close:hover {
+    .posts-sidebar-close:hover {
       color: var(--color-text);
       background: rgb(255 255 255 / 0.08);
     }
-    .docs-sidebar-close :global(svg) {
+    .posts-sidebar-close :global(svg) {
       width: 1.125rem;
       height: 1.125rem;
       display: block;
     }
 
-    .docs-mobile-bar {
+    .posts-mobile-bar {
       display: block;
       position: sticky;
-      top: 0;
+      top: 4rem;
       z-index: 40;
       padding: 1rem 1.25rem 0;
       background: linear-gradient(
@@ -409,8 +426,9 @@ const hasToc =
       display: block;
       position: fixed;
       inset: 0;
-      z-index: 49;
-      background: rgb(0 0 0 / 0.75);
+      top: 4rem;
+      z-index: 44;
+      background: rgb(0 0 0 / 0.55);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       opacity: 0;
@@ -465,20 +483,29 @@ const hasToc =
       font-size: 0.75rem;
     }
 
-    .docs-content {
+    .posts-content {
       padding: 1rem 1.25rem 2rem;
     }
 
-    .docs-footer {
+    .posts-footer {
       grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+    .posts-sidebar,
+    .sidebar-backdrop {
+      transition: none;
     }
   }
 </style>
 
 <script>
-  function initDocs() {
-    const layout = document.querySelector<HTMLElement>(".docs-layout");
-    const sidebar = document.querySelector<HTMLElement>(".docs-sidebar");
+  import { setScrollLock } from "@shared/handlers/scroll-lock";
+
+  function initPosts() {
+    const layout = document.querySelector<HTMLElement>(".posts-layout");
+    const sidebar = document.querySelector<HTMLElement>(".posts-sidebar");
     const toggle = document.querySelector<HTMLElement>(".sidebar-toggle");
     const mobileToggle = document.querySelector<HTMLElement>(
       ".sidebar-mobile-toggle",
@@ -486,62 +513,109 @@ const hasToc =
     const backdrop = document.querySelector<HTMLElement>(".sidebar-backdrop");
 
     if (layout && toggle) {
-      if (localStorage.getItem("docs-sidebar-collapsed") === "true") {
+      if (localStorage.getItem("posts-sidebar-collapsed") === "true") {
         layout.classList.add("sidebar-collapsed");
       }
       toggle.addEventListener("click", () => {
         const collapsed = layout.classList.toggle("sidebar-collapsed");
-        localStorage.setItem("docs-sidebar-collapsed", String(collapsed));
+        localStorage.setItem("posts-sidebar-collapsed", String(collapsed));
       });
     }
 
     if (sidebar && mobileToggle && backdrop) {
+      const LOCK_ID = "posts-sidebar";
       const iconMenu = mobileToggle.querySelector<HTMLElement>("[data-icon-menu]");
       const iconClose = mobileToggle.querySelector<HTMLElement>("[data-icon-close]");
-      const sidebarClose = sidebar.querySelector<HTMLButtonElement>(".docs-sidebar-close");
+      const sidebarClose = sidebar.querySelector<HTMLButtonElement>(".posts-sidebar-close");
+
+      function getFocusable() {
+        return Array.from(
+          sidebar!.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled])',
+          ),
+        );
+      }
 
       function openSidebar() {
         sidebar!.classList.add("is-open");
         backdrop!.classList.add("is-open");
-        document.body.style.overflow = "hidden";
+        setScrollLock(LOCK_ID, true);
         mobileToggle!.setAttribute("aria-expanded", "true");
         mobileToggle!.setAttribute("aria-label", "Fechar navegação");
         iconMenu?.classList.add("is-icon-hidden");
         iconClose?.classList.remove("is-icon-hidden");
+        // Move focus into the drawer for keyboard/screen-reader users.
+        sidebarClose?.focus();
       }
 
-      function closeSidebar() {
+      function closeSidebar(options: { restoreFocus?: boolean } = {}) {
+        const wasOpen = sidebar!.classList.contains("is-open");
         sidebar!.classList.remove("is-open");
         backdrop!.classList.remove("is-open");
-        document.body.style.overflow = "";
+        setScrollLock(LOCK_ID, false);
         mobileToggle!.setAttribute("aria-expanded", "false");
         mobileToggle!.setAttribute("aria-label", "Abrir navegação");
         iconMenu?.classList.remove("is-icon-hidden");
         iconClose?.classList.add("is-icon-hidden");
+        if (wasOpen && options.restoreFocus) {
+          mobileToggle!.focus();
+        }
       }
 
       mobileToggle.addEventListener("click", () => {
         if (sidebar!.classList.contains("is-open")) {
-          closeSidebar();
+          closeSidebar({ restoreFocus: true });
         } else {
           openSidebar();
         }
       });
-      sidebarClose?.addEventListener("click", closeSidebar);
-      backdrop.addEventListener("click", closeSidebar);
+      sidebarClose?.addEventListener("click", () =>
+        closeSidebar({ restoreFocus: true }),
+      );
+      backdrop.addEventListener("click", () => closeSidebar());
 
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && sidebar!.classList.contains("is-open")) {
-          closeSidebar();
-          mobileToggle!.focus();
+        if (!sidebar!.classList.contains("is-open")) return;
+
+        if (e.key === "Escape") {
+          closeSidebar({ restoreFocus: true });
+          return;
+        }
+
+        // Simple focus trap: keep Tab cycling within the open drawer.
+        if (e.key === "Tab") {
+          const focusable = getFocusable();
+          if (focusable.length === 0) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          const active = document.activeElement;
+
+          if (e.shiftKey && active === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && active === last) {
+            e.preventDefault();
+            first.focus();
+          }
         }
       });
 
-      sidebar.querySelectorAll<HTMLAnchorElement>("[data-mobile-toc-link]").forEach((link) => {
-        link.addEventListener("click", closeSidebar);
+      // Any navigation from within the drawer (post links, TOC links, or
+      // the "Início" link) should close it so scroll unlocks and the
+      // backdrop doesn't linger through the page transition.
+      sidebar.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => {
+        link.addEventListener("click", () => closeSidebar());
       });
+
+      // Safety net: never leave scroll locked across a page transition,
+      // even if the drawer was closed some other way.
+      document.addEventListener(
+        "astro:before-preparation",
+        () => setScrollLock(LOCK_ID, false),
+        { once: true },
+      );
     }
   }
 
-  document.addEventListener("astro:page-load", initDocs);
+  document.addEventListener("astro:page-load", initPosts);
 </script>
