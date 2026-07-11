@@ -27,7 +27,7 @@ export const pt = {
       eyebrow: "Sobre",
       title: "A pessoa por trás do código",
       body: "Histórico, stack e formação: o que construí e onde atuei.",
-      cta: "Sobre mim",
+      cta: "Saiba mais",
     },
     sections: {
       bio: "Bio",
@@ -89,6 +89,15 @@ export const pt = {
     title: "Tem um projeto em mente?",
     button: "Entrar em contato",
   },
+  changelog: {
+    eyebrow: "Portfólio",
+    pageTitle: "Changelog",
+    pageLead:
+      "Histórico de versões deste site (Next.js). O blog tem versionamento próprio.",
+    added: "Adicionado",
+    changed: "Alterado",
+    removed: "Removido",
+  },
   nav: {
     home: "Início",
     projects: "Projetos",
@@ -139,7 +148,7 @@ export const en: Messages = {
       eyebrow: "About",
       title: "The person behind the code",
       body: "Background, stack, and education: what I built and where I worked.",
-      cta: "About me",
+      cta: "Learn more",
     },
     sections: {
       bio: "Bio",
@@ -200,6 +209,15 @@ export const en: Messages = {
   cta: {
     title: "Got a project in mind?",
     button: "Get in touch",
+  },
+  changelog: {
+    eyebrow: "Portfolio",
+    pageTitle: "Changelog",
+    pageLead:
+      "Version history for this site (Next.js). The blog keeps its own changelog.",
+    added: "Added",
+    changed: "Changed",
+    removed: "Removed",
   },
   nav: {
     home: "Home",
