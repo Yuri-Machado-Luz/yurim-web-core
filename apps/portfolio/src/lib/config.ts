@@ -34,7 +34,7 @@ export const CONFIG = {
 
   sites: {
     blog: blogBase,
-    changelog: `${blogBase}/posts/portfolio/portfolio-hub/changelog`,
+    changelog: `${blogBase}/posts/changelog`,
   },
 
   nav: {
@@ -43,11 +43,6 @@ export const CONFIG = {
       { key: "about" as const, href: "/sobre" },
       { key: "services" as const, href: "/servicos" },
       { key: "blog" as const, href: blogBase, external: true },
-      {
-        key: "changelog" as const,
-        href: `${blogBase}/posts/portfolio/portfolio-hub/changelog`,
-        external: true,
-      },
       { key: "contact" as const, href: "/contato", cta: true },
     ],
   },

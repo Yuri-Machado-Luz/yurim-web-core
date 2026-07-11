@@ -51,11 +51,6 @@ export function ServicesPageContent() {
 
       <Section spacing="none" className="pb-20">
         <div className="mx-auto max-w-xl text-center">
-          {messages.services.ctaHint && (
-            <p className="mb-4 text-sm text-muted-foreground">
-              {messages.services.ctaHint}
-            </p>
-          )}
           <Button asChild size="lg">
             <Link href={localizedPath("/contato", locale)}>
               {messages.services.cta}

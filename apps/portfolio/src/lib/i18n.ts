@@ -8,7 +8,7 @@ export const pt = {
   hero: {
     badge: "Full-Stack Developer",
     paragraph:
-      "Consultor e desenvolvedor independente. Sistemas web, APIs e automações. Passagens pela IBM, Cielo e Santander.",
+      "Consultor e desenvolvedor independente com passagens pela IBM, Cielo e Santander.",
     cta: {
       primary: "Sobre",
       secondary: "Projetos",
@@ -64,7 +64,6 @@ export const pt = {
       cta: "Ver serviços",
     },
     cta: "Solicitar orçamento",
-    ctaHint: "Conversa sem compromisso.",
     empty: "Nenhum serviço listado no momento.",
   },
   contact: {
@@ -121,7 +120,7 @@ export const en: Messages = {
   hero: {
     badge: "Full-Stack Developer",
     paragraph:
-      "Independent consultant and developer. Web systems, APIs, and automations. Experience at IBM, Cielo, and Santander.",
+      "Independent consultant and developer with experience at IBM, Cielo, and Santander. Web systems, APIs, and automations.",
     cta: {
       primary: "About",
       secondary: "Projects",
@@ -177,7 +176,6 @@ export const en: Messages = {
       cta: "View services",
     },
     cta: "Request a quote",
-    ctaHint: "No-commitment conversation.",
     empty: "No services listed right now.",
   },
   contact: {
@@ -223,7 +221,6 @@ export const en: Messages = {
     changelog: "Changelog",
   },
 };
-
 
 const dictionaries: Record<LocaleCode, Messages> = {
   pt,
