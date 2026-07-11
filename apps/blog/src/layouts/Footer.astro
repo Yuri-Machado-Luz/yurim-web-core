@@ -1,15 +1,21 @@
 ---
 import { CONFIG } from "@config";
 import SocialLinks from "@ui/SocialLinks.astro";
+import { localeFromPath } from "@/lib/locale-cookie";
+import { getMessages } from "@i18n/index";
 
 const year = new Date().getFullYear();
+const locale = localeFromPath(Astro.url.pathname);
+const messages = getMessages(locale);
 ---
 
-<footer class="footer border-t border-[var(--color-border)] bg-[var(--color-bg)]">
-  <div class="site-container flex flex-col items-center justify-between gap-4 py-6 md:flex-row md:py-8">
-    <span class="text-sm text-muted">
-      &copy; {year} {CONFIG.meta.author}. Todos os direitos reservados.
-    </span>
+<footer class="footer border-t border-border bg-background py-6 md:py-8">
+  <div
+    class="site-container flex flex-col items-center justify-between gap-4 md:flex-row"
+  >
+    <p class="text-sm text-muted-foreground">
+      &copy; {year} {CONFIG.meta.author}. {messages.footer.rights}
+    </p>
     <SocialLinks />
   </div>
 </footer>
@@ -17,8 +23,8 @@ const year = new Date().getFullYear();
 <style>
   .footer {
     margin-top: 4rem;
-    &[docsFooter] {
-      margin-top: 0;
-    }
+  }
+  .footer :global([docsFooter]) {
+    margin-top: 0;
   }
 </style>

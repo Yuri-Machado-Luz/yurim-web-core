@@ -1,0 +1,45 @@
+---
+import {
+  localeFromPath,
+  switchLocalePath,
+  type LocaleCode,
+} from "@/lib/locale-cookie";
+import { getMessages } from "@i18n/index";
+
+const pathname = Astro.url.pathname;
+const locale = localeFromPath(pathname);
+const messages = getMessages(locale);
+const next: LocaleCode = locale === "pt" ? "en" : "pt";
+const href = switchLocalePath(pathname, next);
+---
+
+<a
+  href={href}
+  data-locale-toggle
+  data-next-locale={next}
+  class="theme-toggle flex size-9 items-center justify-center rounded-lg font-mono text-xs font-semibold tracking-wide text-muted transition-colors hover:text-primary"
+  aria-label={messages.nav.toggleLocale}
+>
+  {messages.locale.other}
+</a>
+
+<script>
+  import { writeLocaleCookie, type LocaleCode } from "@/lib/locale-cookie";
+
+  function initLocaleToggle() {
+    document
+      .querySelectorAll<HTMLAnchorElement>("[data-locale-toggle]")
+      .forEach((link) => {
+        if (link.dataset.localeInit) return;
+        link.dataset.localeInit = "1";
+        link.addEventListener("click", () => {
+          const next = link.dataset.nextLocale as LocaleCode | undefined;
+          if (next === "pt" || next === "en") {
+            writeLocaleCookie(next);
+          }
+        });
+      });
+  }
+
+  document.addEventListener("astro:page-load", initLocaleToggle);
+</script>

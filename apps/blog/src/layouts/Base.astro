@@ -2,6 +2,8 @@
 import { Footer, Navbar } from "@layouts";
 import ThemeInit from "@shared/ThemeInit.astro";
 import Head from "./Head.astro";
+import { localeFromPath } from "@/lib/locale-cookie";
+import { htmlLang } from "@i18n/index";
 
 interface Props {
   title?: string;
@@ -9,12 +11,22 @@ interface Props {
   image?: string;
   canonicalUrl?: string;
   noindex?: boolean;
+  locale?: "pt" | "en";
 }
 
-const { title, description, image, canonicalUrl, noindex } = Astro.props;
+const {
+  title,
+  description,
+  image,
+  canonicalUrl,
+  noindex,
+  locale: localeProp,
+} = Astro.props;
+
+const locale = localeProp ?? localeFromPath(Astro.url.pathname);
 ---
 
-<html lang="pt-BR">
+<html lang={htmlLang(locale)}>
   <ThemeInit />
   <Head
     title={title}
@@ -22,6 +34,7 @@ const { title, description, image, canonicalUrl, noindex } = Astro.props;
     image={image}
     canonicalUrl={canonicalUrl}
     noindex={noindex}
+    locale={locale}
   />
 
   <body>

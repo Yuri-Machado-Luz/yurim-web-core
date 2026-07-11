@@ -1,21 +1,59 @@
 ---
-import { CONFIG } from "@config";
+import { CONFIG, portfolioUrl } from "@config";
 import { LogoText, LogoTextDark, MenuRaw, CloseRaw } from "@assets";
 import Button from "@ui/Button.astro";
 import ThemeToggle from "@ui/ThemeToggle.astro";
+import LocaleToggle from "@ui/LocaleToggle.astro";
+import { localeFromPath } from "@/lib/locale-cookie";
+import { getMessages } from "@i18n/index";
 
 const currentPath = Astro.url.pathname;
+const locale = localeFromPath(currentPath);
+const messages = getMessages(locale);
+const portfolioPrefix = locale === "en" ? "/en" : "";
 
-const navLinks = CONFIG.nav.pages.filter((p) => !p.cta);
-const ctaPage = CONFIG.nav.pages.find((p) => p.cta);
+const localizedNavLinks = [
+  {
+    label: messages.nav.home,
+    href: portfolioUrl(portfolioPrefix || "/"),
+    external: true,
+  },
+  {
+    label: messages.nav.projects,
+    href: portfolioUrl(`${portfolioPrefix}/projetos`),
+    external: true,
+  },
+  {
+    label: messages.nav.about,
+    href: portfolioUrl(`${portfolioPrefix}/sobre`),
+    external: true,
+  },
+  {
+    label: messages.nav.blog,
+    href: locale === "en" ? "/en" : "/",
+    external: false,
+  },
+];
+
+const localizedCta = {
+  label: messages.nav.contact,
+  href: portfolioUrl(`${portfolioPrefix}/contato`),
+  external: true,
+  cta: true,
+};
 
 function isBlogRoute(path: string) {
-  return path === "/" || path.startsWith("/docs/notes/");
+  return (
+    path === "/" ||
+    path === "/en" ||
+    path.startsWith("/en/") ||
+    path.startsWith("/docs/")
+  );
 }
 
 function isActive(href: string, external?: boolean) {
   if (external) return false;
-  if (href === "/") return isBlogRoute(currentPath);
+  if (href === "/" || href === "/en") return isBlogRoute(currentPath);
   return (
     currentPath === href ||
     (href !== "/" && currentPath.startsWith(href + "/"))
@@ -55,7 +93,7 @@ function linkProps(external?: boolean) {
       <div class="hidden items-center gap-1 md:flex">
         <ul class="text-md flex items-center gap-1">
           {
-            navLinks.map(({ label, href, external }) => (
+            localizedNavLinks.map(({ label, href, external }) => (
               <li>
                 <a
                   href={href}
@@ -76,25 +114,26 @@ function linkProps(external?: boolean) {
       </div>
 
       {
-        ctaPage && (
+        localizedCta && (
           <Button
-            href={ctaPage.href}
+            href={localizedCta.href}
             variant="primary"
             class="ml-2 hidden md:inline-flex"
-            {...linkProps(ctaPage.external)}
+            {...linkProps(localizedCta.external)}
           >
-            {ctaPage.label}
+            {localizedCta.label}
           </Button>
         )
       }
 
+      <LocaleToggle />
       <ThemeToggle />
 
       <button
         type="button"
         data-menu-btn
-        class="flex items-center justify-center rounded-lg border border-[var(--color-border)] p-2 text-muted transition-colors hover:text-primary md:hidden"
-        aria-label="Abrir menu"
+        class="flex size-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-muted transition-colors hover:text-primary md:hidden"
+        aria-label={messages.nav.openMenu}
         aria-expanded="false"
       >
         <span data-icon-menu aria-hidden set:html={MenuRaw} />
@@ -117,7 +156,7 @@ function linkProps(external?: boolean) {
 >
   <nav class="flex flex-col gap-1 px-4 pt-6">
     {
-      navLinks.map(({ label, href, external }) => (
+      localizedNavLinks.map(({ label, href, external }) => (
         <a
           href={href}
           data-nav-link-mobile
@@ -134,15 +173,15 @@ function linkProps(external?: boolean) {
     }
   </nav>
   {
-    ctaPage && (
+    localizedCta && (
       <div class="mt-auto border-t border-[var(--color-border)] px-4 py-6">
         <Button
-          href={ctaPage.href}
+          href={localizedCta.href}
           variant="primary"
           class="w-full justify-center"
-          {...linkProps(ctaPage.external)}
+          {...linkProps(localizedCta.external)}
         >
-          {ctaPage.label}
+          {localizedCta.label}
         </Button>
       </div>
     )
@@ -161,7 +200,12 @@ function linkProps(external?: boolean) {
   let lastAnimDir: "up" | "down" | null = null;
 
   function isBlogRoute(path: string) {
-    return path === "/" || path.startsWith("/docs/notes/");
+    return (
+      path === "/" ||
+      path === "/en" ||
+      path.startsWith("/en/") ||
+      path.startsWith("/docs/")
+    );
   }
 
   function updateActiveLinks(path: string) {
@@ -175,7 +219,7 @@ function linkProps(external?: boolean) {
 
         const href = link.getAttribute("href") ?? "";
         const active =
-          href === "/"
+          href === "/" || href === "/en"
             ? isBlogRoute(path)
             : path === href ||
               (href !== "/" && path.startsWith(href + "/"));
@@ -192,7 +236,7 @@ function linkProps(external?: boolean) {
 
         const href = link.getAttribute("href") ?? "";
         const active =
-          href === "/"
+          href === "/" || href === "/en"
             ? isBlogRoute(path)
             : path === href ||
               (href !== "/" && path.startsWith(href + "/"));
