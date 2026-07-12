@@ -2,15 +2,18 @@
 title: Explorer Sort
 description: Contribuição open-source à extensão VS Code Explorer Sort. Implementei file nesting, drag & drop reordering e suporte pt-BR.
 createdAt: 2026-06-08
-updatedAt: 2026-06-16
+updatedAt: 2026-07-12
 status: ativo
 type: project
 github: "https://github.com/Yuri-Machado-Luz/forks.opensource"
 featured: false
 draft: false
 order: 3
-tags: [vscode, typescript, open-source, extensao]
+tags: [vscode, typescript, open-source, extensao, fork]
+forkUpstream: true
 ---
+
+**Nota de marca:** fork / contribuição upstream. O README do projeto original **não** é voz YUMA.
 
 Contribuição ao projeto [Explorer Sort](https://github.com/Jinchanghyeok/explorer-sort): extensão VS Code para ordenação de arquivos e pastas por regras e prioridades configuráveis.
 
