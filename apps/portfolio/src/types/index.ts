@@ -57,4 +57,6 @@ export interface ProjectItem {
   live?: string;
   documentation?: string;
   tags?: string[];
+  /** Upstream fork — não é voz / prova de marca YUMA */
+  forkUpstream?: boolean;
 }
