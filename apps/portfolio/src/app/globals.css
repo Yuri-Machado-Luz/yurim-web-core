@@ -1,0 +1,425 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "../styles/brand-tokens.css";
+@import "./components.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--background);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-700, var(--primary));
+  }
+
+  html {
+    @apply font-sans scroll-smooth;
+    background-color: var(--background);
+    scrollbar-gutter: stable;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  body {
+    @apply text-foreground;
+    -webkit-user-select: none;
+    user-select: none;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100svh;
+    background:
+      radial-gradient(
+        ellipse at center,
+        color-mix(in srgb, var(--primary) 17%, transparent),
+        transparent 50%
+      ),
+      linear-gradient(180deg, var(--background) 0%, var(--background) 100%);
+  }
+
+  .dark body {
+    background:
+      radial-gradient(
+        ellipse at center,
+        color-mix(in srgb, var(--primary) 20%, transparent),
+        transparent 50%
+      ),
+      linear-gradient(180deg, var(--background) 0%, var(--background) 100%);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24rem;
+    height: 16rem;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--primary) 15%, transparent),
+      transparent
+    );
+    border-radius: 9999px;
+    filter: blur(64px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .dark body::before {
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--primary) 8%, transparent),
+      transparent
+    );
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      linear-gradient(to right, #6666 1px, transparent 1px),
+      linear-gradient(to bottom, #6666 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.24;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .dark body::after {
+    background:
+      linear-gradient(to right, #8882 1px, transparent 1px),
+      linear-gradient(to bottom, #8882 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.15;
+  }
+
+  input,
+  textarea,
+  select,
+  [contenteditable="true"] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+}
+
+@keyframes rotateLight {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(270deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes ambientGlow {
+  0%,
+  100% {
+    box-shadow: var(--shadow-ambient-min);
+  }
+  50% {
+    box-shadow: var(--shadow-ambient-max);
+  }
+}
+
+@keyframes ambientGlowSubtle {
+  0%,
+  100% {
+    box-shadow: var(--shadow-ambient-subtle-min);
+  }
+  50% {
+    box-shadow: var(--shadow-ambient-subtle-max);
+  }
+}
+
+@keyframes picture-ring-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@layer components {
+  .navbar {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background var(--duration-base) ease,
+      border-color var(--duration-base) ease,
+      backdrop-filter var(--duration-base) ease;
+  }
+
+  .navbar.is-scrolled {
+    background: rgb(from var(--background) r g b / 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom-color: var(--border);
+  }
+
+  .hero-picture-wrap {
+    position: relative;
+    display: inline-flex;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    border-radius: 50%;
+  }
+
+  .hero-picture-wrap [data-slot="avatar"] {
+    position: relative;
+    z-index: var(--z-above);
+    box-shadow: var(--shadow-hero-ring);
+    animation: ambientGlow 4s ease-in-out infinite;
+  }
+
+  .picture-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--primary) 40%, transparent);
+    animation: picture-ring-pulse 2.8s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .picture-ring-b {
+    animation-delay: 1.4s;
+  }
+
+  .bg-glow {
+    --glow-duration: var(--glow-duration-normal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bg-glow::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(200%, 300px);
+    height: max(200%, 300px);
+    background: conic-gradient(
+      transparent 60%,
+      var(--primary) 80%,
+      transparent
+    );
+    transform-origin: center;
+    animation: rotateLight infinite;
+    animation-timing-function: linear(
+      0 0%,
+      0.25 25%,
+      0.45 40%,
+      0.5 50%,
+      0.55 60%,
+      0.75 75%,
+      1 100%
+    );
+    animation-duration: var(--glow-duration);
+    animation-delay: var(--glow-delay, 0s);
+    z-index: var(--z-behind);
+  }
+
+  .bg-glow::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    background: var(--card);
+    z-index: var(--z-base);
+  }
+
+  .bg-glow > * {
+    position: relative;
+    z-index: var(--z-above);
+  }
+
+  .card-glow-subtle {
+    animation: ambientGlowSubtle var(--glow-duration-subtle) ease-in-out infinite;
+  }
+}
+
+html.custom-cursor-active,
+html.custom-cursor-active *,
+body.custom-cursor-active,
+body.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.custom-cursor-core {
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--primary) 72%, transparent);
+  border: 1.5px solid var(--primary);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--background) 55%, transparent);
+  transition:
+    width 140ms ease,
+    height 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease,
+    transform 140ms ease;
+}
+
+.custom-cursor-ring {
+  position: absolute;
+  inset: 50%;
+  width: 1.65rem;
+  height: 1.65rem;
+  margin: -0.825rem 0 0 -0.825rem;
+  border-radius: 9999px;
+  border: 1.5px solid color-mix(in srgb, var(--primary) 55%, transparent);
+  animation: custom-cursor-pulse 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+.is-pointer .custom-cursor-core {
+  width: 0.95rem;
+  height: 0.95rem;
+  background: color-mix(in srgb, var(--primary) 88%, transparent);
+  border-color: var(--primary);
+}
+
+.is-pointer .custom-cursor-ring {
+  width: 2.35rem;
+  height: 2.35rem;
+  margin: -1.175rem 0 0 -1.175rem;
+  border-width: 2px;
+  border-color: color-mix(in srgb, var(--primary) 80%, transparent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--primary) 18%, transparent);
+  animation: custom-cursor-pulse-strong 0.9s ease-out infinite;
+}
+
+.is-pressed .custom-cursor-core {
+  width: 0.45rem;
+  height: 0.45rem;
+  background: var(--primary);
+  transform: scale(0.92);
+}
+
+.is-pressed .custom-cursor-ring {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: -0.55rem 0 0 -0.55rem;
+  opacity: 0.35;
+  animation: none;
+}
+
+@keyframes custom-cursor-pulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+@keyframes custom-cursor-pulse-strong {
+  0% {
+    transform: scale(0.88);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-picture-wrap [data-slot="avatar"],
+  .picture-ring,
+  .card-glow-subtle,
+  .skill-card,
+  .education-item,
+  .language-card,
+  .quick-facts-card,
+  .custom-cursor-ring {
+    animation: none;
+  }
+
+  .card-glow-subtle,
+  .skill-card,
+  .education-item,
+  .language-card,
+  .quick-facts-card {
+    box-shadow: var(--shadow-card-subtle);
+  }
+
+  .picture-ring {
+    opacity: 0;
+  }
+}
