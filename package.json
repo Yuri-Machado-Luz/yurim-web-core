@@ -1,0 +1,15 @@
+{
+  "name": "yurim-web-core",
+  "private": true,
+  "version": "5.0.0-alpha.0",
+  "description": "Monorepo for yurimachado.dev.br sites (portfolio, blog, archived docs)",
+  "packageManager": "pnpm@11.12.0",
+  "scripts": {
+    "dev:portfolio": "pnpm --dir apps/portfolio dev",
+    "dev:blog": "pnpm --dir apps/blog dev",
+    "build:portfolio": "pnpm --dir apps/portfolio build",
+    "build:blog": "pnpm --dir apps/blog build",
+    "sync:tokens": "pnpm --dir apps/portfolio sync:tokens",
+    "sync:tokens:check": "pnpm --dir apps/portfolio sync:tokens:check"
+  }
+}
