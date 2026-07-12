@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
  * Copies canonical brand-tokens.css from Portfolio → Blog.
+ * Monorepo: apps/portfolio → apps/blog (siblings under apps/).
  * Exit 1 if --check and files differ.
  */
 import { copyFileSync, mkdirSync, readFileSync, existsSync } from "node:fs";
