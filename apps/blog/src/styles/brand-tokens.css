@@ -41,13 +41,27 @@
   --section-gap-sm: 5rem;
   --container-max: 72rem;
   --prose-width: 72ch;
+  --drawer-top: 5.5rem;
+  /* DS container-x scale (exposed; Next sections still use Tailwind px-* — see visual/05) */
+  --container-x-base: 1.5rem;
+  --container-x-sm: 2.5rem;
+  --container-x-md: 4rem;
+  --container-x-lg: 6rem;
   --z-base: 1;
   --z-behind: 0;
   --z-above: 2;
   --z-navbar: 50;
+  --z-drawer: 60;
+  --z-overlay: 70;
+  --z-modal: 80;
+  --z-toast: 90;
   --duration-base: 200ms;
   --duration-fast: 150ms;
   --duration-slow: 400ms;
+  --duration-enter: 500ms;
+  --duration-leave: 350ms;
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Brand scales (shared) */
   --primary-light: #f64646;

@@ -21,7 +21,7 @@ export const en: Messages = {
   },
   home: {
     author: "Author: Yuri Machado Luz",
-    headline: "Journey Notes",
+    headline: "Devlogs & notes",
     lead: "Devlogs, architecture decisions, and project documentation: web systems, APIs, and automations.",
     portfolioCta: "Go to portfolio",
     changelogCta: "View changelog",

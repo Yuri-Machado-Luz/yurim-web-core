@@ -19,7 +19,7 @@ export const pt = {
   },
   home: {
     author: "Autor: Yuri Machado Luz",
-    headline: "Registros de Jornada",
+    headline: "Registros técnicos",
     lead: "Devlogs, decisões de arquitetura e documentação de projetos: sistemas web, APIs e automações.",
     portfolioCta: "Ir para o portfólio",
     changelogCta: "Ver changelog",

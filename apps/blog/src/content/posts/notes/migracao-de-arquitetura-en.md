@@ -6,6 +6,13 @@ updatedAt: 2026-07-10
 tags: [devlog, reflection, architecture]
 ---
 
+## TL;DR
+
+Leaving Quartz for a custom architecture; then landing on Astro 6.
+Goal: control and learning, not only a working site.
+Conscious trade-off: weeks of pipeline work vs just writing.
+Update: masochism found a limit; Astro covered the essentials.
+
 ## The landscape
 
 Let’s be clear: this blog could still run fine on Quartz. It was already a V2 of the previous architecture: the one based only on React. The current structure was “perfect” for integrating my Obsidian notes workflow into a cohesive SSR setup.

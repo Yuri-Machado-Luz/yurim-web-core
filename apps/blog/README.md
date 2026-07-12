@@ -1,6 +1,6 @@
 # blog.yurimachado.dev.br
 
-Site pessoal — portfólio, devlogs e documentação de projetos.
+Site pessoal: blog, devlogs e documentação de projetos.
 
 ## Stack
 

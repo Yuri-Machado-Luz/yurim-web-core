@@ -6,6 +6,13 @@ updatedAt: 2026-07-10
 tags: [devlog, reflexao, arquitetura]
 ---
 
+## TL;DR
+
+Decisão de sair do Quartz e construir arquitetura própria; depois Astro 6.
+Motivação: controle e aprendizado, não só "site funcionando".
+Trade-off consciente: semanas de pipeline vs escrever conteúdo.
+Atualização: o masoquismo achou limite; Astro resolveu o essencial.
+
 ## O panorama
 
 Vamos aos fatos: hoje, esse blog poderia continuar funcionando perfeitamente com Quartz. Afinal, já é uma V2 da arquitetura anterior: aquela baseada só em React. A estrutura atual é "perfeita" pra integrar meu workflow de notas do Obsidian e transformar tudo num SSR coeso.

@@ -2,7 +2,7 @@
 title: Introdução ao site
 description: "Decisões de arquitetura que guiam o desenvolvimento do site: layouts, routing, content collections e o porquê de cada escolha."
 pubDate: 2026-06-07
-updatedAt: 2026-07-10
+updatedAt: 2026-07-12
 draft: false
 tags: [devlog, arquitetura]
 ---
@@ -11,13 +11,13 @@ Este post documenta as decisões de arquitetura do site. Não é um tutorial: é
 
 ## Por que Astro
 
-O site precisa ser rápido, estático e fácil de manter. Astro resolve isso com SSG nativo, zero JS por padrão e suporte de primeira classe a content collections com Zod. React islands aparecem apenas onde há interatividade real: formulários, animações com GSAP, componentes controlados.
+O site precisa ser rápido, estático e fácil de manter. Astro resolve isso no **blog** com SSG nativo, zero JS por padrão e suporte de primeira classe a content collections com Zod. React islands aparecem apenas onde há interatividade real: formulários, animações com GSAP, componentes controlados.
 
 ## Layouts
 
 Dois layouts principais, separados por intenção:
 
-**RootLayout**: páginas editoriais (home, `/sobre`, `/contato`, `/projetos`). Sem sidebar, sem TOC. Focado em hierarquia tipográfica e animações de entrada.
+**Base**: páginas editoriais (home do blog). Sem sidebar, sem TOC. Focado em hierarquia tipográfica e animações de entrada.
 
 **Content**: páginas de documentação e notas. Sidebar gerada dinamicamente a partir das collections ativas; TOC extraída dos headings H2/H3 do conteúdo renderizado. O layout sabe qual item está ativo pela URL atual.
 

@@ -6,7 +6,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import "../../styles/brand-tokens.css";
 @import "./base/tokens.css";
 @import "./base/reset.css";
 @import "./base/prose.css";

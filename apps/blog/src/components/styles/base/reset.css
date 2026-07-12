@@ -37,7 +37,7 @@
         color-mix(in srgb, var(--color-primary) 20%, transparent),
         transparent 50%
       ),
-      linear-gradient(180deg, #0a0707 0%, var(--color-bg) 100%);
+      linear-gradient(180deg, var(--color-bg, var(--background)) 0%, var(--color-bg, var(--background)) 100%);
   }
 
   /* Subtle top glow orb */

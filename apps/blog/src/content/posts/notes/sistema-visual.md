@@ -7,7 +7,7 @@ draft: false
 tags: [devlog, design]
 ---
 
-Documentação do sistema visual: como tokens, tipografia e componentes foram organizados para manter coerência entre portfólio e blog sem acoplamento rígido a um único framework.
+Documentação do sistema visual: como tokens, tipografia e componentes foram organizados para manter coerência entre portfólio e blog sem acoplamento rígido a um único framework. Valores ao vivo: `01_Sites/portfolio/src/styles/brand-tokens.css`. Intent: hub vault `10_Areas/11_Brand/visual/`.
 
 ## Tokens canônicos
 

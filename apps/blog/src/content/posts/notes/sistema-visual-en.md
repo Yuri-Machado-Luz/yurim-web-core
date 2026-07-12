@@ -7,7 +7,7 @@ draft: false
 tags: [devlog, design]
 ---
 
-Documentation of the visual system: how tokens, typography, and components stay coherent across portfolio and blog without hard-coupling to a single framework.
+Documentation of the visual system: how tokens, typography, and components stay coherent across portfolio and blog without hard-coupling to a single framework. Live values: `01_Sites/portfolio/src/styles/brand-tokens.css`. Intent: vault hub `10_Areas/11_Brand/visual/`.
 
 ## Canonical tokens
 
