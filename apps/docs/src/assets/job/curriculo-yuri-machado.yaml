@@ -1,83 +1,93 @@
-basics:
-  name: "Yuri Machado Luz"
-  label: "Desenvolvedor Full-Stack"
-  email: "yurimachadoluz@gmail.com"
-  phone: "+55 11 94935-9394"
-  url: "https://yurimachado.dev.br"
-  profiles:
-    - network: "LinkedIn"
-      url: "https://linkedin.com/in/YuriMachadoLuz"
-    - network: "GitHub"
-      username: "Yuri-Machado-Luz"
-      url: "https://github.com/Yuri-Machado-Luz"
-  summary: |
-    Desenvolvedor Full-Stack autônomo, cursando Análise e Desenvolvimento de Sistemas.
-    Experiência prática em desenvolvimento web, automação e integração de APIs.
-    Background multidisciplinar em Psicologia, Design e Análise de RH.
+nome: Yuri Machado Luz
 
-skills:
-  - name: "Linguagens & Estruturação"
-    keywords:
-      ["TypeScript", "Python", "Shell Script", "HTML5/CSS3", "JSON", "YAML"]
-  - name: "Front-end & UI"
-    keywords:
-      ["React", "Tailwind CSS", "Framer Motion", "Vite", "Axios", "Figma"]
-  - name: "Back-end & Automação"
-    keywords:
-      ["Node.js", "Express", "FastAPI", "Pandas", "Selenium", "Power Automate"]
-  - name: "Ferramentas & Ambientes"
-    keywords:
-      ["Git", "CI/CD", "Obsidian", "Excel", "Windows 11", "Ubuntu", "Terminal"]
-  - name: "Metodologias"
-    keywords:
-      ["Scrum", "Kanban", "BPMN", "GTD", "UML", "DRY", "Testes Automatizados"]
+contato:
+  telefone: "+55 (11) 9 4935-9394"
+  email: yurimachadoluz@gmail.com
+  cidade: São Paulo, SP
+  portfolio: yurimachado.dev.br
+  linkedin: linkedin.com/in/yurimachadoluz
+  github: github.com/Yuri-Machado-Luz
 
-work:
-  - company: "Consultor Independente"
-    position: "Desenvolvimento, Design & Conteúdo"
-    startDate: "2020-01-01"
-    summary: "Atuação autônoma unindo desenvolvimento Full-Stack, design e produção de conteúdo técnico."
-    highlights:
-      - "Desenvolvimento de aplicações web responsivas para PMEs (React, Node, Tailwind)"
-      - "Automação de processos e integração de APIs"
-      - "Criação de identidade visual e prototipagem UI/UX"
-      - "Produção de conteúdo técnico e acadêmico (ABNT)"
-  - company: "IBM (BPO Decision)"
-    position: "Assistente Administrativo Pleno"
-    startDate: "2024-12-01"
-    endDate: "2025-04-01"
-    highlights:
-      - "Redesenho de onboarding: redução de 57% no tempo de integração"
-      - "Automação de arquivamento com Python e documentação de SOPs"
-      - "Dashboard de KPIs com Excel e VBA"
-  - company: "Cielo (BPO Atento)"
-    position: "Analista de Backoffice"
-    startDate: "2021-07-01"
-    endDate: "2022-04-01"
-    highlights:
-      - "Automação de triagem de e-mails com Power Automate"
-      - "Auditoria de bases de dados"
-      - "Ponto focal para Ouvidoria e Jurídico"
+sobre: >
+  Desenvolvedor full-stack focado em sistemas web, APIs e automações
+  (React/Next.js, TypeScript, Node.js, Python). Busco atuar como júnior ou pleno
+  em entregas técnicas com prova no portfolio. Background em Psicologia e
+  consultoria de processos como capacidade secundária, não como pilar igual à engenharia.
 
-education:
-  - institution: "Universidade Cidade de São Paulo"
-    area: "Análise e Desenvolvimento de Sistemas"
-    studyType: "Graduação"
-    startDate: "2024"
-    endDate: "2027 (previsto)"
-  - institution: "Universidade Nove de Julho"
-    area: "Psicologia"
-    studyType: "Graduação incompleta"
-    description: "8 semestres concluídos"
+habilidades:
+  linguagens: "TypeScript, Python, Shell (Bash/Zsh), HTML5/CSS3"
+  frontend: "React, Next.js, Tailwind CSS, Framer Motion, GSAP, Figma"
+  backend: "Node.js, Express, FastAPI, Supabase, NoSQL"
+  dados_automacao: "Pandas, Selenium, Power Automate"
+  devops_infra: "Git, GitHub Actions (CI/CD), Vercel, Cloudflare"
 
-languages:
-  - language: "Português"
-    fluency: "Nativo"
-  - language: "Inglês"
-    fluency: "Avançado"
-  - language: "Espanhol"
-    fluency: "Básico"
-  - language: "Francês"
-    fluency: "Básico (em aprendizado)"
-  - language: "Japonês"
-    fluency: "Básico (em aprendizado)"
+projetos:
+  - nome: Portfólio Pessoal
+    url: yurimachado.dev.br
+    bullets:
+      - >
+        Stack atual: Next.js 16, React 19, TypeScript, Tailwind CSS v4, shadcn/ui,
+        GSAP, i18n (pt-BR/en). Deploy contínuo na Vercel.
+        Código: github.com/Yuri-Machado-Luz/personal--portfolio
+
+  - nome: Sistema de Gestão — Loja de Games & Eletrônicos
+    bullets:
+      - >
+        Backoffice completo para loja de consoles, jogos, computadores e acessórios:
+        catálogo CRUD, controle de estoque, histórico de manutenção e gestão de técnicos.
+        MVP entregue como PWA com Service Worker.
+      - "Stack: Next.js, TypeScript, TailwindCSS v4, shadcn/ui, Supabase (PostgreSQL + auth), TanStack Query, Zustand."
+
+experiencias:
+  - cargo: Freelancer
+    periodo: "Jan 2020 – Presente"
+    bullets:
+      - "Desenvolvimento full-stack: portfólios, sistemas internos, integrações e automações (performance, SEO, CI/CD; deploy adaptado ao cliente)."
+      - "Quando o projeto pede: identidade visual / UI e revisão acadêmica sob encomenda (capacidades à parte da linha de engenharia)."
+
+  - cargo: Consultor de Processos & Atendimento
+    empresa: Clínica Natuee (MEI)
+    periodo: "Dez 2025 – Abr 2026"
+    bullets:
+      - "Diagnóstico e roadmap: mapeamento de processos e sistemas de atendimento; priorização de projetos com escopo e impactos definidos."
+      - "Implementação tecnológica: melhorias em sistemas internos; bot de atendimento com árvore de decisões; migração de plataforma como ponto focal."
+
+  - cargo: Assistente Administrativo — foco em Processos & Automação
+    empresa: IBM (BPO Decision)
+    periodo: "Dez 2024 – Abr 2025"
+    bullets:
+      - "Redesenho de processo: onboarding de funcionários de 7 para 3 dias de ciclo (−57%), abrangendo 1.200 processos/mês."
+      - "Automação Python: arquivamento em Microsoft 365 Cloud; SOPs do processo e dashboard integrado ao sistema de tickets."
+
+  - cargo: Analista de Backoffice
+    empresa: Cielo (BPO Atento Brasil)
+    periodo: "Jul 2021 – Abr 2022"
+    bullets:
+      - "Conformidade regulatória: processamento de recebíveis; ponto focal de Ouvidoria e Jurídico."
+      - "Power Automate: automação de triagem e roteamento de e-mails, reduzindo SLA de tratativa."
+
+  - cargo: Analista de Suporte Técnico
+    empresa: Santander (BPO Atma/Liq)
+    periodo: "Mai 2020 – Fev 2021"
+    bullets:
+      - "Suporte N2: atendimento técnico a usuários internos; manutenção de base de dados e protocolos de segurança da informação em contexto bancário."
+
+formacao:
+  - curso: ADS — Análise e Desenvolvimento de Sistemas
+    instituicao: UNICID
+    periodo: Em andamento (prev. H2/2027)
+
+  - curso: Psicologia (8 semestres concluídos, não finalizado)
+    instituicao: UNINOVE
+    periodo: "2018 – 2022"
+    nota: Transição motivada pelo desenvolvimento paralelo de projetos de software durante a graduação.
+
+idiomas:
+  - idioma: Português
+    nivel: nativo
+  - idioma: Inglês
+    nivel: avançado
+  - idioma: Espanhol
+    nivel: básico
+  - idioma: Francês
+    nivel: básico
