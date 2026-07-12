@@ -103,7 +103,7 @@
         color-mix(in srgb, var(--primary) 20%, transparent),
         transparent 50%
       ),
-      linear-gradient(180deg, #0a0707 0%, var(--background) 100%);
+      linear-gradient(180deg, var(--background) 0%, var(--background) 100%);
   }
 
   body::before {

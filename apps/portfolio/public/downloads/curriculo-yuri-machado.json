@@ -8,10 +8,10 @@
     "linkedin": "linkedin.com/in/yurimachadoluz",
     "github": "github.com/Yuri-Machado-Luz"
   },
-  "sobre": "Desenvolvedor Full-Stack (React/Next.js, TypeScript, Node.js, Python, +). Busco atuar como Júnior ou Pleno unindo entregas técnicas a uma visão multidisciplinar — background em Psicologia (4 anos), design gráfico e consultoria de processos.",
+  "sobre": "Desenvolvedor full-stack focado em sistemas web, APIs e automações (React/Next.js, TypeScript, Node.js, Python). Busco atuar como júnior ou pleno em entregas técnicas com prova no portfolio. Background em Psicologia e consultoria de processos como capacidade secundária, não como pilar igual à engenharia.",
   "habilidades": {
     "linguagens": "TypeScript, Python, Shell (Bash/Zsh), HTML5/CSS3",
-    "frontend": "React, Next.js, Astro, Tailwind CSS, Framer Motion, GSAP, Figma",
+    "frontend": "React, Next.js, Tailwind CSS, Framer Motion, GSAP, Figma",
     "backend": "Node.js, Express, FastAPI, Supabase, NoSQL",
     "dados_automacao": "Pandas, Selenium, Power Automate",
     "devops_infra": "Git, GitHub Actions (CI/CD), Vercel, Cloudflare"
@@ -21,7 +21,7 @@
       "nome": "Portfólio Pessoal",
       "url": "yurimachado.dev.br",
       "bullets": [
-        "Stack atual: Astro 6, React 19, TailwindCSS v4, GSAP + ScrollTrigger, i18n (pt-BR/en); arquitetura de ilhas para carregamento parcial de JS. Deploy contínuo na Vercel — histórico em github.com/Yuri-Machado-Luz/portfolio/releases"
+        "Stack atual: Next.js 16, React 19, TypeScript, Tailwind CSS v4, shadcn/ui, GSAP, i18n (pt-BR/en). Deploy contínuo na Vercel. Código: github.com/Yuri-Machado-Luz/personal--portfolio"
       ]
     },
     {
@@ -37,9 +37,8 @@
       "cargo": "Freelancer",
       "periodo": "Jan 2020 – Presente",
       "bullets": [
-        "Desenvolvimento Full-Stack: Portfólios, sistemas internos, integrações e automações — incluindo refatoração de produtos. Foco em performance, SEO e CI/CD, com deploy adaptado ao ambiente de cada cliente.",
-        "Design gráfico: Identidade visual, peças gráficas e materiais institucionais para clientes (Adobe Suite, Figma, Canva, +).",
-        "Redação acadêmica: Revisão e coautoria de artigos, monografias e trabalhos científicos sob encomenda, focado em conformidade às normas ABNT e requisitos técnicos, atendendo estudantes e profissionais de diversas áreas."
+        "Desenvolvimento full-stack: portfólios, sistemas internos, integrações e automações (performance, SEO, CI/CD; deploy adaptado ao cliente).",
+        "Quando o projeto pede: identidade visual / UI e revisão acadêmica sob encomenda (capacidades à parte da linha de engenharia)."
       ]
     },
     {
@@ -47,8 +46,8 @@
       "empresa": "Clínica Natuee (MEI)",
       "periodo": "Dez 2025 – Abr 2026",
       "bullets": [
-        "Diagnóstico & Roadmap: Mapeamento de processos e sistemas de atendimento; identificação e priorização de projetos estratégicos com escopo e impactos definidos.",
-        "Implementação tecnológica: Implantação e configuração de melhorias nos sistemas internos; desenvolvimento e implementação de bot de atendimento com árvore de decisões (triagem, confirmações automáticas e roteamento); migração de plataforma como ponto focal."
+        "Diagnóstico e roadmap: mapeamento de processos e sistemas de atendimento; priorização de projetos com escopo e impactos definidos.",
+        "Implementação tecnológica: melhorias em sistemas internos; bot de atendimento com árvore de decisões; migração de plataforma como ponto focal."
       ]
     },
     {
@@ -56,8 +55,8 @@
       "empresa": "IBM (BPO Decision)",
       "periodo": "Dez 2024 – Abr 2025",
       "bullets": [
-        "Redesenho de processo: Onboarding de funcionários de 7 para 3 dias de ciclo (-57%), abrangendo 1.200 processos/mês.",
-        "Automação Python: Arquivamento em Microsoft 365 Cloud; elaboração de manual de SOPs do processo e dashboard integrado ao sistema de gestão de tickets."
+        "Redesenho de processo: onboarding de funcionários de 7 para 3 dias de ciclo (−57%), abrangendo 1.200 processos/mês.",
+        "Automação Python: arquivamento em Microsoft 365 Cloud; SOPs do processo e dashboard integrado ao sistema de tickets."
       ]
     },
     {
@@ -65,8 +64,8 @@
       "empresa": "Cielo (BPO Atento Brasil)",
       "periodo": "Jul 2021 – Abr 2022",
       "bullets": [
-        "Conformidade regulatória: Processamento de recebíveis; ponto focal de Ouvidoria e Jurídico.",
-        "Power Automate: Automação de triagem e roteamento de e-mails, reduzindo SLA de tratativa."
+        "Conformidade regulatória: processamento de recebíveis; ponto focal de Ouvidoria e Jurídico.",
+        "Power Automate: automação de triagem e roteamento de e-mails, reduzindo SLA de tratativa."
       ]
     },
     {
@@ -74,7 +73,7 @@
       "empresa": "Santander (BPO Atma/Liq)",
       "periodo": "Mai 2020 – Fev 2021",
       "bullets": [
-        "Suporte N2: Atendimento técnico a usuários internos; manutenção de base de dados e aplicação de protocolos de segurança da informação em contexto bancário."
+        "Suporte N2: atendimento técnico a usuários internos; manutenção de base de dados e protocolos de segurança da informação em contexto bancário."
       ]
     }
   ],
@@ -93,8 +92,8 @@
   ],
   "idiomas": [
     { "idioma": "Português", "nivel": "nativo" },
-    { "idioma": "Inglês",    "nivel": "avançado" },
-    { "idioma": "Espanhol",  "nivel": "básico" },
-    { "idioma": "Francês",   "nivel": "básico" }
+    { "idioma": "Inglês", "nivel": "avançado" },
+    { "idioma": "Espanhol", "nivel": "básico" },
+    { "idioma": "Francês", "nivel": "básico" }
   ]
 }

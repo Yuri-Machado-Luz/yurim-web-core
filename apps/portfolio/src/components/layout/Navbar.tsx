@@ -17,6 +17,7 @@ import {
   SheetClose,
   SheetContent,
   SheetFooter,
+  SheetTitle,
   SheetTrigger,
   ThemeToggle,
 } from "@/components";
@@ -185,6 +186,9 @@ export function Navbar() {
               side="right"
               className="flex w-[min(100%,20rem)] flex-col gap-0 border-border bg-background/97 p-0 backdrop-blur-2xl"
             >
+              <SheetTitle className="sr-only">
+                {messages.nav.openMenu}
+              </SheetTitle>
               <nav className="flex flex-col gap-1 px-4 pt-6">
                 {navLinks.map((page) => (
                   <span key={page.href}>

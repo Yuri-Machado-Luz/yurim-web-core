@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   description: CONFIG.meta.description,
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.svg",
   },
   alternates: languageAlternates("/"),
   ...defaultOgImage("portfolio"),
@@ -74,7 +74,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col text-foreground">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           storageKey="theme"
           disableTransitionOnChange

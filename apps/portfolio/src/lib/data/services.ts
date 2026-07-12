@@ -14,7 +14,7 @@ export const serviceStatusLabel: Record<
   Record<LocaleCode, string>
 > = {
   available: { pt: "Disponível", en: "Available" },
-  limited: { pt: "Vagas limitadas", en: "Limited" },
+  limited: { pt: "Disponibilidade limitada", en: "Limited availability" },
   soon: { pt: "Em breve", en: "Soon" },
 };
 

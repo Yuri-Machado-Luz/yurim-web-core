@@ -6,11 +6,11 @@ export const pt = {
     description: "Sistemas web, APIs e automações.",
   },
   hero: {
-    badge: "Full-Stack Developer",
+    badge: "Desenvolvedor full-stack",
     paragraph:
-      "Consultor e desenvolvedor independente com passagens pela IBM, Cielo e Santander.",
+      "Consultor e desenvolvedor independente. Passagens por IBM, Cielo e Santander. Sistemas web, APIs e automações.",
     cta: {
-      primary: "Sobre",
+      primary: "Sobre mim",
       secondary: "Projetos",
     },
   },
@@ -27,7 +27,7 @@ export const pt = {
       eyebrow: "Sobre",
       title: "A pessoa por trás do código",
       body: "Histórico, stack e formação: o que construí e onde atuei.",
-      cta: "Saiba mais",
+      cta: "Sobre mim",
     },
     sections: {
       bio: "Bio",
@@ -78,6 +78,26 @@ export const pt = {
     formTitle: "Mensagem",
     whatsappMessage:
       "Olá, Yuri. Vi o portfólio e quero conversar sobre um projeto.",
+    form: {
+      nameLabel: "Nome",
+      namePlaceholder: "Seu nome",
+      emailLabel: "Email",
+      emailPlaceholder: "seu@email.com",
+      messageLabel: "Mensagem",
+      messagePlaceholder:
+        "Descreva brevemente o projeto, o prazo aproximado e como prefere conversar.",
+      submit: "Enviar mensagem",
+      submitting: "Enviando...",
+      cooldown: "Aguarde {seconds}s",
+      success: "Mensagem recebida. Respondo em até dois dias úteis.",
+      errorSend:
+        "Não foi possível enviar a mensagem. Verifique a conexão e tente novamente.",
+      errors: {
+        nameRequired: "Nome é obrigatório",
+        emailInvalid: "Email inválido",
+        messageMin: "Mensagem deve ter pelo menos 10 caracteres",
+      },
+    },
   },
   notes: {
     eyebrow: "Notas",
@@ -139,7 +159,7 @@ export const en: Messages = {
       eyebrow: "About",
       title: "The person behind the code",
       body: "Background, stack, and education: what I built and where I worked.",
-      cta: "Learn more",
+      cta: "About me",
     },
     sections: {
       bio: "Bio",
@@ -190,6 +210,26 @@ export const en: Messages = {
     formTitle: "Message",
     whatsappMessage:
       "Hi Yuri. I saw your portfolio and want to talk about a project.",
+    form: {
+      nameLabel: "Name",
+      namePlaceholder: "Your name",
+      emailLabel: "Email",
+      emailPlaceholder: "you@email.com",
+      messageLabel: "Message",
+      messagePlaceholder:
+        "Briefly describe the project, approximate timeline, and how you prefer to talk.",
+      submit: "Send message",
+      submitting: "Sending...",
+      cooldown: "Wait {seconds}s",
+      success: "Message received. I reply within two business days.",
+      errorSend:
+        "Could not send the message. Check your connection and try again.",
+      errors: {
+        nameRequired: "Name is required",
+        emailInvalid: "Invalid email",
+        messageMin: "Message must be at least 10 characters",
+      },
+    },
   },
   notes: {
     eyebrow: "Notes",

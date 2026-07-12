@@ -1,19 +1,28 @@
 "use client";
 
 import emailjs from "@emailjs/browser";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { z } from "zod";
 
 import { Alert, AlertDescription, Button, Input, Textarea } from "@/components";
-
-const contactSchema = z.object({
-  name: z.string().min(2, "Nome é obrigatório"),
-  email: z.string().email("Email inválido"),
-  message: z.string().min(10, "Mensagem deve ter pelo menos 10 caracteres"),
-  _hp: z.string().optional(),
-});
+import { useMessages } from "@/components/locale-provider";
+import { cn } from "@/lib/utils";
 
 export function ContactForm() {
+  const messages = useMessages();
+  const form = messages.contact.form;
+
+  const contactSchema = useMemo(
+    () =>
+      z.object({
+        name: z.string().min(2, form.errors.nameRequired),
+        email: z.string().email(form.errors.emailInvalid),
+        message: z.string().min(10, form.errors.messageMin),
+        _hp: z.string().optional(),
+      }),
+    [form],
+  );
+
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -80,33 +89,32 @@ export function ContactForm() {
         });
       }, 1000);
     } catch (err) {
-      setError(
-        "Não foi possível enviar a mensagem. Verifique a conexão e tente novamente.",
-      );
+      setError(form.errorSend);
       console.error("EmailJS error:", err);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const busy = isLoading || cooldownSeconds > 0;
+
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6">
       {success && (
-        <Alert className="bg-green-50 border-green-200">
-          <AlertDescription className="text-green-800">
-            Mensagem recebida. Respondo em até dois dias úteis.
+        <Alert className="border-border bg-card">
+          <AlertDescription className="text-foreground">
+            {form.success}
           </AlertDescription>
         </Alert>
       )}
 
       {error && (
-        <Alert className="bg-red-50 border-red-200">
-          <AlertDescription className="text-red-800">{error}</AlertDescription>
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
 
-      <form onSubmit={onSubmit} className="space-y-5">
-        {/* Honeypot */}
+      <form onSubmit={onSubmit} className="flex flex-col gap-5">
         <input
           type="text"
           name="_hp"
@@ -115,63 +123,98 @@ export function ContactForm() {
           className="hidden"
           tabIndex={-1}
           autoComplete="off"
+          aria-hidden
         />
 
-        <div>
-          <label className="block text-sm font-medium mb-2">Nome</label>
+        <div
+          className="flex flex-col gap-2"
+          data-invalid={errors.name ? true : undefined}
+        >
+          <label htmlFor="contact-name" className="text-sm font-medium">
+            {form.nameLabel}
+          </label>
           <Input
-            placeholder="Seu nome"
+            id="contact-name"
+            placeholder={form.namePlaceholder}
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            disabled={isLoading || cooldownSeconds > 0}
+            disabled={busy}
+            aria-invalid={errors.name ? true : undefined}
+            aria-describedby={errors.name ? "contact-name-error" : undefined}
           />
           {errors.name && (
-            <p className="text-sm text-red-600 mt-1">{errors.name}</p>
+            <p id="contact-name-error" className="text-sm text-destructive">
+              {errors.name}
+            </p>
           )}
         </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-2">Email</label>
+        <div
+          className="flex flex-col gap-2"
+          data-invalid={errors.email ? true : undefined}
+        >
+          <label htmlFor="contact-email" className="text-sm font-medium">
+            {form.emailLabel}
+          </label>
           <Input
+            id="contact-email"
             type="email"
-            placeholder="seu@email.com"
+            placeholder={form.emailPlaceholder}
             value={formData.email}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
-            disabled={isLoading || cooldownSeconds > 0}
+            disabled={busy}
+            aria-invalid={errors.email ? true : undefined}
+            aria-describedby={errors.email ? "contact-email-error" : undefined}
           />
           {errors.email && (
-            <p className="text-sm text-red-600 mt-1">{errors.email}</p>
+            <p id="contact-email-error" className="text-sm text-destructive">
+              {errors.email}
+            </p>
           )}
         </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-2">Mensagem</label>
+        <div
+          className="flex flex-col gap-2"
+          data-invalid={errors.message ? true : undefined}
+        >
+          <label htmlFor="contact-message" className="text-sm font-medium">
+            {form.messageLabel}
+          </label>
           <Textarea
-            placeholder="Descreva brevemente o projeto, o prazo aproximado e como prefere conversar."
+            id="contact-message"
+            placeholder={form.messagePlaceholder}
             className="resize-none"
             rows={5}
             value={formData.message}
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })
             }
-            disabled={isLoading || cooldownSeconds > 0}
+            disabled={busy}
+            aria-invalid={errors.message ? true : undefined}
+            aria-describedby={
+              errors.message ? "contact-message-error" : undefined
+            }
           />
           {errors.message && (
-            <p className="text-sm text-red-600 mt-1">{errors.message}</p>
+            <p id="contact-message-error" className="text-sm text-destructive">
+              {errors.message}
+            </p>
           )}
         </div>
 
         <Button
           type="submit"
-          disabled={isLoading || cooldownSeconds > 0}
-          className="w-full"
+          disabled={busy}
+          className={cn("w-full")}
           size="lg"
         >
-          {isLoading && "Enviando..."}
-          {!isLoading && cooldownSeconds > 0 && `Aguarde ${cooldownSeconds}s`}
-          {!isLoading && cooldownSeconds === 0 && "Enviar mensagem"}
+          {isLoading && form.submitting}
+          {!isLoading &&
+            cooldownSeconds > 0 &&
+            form.cooldown.replace("{seconds}", String(cooldownSeconds))}
+          {!isLoading && cooldownSeconds === 0 && form.submit}
         </Button>
       </form>
     </div>

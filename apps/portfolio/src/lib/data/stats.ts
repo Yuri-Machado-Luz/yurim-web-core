@@ -13,5 +13,5 @@ export const quickFacts: QuickFact[] = [
   { icon: "circle-check", text: "Open to Work" },
   { icon: "map-pin", text: "São Paulo, Brasil" },
   { icon: "calendar", text: "Dev independente desde 2020" },
-  { icon: "code", text: "Desenvolvimento · Design · Redação" },
+  { icon: "code", text: "Sistemas web · APIs · Automações" },
 ];

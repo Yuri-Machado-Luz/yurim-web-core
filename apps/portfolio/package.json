@@ -1,13 +1,14 @@
 {
   "name": "portfolio",
-  "version": "1.0.0",
+  "version": "4.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sync:tokens": "node scripts/sync-tokens.mjs"
+    "sync:tokens": "node scripts/sync-tokens.mjs",
+    "sync:tokens:check": "node scripts/sync-tokens.mjs --check"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
