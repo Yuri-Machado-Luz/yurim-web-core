@@ -1,0 +1,21 @@
+---
+import { CONFIG } from "@config";
+import SocialLinks from "@ui/SocialLinks.astro";
+import { localeFromPath } from "@/lib/locale-cookie";
+import { getMessages } from "@i18n/index";
+
+const year = new Date().getFullYear();
+const locale = localeFromPath(Astro.url.pathname);
+const messages = getMessages(locale);
+---
+
+<footer class="border-t border-border bg-background py-6 md:py-8">
+  <div
+    class="site-container flex flex-col items-center justify-between gap-4 md:flex-row"
+  >
+    <p class="text-sm text-muted-foreground">
+      &copy; {year} {CONFIG.meta.author}. {messages.footer.rights}
+    </p>
+    <SocialLinks />
+  </div>
+</footer>

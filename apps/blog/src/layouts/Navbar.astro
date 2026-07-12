@@ -1,0 +1,341 @@
+---
+import { CONFIG, portfolioUrl } from "@config";
+import { LogoText, LogoTextDark, MenuRaw, CloseRaw } from "@assets";
+import Button from "@ui/Button.astro";
+import ThemeToggle from "@ui/ThemeToggle.astro";
+import LocaleToggle from "@ui/LocaleToggle.astro";
+import { localeFromPath } from "@/lib/locale-cookie";
+import { getMessages } from "@i18n/index";
+
+const currentPath = Astro.url.pathname;
+const locale = localeFromPath(currentPath);
+const messages = getMessages(locale);
+const portfolioPrefix = locale === "en" ? "/en" : "";
+
+const localizedNavLinks = [
+  {
+    label: messages.nav.projects,
+    href: portfolioUrl(`${portfolioPrefix}/projetos`),
+    external: true,
+  },
+  {
+    label: messages.nav.about,
+    href: portfolioUrl(`${portfolioPrefix}/sobre`),
+    external: true,
+  },
+  {
+    label: messages.nav.services,
+    href: portfolioUrl(`${portfolioPrefix}/servicos`),
+    external: true,
+  },
+  {
+    label: messages.nav.portfolio,
+    href: portfolioUrl(portfolioPrefix || "/"),
+    external: true,
+  },
+];
+
+const localizedCta = {
+  label: messages.nav.contact,
+  href: portfolioUrl(`${portfolioPrefix}/contato`),
+  external: true,
+  cta: true,
+};
+
+/** Active only for in-site routes. Cross-site links never highlight. */
+function isActive(href: string, external?: boolean) {
+  if (external) return false;
+  return (
+    currentPath === href ||
+    (href !== "/" && href !== "/en" && currentPath.startsWith(href + "/"))
+  );
+}
+
+function linkProps(external?: boolean) {
+  return external ? { target: "_self" as const } : {};
+}
+---
+
+<nav
+  id="navbar"
+  class="navbar fixed top-0 left-0 z-50 w-full backdrop-blur-3xl will-change-transform"
+>
+  <div
+    class="site-container flex items-center justify-between py-4 font-medium md:py-5"
+  >
+    <a
+      href={CONFIG.nav.logo.href}
+      aria-label={CONFIG.nav.logo.alt}
+      class="transition-opacity duration-200 hover:opacity-80"
+    >
+      <img
+        src={LogoTextDark.src}
+        alt={CONFIG.nav.logo.alt}
+        class="h-8 w-auto md:h-10 dark:hidden"
+      />
+      <img
+        src={LogoText.src}
+        alt={CONFIG.nav.logo.alt}
+        class="hidden h-8 w-auto md:h-10 dark:block"
+      />
+    </a>
+
+    <div class="flex items-center gap-1">
+      <div class="hidden items-center gap-1 md:flex">
+        <ul class="flex items-center gap-1">
+          {
+            localizedNavLinks.map(({ label, href, external }) => (
+              <li>
+                <a
+                  href={href}
+                  data-nav-link
+                  data-external={external ? "true" : undefined}
+                  class:list={[
+                    "nav-link",
+                    isActive(href, external) && "nav-link-active",
+                  ]}
+                  {...linkProps(external)}
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {
+        localizedCta && (
+          <Button
+            href={localizedCta.href}
+            variant="primary"
+            size="md"
+            class="ml-2 hidden md:inline-flex"
+            {...linkProps(localizedCta.external)}
+          >
+            {localizedCta.label}
+          </Button>
+        )
+      }
+
+      <LocaleToggle />
+      <ThemeToggle />
+
+      <button
+        type="button"
+        data-menu-btn
+        class="nav-icon-btn border border-border md:hidden"
+        aria-label={messages.nav.openMenu}
+        aria-expanded="false"
+      >
+        <span data-icon-menu aria-hidden set:html={MenuRaw} />
+        <span data-icon-close class="hidden" aria-hidden set:html={CloseRaw} />
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile drawer (side panel) -->
+<div
+  data-menu-overlay
+  class="mobile-drawer-overlay pointer-events-none fixed inset-0 z-40 bg-black/50 opacity-0 transition-opacity duration-300 md:hidden"
+  aria-hidden="true"
+></div>
+<aside
+  data-menu-drawer
+  class="mobile-drawer-panel fixed top-0 right-0 z-50 flex h-full w-[min(100%,20rem)] translate-x-full flex-col border-l border-[var(--color-border)] bg-[rgb(from_var(--color-bg)_r_g_b/0.97)] backdrop-blur-2xl transition-transform duration-300 md:hidden"
+  aria-hidden="true"
+>
+  <nav class="flex flex-col gap-1 px-4 pt-6">
+    {
+      localizedNavLinks.map(({ label, href, external }) => (
+        <a
+          href={href}
+          data-nav-link-mobile
+          data-external={external ? "true" : undefined}
+          class:list={[
+            "mobile-nav-link",
+            isActive(href, external) && "mobile-nav-link-active",
+          ]}
+          {...linkProps(external)}
+        >
+          {label}
+        </a>
+      ))
+    }
+  </nav>
+  {
+    localizedCta && (
+      <div class="mt-auto border-t border-[var(--color-border)] px-4 py-6">
+        <Button
+          href={localizedCta.href}
+          variant="primary"
+          class="w-full justify-center"
+          {...linkProps(localizedCta.external)}
+        >
+          {localizedCta.label}
+        </Button>
+      </div>
+    )
+  }
+</aside>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { setScrollLock } from "@shared/handlers/scroll-lock";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let isTransitioning = false;
+  let navInitialized = false;
+  let lastScrollY = 0;
+  let lastAnimDir: "up" | "down" | null = null;
+
+  function updateActiveLinks(path: string) {
+    document
+      .querySelectorAll<HTMLAnchorElement>("[data-nav-link]")
+      .forEach((link) => {
+        if (link.dataset.external === "true") {
+          link.classList.remove("nav-link-active");
+          return;
+        }
+
+        const href = link.getAttribute("href") ?? "";
+        const active =
+          path === href ||
+          (href !== "/" && href !== "/en" && path.startsWith(href + "/"));
+        link.classList.toggle("nav-link-active", active);
+      });
+
+    document
+      .querySelectorAll<HTMLAnchorElement>("[data-nav-link-mobile]")
+      .forEach((link) => {
+        if (link.dataset.external === "true") {
+          link.classList.remove("mobile-nav-link-active");
+          return;
+        }
+
+        const href = link.getAttribute("href") ?? "";
+        const active =
+          path === href ||
+          (href !== "/" && href !== "/en" && path.startsWith(href + "/"));
+        link.classList.toggle("mobile-nav-link-active", active);
+      });
+  }
+
+  function handleScroll() {
+    if (isTransitioning) return;
+    const nav = document.querySelector<HTMLElement>("#navbar");
+    if (!nav) return;
+
+    const y = window.scrollY;
+    const delta = y - lastScrollY;
+    lastScrollY = y;
+
+    if (Math.abs(delta) < 4) return;
+
+    if (delta > 0 && y > 60) {
+      if (lastAnimDir === "down") return;
+      lastAnimDir = "down";
+      gsap.to(nav, {
+        y: "-100%",
+        duration: 0.3,
+        ease: "power2.in",
+        overwrite: true,
+      });
+    } else if (delta < 0) {
+      if (lastAnimDir === "up") return;
+      lastAnimDir = "up";
+      gsap.to(nav, {
+        y: 0,
+        duration: 0.3,
+        ease: "power2.out",
+        overwrite: true,
+      });
+    }
+  }
+
+  function initNavAnimations() {
+    const nav = document.querySelector<HTMLElement>("#navbar");
+    if (!nav || navInitialized) return;
+    navInitialized = true;
+
+    ScrollTrigger.create({
+      start: "top -1px",
+      onEnter: () => nav.classList.add("is-scrolled"),
+      onLeaveBack: () => nav.classList.remove("is-scrolled"),
+    });
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+  }
+
+  function initMobileMenu() {
+    const btn = document.querySelector<HTMLButtonElement>("[data-menu-btn]");
+    const drawer = document.querySelector<HTMLElement>("[data-menu-drawer]");
+    const overlay = document.querySelector<HTMLElement>("[data-menu-overlay]");
+    if (!btn || !drawer || !overlay) return;
+    if (btn.dataset.menuInit) return;
+    btn.dataset.menuInit = "1";
+
+    let menuOpen = false;
+    const iconMenu = btn.querySelector<SVGElement>("[data-icon-menu]")!;
+    const iconClose = btn.querySelector<SVGElement>("[data-icon-close]")!;
+
+    function setOpen(open: boolean) {
+      menuOpen = open;
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+      drawer.setAttribute("aria-hidden", open ? "false" : "true");
+      overlay.setAttribute("aria-hidden", open ? "false" : "true");
+      iconMenu.classList.toggle("hidden", open);
+      iconClose.classList.toggle("hidden", !open);
+      drawer.classList.toggle("translate-x-full", !open);
+      drawer.classList.toggle("translate-x-0", open);
+      overlay.classList.toggle("pointer-events-none", !open);
+      overlay.classList.toggle("opacity-0", !open);
+      overlay.classList.toggle("opacity-100", open);
+      setScrollLock("navbar-drawer", open);
+    }
+
+    function closeMenu() {
+      if (menuOpen) setOpen(false);
+    }
+
+    btn.addEventListener("click", () => setOpen(!menuOpen));
+    overlay.addEventListener("click", closeMenu);
+    drawer.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", closeMenu),
+    );
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    initNavAnimations();
+    initMobileMenu();
+    updateActiveLinks(window.location.pathname);
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+  });
+
+  document.addEventListener("astro:before-preparation", () => {
+    isTransitioning = true;
+    const drawer = document.querySelector<HTMLElement>("[data-menu-drawer]");
+    const overlay = document.querySelector<HTMLElement>("[data-menu-overlay]");
+    if (drawer) {
+      drawer.classList.add("translate-x-full");
+      drawer.classList.remove("translate-x-0");
+    }
+    if (overlay) {
+      overlay.classList.add("opacity-0", "pointer-events-none");
+      overlay.classList.remove("opacity-100");
+    }
+    setScrollLock("navbar-drawer", false);
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    isTransitioning = false;
+    lastScrollY = window.scrollY;
+    lastAnimDir = null;
+    updateActiveLinks(window.location.pathname);
+    gsap.set("#navbar", { y: 0 });
+  });
+</script>

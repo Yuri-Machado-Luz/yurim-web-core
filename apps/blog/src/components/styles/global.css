@@ -1,0 +1,205 @@
+@import "tailwindcss";
+@import "tailwind-animations";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "rehype-callouts/theme/github";
+
+@custom-variant dark (&:is(.dark *));
+
+@import "./base/tokens.css";
+@import "./base/reset.css";
+@import "./base/prose.css";
+@import "./base/cards.css";
+@import "./base/animations.css";
+
+.split-parent {
+  overflow: hidden;
+}
+
+/* ── Scrollbar ── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--background);
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-700, var(--primary));
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+  html {
+    font-family: var(--font-sans);
+    scrollbar-gutter: stable;
+  }
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .text-muted {
+    color: var(--muted-foreground);
+  }
+  .text-primary {
+    color: var(--color-primary-400);
+  }
+  .bg-surface {
+    background: var(--color-surface);
+  }
+  .bg-surface-strong {
+    background: var(--color-surface-strong);
+  }
+  .border-base {
+    border: 1px solid var(--color-border);
+  }
+  .border-r-base {
+    border-right: 1px solid var(--color-border);
+  }
+  .border-t-base {
+    border-top: 1px solid var(--color-border);
+  }
+  .bg-success-bg {
+    background: var(--color-success-bg);
+  }
+  .text-success {
+    color: var(--color-success);
+  }
+  .bg-error-bg {
+    background: var(--color-error-bg);
+  }
+  .text-error {
+    color: var(--color-error);
+  }
+}
+
+@layer components {
+  /* Tailwind v4 reserves .container — use site-container (matches portfolio max-w-6xl) */
+  .site-container {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 72rem;
+    padding-inline: 1rem;
+  }
+
+  @media (width >= 40rem) {
+    .site-container {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  /* ── Navbar ── */
+  .navbar {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background var(--duration-base) ease,
+      border-color var(--duration-base) ease,
+      backdrop-filter var(--duration-base) ease;
+  }
+  .navbar.is-scrolled {
+    background: rgb(from var(--color-bg) r g b / 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom-color: var(--color-border);
+  }
+
+  :root:not(.dark) .navbar.is-scrolled {
+    background: rgb(from var(--color-bg) r g b / 0.92);
+  }
+
+  .nav-link {
+    @apply px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-primary;
+  }
+
+  .nav-link:hover,
+  .nav-link-active {
+    @apply text-primary;
+  }
+
+  .mobile-nav-link {
+    @apply flex items-center rounded-lg px-3 py-3 text-base font-medium text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-primary;
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link-active {
+    @apply bg-secondary text-primary;
+  }
+
+  .nav-icon-btn {
+    @apply inline-flex size-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground;
+  }
+
+  .nav-icon-btn svg {
+    @apply size-5;
+  }
+
+  /* ── Page typography (aligned with portfolio .heading-page / .heading-section / .lead) ── */
+  .page-title {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+  @media (min-width: 40rem) {
+    .page-title {
+      font-size: 3rem;
+    }
+  }
+  .page-lead {
+    font-size: 1.25rem;
+    color: var(--color-muted);
+    max-width: 52ch;
+    line-height: 1.7;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .article-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  .article-meta {
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
+  }
+
+  /* ── Social links: utilities on SocialLinks.astro ── */
+
+  :root:not(.dark) .post-card {
+    box-shadow: 0 1px 2px rgb(from var(--color-text) r g b / 0.06);
+  }
+}

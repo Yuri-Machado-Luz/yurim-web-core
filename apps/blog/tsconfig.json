@@ -1,0 +1,26 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components": ["./src/components/index.ts"],
+      "@components/*": ["./src/components/*"],
+      "@ui": ["./src/components/ui/index.ts"],
+      "@ui/*": ["./src/components/ui/*"],
+      "@shared": ["./src/components/shared/index.ts"],
+      "@shared/*": ["./src/components/shared/*"],
+      "@styles": ["./src/components/styles/index.ts"],
+      "@styles/*": ["./src/components/styles/*"],
+      "@config": ["./src/config.ts"],
+      "@layouts": ["./src/layouts/index.ts"],
+      "@assets": ["./src/assets/index.ts"],
+      "@i18n": ["./src/i18n"],
+      "@i18n/*": ["./src/i18n/*"]
+    }
+  }
+}

@@ -1,0 +1,51 @@
+---
+import { Footer, Navbar } from "@layouts";
+import ThemeInit from "@shared/ThemeInit.astro";
+import Head from "./Head.astro";
+import { localeFromPath } from "@/lib/locale-cookie";
+import { htmlLang } from "@i18n/index";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+  noindex?: boolean;
+  locale?: "pt" | "en";
+}
+
+const {
+  title,
+  description,
+  image,
+  canonicalUrl,
+  noindex,
+  locale: localeProp,
+} = Astro.props;
+
+const locale = localeProp ?? localeFromPath(Astro.url.pathname);
+---
+
+<html lang={htmlLang(locale)}>
+  <ThemeInit />
+  <Head
+    title={title}
+    description={description}
+    image={image}
+    canonicalUrl={canonicalUrl}
+    noindex={noindex}
+    locale={locale}
+  />
+
+  <body>
+    <Navbar transition:persist="navbar" />
+    <main class="relative z-1 flex flex-1 flex-col pt-16 md:pt-20">
+      <slot
+        id="page-content"
+        transition:name="page-content"
+        transition:animate="slide"
+      />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /$
+Allow: /en
+Allow: /en/$
+Allow: /posts/
+Allow: /posts/*
+
+Disallow: /sobre
+Disallow: /projetos
+Disallow: /contato
+
+Sitemap: https://blog.yurimachado.dev.br/sitemap-index.xml
