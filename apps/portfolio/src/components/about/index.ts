@@ -1,1 +1,0 @@
-export { AboutPageContent } from "./AboutPageContent";

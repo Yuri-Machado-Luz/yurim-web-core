@@ -1,20 +1,70 @@
 # yurim-web-core
 
-Monorepo for [yurimachado.dev.br](https://www.yurimachado.dev.br) (www) and [blog.yurimachado.dev.br](https://blog.yurimachado.dev.br).
+Next.js app for [yurimachado.dev.br](https://www.yurimachado.dev.br) — portfólio e blog no mesmo projeto.
 
 ## Layout
 
-| Path | Role |
-|------|------|
-| `apps/portfolio` | Portfolio site (www) |
-| `apps/blog` | Blog site |
-| `apps/docs` | Archived docs site |
+| Path                 | Role                                            |
+| -------------------- | ----------------------------------------------- |
+| `src/app/`           | Rotas Next (home + `/blog`) + OG/twitter images |
+| `src/components/`    | UI (`ui/`, `forms/`, `layout/`)                 |
+| `src/config/`        | Site meta, fonts, tokens, CSS global            |
+| `src/assets/`        | Ícones fonte (SVG) + brand logos                |
+| `public/sprite.svg`  | Sprite unificado dos ícones                     |
+| `public/favicon.svg` | Favicon                                         |
+| `public/` · `/og/*`  | OG PNG via route handlers                       |
+| `src/lib/`           | Utilitários (`cn`, content, metadata)           |
+| `content/posts/`     | Markdown/MDX do blog                            |
+| `.github/`           | CI + Dependabot                                 |
+| `_local/`            | Arquivo legado (**local only**)                 |
+| `_docs/`             | Notas pessoais (**local only**)                 |
+| `.cursor/`           | Rules/agents Cursor (**local only**)            |
+
+Single-app na raiz. Não recriar `apps/` / `packages/` / Turbo.
+
+## Install
+
+```bash
+pnpm install
+```
+
+`pnpm-workspace.yaml` exists only for pnpm 11 build allowlist (`sharp`, `unrs-resolver`) — not a monorepo.
+
+## Docs
+
+Guias versionados em [`docs/`](./docs/README.md) (blog MDX, semantic-release).
+
+## Scripts
+
+```bash
+pnpm dev
+pnpm build
+pnpm lint
+pnpm typecheck
+pnpm format
+pnpm format:check
+pnpm test
+pnpm ui:add <component>
+pnpm icons:sprite
+pnpm release
+```
+
+## Env
+
+Keys in `.env.example` (`NEXT_PUBLIC_EMAILJS_*`). Set the same names in Vercel Preview + Production.
+
+## Vercel
+
+| Setting           | Value                        |
+| ----------------- | ---------------------------- |
+| Root Directory    | `.` (repo root)              |
+| Linked project    | `portfolio` (`yunilab-proj`) |
+| Production Branch | `main`                       |
 
 ## Branches & tags
 
-- **`main`** — freeze line (v4.1.0 lineage content imported from the legacy repos).
-- **`development/v5`** — Next monorepo work (created in a later phase).
-- Tag **`v5.0.0-alpha.0`** lands on `development/v5` when that branch exists.
+- **`main`** — freeze line (v4.1.0 lineage).
+- **`development/v5`** — Next work (portfolio + blog unificado).
 
 Do **not** delete the legacy remotes:
 
@@ -22,36 +72,6 @@ Do **not** delete the legacy remotes:
 - `personal--blog`
 - `personal--docs`
 
-Freeze companions were tagged **`v4.1.0`** on those remotes.
-
-## Vercel
-
-Two projects:
-
-| Project | Root Directory | Production Branch |
-|---------|----------------|-------------------|
-| Portfolio | `apps/portfolio` | `main` |
-| Blog | `apps/blog` | `main` |
-
 ## Local path
 
-Hub checkout: `_Hub/01_Sites/web-core`
-
-## Run locally
-
-```bash
-pnpm --dir apps/portfolio install
-pnpm --dir apps/portfolio dev
-```
-
-```bash
-pnpm --dir apps/blog install
-pnpm --dir apps/blog dev
-```
-
-Or from the repo root:
-
-```bash
-pnpm run dev:portfolio
-pnpm run dev:blog
-```
+Hub checkout: `_Hub/01_Products/web-core`

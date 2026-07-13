@@ -1,0 +1,13 @@
+node_modules
+.next
+.vercel
+coverage
+pnpm-lock.yaml
+_local
+_docs
+.cursor
+CHANGELOG.md
+content
+docs/**/*.md
+*.md
+!README.md

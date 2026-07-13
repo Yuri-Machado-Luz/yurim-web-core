@@ -1,0 +1,46 @@
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--background);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-700, var(--primary));
+  }
+
+  html {
+    @apply scroll-smooth font-sans;
+    color-scheme: dark;
+    background-color: var(--background);
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply text-foreground;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100svh;
+    background:
+      radial-gradient(
+        ellipse at center,
+        color-mix(in srgb, var(--primary) 20%, transparent),
+        transparent 50%
+      ),
+      linear-gradient(180deg, var(--background) 0%, var(--background) 100%);
+  }
+}

@@ -1,16 +1,37 @@
+# Dependencies
 node_modules
 .pnpm-store
+
+# Build / framework
 dist
 .next
 .astro
 .vercel
 .turbo
 out
+coverage
+
+# Env & secrets (keep .env.example committed)
 .env
 .env*.local
+.env.local
+!.env.example
+
+# Logs / OS
 *.log
 .DS_Store
 Thumbs.db
-coverage
+
+# Editor (shared allowlist)
 .vscode/*
 !.vscode/extensions.json
+
+# Cursor workspace rules/agents stay on this machine
+.cursor/
+
+# Personal notes for this checkout
+_docs/
+
+# Archived legacy sources (portfolio / blog / docs copies)
+_local/
+.mcp.json

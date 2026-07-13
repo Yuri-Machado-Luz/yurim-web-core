@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Brand tokens → theme map → base layer */
+@import "./tokens/brand-tokens.css";
+@import "./fonts/stacks.css";
+@import "./styles/theme.css";
+@import "./styles/base.css";
