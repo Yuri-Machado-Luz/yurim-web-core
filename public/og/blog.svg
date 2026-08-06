@@ -1,0 +1,7 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#050404"/>
+  <path d="M96 128H1104" stroke="#D21C1C" stroke-width="6" stroke-linecap="round"/>
+  <text x="96" y="250" fill="#F2F4F3" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="700">Registros t�cnicos</text>
+  <text x="100" y="330" fill="#B8B2B2" font-family="Inter, Arial, sans-serif" font-size="34">Devlogs, decis�es de arquitetura e documenta��o de projetos.</text>
+  <text x="100" y="505" fill="#F2F4F3" font-family="Inter, Arial, sans-serif" font-size="32">yurimachado.dev.br/blog</text>
+</svg>

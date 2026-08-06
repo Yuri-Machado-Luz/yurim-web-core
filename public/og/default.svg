@@ -1,0 +1,7 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#050404"/>
+  <circle cx="600" cy="315" r="260" fill="#D21C1C" fill-opacity="0.18"/>
+  <path d="M420 430V205L600 372L780 205V430" stroke="#F2F4F3" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="96" y="500" fill="#F2F4F3" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="700">Yuri Machado Luz</text>
+  <text x="100" y="555" fill="#B8B2B2" font-family="Inter, Arial, sans-serif" font-size="30">Sistemas web, APIs e automa��es</text>
+</svg>
