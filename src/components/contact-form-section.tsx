@@ -18,7 +18,13 @@ async function handleContactSubmit(values: ContactFormValues) {
   const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
   if (!serviceId || !templateId || !publicKey) {
-    console.info("[contact]", values);
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("Email service is not configured");
+    }
+    console.info("[contact] EmailJS keys missing — dry-run", {
+      name: values.name,
+      email: values.email,
+    });
     return;
   }
 

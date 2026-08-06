@@ -21,6 +21,9 @@
     "inDevelopment": "In development"
   },
   "actions": {
-    "featured": "Featured"
+    "featured": "Featured",
+    "readPost": "Read post",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   }
 }

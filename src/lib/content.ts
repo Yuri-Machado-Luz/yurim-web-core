@@ -2,9 +2,19 @@ import { allPosts } from "content-collections";
 
 import type { Format } from "@/i18n/types";
 
-export type ContentMeta = (typeof allPosts)[number];
+type FullPost = (typeof allPosts)[number];
 
-export function listAllPosts(): ContentMeta[] {
+/** List/card meta — excludes compiled MDX body. */
+export type ContentMeta = Omit<FullPost, "mdx" | "content">;
+
+/** Full post including MDX for detail pages. */
+export type ContentPost = FullPost;
+
+function toMeta({ mdx: _mdx, content: _content, ...meta }: FullPost): ContentMeta {
+  return meta;
+}
+
+function publishedPosts(): FullPost[] {
   return allPosts
     .filter((post) => !post.draft)
     .sort((a, b) => {
@@ -13,10 +23,20 @@ export function listAllPosts(): ContentMeta[] {
     });
 }
 
-export function listByFormat(format: Format): ContentMeta[] {
-  return listAllPosts().filter((post) => post.format === format);
+/** Lightweight list API — no MDX payload. */
+export function listPostMeta(): ContentMeta[] {
+  return publishedPosts().map(toMeta);
 }
 
-export function getPost(slug: string): ContentMeta | null {
-  return listAllPosts().find((post) => post.slug === slug) ?? null;
+/** @deprecated Prefer listPostMeta() for lists; kept as alias. */
+export function listAllPosts(): ContentMeta[] {
+  return listPostMeta();
+}
+
+export function listByFormat(format: Format): ContentMeta[] {
+  return listPostMeta().filter((post) => post.format === format);
+}
+
+export function getPost(slug: string): ContentPost | null {
+  return publishedPosts().find((post) => post.slug === slug) ?? null;
 }

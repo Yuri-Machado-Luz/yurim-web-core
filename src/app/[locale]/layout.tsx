@@ -68,6 +68,7 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
+  const clientMessages = { shared: messages.shared };
 
   return (
     <html
@@ -86,8 +87,8 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="text-foreground flex min-h-full flex-col">
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <PageShell locale={locale}>{children}</PageShell>
+        <NextIntlClientProvider locale={locale} messages={clientMessages}>
+          <PageShell>{children}</PageShell>
         </NextIntlClientProvider>
       </body>
     </html>
