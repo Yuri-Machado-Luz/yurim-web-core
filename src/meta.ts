@@ -1,11 +1,68 @@
-import type { Metadata } from "next";
+import { routing } from "@/i18n/routing";
 
-import { SITE } from "@/config/site";
-
-const OG_SIZE = {
-  width: SITE.og.width,
-  height: SITE.og.height,
+export const SITE = {
+  name: "Yuri Machado Luz",
+  shortName: "Yuri Machado",
+  titleDefault: "Yuri Machado Luz",
+  titleTemplate: "%s · Yuri Machado Luz",
+  description: "Sistemas web, APIs e automações.",
+  locale: "pt-BR",
+  localeOg: "pt_BR",
+  siteUrl: "https://www.yurimachado.dev.br",
+  author: "Yuri Machado Luz",
+  jobTitle: "Full-stack developer / Independent consultant",
+  social: {
+    github: "https://github.com/Yuri-Machado-Luz",
+    linkedin: "https://linkedin.com/in/yurimachadoluz",
+    email: "yurimachadoluz@gmail.com",
+  },
+  themeColor: "#050404",
 } as const;
+
+export const ASSETS = {
+  favicon: {
+    href: "/favicon.svg",
+    type: "image/svg+xml",
+  },
+  og: {
+    size: {
+      width: 1200,
+      height: 630,
+    },
+    images: {
+      default: {
+        url: "/og/default.svg",
+        alt: SITE.titleDefault,
+      },
+      blog: {
+        url: "/og/blog.svg",
+        alt: "Blog",
+      },
+    },
+  },
+} as const;
+
+export const SITE_ICONS = {
+  icon: [{ url: ASSETS.favicon.href, type: ASSETS.favicon.type }],
+  shortcut: [ASSETS.favicon.href],
+  apple: [{ url: ASSETS.favicon.href, type: ASSETS.favicon.type }],
+} as const;
+
+export const SEO_KEYWORDS = [
+  "Yuri Machado",
+  "full-stack",
+  "Next.js",
+  "APIs",
+  "automações",
+  "sistemas web",
+  "São Paulo",
+] as const;
+
+export const OG_SIZE = ASSETS.og.size;
+
+export function getOgImage(kind: keyof typeof ASSETS.og.images = "default") {
+  return ASSETS.og.images[kind];
+}
 
 function absoluteUrl(path: string): string {
   const base = SITE.siteUrl.replace(/\/$/, "");
@@ -13,7 +70,7 @@ function absoluteUrl(path: string): string {
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-export function rootMetadata(): Metadata {
+export function rootMetadata() {
   return {
     metadataBase: new URL(SITE.siteUrl),
     title: {
@@ -25,21 +82,9 @@ export function rootMetadata(): Metadata {
     authors: [{ name: SITE.author, url: SITE.siteUrl }],
     creator: SITE.author,
     publisher: SITE.author,
-    keywords: [
-      "Yuri Machado",
-      "full-stack",
-      "Next.js",
-      "APIs",
-      "automações",
-      "sistemas web",
-      "São Paulo",
-    ],
+    keywords: [...SEO_KEYWORDS],
     category: "technology",
-    icons: {
-      icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-      shortcut: ["/favicon.svg"],
-      apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    },
+    icons: SITE_ICONS,
     alternates: {
       canonical: absoluteUrl("/"),
     },
@@ -52,7 +97,7 @@ export function rootMetadata(): Metadata {
       description: SITE.description,
       images: [
         {
-          url: SITE.og.default,
+          url: getOgImage("default").url,
           width: OG_SIZE.width,
           height: OG_SIZE.height,
           alt: SITE.titleDefault,
@@ -63,18 +108,11 @@ export function rootMetadata(): Metadata {
       card: "summary_large_image",
       title: SITE.titleDefault,
       description: SITE.description,
-      images: [SITE.og.default],
+      images: [getOgImage("default").url],
     },
     robots: {
       index: true,
       follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-        "max-video-preview": -1,
-      },
     },
   };
 }
@@ -83,18 +121,20 @@ export function pageMetadata(input: {
   title: string;
   description: string;
   path: string;
+  locale?: string;
   og?: "default" | "blog";
-}): Metadata {
-  const ogKey = input.og ?? "default";
-  const image = SITE.og[ogKey];
-  const url = absoluteUrl(input.path);
+}) {
+  const image = getOgImage(input.og ?? "default");
+  const routePath =
+    input.locale && input.locale !== routing.defaultLocale
+      ? `/${input.locale}${input.path}`
+      : input.path;
+  const url = absoluteUrl(routePath);
 
   return {
     title: input.title,
     description: input.description,
-    alternates: {
-      canonical: url,
-    },
+    alternates: { canonical: url },
     openGraph: {
       type: "website",
       locale: SITE.localeOg,
@@ -104,7 +144,7 @@ export function pageMetadata(input: {
       description: input.description,
       images: [
         {
-          url: image,
+          url: image.url,
           width: OG_SIZE.width,
           height: OG_SIZE.height,
           alt: input.title,
@@ -115,7 +155,7 @@ export function pageMetadata(input: {
       card: "summary_large_image",
       title: `${input.title} · ${SITE.shortName}`,
       description: input.description,
-      images: [image],
+      images: [image.url],
     },
   };
 }
