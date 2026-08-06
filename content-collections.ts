@@ -3,14 +3,7 @@ import { compileMDX } from "@content-collections/mdx";
 import remarkGfm from "remark-gfm";
 import { z } from "zod";
 import rehypeExternalLinks from "rehype-external-links";
-
-// Constantes ===
-
-const formatSchema = z.enum(["nota", "pensamento", "projeto", "planejamento"]);
-
-const statusSchema = z
-  .enum(["ativo", "desatualizado", "arquivado", "beta", "em desenvolvimento"])
-  .default("em desenvolvimento");
+import { formatSchema, statusSchema } from "./src/lib/content-schema";
 
 // Configuração === Zod Schema
 

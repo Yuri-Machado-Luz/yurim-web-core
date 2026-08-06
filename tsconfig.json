@@ -16,7 +16,6 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./src/*"],
-      "@/ui/*": ["./src/components/ui/*"],
       "@/components/*": ["./src/components/*"],
       "@/i18n/*": ["./src/i18n/*"],
       "content-collections": ["./.content-collections/generated"]

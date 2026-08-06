@@ -1,35 +1,22 @@
 import type { Metadata } from "next";
 
-import { ContactFormSection } from "@/components/contact-form-section";
+import { ContactFormSection } from "@/components/composed/ContactFormSection";
 import { PageHeader } from "@/components/composed/PageHeader";
 import { SITE } from "@/meta";
-import { pageMetadata } from "@/meta";
+import {
+  createPageMetadata,
+  type LocalePageProps,
+} from "@/meta";
 import { getTranslations } from "next-intl/server";
-
-type PageProps = Readonly<{
-  params: Promise<{ locale: string }>;
-}>;
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
-  const { locale } = await params;
-  // CORREÇÃO: Passando o locale explicitamente para gerar os metadados em inglês
-  const contact = await getTranslations({ locale, namespace: "contact" });
-
-  return pageMetadata({
-    title: contact("title"),
-    description: contact("description"),
-    path: "/contato",
-    locale,
-  });
+}: LocalePageProps): Promise<Metadata> {
+  return createPageMetadata(params, "contact", { path: "/contato" });
 }
 
-// CORREÇÃO: Recebendo a tipagem PageProps com os parâmetros da URL
-export default async function ContactPage({ params }: PageProps) {
-  const { locale } = await params; // Aguarda a Promise do parâmetro de rota
-
-  // CORREÇÃO: Injetado { locale, namespace } para buscar o JSON do idioma ativo
+export default async function ContactPage({ params }: LocalePageProps) {
+  const { locale } = await params;
   const contact = await getTranslations({ locale, namespace: "contact" });
 
   return (

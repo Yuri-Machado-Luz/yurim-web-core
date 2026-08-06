@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardHeader,
@@ -9,20 +9,23 @@ import {
 } from "@/components/ui/card";
 import { Link } from "@/i18n/navigation";
 import { buttonVariants } from "@/components/ui/button";
-import { STATUS_KEY_MAP, type Status } from "@/i18n/types";
 import type { ContentMeta } from "@/lib/content";
 import { cn } from "@/lib/utils";
-import { getTranslations } from "next-intl/server";
+
+export type PostCardLabels = {
+  featured: string;
+  readPost: string;
+  format: string;
+  status?: string;
+};
 
 type PostCardProps = {
   post: ContentMeta;
+  labels: PostCardLabels;
   className?: string;
 };
 
-export async function PostCard({ post, className }: PostCardProps) {
-  const shared = await getTranslations("shared");
-
-  // Conteúdo comum do card
+export function PostCard({ post, labels, className }: PostCardProps) {
   const cardContent = (
     <Card
       data-size={post.featured ? "lg" : "sm"}
@@ -34,13 +37,11 @@ export async function PostCard({ post, className }: PostCardProps) {
       )}
     >
       <CardHeader className="flex flex-wrap items-center gap-2">
-        {post.featured && <Badge>{shared("actions.featured")}</Badge>}
-        <Badge variant="outline">{shared(`formats.${post.format}`)}</Badge>
-        {post.status && (
-          <Badge variant="secondary">
-            {shared(`status.${STATUS_KEY_MAP[post.status as Status]}`)}
-          </Badge>
-        )}
+        {post.featured && <Badge>{labels.featured}</Badge>}
+        <Badge variant="outline">{labels.format}</Badge>
+        {labels.status ? (
+          <Badge variant="secondary">{labels.status}</Badge>
+        ) : null}
       </CardHeader>
 
       <CardContent>
@@ -77,7 +78,7 @@ export async function PostCard({ post, className }: PostCardProps) {
                 className: "mt-4",
               })}
             >
-              {shared("actions.readPost")}
+              {labels.readPost}
             </Link>
           </CardAction>
         )}
@@ -85,7 +86,6 @@ export async function PostCard({ post, className }: PostCardProps) {
     </Card>
   );
 
-  // Se NÃO for destaque → card inteiro clicável
   if (!post.featured) {
     return (
       <li className={cn("col-span-1", className, "select-none")}>
@@ -96,7 +96,6 @@ export async function PostCard({ post, className }: PostCardProps) {
     );
   }
 
-  // Se for destaque → card NÃO é clicável, apenas o botão
   return (
     <li className={cn("col-span-2", className, "select-none")}>
       {cardContent}

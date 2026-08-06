@@ -1,7 +1,7 @@
 import { Logo } from "@/components/composed/Logo";
-import { LangSwitcher } from "@/components/LanguageSwitch";
-import { MobileNav } from "@/components/MobileNav";
-import { NavLink } from "@/components/NavLink";
+import { LangSwitcher } from "@/components/composed/LangSwitcher";
+import { MobileNav } from "@/components/composed/MobileNav";
+import { NavLink } from "@/components/composed/NavLink";
 import { cn, breakPoints } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
 

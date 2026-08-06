@@ -1,30 +1,21 @@
-// app/[locale]/servicos/page.tsx
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/composed/PageHeader";
-import { pageMetadata } from "@/meta";
-import { getTranslations } from "next-intl/server";
-import { Button } from "@/components/ui";
-import { Link } from "@/i18n/navigation";
 import { ServicesList } from "@/components/composed/ServicesList";
-
-type PageProps = Readonly<{
-  params: Promise<{ locale: string }>;
-}>;
+import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import {
+  createPageMetadata,
+  type LocalePageProps,
+} from "@/meta";
+import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
-  const { locale } = await params;
-  const services = await getTranslations({ locale, namespace: "services" });
-  return pageMetadata({
-    title: services("title"),
-    description: services("description"),
-    path: "/servicos",
-    locale,
-  });
+}: LocalePageProps): Promise<Metadata> {
+  return createPageMetadata(params, "services", { path: "/servicos" });
 }
 
-export default async function ServicesPage({ params }: PageProps) {
+export default async function ServicesPage({ params }: LocalePageProps) {
   const { locale } = await params;
   const copy = await getTranslations({ locale, namespace: "services" });
   const items = copy.raw("items") as Array<{

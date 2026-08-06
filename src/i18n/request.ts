@@ -7,15 +7,17 @@ function isValidLocale(
   return routing.locales.includes(locale as (typeof routing.locales)[number]);
 }
 
+/**
+ * Loads all message namespaces on the server (small JSON; acceptable for this site).
+ * Client provider only receives `{ shared }` — see `[locale]/layout.tsx`.
+ */
 export default getRequestConfig(async ({ locale }) => {
-  // Garante que o locale seja resolvido de forma estrita
   let resolvedLocale = locale ?? routing.defaultLocale;
 
   if (!isValidLocale(resolvedLocale)) {
     resolvedLocale = routing.defaultLocale;
   }
 
-  // Importações explícitas para evitar falhas no empacotador do Next.js
   const [shared, home, blog, post, projects, services, about, contact, resume] =
     await Promise.all([
       import(`./contents/${resolvedLocale}/shared.json`).then((m) => m.default),
