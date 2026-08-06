@@ -36,7 +36,11 @@ export default async function ServicesPage({ params }: PageProps) {
 
   return (
     <>
-      <PageHeader className="pt-12" />
+      <PageHeader
+        title={copy("title")}
+        description={copy("description")}
+        className="pt-12"
+      />
       <ServicesList
         items={items}
         specsHeading={copy("specsHeading")}
