@@ -2,6 +2,8 @@
  * @type {import('semantic-release').GlobalConfig}
  */
 const config = {
+  repositoryUrl: "https://github.com/Yuri-Machado-Luz/yurim-web-core",
+  tagFormat: "v${version}",
   branches: [
     "main",
     {

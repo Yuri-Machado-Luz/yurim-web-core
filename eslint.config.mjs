@@ -14,6 +14,7 @@ export default defineConfig([
     "node_modules/**",
     "_local/**",
     "_docs/**",
+    ".cursor/**",
     "content/**",
     "coverage/**",
   ]),

@@ -5,9 +5,11 @@ node_modules
 # Build / framework
 dist
 .next
+.content-collections
 .astro
 .vercel
 .turbo
+.vscode
 out
 coverage
 
@@ -31,6 +33,7 @@ Thumbs.db
 
 # Personal notes for this checkout
 _docs/
+./docs/
 
 # Archived legacy sources (portfolio / blog / docs copies)
 _local/

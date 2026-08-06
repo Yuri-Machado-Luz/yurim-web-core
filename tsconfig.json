@@ -16,16 +16,17 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./src/*"],
-      "@/content/*": ["./content/*"],
-      "content/*": ["./content/*"]
+      "@/ui/*": ["./src/components/ui/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/raw/*": ["./src/components/raw/*"],
+      "@/i18n/*": ["./src/i18n/*"],
+      "content-collections": ["./.content-collections/generated"]
     }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.md",
-    "**/*.mdx",
     "src/types/**/*.d.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
