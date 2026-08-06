@@ -1,0 +1,93 @@
+{
+  "eyebrow": "Serviços",
+  "title": "Serviços",
+  "description": "Desenvolvimento de sistemas, APIs, automações, infraestrutura, consultoria técnica e documentação.",
+  "items": [
+    {
+      "slug": "sistemas-web",
+      "title": "Sistemas web full-stack",
+      "body": "Desenvolvimento de aplicações com autenticação, banco de dados relacional/NOSQL, painel administrativo e integração com front-end (React/Next.js).",
+      "specs": [
+        "Autenticação e autorização (JWT, OAuth)",
+        "Banco de dados PostgreSQL, MongoDB ou MySQL",
+        "Painel administrativo (admin dashboard)",
+        "Integração com serviços externos (REST/GraphQL)",
+        "Deploy em VPS ou cloud (AWS, GCP)"
+      ]
+    },
+    {
+      "slug": "api-integracoes",
+      "title": "APIs e webhooks",
+      "body": "Criação de APIs REST e GraphQL, endpoints de webhook, sistemas de fila, retry e logging estruturado para integração entre sistemas.",
+      "specs": [
+        "Design de API RESTful ou GraphQL",
+        "Webhooks com verificação de assinatura",
+        "Sistemas de fila (RabbitMQ, SQS)",
+        "Logging estruturado (JSON logs)",
+        "Documentação OpenAPI/Swagger"
+      ]
+    },
+    {
+      "slug": "automacao-etl",
+      "title": "Automação e ETL",
+      "body": "Scripts de automação (Python, Node), agendamento de tarefas (cron, jobs) e orquestração de dados entre ferramentas (ETL/ELT).",
+      "specs": [
+        "Scripts em Python ou Node.js",
+        "Agendamento via cron ou job schedulers",
+        "Integração com APIs e bancos de dados",
+        "ETL/ELT para data warehousing",
+        "Monitoramento e alertas"
+      ]
+    },
+
+    {
+      "slug": "migracao",
+      "title": "Migração e modernização",
+      "body": "Migração de sistemas legados, refatoração de código, atualização de dependências e stacks, e replataformização.",
+      "specs": [
+        "Análise de sistemas legados",
+        "Refatoração e reescrita de código",
+        "Atualização de dependências e frameworks",
+        "Migração de banco de dados",
+        "Replataformização (ex: on-premise → cloud)"
+      ]
+    },
+    {
+      "slug": "auditoria",
+      "title": "Auditoria e consultoria técnica",
+      "body": "Revisão de arquitetura, análise de desempenho e escalabilidade, avaliação de segurança (OWASP básico) e adequação a boas práticas.",
+      "specs": [
+        "Revisão de arquitetura de software",
+        "Análise de desempenho e escalabilidade",
+        "Avaliação de segurança (OWASP Top 10)",
+        "Recomendações de boas práticas",
+        "Relatório executivo com plano de ação"
+      ]
+    },
+    {
+      "slug": "documentacao",
+      "title": "Documentação técnica e UX writing",
+      "body": "Redação de documentação de API (OpenAPI/Swagger), manuais de usuário, wikis internas e especificações funcionais.",
+      "specs": [
+        "Documentação de API (OpenAPI/Swagger)",
+        "Manuais de usuário e guias rápidos",
+        "Wikis internas (Confluence, Notion)",
+        "Especificações funcionais e técnicas",
+        "Padronização de termos e UX writing"
+      ]
+    },
+    {
+      "slug": "mvp",
+      "title": "MVP e prototipagem",
+      "body": "Desenvolvimento rápido de protótipos funcionais e MVPs para validação de hipóteses de produto com ciclos curtos de feedback.",
+      "specs": [
+        "Prototipagem de interfaces (Figma)",
+        "Desenvolvimento de MVP funcional",
+        "Validação com usuários reais",
+        "Iteração rápida com feedback",
+        "Plano de evolução para produto completo"
+      ]
+    }
+  ],
+  "cta": "Entrar em contato"
+}

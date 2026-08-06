@@ -1,0 +1,118 @@
+{
+  "quickFacts": ["Open to Work", "Independent developer since 2020"],
+  "experience": [
+    {
+      "role": "Freelancer",
+      "company": "Independent",
+      "period": "Jan 2020 – Present",
+      "bullets": [
+        "Full-stack development: portfolios, internal systems, integrations, and automations (performance, SEO, CI/CD; deployment tailored to the client).",
+        "When the project requires it: visual identity / UI and academic review on demand (skills outside the engineering track)."
+      ]
+    },
+    {
+      "role": "Process & Service Consultant",
+      "company": "Clínica Natuee (MEI)",
+      "period": "Dec 2025 – Apr 2026",
+      "bullets": [
+        "Diagnosis & roadmap: mapping service processes and systems; prioritizing strategic initiatives with clear scope and impact.",
+        "Technical implementation: improvements in internal systems; decision-tree support bot; platform migration as a key point of contact."
+      ]
+    },
+    {
+      "role": "Administrative Assistant",
+      "company": "IBM | BPO Decision",
+      "period": "Dec 2024 – Apr 2025",
+      "bullets": [
+        "Onboarding flow redesign: integration time reduced from 7 to 3 days (−57%), covering 1,200 processes/month.",
+        "Bulk archiving automation with Python and SOP documentation; dashboard integrated with the ticket management system."
+      ]
+    },
+    {
+      "role": "Backoffice Analyst",
+      "company": "Cielo | BPO Atento",
+      "period": "Jul 2021 – Apr 2022",
+      "bullets": [
+        "Receivables processing; ombudsman and legal focal point.",
+        "Email triage and routing automation with Power Automate, reducing handling SLA."
+      ]
+    },
+    {
+      "role": "Technical Support Analyst",
+      "company": "Santander | BPO Atma/Liq",
+      "period": "May 2020 – Feb 2021",
+      "bullets": [
+        "N2 support for internal users; database maintenance and application of information security protocols in a banking context."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Systems Analysis and Development",
+      "institution": "Universidade Cidade de São Paulo",
+      "detail": "In progress (expected H2/2027)"
+    },
+    {
+      "degree": "Psychology",
+      "institution": "Universidade Nove de Julho",
+      "detail": "8 semesters completed, not finished.",
+      "description": "Transition motivated by parallel software projects during the degree."
+    }
+  ],
+  "skillCategories": [
+    {
+      "label": "Frontend & UI",
+      "skills": [
+        "React",
+        "TypeScript",
+        "HTML / CSS",
+        "Tailwind CSS",
+        "Astro",
+        "Framer Motion",
+        "Figma"
+      ]
+    },
+    {
+      "label": "Backend & Data",
+      "skills": [
+        "Node.js",
+        "Python",
+        "Express",
+        "FastAPI",
+        "PostgreSQL",
+        "Supabase",
+        "Pandas"
+      ]
+    },
+    {
+      "label": "Tools",
+      "skills": [
+        "Git",
+        "CI/CD",
+        "Power Automate",
+        "Linux / CLI",
+        "Shell (Bash/Zsh)",
+        "Vercel",
+        "Cloudflare"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "name": "Portuguese",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "Advanced"
+    },
+    {
+      "name": "Spanish",
+      "level": "Basic"
+    },
+    {
+      "name": "French",
+      "level": "Basic"
+    }
+  ]
+}

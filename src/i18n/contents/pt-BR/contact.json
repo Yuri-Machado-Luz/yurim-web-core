@@ -1,0 +1,14 @@
+{
+  "eyebrow": "Contato",
+  "title": "Contato",
+  "description": "Envie uma mensagem ou escreva para o e-mail abaixo!",
+  "success": "Mensagem recebida. Responderei em breve.",
+  "error": "Não foi possível enviar a mensagem. Verifique a conexão e tente novamente.",
+  "emailFallback": "Ou escreva para",
+  "form": {
+    "name": "Nome",
+    "email": "Email",
+    "message": "Mensagem",
+    "submit": "Enviar mensagem"
+  }
+}

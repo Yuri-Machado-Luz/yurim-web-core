@@ -1,0 +1,26 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "services": "Services",
+    "projects": "Projects",
+    "blog": "Blog"
+  },
+  "formats": {
+    "nota": "Note",
+    "pensamento": "Thought",
+    "projeto": "Project",
+    "planejamento": "Planning"
+  },
+  "status": {
+    "active": "Active",
+    "outdated": "Outdated",
+    "archived": "Archived",
+    "beta": "Beta",
+    "inDevelopment": "In development"
+  },
+  "actions": {
+    "featured": "Featured"
+  }
+}

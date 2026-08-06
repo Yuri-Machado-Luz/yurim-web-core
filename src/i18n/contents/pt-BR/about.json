@@ -1,0 +1,20 @@
+{
+  "eyebrow": "Sobre mim",
+  "title": "Yuri Machado Luz",
+  "description": "Desenvolvedor Full-Stack · Analista de Sistemas · São Paulo, Brasil",
+  "bio": [
+    "Desenvolvedor full-stack autônomo desde 2020. Construo sistemas web, APIs e automações para pequenas empresas e projetos próprios.",
+    "Em 2024–2025, na IBM, redesenhei o onboarding e reduzi o tempo de integração de 7 para 3 dias (−57%). Automatizei arquivamento em massa com Python e montei dashboard de KPIs em Excel/VBA.",
+    "Em paralelo: identidade visual, prototipagem UI/UX e documentação técnica para clientes sob NDA."
+  ],
+  "sections": {
+    "bio": "Bio",
+    "skills": "Habilidades",
+    "skillsLead": "Stack e ferramentas que uso em produção.",
+    "experience": "Experiência",
+    "education": "Formação",
+    "languages": "Idiomas"
+  },
+  "ctaTitle": "Vamos conversar?",
+  "cta": "Entrar em contato"
+}

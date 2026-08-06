@@ -1,0 +1,93 @@
+{
+  "eyebrow": "Services",
+  "title": "Services",
+  "description": "Web systems, APIs, automation, infrastructure, technical consulting and documentation.",
+  "items": [
+    {
+      "slug": "sistemas-web",
+      "title": "Custom web systems",
+      "body": "Full-stack applications with authentication, relational/NOSQL database, admin panel and front-end integration (React/Next.js).",
+      "specs": [
+        "Authentication and authorization (JWT, OAuth)",
+        "PostgreSQL, MongoDB or MySQL database",
+        "Admin dashboard",
+        "Integration with external services (REST/GraphQL)",
+        "Deployment on VPS or cloud (AWS, GCP)"
+      ]
+    },
+    {
+      "slug": "api-integracoes",
+      "title": "APIs and integrations",
+      "body": "REST and GraphQL APIs, webhook endpoints, queue systems, retry and structured logging for system integration.",
+      "specs": [
+        "RESTful or GraphQL API design",
+        "Webhooks with signature verification",
+        "Queue systems (RabbitMQ, SQS)",
+        "Structured logging (JSON logs)",
+        "OpenAPI/Swagger documentation"
+      ]
+    },
+    {
+      "slug": "automacao-etl",
+      "title": "Automation and ETL",
+      "body": "Automation scripts (Python, Node), task scheduling (cron, jobs) and data orchestration between tools (ETL/ELT).",
+      "specs": [
+        "Python or Node.js scripts",
+        "Scheduling via cron or job schedulers",
+        "Integration with APIs and databases",
+        "ETL/ELT for data warehousing",
+        "Monitoring and alerts"
+      ]
+    },
+
+    {
+      "slug": "migracao",
+      "title": "Migration and modernization",
+      "body": "Legacy system migration, code refactoring, dependency and stack upgrades, and replatforming.",
+      "specs": [
+        "Legacy system analysis",
+        "Code refactoring and rewriting",
+        "Dependency and framework upgrades",
+        "Database migration",
+        "Replatforming (e.g., on-premise → cloud)"
+      ]
+    },
+    {
+      "slug": "auditoria",
+      "title": "Audit and technical consulting",
+      "body": "Architecture review, performance and scalability analysis, security assessment (OWASP basic) and best practices recommendations.",
+      "specs": [
+        "Software architecture review",
+        "Performance and scalability analysis",
+        "Security assessment (OWASP Top 10)",
+        "Best practices recommendations",
+        "Executive report with action plan"
+      ]
+    },
+    {
+      "slug": "documentacao",
+      "title": "Technical documentation and UX writing",
+      "body": "API documentation (OpenAPI/Swagger), user manuals, internal wikis and functional specifications.",
+      "specs": [
+        "API documentation (OpenAPI/Swagger)",
+        "User manuals and quick guides",
+        "Internal wikis (Confluence, Notion)",
+        "Functional and technical specifications",
+        "Term standardization and UX writing"
+      ]
+    },
+    {
+      "slug": "mvp",
+      "title": "MVP and prototyping",
+      "body": "Rapid development of functional prototypes and MVPs for product hypothesis validation with short feedback cycles.",
+      "specs": [
+        "Interface prototyping (Figma)",
+        "Functional MVP development",
+        "Validation with real users",
+        "Rapid iteration based on feedback",
+        "Evolution plan to full product"
+      ]
+    }
+  ],
+  "cta": "Contact me"
+}

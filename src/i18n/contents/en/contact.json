@@ -1,0 +1,14 @@
+{
+  "eyebrow": "Contact",
+  "title": "Contact",
+  "description": "Send a message or write to the email below!",
+  "success": "Message received. I will respond shortly.",
+  "error": "The message could not be sent. Check the connection and try again.",
+  "emailFallback": "Or write to",
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send message"
+  }
+}
