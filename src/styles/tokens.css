@@ -1,8 +1,10 @@
-/* Canonical brand tokens — Shadcn CSS variables.
-   Dark-only schema (no light theme / no theme switch). */
+/* Canonical brand tokens — Shadcn CSS variables. Dark-only schema. */
 
 :root {
-  /* Semantic (dark) */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
+
   --background: rgba(5, 4, 4, 1);
   --foreground: #f2f4f3;
   --card: rgba(17, 15, 15, 1);
@@ -36,7 +38,6 @@
   --sidebar-ring: rgba(210, 28, 28, 1);
   --radius: 0.75rem;
 
-  /* Layout chrome */
   --navbar-height: 5rem;
   --section-gap: 8rem;
   --section-gap-sm: 5rem;
@@ -63,7 +64,6 @@
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Brand scales */
   --primary-light: #f64646;
   --primary-dark: #ba1313;
   --primary-deep: #a40c0c;
@@ -86,7 +86,6 @@
   --primary-900: rgba(93, 0, 0, 1);
   --primary-950: rgba(56, 0, 0, 1);
 
-  /* Shadows */
   --shadow-hero-ring:
     0 0 0 3px rgb(from var(--primary) r g b / 0.12),
     0 0 64px rgb(from var(--primary) r g b / 0.1);

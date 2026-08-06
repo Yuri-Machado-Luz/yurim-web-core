@@ -23,6 +23,10 @@
     background: var(--primary-700, var(--primary));
   }
 
+  body[data-scroll-locked] {
+    margin-right: 0 !important;
+  }
+
   html {
     @apply scroll-smooth font-sans;
     color-scheme: dark;
