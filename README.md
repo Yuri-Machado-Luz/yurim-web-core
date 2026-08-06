@@ -1,77 +1,63 @@
 # yurim-web-core
 
-Next.js app for [yurimachado.dev.br](https://www.yurimachado.dev.br) — portfólio e blog no mesmo projeto.
+Site público de [yurimachado.dev.br](https://www.yurimachado.dev.br): portfólio, projetos, serviços, contato e registros técnicos.
 
-## Layout
+Escopo: sistemas web, APIs e automações.
 
-| Path                 | Role                                            |
-| -------------------- | ----------------------------------------------- |
-| `src/app/`           | Rotas Next (home + `/blog`) + OG/twitter images |
-| `src/components/`    | UI (`ui/`, `forms/`, `layout/`)                 |
-| `src/config/`        | Site meta, fonts, tokens, CSS global            |
-| `src/assets/`        | Ícones fonte (SVG) + brand logos                |
-| `public/sprite.svg`  | Sprite unificado dos ícones                     |
-| `public/favicon.svg` | Favicon                                         |
-| `public/` · `/og/*`  | OG PNG via route handlers                       |
-| `src/lib/`           | Utilitários (`cn`, content, metadata)           |
-| `content/posts/`     | Markdown/MDX do blog                            |
-| `.github/`           | CI + Dependabot                                 |
-| `_local/`            | Arquivo legado (**local only**)                 |
-| `_docs/`             | Notas pessoais (**local only**)                 |
-| `.cursor/`           | Rules/agents Cursor (**local only**)            |
+## Stack
 
-Single-app na raiz. Não recriar `apps/` / `packages/` / Turbo.
+- Next.js App Router, React 19, TypeScript
+- Tailwind CSS v4, shadcn/ui, Typography
+- Content Collections (`@content-collections/*`)
+- Deploy na Vercel
 
-## Install
+## Estrutura
+
+```text
+content/          # posts flat: *.md
+content-collections.ts
+src/
+  app/
+  components/
+  config/
+  lib/
+  styles/
+public/
+  og/
+```
+
+## Desenvolvimento
 
 ```bash
 pnpm install
+pnpm dev
 ```
-
-`pnpm-workspace.yaml` exists only for pnpm 11 build allowlist (`sharp`, `unrs-resolver`) — not a monorepo.
-
-## Docs
-
-Guias versionados em [`docs/`](./docs/README.md) (blog MDX, semantic-release).
 
 ## Scripts
 
 ```bash
-pnpm dev
 pnpm build
 pnpm lint
 pnpm typecheck
-pnpm format
-pnpm format:check
 pnpm test
-pnpm ui:add <component>
-pnpm icons:sprite
-pnpm release
 ```
 
-## Env
+## Conteúdo
 
-Keys in `.env.example` (`NEXT_PUBLIC_EMAILJS_*`). Set the same names in Vercel Preview + Production.
+Posts em `content/{slug}.md`. Classificação via frontmatter `format`: `note`, `thought`, `project`, `planejamento`. Exemplo:
 
-## Vercel
+```text
+content/introducao-ao-site.md → /blog/introducao-ao-site
+```
 
-| Setting           | Value                        |
-| ----------------- | ---------------------------- |
-| Root Directory    | `.` (repo root)              |
-| Linked project    | `portfolio` (`yunilab-proj`) |
-| Production Branch | `main`                       |
+Frontmatter canônico (ordem): `title`, `description`, `format`, `pubDate`, `draft`, depois opcionais (`updatedAt`, `status`, `order`, `github`, `live`, …).
 
-## Branches & tags
+## Ambiente
 
-- **`main`** — freeze line (v4.1.0 lineage).
-- **`development/v5`** — Next work (portfolio + blog unificado).
+Formulário de contato (EmailJS):
 
-Do **not** delete the legacy remotes:
-
-- `personal--portfolio`
-- `personal--blog`
-- `personal--docs`
-
-## Local path
-
-Hub checkout: `_Hub/01_Products/web-core`
+```text
+NEXT_PUBLIC_EMAILJS_SERVICE_ID
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+```
