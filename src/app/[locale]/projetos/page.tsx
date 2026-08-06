@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/ui/PageHeader";
-import { Badge } from "@/components/raw";
-import { Button } from "@/components/raw/button";
+import { PageHeader } from "@/components/composed/PageHeader";
+import { Badge } from "@/components/ui";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardHeader,
@@ -9,7 +9,7 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/components/raw/card";
+} from "@/components/ui/card";
 import { Link } from "@/i18n/navigation";
 import { STATUS_KEY_MAP, type Status } from "@/i18n/types";
 import { listByFormat } from "@/lib/content";

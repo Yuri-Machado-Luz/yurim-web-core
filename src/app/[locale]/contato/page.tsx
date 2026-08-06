@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { ContactFormSection } from "@/components/contact-form-section";
-import { PageHeader } from "@/ui/PageHeader";
+import { PageHeader } from "@/components/composed/PageHeader";
 import { SITE } from "@/meta";
 import { pageMetadata } from "@/meta";
 import { getTranslations } from "next-intl/server";

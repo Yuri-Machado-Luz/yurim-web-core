@@ -1,8 +1,7 @@
-// components/ServicesList.tsx
 "use client";
 
 import { useState } from "react";
-import { Card, CardHeader, CardContent } from "@/components/raw/card";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { ServiceModal } from "./ServiceModal";
 
 type Service = {
@@ -14,24 +13,16 @@ type Service = {
 
 type ServicesListProps = {
   items: Service[];
+  specsHeading: string;
+  ctaLabel: string;
 };
 
-export function ServicesList({ items }: ServicesListProps) {
+export function ServicesList({
+  items,
+  specsHeading,
+  ctaLabel,
+}: ServicesListProps) {
   const [selected, setSelected] = useState<Service | null>(null);
-  const [open, setOpen] = useState(false);
-
-  const handleCardClick = (service: Service) => {
-    setSelected(service);
-    setOpen(true);
-  };
-
-  const handleOpenChange = (isOpen: boolean) => {
-    setOpen(isOpen);
-    if (!isOpen) {
-      // Opcional: limpar seleção ao fechar
-      setSelected(null);
-    }
-  };
 
   return (
     <>
@@ -43,7 +34,7 @@ export function ServicesList({ items }: ServicesListProps) {
             <li key={item.slug} className={isLastAndOdd ? "col-span-2" : ""}>
               <Card
                 className="border-border/60 flex h-full cursor-pointer flex-col gap-2 transition-transform select-none hover:scale-[1.02]"
-                onClick={() => handleCardClick(item)}
+                onClick={() => setSelected(item)}
               >
                 <CardHeader>
                   <h2 className="text-foreground font-sans text-xl font-semibold">
@@ -60,8 +51,12 @@ export function ServicesList({ items }: ServicesListProps) {
       </ul>
       <ServiceModal
         service={selected}
-        open={open}
-        onOpenChange={handleOpenChange}
+        open={selected !== null}
+        onOpenChange={(isOpen) => {
+          if (!isOpen) setSelected(null);
+        }}
+        specsHeading={specsHeading}
+        ctaLabel={ctaLabel}
       />
     </>
   );

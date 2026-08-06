@@ -1,4 +1,4 @@
-import { Badge } from "@/components/raw";
+import { Badge } from "@/components/ui";
 import {
   Card,
   CardHeader,
@@ -6,9 +6,9 @@ import {
   CardDescription,
   CardContent,
   CardAction,
-} from "@/components/raw/card";
+} from "@/components/ui/card";
 import { Link } from "@/i18n/navigation";
-import { buttonVariants } from "@/components/raw/button";
+import { buttonVariants } from "@/components/ui/button";
 import { STATUS_KEY_MAP, type Status } from "@/i18n/types";
 import type { ContentMeta } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -71,15 +71,13 @@ export async function PostCard({ post, className }: PostCardProps) {
           <CardAction>
             <Link
               href={post.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className={buttonVariants({
                 variant: "default",
                 size: "sm",
                 className: "mt-4",
               })}
             >
-              Ver post
+              {shared("actions.readPost")}
             </Link>
           </CardAction>
         )}

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 import { PostCard } from "@/components/PostCard";
-import { Button } from "@/components/raw";
+import { Button } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
-import { listAllPosts } from "@/lib/content";
+import { listPostMeta } from "@/lib/content";
 import { pageMetadata } from "@/meta";
 import { getTranslations } from "next-intl/server";
-import { Icon } from "@/ui/Icons";
+import { Icon } from "@/components/composed/Icons";
 import { SITE } from "@/meta";
 
 type PageProps = Readonly<{
@@ -32,7 +32,7 @@ export async function generateMetadata({
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params; // Aguarda a Promise do parâmetro de rota
 
-  const recent = listAllPosts().slice(0, 5);
+  const recent = listPostMeta().slice(0, 5);
 
   // CORREÇÃO: Passamos o escopo completo com o idioma atual para buscar o JSON correto
   const home = await getTranslations({ locale, namespace: "home" });
@@ -61,24 +61,24 @@ export default async function HomePage({ params }: PageProps) {
         </p>
         <div className="flex flex-col items-center gap-3 sm:flex-row">
           <Button asChild variant="outline" size="4xl" className="px-5">
-            <Link
+            <a
               href={SITE.social.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
             >
               <Icon name="github" className="h-6 w-6" />
-            </Link>
+            </a>
           </Button>
           <Button asChild variant="outline" size="4xl" className="px-5">
-            <Link
+            <a
               href={SITE.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
               <Icon name="linkedin" className="h-6 w-6" />
-            </Link>
+            </a>
           </Button>
           <Button asChild variant="outline" size="4xl">
             <Link href="/projetos">{home("secondaryAction")}</Link>

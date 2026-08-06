@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/raw";
-import { Badge } from "@/components/raw";
+import { Button } from "@/components/ui";
+import { Badge } from "@/components/ui";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/raw/card";
+} from "@/components/ui/card";
 import { SITE } from "@/meta";
 import { Link } from "@/i18n/navigation";
 import { pageMetadata } from "@/meta";
 import { getTranslations } from "next-intl/server";
-import { Icon } from "@/components/ui/Icons";
+import { Icon } from "@/components/composed/Icons";
 
 type PageProps = Readonly<{
   params: Promise<{ locale: string }>;
@@ -62,34 +62,32 @@ export default async function AboutPage({ params }: PageProps) {
         </ul>
         <nav className="flex flex-wrap gap-3">
           <Button asChild variant="outline" size="sm" className="px-5">
-            <Link
+            <a
               href={SITE.social.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
             >
               <Icon name="github" className="h-6 w-6" /> GitHub
-            </Link>
+            </a>
           </Button>
           <Button asChild variant="outline" size="sm" className="px-5">
-            <Link
+            <a
               href={SITE.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
               <Icon name="linkedin" className="h-6 w-6" /> LinkedIn
-            </Link>
+            </a>
           </Button>
           <Button asChild variant="outline" size="sm" className="px-5">
-            <Link
+            <a
               href={`mailto:${SITE.social.email}`}
-              target="_blank"
-              rel="noopener noreferrer"
               aria-label="E-mail"
             >
               <Icon name="gmail" className="h-6 w-6" /> Gmail
-            </Link>
+            </a>
           </Button>
         </nav>
       </header>

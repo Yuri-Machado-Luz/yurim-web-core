@@ -1,4 +1,3 @@
-// components/ServiceModal.tsx
 "use client";
 
 import {
@@ -8,8 +7,8 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from "@/components/raw/dialog";
-import { Button } from "@/components/raw";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 
 type Service = {
@@ -23,15 +22,19 @@ type ServiceModalProps = {
   service: Service | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  specsHeading: string;
+  ctaLabel: string;
 };
 
 export function ServiceModal({
   service,
   open,
   onOpenChange,
+  specsHeading,
+  ctaLabel,
 }: ServiceModalProps) {
   return (
-    <Dialog open={open} onOpenChange={onOpenChange} disableScrollLock>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle className="text-2xl">{service?.title}</DialogTitle>
@@ -41,9 +44,7 @@ export function ServiceModal({
         </DialogHeader>
 
         <div className="mt-4">
-          <h4 className="text-foreground text-sm font-medium">
-            Especificações
-          </h4>
+          <h4 className="text-foreground text-sm font-medium">{specsHeading}</h4>
           <ul className="text-muted-foreground mt-2 list-disc space-y-1 pl-5 text-sm">
             {service?.specs.map((spec, i) => (
               <li key={i}>{spec}</li>
@@ -53,7 +54,7 @@ export function ServiceModal({
 
         <DialogFooter className="mt-6 sm:justify-start">
           <Button asChild>
-            <Link href="/contato">Entrar em contato</Link>
+            <Link href="/contato">{ctaLabel}</Link>
           </Button>
         </DialogFooter>
       </DialogContent>

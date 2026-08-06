@@ -2,12 +2,12 @@ import { MDXContent } from "@content-collections/mdx/react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { PageHeader } from "@/ui/PageHeader";
-import { Badge } from "@/components/raw";
+import { PageHeader } from "@/components/composed/PageHeader";
+import { Badge } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { STATUS_KEY_MAP, type Status } from "@/i18n/types";
-import { getPost, listAllPosts } from "@/lib/content";
+import { getPost, listPostMeta } from "@/lib/content";
 import { pageMetadata } from "@/meta";
 import { capitalize } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
@@ -20,7 +20,7 @@ type PageProps = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return listAllPosts().flatMap((post) =>
+  return listPostMeta().flatMap((post) =>
     routing.locales.map((locale) => ({
       locale,
       slug: [post.slug],

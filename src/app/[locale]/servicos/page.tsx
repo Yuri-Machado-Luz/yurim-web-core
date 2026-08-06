@@ -1,11 +1,11 @@
 // app/[locale]/servicos/page.tsx
 import type { Metadata } from "next";
-import { PageHeader } from "@/ui/PageHeader";
+import { PageHeader } from "@/components/composed/PageHeader";
 import { pageMetadata } from "@/meta";
 import { getTranslations } from "next-intl/server";
-import { Button } from "@/components/raw";
+import { Button } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
-import { ServicesList } from "@/ui/ServicesList";
+import { ServicesList } from "@/components/composed/ServicesList";
 
 type PageProps = Readonly<{
   params: Promise<{ locale: string }>;
@@ -37,7 +37,11 @@ export default async function ServicesPage({ params }: PageProps) {
   return (
     <>
       <PageHeader className="pt-12" />
-      <ServicesList items={items} />
+      <ServicesList
+        items={items}
+        specsHeading={copy("specsHeading")}
+        ctaLabel={copy("cta")}
+      />
       <div className="border-t-border mt-10 flex justify-center gap-4 border-t pt-10">
         <Button size="4xl" asChild>
           <Link href="/contato">{copy("cta")}</Link>

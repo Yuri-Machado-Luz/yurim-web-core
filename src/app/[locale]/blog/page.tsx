@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 import { PostCard } from "@/components/PostCard";
-import { PageHeader } from "@/ui/PageHeader";
-import { listAllPosts } from "@/lib/content";
+import { PageHeader } from "@/components/composed/PageHeader";
+import { listPostMeta } from "@/lib/content";
 import { pageMetadata } from "@/meta";
 import { getTranslations } from "next-intl/server";
 
@@ -30,7 +30,7 @@ export async function generateMetadata({
 export default async function BlogPage({ params }: PageProps) {
   const { locale } = await params; // Aguarda a Promise do parâmetro de rota
 
-  const posts = listAllPosts();
+  const posts = listPostMeta();
   // CORREÇÃO: Injetado { locale, namespace } para carregar os arquivos JSON corretos
   const blog = await getTranslations({ locale, namespace: "blog" });
 
