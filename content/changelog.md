@@ -1,8 +1,9 @@
 ---
 title: Changelog
-type: changelog
 description: Histórico de versões do portfólio Next.js (www.yurimachado.dev.br).
+format: planejamento
 draft: false
+status: desatualizado
 ---
 
 Versionamento do site de portfólio. Linhagem compartilhada com o blog até a v3 (monólito); a partir da v4 as tags vivem em cada repo, com major alinhado à geração pós-cisão.

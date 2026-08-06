@@ -1,10 +1,11 @@
 ---
 title: Introdução ao site
 description: "Decisões de arquitetura que guiam o desenvolvimento do site: layouts, routing, content collections e o porquê de cada escolha."
+format: nota
+draft: false
+status: desatualizado
 pubDate: 2026-06-07
 updatedAt: 2026-07-12
-draft: false
-tags: [devlog, arquitetura]
 ---
 
 Este post documenta as decisões de arquitetura do site. Não é um tutorial: é um registro do raciocínio por trás de cada escolha estrutural.

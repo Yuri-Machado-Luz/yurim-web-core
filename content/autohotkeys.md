@@ -1,15 +1,13 @@
 ---
 title: Hotkey Combo Maker
 description: "Sistema de atalhos AutoHotkey v2 com acumulação de modificadores. Combo mode ativado por gesto: sem conflito com atalhos do sistema."
-createdAt: 2024-01-15
-updatedAt: 2026-03-23
-status: beta
-type: project
-github: "https://github.com/Yuri-Machado-Luz/tool.autohotkey-macros"
-featured: false
+format: projeto
+status: desatualizado
 draft: false
 order: 2
-tags: [autohotkey, windows, automacao, produtividade]
+github: "https://github.com/Yuri-Machado-Luz/tool.autohotkey-macros"
+pubDate: 2026-03-17
+updatedAt: 2026-03-23
 ---
 
 Scripts AutoHotkey v2 para Windows, organizados em módulos plug-and-play. O projeto principal é o **Hotkey Combo Maker**: um sistema de atalhos com acumulação de modificadores.

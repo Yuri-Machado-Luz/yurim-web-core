@@ -1,21 +1,12 @@
-import createMDX from "@next/mdx";
+import { withContentCollections } from "@content-collections/next";
+import createNextIntlPlugin from "next-intl/plugin";
+
 import type { NextConfig } from "next";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };
 
-const withMDX = createMDX({
-  extension: /\.(md|mdx)$/,
-  options: {
-    // String form required for Turbopack plugin support.
-    remarkPlugins: [
-      "remark-frontmatter",
-      ["remark-mdx-frontmatter", { name: "frontmatter" }],
-    ],
-    rehypePlugins: [],
-  },
-});
-
-export default withMDX(nextConfig);
+export default withContentCollections(withNextIntl(nextConfig));
