@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -41,9 +42,14 @@ export type ContactFormLabels = {
 type ContactFormProps = {
   labels: ContactFormLabels;
   onSubmit: (values: ContactFormValues) => Promise<void> | void;
+  compact?: boolean;
 };
 
-export function ContactForm({ labels, onSubmit }: ContactFormProps) {
+export function ContactForm({
+  labels,
+  onSubmit,
+  compact = false,
+}: ContactFormProps) {
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", message: "", _hp: "" },
@@ -62,7 +68,10 @@ export function ContactForm({ labels, onSubmit }: ContactFormProps) {
   return (
     <Form {...form}>
       <form
-        className="surface-glass card-glow-subtle border-border/60 flex w-full flex-col gap-4 rounded-2xl border p-6 sm:p-8"
+        className={cn(
+          "surface-glass card-glow-subtle border-border/60 flex w-full flex-col rounded-2xl border",
+          compact ? "gap-2.5 p-4 sm:p-5" : "gap-4 p-6 sm:p-8",
+        )}
         onSubmit={form.handleSubmit(handleSubmit)}
         noValidate
       >
@@ -83,7 +92,7 @@ export function ContactForm({ labels, onSubmit }: ContactFormProps) {
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem className="pb-2">
+            <FormItem className={compact ? "gap-1.5" : "pb-2"}>
               <FormLabel>{labels.name}</FormLabel>
               <FormControl>
                 <Input
@@ -102,7 +111,7 @@ export function ContactForm({ labels, onSubmit }: ContactFormProps) {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="pb-2">
+            <FormItem className={compact ? "gap-1.5" : "pb-2"}>
               <FormLabel>{labels.email}</FormLabel>
               <FormControl>
                 <Input
@@ -122,12 +131,12 @@ export function ContactForm({ labels, onSubmit }: ContactFormProps) {
           control={form.control}
           name="message"
           render={({ field }) => (
-            <FormItem className="pb-2">
+            <FormItem className={compact ? "gap-1.5" : "pb-2"}>
               <FormLabel>{labels.message}</FormLabel>
               <FormControl>
                 <Textarea
-                  rows={5}
-                  className="w-full"
+                  rows={compact ? 3 : 5}
+                  className={cn("w-full", compact && "min-h-20")}
                   placeholder={labels.messagePlaceholder}
                   {...field}
                 />

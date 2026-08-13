@@ -11,35 +11,21 @@ function Card({
       data-slot="card"
       data-size={size}
       className={cn(
-        // #region Estrutura e Layout
         "group/card flex flex-col gap-(--card-spacing)",
         "overflow-hidden rounded-xl py-(--card-spacing) text-sm",
-        // #endregion
-
-        // #region Cores, Sombras e Anéis (glass + glow)
         "border-border/60 bg-card/55 text-card-foreground backdrop-blur-sm",
         "shadow-[var(--shadow-card-subtle)] ring-1 ring-foreground/5",
-        "card-glow-subtle",
-        // #endregion
-
-        // #region Animações e Performance
-        "transition-[transform,box-shadow,border-color] duration-300 ease-out will-change-transform",
-        "hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[var(--shadow-card-hover-subtle)]",
-        // #endregion
-
-        // #region Variáveis CSS e Estados (Data Attributes)
+        "transition-[box-shadow,border-color,background-color,ring-color] duration-300 ease-out",
+        "hover:border-primary/35 hover:bg-card/70",
+        "hover:shadow-[var(--shadow-card-hover-subtle)] hover:ring-primary/10",
+        "motion-reduce:transition-colors",
         "[--card-spacing:--spacing(6)]",
         "data-[size=sm]:[--card-spacing:--spacing(4)]",
         "data-[size=lg]:[--card-spacing:--spacing(6)]",
         "data-[size=lg]:py-8",
-        // #endregion
-
-        // #region Estilos condicionais baseados nos filhos (img)
         "has-[>img:first-child]:pt-0",
         "*:[img:first-child]:rounded-t-4xl",
         "*:[img:last-child]:rounded-b-4xl",
-        // #endregion
-
         className,
       )}
       {...props}

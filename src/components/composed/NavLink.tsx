@@ -1,8 +1,8 @@
 "use client";
 
+import { buttonVariants } from "@/components/ui/button";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 
 type NavItem = {
   href: string;
@@ -30,7 +30,7 @@ export function NavLink({ item, onClick, className }: NavLinkProps) {
       <Link
         href={item.href}
         className={buttonVariants({
-          variant: active ? "secondary" : "default",
+          variant: "nav",
           size: "sm",
           className: cn("min-w-24", className),
         })}

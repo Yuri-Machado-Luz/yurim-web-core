@@ -60,11 +60,12 @@ export function BlogFeed({
           <span className="hidden sm:block sm:min-w-0 sm:flex-1" aria-hidden />
         )}
 
-        <div className="order-1 flex items-center gap-3 sm:order-2 sm:ml-auto">
+        <div className="order-1 flex w-fit max-w-full flex-wrap items-center gap-1 sm:order-2 sm:ml-auto">
           <span className="text-muted-foreground shrink-0 text-sm font-medium">
             {filterLabel}
           </span>
           <Tabs
+            className="w-auto min-w-0"
             value={filter === "all" ? "__none__" : filter}
             onValueChange={(value) => {
               if (value === "__none__") return;
@@ -73,7 +74,7 @@ export function BlogFeed({
           >
             <TabsList
               variant="line"
-              className="flex w-full flex-wrap justify-start sm:w-auto sm:justify-end"
+              className="flex w-auto flex-wrap justify-start"
             >
               {/* Hidden sentinel so no format tab appears selected on "all" */}
               <TabsTrigger value="__none__" className="sr-only" tabIndex={-1}>

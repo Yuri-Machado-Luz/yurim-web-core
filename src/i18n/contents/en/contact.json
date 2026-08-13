@@ -1,17 +1,17 @@
 {
   "title": "Contact",
-  "lead": "Share the problem and the deadline. I’ll reply with a concrete next step.",
-  "description": "Share the problem and the deadline. I’ll reply with a concrete next step.",
+  "lead": "Have a project in mind? Get in touch.",
+  "description": "Have a project in mind? Get in touch.",
   "infoTitle": "Details",
   "emailLabel": "Email",
   "whatsappLabel": "WhatsApp",
   "locationLabel": "Location",
   "location": "São Paulo, Brazil",
   "socialTitle": "Social",
-  "formTitle": "Message",
-  "whatsappMessage": "Hi Yuri. I saw your portfolio and want to talk about a project.",
-  "success": "Message received. I reply within two business days.",
-  "error": "Could not send the message. Check your connection and try again.",
+  "formTitle": "Send a message",
+  "whatsappMessage": "Hi! I found your portfolio and would like to chat.",
+  "success": "Message sent. I’ll get back to you soon.",
+  "error": "Could not send. Please try again.",
   "emailFallback": "Or write to",
   "form": {
     "name": "Name",
@@ -19,7 +19,7 @@
     "message": "Message",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "you@email.com",
-    "messagePlaceholder": "Briefly describe the project, approximate timeline, and how you prefer to talk.",
-    "submit": "Send message"
+    "messagePlaceholder": "Tell me a bit about the project.",
+    "submit": "Send"
   }
 }

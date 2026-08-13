@@ -130,13 +130,13 @@ export default async function HomePage({ params }: LocalePageProps) {
               {home("featuredDescription")}
             </p>
           </div>
-          <Link
-            href="/projetos"
-            className="text-muted-foreground hover:text-foreground text-sm underline-offset-4 transition-colors duration-300 ease-out hover:underline"
-          >
-            {home("viewAllFeatured")}
-          </Link>
         </div>
+        <Link
+          href="/projetos"
+          className="text-muted-foreground hover:text-foreground text-sm underline-offset-4 transition-colors duration-300 ease-out hover:underline"
+        >
+          {home("viewAllFeatured")}
+        </Link>
 
         {featuredProjects.length === 0 ? (
           <p className="text-muted-foreground">{projects("empty")}</p>

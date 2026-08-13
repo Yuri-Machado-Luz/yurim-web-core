@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/composed/PageHeader";
 import { ServicesList } from "@/components/composed/ServicesList";
-import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/navigation";
 import {
   createPageMetadata,
   type LocalePageProps,
@@ -37,11 +35,6 @@ export default async function ServicesPage({ params }: LocalePageProps) {
         specsHeading={copy("specsHeading")}
         ctaLabel={copy("cta")}
       />
-      <div className="border-t-border mt-10 flex justify-center gap-4 border-t pt-10">
-        <Button size="4xl" asChild>
-          <Link href="/contato">{copy("cta")}</Link>
-        </Button>
-      </div>
     </>
   );
 }

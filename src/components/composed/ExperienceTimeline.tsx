@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 
+import { techIcons, type TechIconName } from "@/assets/icons/tech";
 import {
   easeOut,
   fadeLeftVariants,
@@ -22,8 +23,24 @@ type ExperienceTimelineProps = {
   items: ExperienceItem[];
 };
 
-/** Item locks as active when its top crosses this viewport ratio. */
-const LOCK_RATIO = 0.4;
+/** Viewport lock line — ball sits where this crosses the spine. */
+const LOCK_RATIO = 0.5;
+const LAST_LOCK_SLACK = 0.22;
+
+const OPPOSITE_STACKS: TechIconName[][] = [
+  ["react", "nextjs", "typescript", "tailwind"],
+  ["nodejs", "figma", "sparkles"],
+  ["python", "postgresql", "git"],
+  ["zap", "fastapi", "astro"],
+  ["html5", "css3", "cloudflare"],
+];
+
+const STACK_LAYOUT = [
+  { size: "size-12", left: "6%", top: "8%", rot: "-18deg", duration: "14s", delay: "0s" },
+  { size: "size-16", left: "58%", top: "42%", rot: "14deg", duration: "18s", delay: "1.2s" },
+  { size: "size-10", left: "10%", top: "68%", rot: "-10deg", duration: "16s", delay: "2.4s" },
+  { size: "size-10", left: "62%", top: "4%", rot: "20deg", duration: "20s", delay: "0.6s" },
+] as const;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -32,21 +49,18 @@ function clamp(n: number, min: number, max: number) {
 function ExperienceCard({
   item,
   isActive,
-  reduceMotion,
 }: {
   item: ExperienceItem;
   isActive: boolean;
-  reduceMotion: boolean;
 }) {
   return (
     <div
       className={cn(
         "surface-glass border-border/60 rounded-2xl border p-6 md:min-h-[11rem] md:p-8",
-        "transition-[border-color,box-shadow,opacity,transform] duration-300 ease-out",
+        "transition-[border-color,box-shadow,opacity] duration-300 ease-out",
         isActive
-          ? "border-primary/45 card-glow-subtle opacity-100 shadow-[var(--shadow-card-hover-subtle)]"
+          ? "border-primary/45 opacity-100 shadow-[var(--shadow-card-hover-subtle)]"
           : "opacity-45",
-        !reduceMotion && isActive && "md:scale-[1.015]",
       )}
     >
       <h3
@@ -80,95 +94,146 @@ function ExperienceCard({
   );
 }
 
+function OppositeStacks({
+  icons,
+  isActive,
+}: {
+  icons: TechIconName[];
+  isActive: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        "relative hidden min-h-[14rem] md:block",
+        "transition-opacity duration-500 ease-out",
+        isActive ? "opacity-40" : "opacity-20",
+      )}
+      aria-hidden
+    >
+      {icons.map((name, i) => {
+        const Svg = techIcons[name];
+        const layout = STACK_LAYOUT[i] ?? STACK_LAYOUT[0];
+        return (
+          <Svg
+            key={name}
+            className={cn(
+              "text-primary absolute stack-drift",
+              layout.size,
+            )}
+            style={
+              {
+                left: layout.left,
+                top: layout.top,
+                "--stack-rot": layout.rot,
+                "--stack-duration": layout.duration,
+                "--stack-delay": layout.delay,
+              } as CSSProperties
+            }
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
   const reduceMotion = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
+  const spineRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLElement | null)[]>([]);
+  const frameRef = useRef(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
-  const updateFromScroll = useCallback(() => {
+  const sampleScroll = useCallback(() => {
     const count = items.length;
     if (count === 0) return;
 
     const lockY = window.innerHeight * LOCK_RATIO;
-    const tops: number[] = [];
+    const lastSlack = window.innerHeight * LAST_LOCK_SLACK;
 
-    for (let i = 0; i < count; i++) {
-      const el = itemRefs.current[i];
-      tops.push(el ? el.getBoundingClientRect().top : Number.POSITIVE_INFINITY);
+    const spine = spineRef.current;
+    if (spine) {
+      const rect = spine.getBoundingClientRect();
+      if (rect.height > 0) {
+        setProgress(clamp((lockY - rect.top) / rect.height, 0, 1));
+      }
     }
 
-    // Active = last item whose top has passed the lock line (with small slack)
     let nextActive = 0;
     for (let i = 0; i < count; i++) {
-      if (tops[i] <= lockY + 12) nextActive = i;
+      const el = itemRefs.current[i];
+      if (!el) continue;
+      const top = el.getBoundingClientRect().top;
+      const slack = i === count - 1 ? lastSlack : 12;
+      if (top <= lockY + slack) nextActive = i;
     }
     setActiveIndex((prev) => (prev === nextActive ? prev : nextActive));
-
-    // Line growth: 0 when first item top is at lockY, 1 when last is at lockY
-    const first = tops[0];
-    const last = tops[count - 1];
-    const span = last - first;
-    if (span === 0 || !Number.isFinite(span)) {
-      setProgress(nextActive === count - 1 ? 1 : 0);
-      return;
-    }
-    setProgress(clamp((lockY - first) / span, 0, 1));
   }, [items.length]);
 
   useEffect(() => {
-    updateFromScroll();
-    window.addEventListener("scroll", updateFromScroll, { passive: true });
-    window.addEventListener("resize", updateFromScroll);
-    return () => {
-      window.removeEventListener("scroll", updateFromScroll);
-      window.removeEventListener("resize", updateFromScroll);
-    };
-  }, [updateFromScroll]);
+    if (reduceMotion) {
+      setProgress(1);
+      return;
+    }
 
-  const lineHeightPct = reduceMotion ? 100 : progress * 100;
+    const onScroll = () => {
+      if (frameRef.current) return;
+      frameRef.current = window.requestAnimationFrame(() => {
+        frameRef.current = 0;
+        sampleScroll();
+      });
+    };
+
+    sampleScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      if (frameRef.current) window.cancelAnimationFrame(frameRef.current);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [reduceMotion, sampleScroll]);
+
+  const lineScale = reduceMotion ? 1 : progress;
 
   return (
-    <div
-      ref={containerRef}
-      className="relative flex flex-col gap-14 md:gap-20"
-    >
-      {/* Center spine (md+) / left spine (mobile) */}
+    <div className="relative flex flex-col gap-14 md:gap-20">
       <div
-        className="pointer-events-none absolute top-4 bottom-4 left-[0.6875rem] w-px overflow-hidden md:left-1/2 md:-translate-x-px"
+        ref={spineRef}
+        className="pointer-events-none absolute top-4 bottom-4 left-[0.6875rem] w-3 -translate-x-[5px] md:left-1/2 md:-translate-x-1.5"
         aria-hidden
       >
-        <div className="bg-border absolute inset-0" />
-        <div
+        <div className="absolute inset-y-0 left-1/2 w-px -translate-x-px overflow-hidden">
+          <div
+            className={cn(
+              "bg-primary absolute inset-0 origin-top",
+              "shadow-[0_0_14px_color-mix(in_srgb,var(--primary)_50%,transparent)]",
+            )}
+            style={{ transform: `scaleY(${lineScale})` }}
+          />
+        </div>
+        <span
           className={cn(
-            "bg-primary absolute top-0 left-0 w-full origin-top",
-            "shadow-[0_0_14px_color-mix(in_srgb,var(--primary)_50%,transparent)]",
-            !reduceMotion && "transition-[height] duration-150 ease-out",
+            "bg-primary absolute left-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full",
+            "shadow-[0_0_16px_color-mix(in_srgb,var(--primary)_60%,transparent)]",
           )}
-          style={{ height: `${lineHeightPct}%` }}
+          style={{ top: `${lineScale * 100}%` }}
         />
       </div>
 
       {items.map((item, idx) => {
         const side: "left" | "right" = idx % 2 === 0 ? "left" : "right";
-        const isActive = reduceMotion || activeIndex === idx;
+        const isActive = reduceMotion || idx <= activeIndex;
         const enterVariants =
           side === "left" ? fadeLeftVariants : fadeRightVariants;
 
         const article = (
           <>
-            <div className="relative z-[1] flex justify-center pt-7 md:col-start-2 md:row-start-1">
-              <span
-                className={cn(
-                  "size-3 rounded-full transition-[background-color,box-shadow,transform] duration-300 ease-out",
-                  isActive
-                    ? "bg-primary scale-150 shadow-[0_0_16px_color-mix(in_srgb,var(--primary)_60%,transparent)]"
-                    : "bg-background ring-border size-2.5 ring-2",
-                )}
-                aria-hidden
-              />
-            </div>
+            <div
+              className="relative z-[1] md:col-start-2 md:row-start-1"
+              aria-hidden
+            />
 
             <div
               className={cn(
@@ -178,11 +243,7 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
                   : "col-start-2 md:col-start-3",
               )}
             >
-              <ExperienceCard
-                item={item}
-                isActive={isActive}
-                reduceMotion={Boolean(reduceMotion)}
-              />
+              <ExperienceCard item={item} isActive={isActive} />
             </div>
 
             <div
@@ -191,7 +252,12 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
                 side === "left" ? "md:col-start-3" : "md:col-start-1",
               )}
               aria-hidden
-            />
+            >
+              <OppositeStacks
+                icons={OPPOSITE_STACKS[idx] ?? OPPOSITE_STACKS[0]}
+                isActive={isActive}
+              />
+            </div>
           </>
         );
 
@@ -206,7 +272,7 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
                 itemRefs.current[idx] = el;
               }}
               className={className}
-              style={{ scrollMarginTop: "40vh" }}
+              style={{ scrollMarginTop: "50vh" }}
             >
               {article}
             </article>
@@ -220,7 +286,7 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
               itemRefs.current[idx] = el;
             }}
             className={className}
-            style={{ scrollMarginTop: "40vh" }}
+            style={{ scrollMarginTop: "50vh" }}
             variants={enterVariants}
             initial="hidden"
             whileInView="visible"

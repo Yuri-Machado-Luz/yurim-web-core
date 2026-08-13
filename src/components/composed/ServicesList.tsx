@@ -1,6 +1,8 @@
 "use client";
 
+import { ExternalLink } from "lucide-react";
 import { useState } from "react";
+
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { ServiceModal } from "./ServiceModal";
 
@@ -33,13 +35,26 @@ export function ServicesList({
           return (
             <li key={item.slug} className={isLastAndOdd ? "col-span-2" : ""}>
               <Card
-                className="border-border/60 flex h-full cursor-pointer flex-col gap-2 transition-transform select-none hover:scale-[1.02]"
+                role="button"
+                tabIndex={0}
+                aria-haspopup="dialog"
+                className="border-border/60 flex h-full cursor-pointer flex-col gap-2 select-none"
                 onClick={() => setSelected(item)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setSelected(item);
+                  }
+                }}
               >
-                <CardHeader>
-                  <h2 className="text-foreground font-sans text-xl font-semibold">
+                <CardHeader className="flex flex-row items-start justify-between gap-3">
+                  <h2 className="text-foreground font-sans text-xl font-semibold transition-colors duration-300 group-hover/card:text-primary">
                     {item.title}
                   </h2>
+                  <ExternalLink
+                    aria-hidden
+                    className="text-muted-foreground group-hover/card:text-primary mt-1 size-4 shrink-0 transition-colors duration-300"
+                  />
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">{item.body}</p>

@@ -12,20 +12,22 @@ export function Footer() {
   const pathname = usePathname();
   const year = new Date().getFullYear();
   const hideSocial = pathname === "/contato";
+  const isContact = hideSocial;
 
   return (
     <footer
       className={cn(
         "relative z-[1] border-t border-border/60",
         "bg-background/80 backdrop-blur-md",
-        "py-8 md:py-10",
+        isContact ? "py-4 md:py-5" : "py-8 md:py-10",
       )}
     >
       <div
         className={cn(
-          "mx-auto flex w-full flex-col items-center justify-between gap-6 px-6",
+          "mx-auto flex w-full flex-col items-center justify-between px-6",
           "sm:flex-row sm:items-center",
           "transition-[max-width] duration-300 ease-out",
+          isContact ? "gap-3" : "gap-6",
           breakPoints,
         )}
       >

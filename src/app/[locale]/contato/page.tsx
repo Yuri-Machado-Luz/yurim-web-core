@@ -1,16 +1,12 @@
-import type { Metadata } from "next";
 import { Mail, MapPin } from "lucide-react";
+import type { Metadata } from "next";
 
 import { ContactFormSection } from "@/components/composed/ContactFormSection";
 import { Icon } from "@/components/composed/Icons";
 import { PageHeader } from "@/components/composed/PageHeader";
 import { SocialLinks } from "@/components/composed/SocialLinks";
 import { FadeIn } from "@/components/composed/motion/FadeIn";
-import { SITE } from "@/meta";
-import {
-  createPageMetadata,
-  type LocalePageProps,
-} from "@/meta";
+import { createPageMetadata, SITE, type LocalePageProps } from "@/meta";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
@@ -30,88 +26,19 @@ export default async function ContactPage({ params }: LocalePageProps) {
   const whatsappHref = `https://wa.me/${SITE.social.whatsapp}?text=${whatsappMessage}`;
 
   return (
-    <div className="flex flex-col gap-10 md:gap-14">
+    <div className="flex flex-1 flex-col justify-center gap-4 py-2 md:gap-5 md:py-0 lg:gap-6">
       <FadeIn>
         <PageHeader
           title={contact("title")}
           description={contact("lead")}
-          className="pt-16 md:pt-20"
+          className="gap-1.5 pt-12 md:pt-16 [&_h1]:text-3xl md:[&_h1]:text-4xl [&_p]:text-base"
         />
       </FadeIn>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
-        <FadeIn className="flex flex-col gap-8">
-          <section className="flex flex-col gap-4">
-            <h2 className="font-heading text-foreground text-xl font-semibold md:text-2xl">
-              {contact("infoTitle")}
-            </h2>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <a
-                  href={`mailto:${SITE.social.email}`}
-                  className="surface-glass surface-row card-glow-subtle"
-                >
-                  <Mail className="text-muted-foreground size-5 shrink-0" />
-                  <span className="min-w-0 flex-1">
-                    <span className="field-label block">
-                      {contact("emailLabel")}
-                    </span>
-                    <span className="text-foreground block font-medium">
-                      {SITE.social.email}
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="surface-glass surface-row card-glow-subtle"
-                >
-                  <Icon
-                    name="whatsapp"
-                    className="text-muted-foreground size-5"
-                  />
-                  <span className="min-w-0 flex-1">
-                    <span className="field-label block">
-                      {contact("whatsappLabel")}
-                    </span>
-                    <span className="text-foreground block font-medium">
-                      {SITE.social.phone}
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <address className="surface-glass surface-tint card-glow-subtle flex items-center gap-3 p-4 not-italic">
-                  <MapPin className="text-muted-foreground size-5 shrink-0" />
-                  <span>
-                    <span className="field-label block">
-                      {contact("locationLabel")}
-                    </span>
-                    <span className="text-foreground block font-medium">
-                      {contact("location")}
-                    </span>
-                  </span>
-                </address>
-              </li>
-            </ul>
-          </section>
-
-          <section className="flex flex-col gap-3">
-            <h2 className="font-heading text-foreground text-xl font-semibold md:text-2xl">
-              {contact("socialTitle")}
-            </h2>
-            <SocialLinks size="sm" showLabels className="mt-1" />
-          </section>
-        </FadeIn>
-
-        <FadeIn delay={0.1} className="flex flex-col gap-4">
-          <h2 className="font-heading text-foreground text-xl font-semibold md:text-2xl">
-            {contact("formTitle")}
-          </h2>
+      <div className="grid flex-1 grid-cols-1 items-stretch gap-5 md:grid-cols-2 md:gap-8 lg:gap-10">
+        <FadeIn delay={0.1} className="flex min-h-0 flex-col gap-2.5">
           <ContactFormSection
+            compact
             labels={{
               name: contact("form.name"),
               email: contact("form.email"),
@@ -124,6 +51,66 @@ export default async function ContactPage({ params }: LocalePageProps) {
               messagePlaceholder: contact("form.messagePlaceholder"),
             }}
           />
+        </FadeIn>
+        <FadeIn className="flex flex-col gap-4 md:gap-5">
+          <section className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-2">
+              <li>
+                <a
+                  href={`mailto:${SITE.social.email}`}
+                  className="surface-glass surface-row card-glow-subtle !p-3"
+                >
+                  <Mail className="text-muted-foreground size-4 shrink-0" />
+                  <span className="min-w-0 flex-1">
+                    <span className="field-label block text-xs">
+                      {contact("emailLabel")}
+                    </span>
+                    <span className="text-foreground block text-sm font-medium">
+                      {SITE.social.email}
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="surface-glass surface-row card-glow-subtle !p-3"
+                >
+                  <Icon
+                    name="whatsapp"
+                    className="text-muted-foreground size-4"
+                  />
+                  <span className="min-w-0 flex-1">
+                    <span className="field-label block text-xs">
+                      {contact("whatsappLabel")}
+                    </span>
+                    <span className="text-foreground block text-sm font-medium">
+                      {SITE.social.phone}
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <address className="surface-glass surface-tint card-glow-subtle flex items-center gap-3 !p-3 not-italic">
+                  <MapPin className="text-muted-foreground size-4 shrink-0" />
+                  <span>
+                    <span className="field-label block text-xs">
+                      {contact("locationLabel")}
+                    </span>
+                    <span className="text-foreground block text-sm font-medium">
+                      {contact("location")}
+                    </span>
+                  </span>
+                </address>
+              </li>
+            </ul>
+          </section>
+
+          <section className="flex flex-col gap-2">
+            <SocialLinks size="sm" showLabels className="mt-0.5" />
+          </section>
         </FadeIn>
       </div>
     </div>

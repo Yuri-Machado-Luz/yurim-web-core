@@ -93,10 +93,10 @@ export default async function BlogPostPage({ params }: PageProps) {
       <PageHeader
         title={post.title}
         description={post.description}
-        className="pt-6 md:pt-8"
+        className="gap-2 pt-4 md:pt-6"
       />
 
-      <section className="mt-4 flex flex-wrap items-center gap-2">
+      <section className="mt-2 flex flex-wrap items-center gap-2">
         {statusKey ? (
           <Badge variant="destructive">{shared(`status.${statusKey}`)}</Badge>
         ) : null}

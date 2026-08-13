@@ -112,6 +112,11 @@
   .surface-row:hover {
     background: color-mix(in srgb, var(--secondary) 80%, transparent);
   }
+
+  .stack-drift {
+    animation: stack-drift var(--stack-duration, 16s) ease-in-out var(--stack-delay, 0s)
+      infinite;
+  }
 }
 
 @keyframes tech-marquee-scroll {
@@ -123,12 +128,31 @@
   }
 }
 
+@keyframes stack-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--stack-rot, 0deg));
+  }
+  33% {
+    transform: translate3d(14px, -18px, 0)
+      rotate(calc(var(--stack-rot, 0deg) + 3deg));
+  }
+  66% {
+    transform: translate3d(-12px, -8px, 0)
+      rotate(calc(var(--stack-rot, 0deg) - 2deg));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .card-glow-subtle,
   .hero-picture-wrap [data-slot="avatar"],
   .picture-ring,
   [data-slot="button"][data-variant="default"],
   .tech-marquee-track {
+    animation: none !important;
+  }
+
+  .stack-drift {
     animation: none !important;
   }
 

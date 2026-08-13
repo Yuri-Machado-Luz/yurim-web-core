@@ -91,14 +91,16 @@
     0 0 64px rgb(from var(--primary) r g b / 0.1);
   --shadow-ambient-min: 0 0 18px rgb(from var(--primary) r g b / 0.08);
   --shadow-ambient-max: 0 0 36px rgb(from var(--primary) r g b / 0.22);
-  --shadow-card-subtle: 0 0 12px rgb(from var(--primary) r g b / 0.05);
   --shadow-ambient-subtle-min: 0 0 10px rgb(from var(--primary) r g b / 0.04);
   --shadow-ambient-subtle-max: 0 0 22px rgb(from var(--primary) r g b / 0.11);
+  --shadow-card-subtle:
+    0 1px 0 rgb(255 255 255 / 0.03), 0 1px 2px rgb(0 0 0 / 0.14);
   --shadow-card-hover:
     0 0 0 1px var(--primary), 0 0 24px rgb(from var(--primary) r g b / 0.35);
   --shadow-card-hover-subtle:
-    0 0 0 1px color-mix(in srgb, var(--primary) 45%, transparent),
-    0 0 16px rgb(from var(--primary) r g b / 0.18);
+    0 0 0 1px color-mix(in srgb, var(--primary) 35%, transparent),
+    0 8px 24px rgb(0 0 0 / 0.18),
+    0 0 20px color-mix(in srgb, var(--primary) 14%, transparent);
   --shadow-link-hover:
     0 0 0 1px color-mix(in srgb, var(--primary) 55%, transparent),
     0 0 14px rgb(from var(--primary) r g b / 0.24);

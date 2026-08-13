@@ -27,12 +27,13 @@ type PostCardProps = {
 export function PostCard({ post, labels, className }: PostCardProps) {
   const card = (
     <Card
+      size={post.featured ? undefined : "sm"}
       data-size={post.featured ? "lg" : "sm"}
       className={cn(
-        "h-full gap-0",
+        "h-full gap-0 py-4",
         post.featured
-          ? "border-primary/45 bg-muted/70"
-          : "min-h-44 opacity-95 md:min-h-48",
+          ? "border-primary/40 bg-muted/60 py-5 data-[size=lg]:py-5 hover:bg-muted/60"
+          : "min-h-44 md:min-h-48",
         className,
       )}
     >
@@ -53,11 +54,12 @@ export function PostCard({ post, labels, className }: PostCardProps) {
         ) : null}
       </CardHeader>
 
-      <CardContent className="flex flex-1 flex-col gap-3 pt-4">
+      <CardContent className="flex flex-1 flex-col gap-1.5 pt-2">
         <CardTitle>
           <h2
             className={cn(
-              "font-heading leading-snug font-semibold tracking-tight",
+              "font-heading text-foreground leading-snug font-semibold tracking-tight transition-colors duration-300 ease-out",
+              "group-hover/card:text-primary",
               post.featured ? "text-xl md:text-2xl" : "text-base md:text-lg",
             )}
           >
@@ -95,7 +97,10 @@ export function PostCard({ post, labels, className }: PostCardProps) {
 
   if (!post.featured) {
     return (
-      <Link href={post.href} className="block h-full select-none">
+      <Link
+        href={post.href}
+        className="block h-full rounded-xl select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+      >
         {card}
       </Link>
     );

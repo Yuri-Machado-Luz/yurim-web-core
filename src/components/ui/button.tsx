@@ -1,6 +1,6 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
+import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground animate-[ambientGlow_3s_ease-in-out_infinite] transition-[transform,background-color,box-shadow] duration-300 ease-out hover:bg-primary/80 hover:scale-[1.02] active:scale-[0.98] motion-reduce:hover:scale-100 motion-reduce:active:scale-100",
+          "border-primary/75 bg-primary/50 text-white backdrop-blur-[2px] transition-[transform,border-color,background-color,box-shadow,color] duration-300 ease-out hover:border-primary/90 hover:bg-primary/55 hover:shadow-[inset_0_0_14px_rgb(255_255_255/0.08),inset_0_0_22px_rgb(0_0_0/0.16),0_0_12px_color-mix(in_srgb,var(--primary)_22%,transparent)] hover:scale-[1.015] active:scale-[0.985] motion-reduce:hover:scale-100 motion-reduce:active:scale-100 focus-visible:border-primary focus-visible:ring-primary/25",
         outline:
           "border-border bg-background transition-[border-color,background-color,box-shadow,color] duration-300 ease-out hover:border-primary/50 hover:bg-muted hover:text-foreground hover:shadow-[var(--shadow-link-hover)] aria-expanded:bg-muted aria-expanded:text-foreground dark:bg-transparent dark:hover:bg-input/30",
         secondary:
@@ -20,6 +20,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
+        nav: "border-primary bg-primary/25 text-white/80 transition-[border-color,background-color,box-shadow,color] duration-300 ease-out hover:border-primary/70 hover:bg-primary/22 hover:text-white/80 hover:shadow-[0_0_12px_color-mix(in_srgb,var(--primary)_12%,transparent)] focus-visible:border-primary/55 focus-visible:ring-primary/20 aria-[current=page]:border-primary/50 aria-[current=page]:bg-primary/25",
       },
       size: {
         default:

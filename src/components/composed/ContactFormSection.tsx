@@ -8,6 +8,7 @@ import {
 
 type ContactFormSectionProps = {
   labels: ContactFormLabels;
+  compact?: boolean;
 };
 
 async function handleContactSubmit(values: ContactFormValues) {
@@ -41,6 +42,15 @@ async function handleContactSubmit(values: ContactFormValues) {
   );
 }
 
-export function ContactFormSection({ labels }: ContactFormSectionProps) {
-  return <ContactForm labels={labels} onSubmit={handleContactSubmit} />;
+export function ContactFormSection({
+  labels,
+  compact,
+}: ContactFormSectionProps) {
+  return (
+    <ContactForm
+      labels={labels}
+      compact={compact}
+      onSubmit={handleContactSubmit}
+    />
+  );
 }

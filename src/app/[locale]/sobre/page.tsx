@@ -4,6 +4,8 @@ import { ExperienceTimeline } from "@/components/composed/ExperienceTimeline";
 import { ResumeDownloads } from "@/components/composed/ResumeDownloads";
 import { SocialLinks } from "@/components/composed/SocialLinks";
 import { FadeIn } from "@/components/composed/motion/FadeIn";
+import { StaggerGroup } from "@/components/composed/motion/StaggerGroup";
+import { StaggerItem } from "@/components/composed/motion/StaggerItem";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -79,85 +81,83 @@ export default async function AboutPage({ params }: LocalePageProps) {
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.12}>
-          <aside
-            className={cn(
-              "surface-glass card-glow-subtle shrink-0 rounded-xl px-5 py-5",
-              "border-border/60",
-            )}
-          >
-            <ul className="flex flex-col gap-2.5">
-              {quickFacts.map((fact, i) => (
-                <li
-                  key={fact}
-                  className="text-muted-foreground flex items-center gap-2 text-sm"
-                >
-                  <span
-                    className={cn(
-                      "bg-primary size-1.5 shrink-0 rounded-full",
-                      i === 0 && "animate-pulse motion-reduce:animate-none",
-                    )}
-                    aria-hidden="true"
-                  />
-                  <span
-                    className={cn(i === 0 && "text-foreground font-medium")}
-                  >
-                    {fact}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </aside>
-        </FadeIn>
+        <aside
+          className={cn(
+            "surface-glass shrink-0 rounded-xl px-5 py-5",
+            "border-border/60 shadow-[var(--shadow-card-subtle)]",
+          )}
+        >
+          <StaggerGroup as="ul" className="flex flex-col gap-2.5">
+            {quickFacts.map((fact, i) => (
+              <StaggerItem
+                key={fact}
+                nested
+                className="text-muted-foreground flex items-center gap-2 text-sm"
+              >
+                <span
+                  className="bg-primary size-1.5 shrink-0 rounded-full"
+                  aria-hidden="true"
+                />
+                <span className={cn(i === 0 && "text-foreground font-medium")}>
+                  {fact}
+                </span>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </aside>
       </header>
 
-      <FadeIn>
-        <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-6">
+        <FadeIn>
           <h2 className="font-heading text-foreground text-2xl font-semibold md:text-3xl">
             {sections.bio}
           </h2>
-          <div className="flex flex-col gap-5">
-            {bio.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="text-muted-foreground max-w-4xl text-lg leading-[1.8]"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </section>
-      </FadeIn>
+        </FadeIn>
+        <StaggerGroup className="flex flex-col gap-5">
+          {bio.map((paragraph) => (
+            <StaggerItem
+              key={paragraph}
+              nested
+              as="p"
+              className="text-muted-foreground max-w-4xl text-lg leading-[1.8]"
+            >
+              {paragraph}
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </section>
 
-      <FadeIn>
-        <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-6">
+        <FadeIn>
           <div>
             <h2 className="font-heading text-foreground text-2xl font-semibold md:text-3xl">
               {sections.skills}
             </h2>
             <p className="text-muted-foreground mt-2">{sections.skillsLead}</p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {skillCategories.map((category) => (
-              <div
-                key={category.label}
-                className="surface-glass card-glow-subtle border-border/60 flex h-full flex-col gap-4 rounded-2xl border p-6"
-              >
-                <h3 className="text-muted-foreground text-sm font-semibold tracking-wider uppercase">
-                  {category.label}
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {category.skills.map((skill) => (
-                    <Badge key={skill} variant="outline" className="text-xs">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
+        </FadeIn>
+        <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {skillCategories.map((category) => (
+            <StaggerItem
+              key={category.label}
+              nested
+              as="div"
+              className="surface-glass border-border/60 flex h-full flex-col gap-4 rounded-2xl border p-6 shadow-[var(--shadow-card-subtle)]"
+            >
+              <h3 className="text-muted-foreground text-sm font-semibold tracking-wider uppercase">
+                {category.label}
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {category.skills.map((skill) => (
+                  <Badge key={skill} variant="outline" className="text-xs">
+                    {skill}
+                  </Badge>
+                ))}
               </div>
-            ))}
-          </div>
-        </section>
-      </FadeIn>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </section>
 
       <section className="flex flex-col gap-8">
         <FadeIn>
@@ -168,61 +168,61 @@ export default async function AboutPage({ params }: LocalePageProps) {
         <ExperienceTimeline items={experience} />
       </section>
 
-      <FadeIn>
-        <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-6">
+        <FadeIn>
           <h2 className="font-heading text-foreground text-2xl font-semibold md:text-3xl">
             {sections.education}
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {education.map((item) => (
-              <article
-                key={item.degree}
-                className="surface-glass card-glow-subtle border-border/60 flex h-full flex-col gap-1 rounded-xl border p-5"
-              >
-                <p className="text-foreground text-base font-semibold">
-                  {item.degree}
+        </FadeIn>
+        <StaggerGroup className="grid gap-4 sm:grid-cols-2">
+          {education.map((item) => (
+            <StaggerItem
+              key={item.degree}
+              nested
+              as="article"
+              className="surface-glass border-border/60 flex h-full flex-col gap-1 rounded-xl border p-5 shadow-[var(--shadow-card-subtle)]"
+            >
+              <p className="text-foreground text-base font-semibold">
+                {item.degree}
+              </p>
+              <p className="text-muted-foreground">{item.institution}</p>
+              <p className="text-muted-foreground/70 text-sm">{item.detail}</p>
+              {item.description ? (
+                <p className="text-muted-foreground/60 mt-2 text-sm">
+                  {item.description}
                 </p>
-                <p className="text-muted-foreground">{item.institution}</p>
-                <p className="text-muted-foreground/70 text-sm">
-                  {item.detail}
-                </p>
-                {item.description ? (
-                  <p className="text-muted-foreground/60 mt-2 text-sm">
-                    {item.description}
-                  </p>
-                ) : null}
-              </article>
-            ))}
-          </div>
-        </section>
-      </FadeIn>
+              ) : null}
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </section>
 
-      <FadeIn>
-        <section className="flex flex-col gap-6">
+      <section className="flex flex-col gap-6">
+        <FadeIn>
           <h2 className="font-heading text-foreground text-2xl font-semibold md:text-3xl">
             {sections.languages}
           </h2>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {languages.map((item) => (
-              <article
-                key={item.name}
-                className="surface-glass card-glow-subtle border-border/60 flex flex-col gap-1 rounded-xl border px-5 py-4"
-              >
-                <span className="text-foreground text-base font-semibold">
-                  {item.name}
-                </span>
-                <span className="text-muted-foreground text-sm">
-                  {item.level}
-                </span>
-              </article>
-            ))}
-          </div>
-        </section>
-      </FadeIn>
+        </FadeIn>
+        <StaggerGroup className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {languages.map((item) => (
+            <StaggerItem
+              key={item.name}
+              nested
+              as="article"
+              className="surface-glass border-border/60 flex flex-col gap-1 rounded-xl border px-5 py-4 shadow-[var(--shadow-card-subtle)]"
+            >
+              <span className="text-foreground text-base font-semibold">
+                {item.name}
+              </span>
+              <span className="text-muted-foreground text-sm">{item.level}</span>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </section>
 
       <Separator />
 
-      <FadeIn>
+      <FadeIn initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}>
         <section className="flex min-h-[40vh] flex-col items-center justify-center gap-6 py-16 text-center">
           <h2 className="font-heading text-foreground text-3xl font-semibold md:text-4xl">
             {copy("ctaTitle")}
