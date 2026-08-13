@@ -1,0 +1,93 @@
+nome: Yuri Machado Luz
+
+contato:
+  telefone: "+55 (11) 9 4935-9394"
+  email: yurimachadoluz@gmail.com
+  cidade: São Paulo, SP
+  portfolio: yurimachado.dev.br
+  linkedin: linkedin.com/in/yurimachadoluz
+  github: github.com/Yuri-Machado-Luz
+
+sobre: >
+  Desenvolvedor full-stack focado em sistemas web, APIs e automações
+  (React/Next.js, TypeScript, Node.js, Python). Busco atuar como júnior ou pleno
+  em entregas técnicas com prova no portfolio. Background em Psicologia e
+  consultoria de processos como capacidade secundária, não como pilar igual à engenharia.
+
+habilidades:
+  linguagens: "TypeScript, Python, Shell (Bash/Zsh), HTML5/CSS3"
+  frontend: "React, Next.js, Tailwind CSS, Framer Motion, GSAP, Figma"
+  backend: "Node.js, Express, FastAPI, Supabase, NoSQL"
+  dados_automacao: "Pandas, Selenium, Power Automate"
+  devops_infra: "Git, GitHub Actions (CI/CD), Vercel, Cloudflare"
+
+projetos:
+  - nome: Portfólio Pessoal
+    url: yurimachado.dev.br
+    bullets:
+      - >
+        Stack atual: Next.js 16, React 19, TypeScript, Tailwind CSS v4, shadcn/ui,
+        GSAP, i18n (pt-BR/en). Deploy contínuo na Vercel.
+        Código: github.com/Yuri-Machado-Luz/personal--portfolio
+
+  - nome: Sistema de Gestão — Loja de Games & Eletrônicos
+    bullets:
+      - >
+        Backoffice completo para loja de consoles, jogos, computadores e acessórios:
+        catálogo CRUD, controle de estoque, histórico de manutenção e gestão de técnicos.
+        MVP entregue como PWA com Service Worker.
+      - "Stack: Next.js, TypeScript, TailwindCSS v4, shadcn/ui, Supabase (PostgreSQL + auth), TanStack Query, Zustand."
+
+experiencias:
+  - cargo: Freelancer
+    periodo: "Jan 2020 – Presente"
+    bullets:
+      - "Desenvolvimento full-stack: portfólios, sistemas internos, integrações e automações (performance, SEO, CI/CD; deploy adaptado ao cliente)."
+      - "Quando o projeto pede: identidade visual / UI e revisão acadêmica sob encomenda (capacidades à parte da linha de engenharia)."
+
+  - cargo: Consultor de Processos & Atendimento
+    empresa: Clínica Natuee (MEI)
+    periodo: "Dez 2025 – Abr 2026"
+    bullets:
+      - "Diagnóstico e roadmap: mapeamento de processos e sistemas de atendimento; priorização de projetos com escopo e impactos definidos."
+      - "Implementação tecnológica: melhorias em sistemas internos; bot de atendimento com árvore de decisões; migração de plataforma como ponto focal."
+
+  - cargo: Assistente Administrativo — foco em Processos & Automação
+    empresa: IBM (BPO Decision)
+    periodo: "Dez 2024 – Abr 2025"
+    bullets:
+      - "Redesenho de processo: onboarding de funcionários de 7 para 3 dias de ciclo (−57%), abrangendo 1.200 processos/mês."
+      - "Automação Python: arquivamento em Microsoft 365 Cloud; SOPs do processo e dashboard integrado ao sistema de tickets."
+
+  - cargo: Analista de Backoffice
+    empresa: Cielo (BPO Atento Brasil)
+    periodo: "Jul 2021 – Abr 2022"
+    bullets:
+      - "Conformidade regulatória: processamento de recebíveis; ponto focal de Ouvidoria e Jurídico."
+      - "Power Automate: automação de triagem e roteamento de e-mails, reduzindo SLA de tratativa."
+
+  - cargo: Analista de Suporte Técnico
+    empresa: Santander (BPO Atma/Liq)
+    periodo: "Mai 2020 – Fev 2021"
+    bullets:
+      - "Suporte N2: atendimento técnico a usuários internos; manutenção de base de dados e protocolos de segurança da informação em contexto bancário."
+
+formacao:
+  - curso: ADS — Análise e Desenvolvimento de Sistemas
+    instituicao: UNICID
+    periodo: Em andamento (prev. H2/2027)
+
+  - curso: Psicologia (8 semestres concluídos, não finalizado)
+    instituicao: UNINOVE
+    periodo: "2018 – 2022"
+    nota: Transição motivada pelo desenvolvimento paralelo de projetos de software durante a graduação.
+
+idiomas:
+  - idioma: Português
+    nivel: nativo
+  - idioma: Inglês
+    nivel: avançado
+  - idioma: Espanhol
+    nivel: básico
+  - idioma: Francês
+    nivel: básico
