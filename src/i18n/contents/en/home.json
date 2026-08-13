@@ -1,10 +1,19 @@
 {
   "metaTitle": "Portfolio",
   "title": "Yuri Machado Luz",
+  "badge": "Full-stack developer",
   "description": "Web systems, APIs, and automations.",
-  "paragraph": "Independent consultant and developer. Experience at IBM, Cielo, and Santander. Web systems, APIs, and automations.",
-  "primaryAction": "About me",
+  "paragraph": "Independent consultant and developer. Stints at IBM, Cielo, and Santander. Web systems, APIs, and automations.",
+  "primaryAction": "About",
   "secondaryAction": "Projects",
-  "recentPostsHeading": "Recent posts",
-  "viewAllPosts": "View all posts"
+  "featuredHeading": "Featured",
+  "featuredDescription": "Projects, contributions, and tools I built or took part in.",
+  "viewAllFeatured": "View all projects",
+  "recentWritingHeading": "Recent publications",
+  "viewAllPosts": "View publications",
+  "aboutTeaser": {
+    "title": "The person behind the code",
+    "body": "Background, stack, and education: what I built and where I worked.",
+    "cta": "About me"
+  }
 }

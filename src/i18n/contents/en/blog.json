@@ -1,5 +1,7 @@
 {
   "title": "Technical logs",
   "description": "Devlogs, architecture decisions, and project documentation: web systems, APIs, and automations.",
-  "empty": "No posts available yet."
+  "empty": "No posts available yet.",
+  "viewAll": "View all publications",
+  "filterLabel": "Filter:"
 }

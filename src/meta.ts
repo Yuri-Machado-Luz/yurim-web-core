@@ -18,6 +18,8 @@ export const SITE = {
     github: "https://github.com/Yuri-Machado-Luz",
     linkedin: "https://linkedin.com/in/yurimachadoluz",
     email: "yurimachadoluz@gmail.com",
+    phone: "+55 (11) 94935-9394",
+    whatsapp: "5511949359394",
   },
   themeColor: "#050404",
 } as const;

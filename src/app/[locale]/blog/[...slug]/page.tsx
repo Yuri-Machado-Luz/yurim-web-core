@@ -1,4 +1,5 @@
 import { MDXContent } from "@content-collections/mdx/react";
+import { TriangleAlert } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -95,7 +96,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         className="pt-6 md:pt-8"
       />
 
-      <section className="my-4 flex flex-wrap items-center gap-2">
+      <section className="mt-4 flex flex-wrap items-center gap-2">
         {statusKey ? (
           <Badge variant="destructive">{shared(`status.${statusKey}`)}</Badge>
         ) : null}
@@ -109,19 +110,27 @@ export default async function BlogPostPage({ params }: PageProps) {
         ) : null}
       </section>
 
-      <Separator className="mb-6" />
+      <Separator className="my-1" />
 
-      {post.format === "projeto" && post.status === "desatualizado" ? (
-        <Alert className="mb-6">
-          <AlertTitle>{shared(`status.${statusKey}`)}</AlertTitle>
-          <AlertDescription>
+      {post.status === "desatualizado" ? (
+        <Alert
+          variant="destructive"
+          className="border-destructive/40 bg-destructive/10 mb-8 gap-2 px-5 py-4 shadow-[0_0_24px_color-mix(in_srgb,var(--destructive)_18%,transparent)]"
+        >
+          <TriangleAlert className="size-5" aria-hidden />
+          <AlertTitle className="text-destructive text-base font-semibold tracking-wide uppercase">
+            {postCopy("outdatedWarningTitle")}
+          </AlertTitle>
+          <AlertDescription className="text-destructive/90 mt-1 flex flex-col gap-3">
             {outdatedDisclaimer.map((line) => (
-              <p key={line}>{line}</p>
+              <p key={line} className="mb-0!">
+                {line}
+              </p>
             ))}
-            <p>
+            <p className="mb-0!">
               <Link
-                href="/blog/planejamento"
-                className="text-foreground font-medium"
+                href="/blog/dando-um-tempo"
+                className="font-semibold text-white/80 underline-offset-4 hover:underline"
               >
                 {postCopy("outdatedProjectLink")}
               </Link>

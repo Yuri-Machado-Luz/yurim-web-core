@@ -1,13 +1,25 @@
 {
   "title": "Contato",
-  "description": "Envie uma mensagem ou escreva para o e-mail abaixo!",
-  "success": "Mensagem recebida. Responderei em breve.",
+  "lead": "Conte o problema e o prazo. Respondo com próximo passo concreto.",
+  "description": "Conte o problema e o prazo. Respondo com próximo passo concreto.",
+  "infoTitle": "Informações",
+  "emailLabel": "E-mail",
+  "whatsappLabel": "WhatsApp",
+  "locationLabel": "Local",
+  "location": "São Paulo, Brasil",
+  "socialTitle": "Redes",
+  "formTitle": "Mensagem",
+  "whatsappMessage": "Olá, Yuri. Vi o portfólio e quero conversar sobre um projeto.",
+  "success": "Mensagem recebida. Respondo em até dois dias úteis.",
   "error": "Não foi possível enviar a mensagem. Verifique a conexão e tente novamente.",
   "emailFallback": "Ou escreva para",
   "form": {
     "name": "Nome",
     "email": "Email",
     "message": "Mensagem",
+    "namePlaceholder": "Seu nome",
+    "emailPlaceholder": "seu@email.com",
+    "messagePlaceholder": "Descreva brevemente o projeto, o prazo aproximado e como prefere conversar.",
     "submit": "Enviar mensagem"
   }
 }

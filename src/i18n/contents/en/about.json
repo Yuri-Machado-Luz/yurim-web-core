@@ -1,10 +1,10 @@
 {
   "title": "Yuri Machado Luz",
-  "description": "Full-stack Developer · Systems Analyst · São Paulo, Brazil",
+  "description": "Full-Stack Developer · Systems Analyst · São Paulo, Brazil",
   "bio": [
-    "Independent full-stack developer since 2020. I build web systems, APIs, and automations for small businesses and personal projects.",
-    "In 2024–2025 at IBM, I redesigned onboarding and reduced integration time from 7 to 3 days (−57%). I automated bulk archiving with Python and built a KPI dashboard in Excel/VBA.",
-    "In parallel: visual identity, UI/UX prototyping, and technical documentation for NDA-bound clients."
+    "Independent full-stack developer since 2020. I build web systems, APIs, and automations for small businesses and my own products.",
+    "In 2024–2025 at IBM, I redesigned onboarding and cut integration time from 7 to 3 days (−57%). I automated bulk archiving with Python and built a KPI dashboard in Excel/VBA.",
+    "Alongside engineering: visual identity, UI/UX prototyping, and technical documentation for NDA clients."
   ],
   "sections": {
     "bio": "Bio",
@@ -14,6 +14,12 @@
     "education": "Education",
     "languages": "Languages"
   },
-  "ctaTitle": "Let's talk?",
-  "cta": "Contact me"
+  "ctaTitle": "Want to talk?",
+  "cta": "Contact me",
+  "downloads": {
+    "navLabel": "Download resume",
+    "pdf": "Download resume as PDF",
+    "docx": "Download resume as DOCX",
+    "json": "Download resume as JSON"
+  }
 }

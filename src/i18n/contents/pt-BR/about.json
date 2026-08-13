@@ -15,5 +15,11 @@
     "languages": "Idiomas"
   },
   "ctaTitle": "Vamos conversar?",
-  "cta": "Entrar em contato"
+  "cta": "Entrar em contato",
+  "downloads": {
+    "navLabel": "Baixar currículo",
+    "pdf": "Baixar currículo em PDF",
+    "docx": "Baixar currículo em DOCX",
+    "json": "Baixar currículo em JSON"
+  }
 }

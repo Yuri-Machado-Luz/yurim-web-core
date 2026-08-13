@@ -1,9 +1,10 @@
 {
   "backToBlog": "Blog",
   "backToPortfolio": "Portfólio",
+  "outdatedWarningTitle": "Aviso",
   "outdatedProjectDisclaimer": [
-    "Este projeto está desatualizado e será atualizado em breve.",
+    "Este conteúdo está desatualizado e será revisado em breve.",
     "Saiba mais sobre o processo de renovação do portfólio e o que vem por aí no post:"
   ],
-  "outdatedProjectLink": "Dando um tempo — meu processo de autodesenvolvimento."
+  "outdatedProjectLink": "Dando um tempo — meu processo de autodesenvolvimento e mudanças futuras."
 }

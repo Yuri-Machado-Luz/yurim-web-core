@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { BlogFeed } from "@/components/composed/BlogFeed";
 import { PageHeader } from "@/components/composed/PageHeader";
+import { FadeIn } from "@/components/composed/motion/FadeIn";
 import { STATUS_KEY_MAP, type Format } from "@/i18n/types";
 import { listPostMeta } from "@/lib/content";
 import { createPageMetadata, type LocalePageProps } from "@/meta";
@@ -28,33 +29,35 @@ export default async function BlogPage({ params }: LocalePageProps) {
 
   return (
     <>
-      <PageHeader
-        title={blog("title")}
-        description={blog("description")}
-        className="max-w-4xl pt-16 md:pt-20"
-      />
+      <FadeIn>
+        <PageHeader
+          title={blog("title")}
+          description={blog("description")}
+          className="max-w-4xl pt-16 md:pt-20"
+        />
+      </FadeIn>
 
-      <BlogFeed
-        items={posts.map((post) => ({
-          post,
-          labels: {
-            featured: shared("actions.featured"),
-            readPost: shared("actions.readPost"),
-            format: shared(`formats.${post.format}`),
-            status: post.status
-              ? shared(`status.${STATUS_KEY_MAP[post.status]}`)
-              : undefined,
-          },
-        }))}
-        emptyLabel={blog("empty")}
-        tabs={[
-          { value: "all", label: shared("navigation.blog") },
-          ...FORMATS.map((format) => ({
+      <FadeIn delay={0.1}>
+        <BlogFeed
+          items={posts.map((post) => ({
+            post,
+            labels: {
+              readPost: shared("actions.readPost"),
+              format: shared(`formats.${post.format}`),
+              status: post.status
+                ? shared(`status.${STATUS_KEY_MAP[post.status]}`)
+                : undefined,
+            },
+          }))}
+          emptyLabel={blog("empty")}
+          viewAllLabel={blog("viewAll")}
+          filterLabel={blog("filterLabel")}
+          tabs={FORMATS.map((format) => ({
             value: format,
-            label: shared(`formats.${format}`),
-          })),
-        ]}
-      />
+            label: shared(`formatsPlural.${format}`),
+          }))}
+        />
+      </FadeIn>
     </>
   );
 }

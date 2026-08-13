@@ -1,8 +1,9 @@
 {
   "backToBlog": "Blog",
   "backToPortfolio": "Portfolio",
+  "outdatedWarningTitle": "Notice",
   "outdatedProjectDisclaimer": [
-    "This project is outdated and will be updated soon.",
+    "This content is outdated and will be revised soon.",
     "Learn more about the portfolio refresh process and what is coming next in the post:"
   ],
   "outdatedProjectLink": "Taking a break — my self-development process."

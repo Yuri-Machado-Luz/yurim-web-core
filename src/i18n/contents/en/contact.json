@@ -1,13 +1,25 @@
 {
   "title": "Contact",
-  "description": "Send a message or write to the email below!",
-  "success": "Message received. I will respond shortly.",
-  "error": "The message could not be sent. Check the connection and try again.",
+  "lead": "Share the problem and the deadline. I’ll reply with a concrete next step.",
+  "description": "Share the problem and the deadline. I’ll reply with a concrete next step.",
+  "infoTitle": "Details",
+  "emailLabel": "Email",
+  "whatsappLabel": "WhatsApp",
+  "locationLabel": "Location",
+  "location": "São Paulo, Brazil",
+  "socialTitle": "Social",
+  "formTitle": "Message",
+  "whatsappMessage": "Hi Yuri. I saw your portfolio and want to talk about a project.",
+  "success": "Message received. I reply within two business days.",
+  "error": "Could not send the message. Check your connection and try again.",
   "emailFallback": "Or write to",
   "form": {
     "name": "Name",
     "email": "Email",
     "message": "Message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@email.com",
+    "messagePlaceholder": "Briefly describe the project, approximate timeline, and how you prefer to talk.",
     "submit": "Send message"
   }
 }

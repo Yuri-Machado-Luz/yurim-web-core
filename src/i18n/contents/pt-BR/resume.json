@@ -1,5 +1,10 @@
 {
-  "quickFacts": ["Open to Work", "Dev independente desde 2020"],
+  "quickFacts": [
+    "Open to Work",
+    "São Paulo, Brasil",
+    "Dev independente desde 2020",
+    "Sistemas web · APIs · Automações"
+  ],
   "experience": [
     {
       "role": "Freelancer",

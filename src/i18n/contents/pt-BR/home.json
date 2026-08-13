@@ -1,10 +1,19 @@
 {
   "metaTitle": "Portfólio",
   "title": "Yuri Machado Luz",
+  "badge": "Desenvolvedor full-stack",
   "description": "Sistemas web, APIs e automações.",
   "paragraph": "Consultor e desenvolvedor independente. Passagens por IBM, Cielo e Santander. Sistemas web, APIs e automações.",
   "primaryAction": "Sobre",
   "secondaryAction": "Projetos",
-  "recentPostsHeading": "Publicações recentes",
-  "viewAllPosts": "Ver todas as publicações"
+  "featuredHeading": "Destaques",
+  "featuredDescription": "Projetos, contribuições e ferramentas que desenvolvi ou participei.",
+  "viewAllFeatured": "Ver todos os projetos",
+  "recentWritingHeading": "Publicações recentes",
+  "viewAllPosts": "Ver publicações",
+  "aboutTeaser": {
+    "title": "A pessoa por trás do código",
+    "body": "Histórico, stack e formação: o que construí e onde atuei.",
+    "cta": "Sobre mim"
+  }
 }

@@ -1,5 +1,7 @@
 {
   "title": "Registros técnicos",
   "description": "Devlogs, decisões de arquitetura e documentação de projetos: sistemas web, APIs e automações.",
-  "empty": "Nenhuma publicação disponível ainda."
+  "empty": "Nenhuma publicação disponível ainda.",
+  "viewAll": "Ver todas as publicações",
+  "filterLabel": "Filtrar:"
 }

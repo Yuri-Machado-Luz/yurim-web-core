@@ -13,6 +13,12 @@
     "projeto": "Project",
     "planejamento": "Planning"
   },
+  "formatsPlural": {
+    "nota": "Notes",
+    "pensamento": "Thoughts",
+    "projeto": "Projects",
+    "planejamento": "Plans"
+  },
   "status": {
     "active": "Active",
     "outdated": "Outdated",
@@ -25,5 +31,9 @@
     "readPost": "Read post",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "changelog": "Changelog"
   }
 }
