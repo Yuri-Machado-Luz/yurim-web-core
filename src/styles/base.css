@@ -47,4 +47,38 @@
       ),
       linear-gradient(180deg, var(--background) 0%, var(--background) 100%);
   }
+
+  /* Top atmosphere bloom */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24rem;
+    height: 16rem;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--primary) 8%, transparent),
+      transparent
+    );
+    border-radius: 9999px;
+    filter: blur(64px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle grid overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      linear-gradient(to right, #8882 1px, transparent 1px),
+      linear-gradient(to bottom, #8882 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
 }

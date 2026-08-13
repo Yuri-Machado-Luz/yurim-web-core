@@ -38,12 +38,12 @@
   --sidebar-ring: rgba(210, 28, 28, 1);
   --radius: 0.75rem;
 
-  --navbar-height: 5rem;
+  --navbar-height: 4rem;
   --section-gap: 8rem;
   --section-gap-sm: 5rem;
   --container-max: 72rem;
   --prose-width: 72ch;
-  --drawer-top: 5.5rem;
+  --drawer-top: 4.5rem;
   --container-x-base: 1.5rem;
   --container-x-sm: 2.5rem;
   --container-x-md: 4rem;

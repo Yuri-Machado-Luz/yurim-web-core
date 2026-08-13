@@ -1,0 +1,160 @@
+/* Glow, glass, hero rings — ported from OLD portfolio brand language. */
+
+@keyframes ambientGlow {
+  0%,
+  100% {
+    box-shadow: var(--shadow-ambient-min);
+  }
+  50% {
+    box-shadow: var(--shadow-ambient-max);
+  }
+}
+
+@keyframes ambientGlowSubtle {
+  0%,
+  100% {
+    box-shadow: var(--shadow-ambient-subtle-min);
+  }
+  50% {
+    box-shadow: var(--shadow-ambient-subtle-max);
+  }
+}
+
+@keyframes picture-ring-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@layer components {
+  .surface-glass {
+    background: color-mix(in srgb, var(--card) 72%, transparent);
+    border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .card-glow-subtle {
+    animation: ambientGlowSubtle var(--glow-duration-subtle) ease-in-out infinite;
+  }
+
+  .hero-picture-wrap {
+    position: relative;
+    display: inline-flex;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    border-radius: 50%;
+  }
+
+  .hero-picture-wrap [data-slot="avatar"] {
+    position: relative;
+    z-index: var(--z-above);
+    box-shadow: var(--shadow-hero-ring);
+    animation: ambientGlow 4s ease-in-out infinite;
+  }
+
+  .picture-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--primary) 40%, transparent);
+    animation: picture-ring-pulse 2.8s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .picture-ring-b {
+    animation-delay: 1.4s;
+  }
+
+  /* Tech stack marquee (CSS-only; prefers-reduced-motion pauses below) */
+  .tech-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: tech-marquee-scroll 45s linear infinite;
+  }
+
+  .tech-marquee-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .field-label {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: var(--muted-foreground);
+  }
+
+  .surface-tint {
+    border-radius: var(--radius);
+    border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+    background: color-mix(in srgb, var(--secondary) 30%, transparent);
+  }
+
+  .surface-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+    padding: 1rem;
+    transition: background-color var(--duration-base) var(--ease-default);
+  }
+
+  .surface-row:hover {
+    background: color-mix(in srgb, var(--secondary) 80%, transparent);
+  }
+}
+
+@keyframes tech-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-glow-subtle,
+  .hero-picture-wrap [data-slot="avatar"],
+  .picture-ring,
+  [data-slot="button"][data-variant="default"],
+  .tech-marquee-track {
+    animation: none !important;
+  }
+
+  .card-glow-subtle {
+    box-shadow: var(--shadow-card-subtle);
+  }
+
+  .picture-ring {
+    opacity: 0;
+  }
+
+  .tech-marquee-track {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .tech-marquee-group[aria-hidden="true"] {
+    display: none;
+  }
+
+  /* Kill hover scale / lift micro-interactions */
+  [data-slot="button"]:hover,
+  [data-slot="button"]:active,
+  [data-slot="card"]:hover {
+    transform: none !important;
+  }
+}
