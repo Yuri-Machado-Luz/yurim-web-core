@@ -1,4 +1,3 @@
-// components/ui/Logo.tsx
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
@@ -10,12 +9,15 @@ export function Logo({ className }: LogoProps) {
   return (
     <Link
       href="/"
-      className={cn("inline-flex items-center", className)}
+      className={cn(
+        "text-muted-foreground hover:text-foreground focus-visible:ring-ring/40 inline-flex shrink-0 items-center rounded-md outline-none transition-colors duration-300 focus-visible:ring-3",
+        className,
+      )}
       aria-label="Yuri Machado Luz"
     >
       <svg
-        className="h-12 w-auto py-2"
-        viewBox="0 0 468 226"
+        className="h-8 w-auto overflow-visible sm:h-9"
+        viewBox="-8 -8 484 242"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"

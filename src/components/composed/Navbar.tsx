@@ -1,6 +1,7 @@
 import { Logo } from "@/components/composed/Logo";
 import { LangSwitcher } from "@/components/composed/LangSwitcher";
 import { MobileNav } from "@/components/composed/MobileNav";
+import { NavbarChrome } from "@/components/composed/NavbarChrome";
 import { NavLink } from "@/components/composed/NavLink";
 import { cn, breakPoints } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
@@ -37,24 +38,26 @@ export async function Navbar() {
   }));
 
   return (
-    <header className="border-border/60 bg-background/80 sticky top-0 z-40 border-b backdrop-blur-md select-none">
+    <NavbarChrome>
       <div
         className={cn(
-          "mx-auto flex w-full items-center justify-between gap-4 px-6 py-4",
+          "mx-auto flex h-[var(--navbar-height)] w-full items-center justify-between gap-4 px-6",
           "transition-[max-width] duration-300 ease-in-out",
           breakPoints,
         )}
       >
-        <Logo className="text-muted-foreground hover:text-foreground transition-colors duration-300" />
+        <Logo />
 
-        <nav className="hidden items-center gap-x-6 gap-y-1 lg:flex">
+        <nav className="hidden h-full items-center gap-x-5 lg:flex">
           {desktopItems.map((item) => (
             <NavLink key={item.href} item={item} />
           ))}
-          <LangSwitcher />
+          <div className="border-border/50 ml-1 flex h-full items-center border-l pl-4">
+            <LangSwitcher />
+          </div>
         </nav>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex h-full items-center gap-2 lg:hidden">
           <LangSwitcher />
           <MobileNav
             items={mobileItems}
@@ -63,6 +66,6 @@ export async function Navbar() {
           />
         </div>
       </div>
-    </header>
+    </NavbarChrome>
   );
 }

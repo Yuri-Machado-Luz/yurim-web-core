@@ -1,0 +1,57 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
+import { SocialLinks } from "@/components/composed/SocialLinks";
+import { Link, usePathname } from "@/i18n/navigation";
+import { SITE } from "@/meta";
+import { breakPoints, cn } from "@/lib/utils";
+
+export function Footer() {
+  const t = useTranslations("shared.footer");
+  const pathname = usePathname();
+  const year = new Date().getFullYear();
+  const hideSocial = pathname === "/contato";
+
+  return (
+    <footer
+      className={cn(
+        "relative z-[1] border-t border-border/60",
+        "bg-background/80 backdrop-blur-md",
+        "py-8 md:py-10",
+      )}
+    >
+      <div
+        className={cn(
+          "mx-auto flex w-full flex-col items-center justify-between gap-6 px-6",
+          "sm:flex-row sm:items-center",
+          "transition-[max-width] duration-300 ease-out",
+          breakPoints,
+        )}
+      >
+        <p className="text-muted-foreground text-center text-sm sm:text-left">
+          <span className="text-foreground/80 font-medium">{SITE.author}</span>
+          <span className="text-border mx-2" aria-hidden>
+            ·
+          </span>
+          <span>
+            © {year}. {t("rights")}
+          </span>
+        </p>
+
+        <div className="flex flex-wrap items-center justify-center gap-5 sm:justify-end">
+          <Link
+            href="/blog/changelog"
+            className="text-muted-foreground hover:text-foreground text-sm underline-offset-4 transition-colors duration-300 ease-out hover:underline"
+          >
+            {t("changelog")}
+          </Link>
+          <SocialLinks
+            size="sm"
+            className={cn(hideSocial && "hidden")}
+          />
+        </div>
+      </div>
+    </footer>
+  );
+}
