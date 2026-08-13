@@ -33,6 +33,9 @@ export type ContactFormLabels = {
   submit: string;
   success: string;
   error: string;
+  namePlaceholder?: string;
+  emailPlaceholder?: string;
+  messagePlaceholder?: string;
 };
 
 type ContactFormProps = {
@@ -59,7 +62,7 @@ export function ContactForm({ labels, onSubmit }: ContactFormProps) {
   return (
     <Form {...form}>
       <form
-        className="border-border/60 bg-background/50 mx-auto flex w-full max-w-lg flex-col gap-4 rounded-lg border p-6 shadow-md backdrop-blur-md sm:p-8"
+        className="surface-glass card-glow-subtle border-border/60 flex w-full flex-col gap-4 rounded-2xl border p-6 sm:p-8"
         onSubmit={form.handleSubmit(handleSubmit)}
         noValidate
       >
@@ -83,7 +86,12 @@ export function ContactForm({ labels, onSubmit }: ContactFormProps) {
             <FormItem className="pb-2">
               <FormLabel>{labels.name}</FormLabel>
               <FormControl>
-                <Input autoComplete="name" className="w-full" {...field} />
+                <Input
+                  autoComplete="name"
+                  className="w-full"
+                  placeholder={labels.namePlaceholder}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -101,6 +109,7 @@ export function ContactForm({ labels, onSubmit }: ContactFormProps) {
                   type="email"
                   autoComplete="email"
                   className="w-full"
+                  placeholder={labels.emailPlaceholder}
                   {...field}
                 />
               </FormControl>
@@ -116,7 +125,12 @@ export function ContactForm({ labels, onSubmit }: ContactFormProps) {
             <FormItem className="pb-2">
               <FormLabel>{labels.message}</FormLabel>
               <FormControl>
-                <Textarea rows={5} className="w-full" {...field} />
+                <Textarea
+                  rows={5}
+                  className="w-full"
+                  placeholder={labels.messagePlaceholder}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

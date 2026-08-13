@@ -16,13 +16,15 @@ function Card({
         "overflow-hidden rounded-xl py-(--card-spacing) text-sm",
         // #endregion
 
-        // #region Cores, Sombras e Anéis
-        "bg-card text-card-foreground shadow-md",
-        "ring-foreground/5 dark:ring-foreground/10 ring-1",
+        // #region Cores, Sombras e Anéis (glass + glow)
+        "border-border/60 bg-card/55 text-card-foreground backdrop-blur-sm",
+        "shadow-[var(--shadow-card-subtle)] ring-1 ring-foreground/5",
+        "card-glow-subtle",
         // #endregion
 
         // #region Animações e Performance
-        "transition-transform duration-600 ease-in-out will-change-transform",
+        "transition-[transform,box-shadow,border-color] duration-300 ease-out will-change-transform",
+        "hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[var(--shadow-card-hover-subtle)]",
         // #endregion
 
         // #region Variáveis CSS e Estados (Data Attributes)
