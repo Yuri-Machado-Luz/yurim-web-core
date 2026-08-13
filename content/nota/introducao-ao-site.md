@@ -1,7 +1,6 @@
 ---
 title: Introdução ao site
 description: "Decisões de arquitetura que guiam o desenvolvimento do site: layouts, routing, content collections e o porquê de cada escolha."
-format: nota
 draft: false
 status: desatualizado
 pubDate: 2026-06-07

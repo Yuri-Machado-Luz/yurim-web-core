@@ -44,13 +44,14 @@ pnpm test
 
 ## Conteúdo
 
-Posts em `content/{slug}.md`. Classificação via frontmatter `format`: `note`, `thought`, `project`, `planejamento`. Exemplo:
+Posts em `content/{formato}/{slug}.md`. O **formato** vem da pasta (`nota`, `pensamento`, `projeto`, `planejamento`), não do frontmatter. Exemplo:
 
 ```text
-content/introducao-ao-site.md → /blog/introducao-ao-site
+content/planejamento/dando-um-tempo.md → format: planejamento, /blog/dando-um-tempo
+content/projeto/meu-portfolio.md       → format: projeto,       /blog/meu-portfolio
 ```
 
-Frontmatter canônico (ordem): `title`, `description`, `format`, `pubDate`, `draft`, depois opcionais (`updatedAt`, `status`, `order`, `github`, `live`, …).
+Frontmatter canônico: `title`, `description`, `pubDate`, `draft`, depois opcionais (`updatedAt`, `status`, `order`, `github`, `liveLink`, `featured`, …).
 
 ## Ambiente
 

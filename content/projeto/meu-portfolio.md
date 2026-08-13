@@ -1,10 +1,10 @@
 ---
-title: Portfólio
-description: Site editorial em Next.js. Apresentação, projetos, serviços e contato.
-format: projeto
+title: Meu portfólio
+description: Veja o processo de desenvolvimento deste site.
 draft: false
 status: desatualizado
 order: 1
+featured: true
 github: "https://github.com/Yuri-Machado-Luz/personal--portfolio"
 liveLink: "https://www.yurimachado.dev.br"
 ---

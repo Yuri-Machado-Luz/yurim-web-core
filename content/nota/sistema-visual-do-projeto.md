@@ -1,7 +1,6 @@
 ---
 title: Sistema visual do projeto
 description: Tokens CSS com Tailwind v4, paleta de cores, tipografia e componentes semânticos adotados no site.
-format: nota
 draft: false
 status: desatualizado
 pubDate: 2026-06-07

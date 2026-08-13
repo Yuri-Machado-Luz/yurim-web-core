@@ -1,7 +1,6 @@
 ---
 title: Changelog
 description: Histórico de versões do portfólio Next.js (www.yurimachado.dev.br).
-format: planejamento
 draft: false
 status: desatualizado
 ---

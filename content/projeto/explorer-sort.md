@@ -1,8 +1,6 @@
 ---
 title: Explorer Sort
-description: |
-  Contribuição open-source à extensão VS Code Explorer Sort.
-format: projeto
+description: Contribuição open-source à extensão VS Code Explorer Sort.
 draft: false
 status: desatualizado
 order: 3

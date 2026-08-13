@@ -1,7 +1,6 @@
 ---
 title: Migração de Arquitetura
 description: Reflexões sobre a decisão de abandonar Quartz e migrar para sistema próprio. Motivações, desafios técnicos e o que realmente está envolvido nesse processo.
-format: pensamento
 draft: false
 status: desatualizado
 updatedAt: 2026-07-10

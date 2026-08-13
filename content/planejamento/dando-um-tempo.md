@@ -1,7 +1,6 @@
 ---
 title: Dando um tempo
 description: 'A decisão de "dar um tempo" e o que isso significa: planos futuros, reorganização e a minha jornada de autodesenvolvimento.'
-format: planejamento
 draft: false
 featured: true
 pubDate: 2026-07-16
