@@ -32,6 +32,12 @@
     "openMenu": "Abrir menu",
     "closeMenu": "Fechar menu"
   },
+  "contextMenu": {
+    "label": "Menu de navegação",
+    "navigateTo": "Navegar para",
+    "share": "Compartilhar",
+    "linkCopied": "Link copiado!"
+  },
   "footer": {
     "rights": "Todos os direitos reservados.",
     "changelog": "Changelog"

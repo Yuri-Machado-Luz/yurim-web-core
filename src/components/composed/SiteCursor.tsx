@@ -15,10 +15,6 @@ const INTERACTIVE_SELECTOR = [
   "input[type='submit']:not(:disabled)",
   "input[type='button']:not(:disabled)",
   "input[type='reset']:not(:disabled)",
-  ".cursor-pointer",
-].join(",");
-
-const TEXT_SELECTOR = [
   "input[type='text']",
   "input[type='email']",
   "input[type='search']",
@@ -28,6 +24,7 @@ const TEXT_SELECTOR = [
   "input[type='number']",
   "textarea",
   "[contenteditable='true']",
+  ".cursor-pointer",
 ].join(",");
 
 const HOTSPOT_X = 7;
@@ -76,16 +73,13 @@ export function SiteCursor() {
         return;
       }
 
-      const overText = Boolean(el.closest(TEXT_SELECTOR));
       const overDisabled = Boolean(
         el.closest(":disabled, [aria-disabled='true']"),
       );
       const overInteractive =
-        !overText &&
-        !overDisabled &&
-        Boolean(el.closest(INTERACTIVE_SELECTOR));
+        !overDisabled && Boolean(el.closest(INTERACTIVE_SELECTOR));
 
-      root.classList.toggle("is-hidden", overText || overDisabled);
+      root.classList.toggle("is-hidden", overDisabled);
       root.classList.toggle("is-hover", overInteractive);
     };
 

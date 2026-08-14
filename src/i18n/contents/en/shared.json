@@ -32,6 +32,12 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
+  "contextMenu": {
+    "label": "Navigation menu",
+    "navigateTo": "Navigate to",
+    "share": "Share",
+    "linkCopied": "Link copied!"
+  },
   "footer": {
     "rights": "All rights reserved.",
     "changelog": "Changelog"

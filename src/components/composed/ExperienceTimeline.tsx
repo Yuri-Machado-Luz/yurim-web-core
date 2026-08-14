@@ -171,10 +171,7 @@ export function ExperienceTimeline({ items }: ExperienceTimelineProps) {
   }, [items.length]);
 
   useEffect(() => {
-    if (reduceMotion) {
-      setProgress(1);
-      return;
-    }
+    if (reduceMotion) return;
 
     const onScroll = () => {
       if (frameRef.current) return;

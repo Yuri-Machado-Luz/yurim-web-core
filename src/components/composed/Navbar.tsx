@@ -3,24 +3,9 @@ import { LangSwitcher } from "@/components/composed/LangSwitcher";
 import { MobileNav } from "@/components/composed/MobileNav";
 import { NavbarChrome } from "@/components/composed/NavbarChrome";
 import { NavLink } from "@/components/composed/NavLink";
+import { NAV_ITEMS, NAV_ITEMS_MOBILE } from "@/lib/nav-items";
 import { cn, breakPoints } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
-
-const NAV_ITEMS = [
-  { translationKey: "about", href: "/sobre" },
-  { translationKey: "projects", href: "/projetos" },
-  { translationKey: "services", href: "/servicos" },
-  { translationKey: "blog", href: "/blog" },
-  { translationKey: "contact", href: "/contato" },
-] as const;
-
-const NAV_ITEMS_MOBILE = [
-  { translationKey: "blog", href: "/blog" },
-  { translationKey: "about", href: "/sobre" },
-  { translationKey: "projects", href: "/projetos" },
-  { translationKey: "services", href: "/servicos" },
-  { translationKey: "contact", href: "/contato" },
-] as const;
 
 export async function Navbar() {
   const t = await getTranslations("shared");

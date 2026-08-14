@@ -89,18 +89,6 @@ html[data-custom-cursor] * {
   cursor: none !important;
 }
 
-html[data-custom-cursor] input[type="text"],
-html[data-custom-cursor] input[type="email"],
-html[data-custom-cursor] input[type="search"],
-html[data-custom-cursor] input[type="url"],
-html[data-custom-cursor] input[type="tel"],
-html[data-custom-cursor] input[type="password"],
-html[data-custom-cursor] input[type="number"],
-html[data-custom-cursor] textarea,
-html[data-custom-cursor] [contenteditable="true"] {
-  cursor: text !important;
-}
-
 html[data-custom-cursor] :disabled,
 html[data-custom-cursor] [aria-disabled="true"] {
   cursor: not-allowed !important;
