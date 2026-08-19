@@ -16,11 +16,23 @@ jobs:
       issues: write
       pull-requests: write
     steps:
+      - name: Require GH_TOKEN
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "Grave um PAT (classic, scope repo) no secret GH_TOKEN."
+            echo "Conta pessoal não deixa GitHub Actions no bypass do ruleset;"
+            echo "o GITHUB_TOKEN do workflow não consegue dar push em main."
+            exit 1
+          fi
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: true
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -36,5 +48,6 @@ jobs:
 
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: pnpm exec semantic-release
