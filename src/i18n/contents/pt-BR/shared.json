@@ -41,5 +41,12 @@
   "footer": {
     "rights": "Todos os direitos reservados.",
     "changelog": "Changelog"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Página Não Encontrada",
+    "description": "A rota acessada não está disponível.",
+    "backHome": "Voltar para a Página Inicial",
+    "illustrationAlt": "404"
   }
 }

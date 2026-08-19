@@ -41,5 +41,12 @@
   "footer": {
     "rights": "All rights reserved.",
     "changelog": "Changelog"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page Not Found",
+    "description": "The route you accessed is not available.",
+    "backHome": "Back to the Home Page",
+    "illustrationAlt": "404"
   }
 }
