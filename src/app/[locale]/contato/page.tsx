@@ -58,6 +58,8 @@ export default async function ContactPage({ params }: LocalePageProps) {
               <li>
                 <a
                   href={`mailto:${SITE.social.email}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="surface-glass surface-row card-glow-subtle !p-3"
                 >
                   <Mail className="text-muted-foreground size-4 shrink-0" />

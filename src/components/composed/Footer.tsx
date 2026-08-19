@@ -4,8 +4,8 @@ import { useTranslations } from "next-intl";
 
 import { SocialLinks } from "@/components/composed/SocialLinks";
 import { Link, usePathname } from "@/i18n/navigation";
-import { SITE } from "@/meta";
 import { breakPoints, cn } from "@/lib/utils";
+import { SITE } from "@/meta";
 
 export function Footer() {
   const t = useTranslations("shared.footer");
@@ -17,7 +17,7 @@ export function Footer() {
   return (
     <footer
       className={cn(
-        "relative z-[1] border-t border-border/60",
+        "border-border/60 relative z-[1] border-t",
         "bg-background/80 backdrop-blur-md",
         isContact ? "py-4 md:py-5" : "py-8 md:py-10",
       )}
@@ -32,9 +32,8 @@ export function Footer() {
         )}
       >
         <p className="text-muted-foreground text-center text-sm sm:text-left">
-          <span className="text-foreground/80 font-medium">{SITE.author}</span>
-          <span className="text-border mx-2" aria-hidden>
-            ·
+          <span className="text-foreground/90 pr-1 font-medium">
+            {SITE.author}
           </span>
           <span>
             © {year}. {t("rights")}
@@ -48,10 +47,7 @@ export function Footer() {
           >
             {t("changelog")}
           </Link>
-          <SocialLinks
-            size="sm"
-            className={cn(hideSocial && "hidden")}
-          />
+          <SocialLinks size="sm" className={cn(hideSocial && "hidden")} />
         </div>
       </div>
     </footer>

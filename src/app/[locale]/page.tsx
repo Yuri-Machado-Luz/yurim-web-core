@@ -86,14 +86,25 @@ export default async function HomePage({ params }: LocalePageProps) {
                 {home("paragraph")}
               </p>
             </FadeIn>
-            <HeroActions className="flex flex-col items-center gap-3 sm:flex-row sm:items-stretch">
-              <SocialLinks size="4xl" />
-              <Button asChild variant="outline" size="4xl">
-                <Link href="/projetos">{home("secondaryAction")}</Link>
-              </Button>
-              <Button asChild size="4xl">
-                <Link href="/sobre">{home("primaryAction")}</Link>
-              </Button>
+            <HeroActions className="flex flex-row items-center gap-3 sm:flex-row sm:items-stretch">
+              <div className="hidden flex-row gap-3 sm:flex">
+                <SocialLinks size="4xl" className="hidden sm:flex" />
+                <Button asChild variant="outline" size="4xl">
+                  <Link href="/projetos">{home("secondaryAction")}</Link>
+                </Button>
+                <Button asChild size="4xl">
+                  <Link href="/sobre">{home("primaryAction")}</Link>
+                </Button>
+              </div>
+              <div className="flex flex-row gap-3 sm:hidden">
+                <Button asChild size="4xl">
+                  <Link href="/sobre">{home("primaryAction")}</Link>
+                </Button>
+                <Button asChild variant="outline" size="4xl">
+                  <Link href="/projetos">{home("secondaryAction")}</Link>
+                </Button>
+                <SocialLinks size="4xl" className="sm:hidden" />
+              </div>
             </HeroActions>
           </div>
 
