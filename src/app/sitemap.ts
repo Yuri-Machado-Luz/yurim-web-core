@@ -4,14 +4,7 @@ import { routing } from "@/i18n/routing";
 import { listPostMeta } from "@/lib/content";
 import { SITE } from "@/meta";
 
-const STATIC_PATHS = [
-  "/",
-  "/blog",
-  "/projetos",
-  "/servicos",
-  "/sobre",
-  "/contato",
-] as const;
+const STATIC_PATHS = ["/", "/blog", "/projetos", "/sobre", "/contato"] as const;
 
 function localizedUrl(locale: string, path: string) {
   const base = SITE.siteUrl.replace(/\/$/, "");
