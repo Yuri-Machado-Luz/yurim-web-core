@@ -32,7 +32,7 @@ export function PostCard({ post, labels, className }: PostCardProps) {
       className={cn(
         "h-full gap-0 py-4",
         post.featured
-          ? "border-primary/40 bg-muted/60 py-5 data-[size=lg]:py-5 hover:bg-muted/60"
+          ? "border-primary/40 bg-muted/60 hover:bg-muted/60 py-5 data-[size=lg]:py-5"
           : "min-h-44 md:min-h-48",
         className,
       )}
@@ -99,7 +99,7 @@ export function PostCard({ post, labels, className }: PostCardProps) {
     return (
       <Link
         href={post.href}
-        className="block h-full rounded-xl select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+        className="focus-visible:ring-ring/40 block h-full rounded-xl select-none focus-visible:ring-2 focus-visible:outline-none"
       >
         {card}
       </Link>

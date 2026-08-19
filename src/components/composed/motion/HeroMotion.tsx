@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-} from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 
 import {
@@ -82,9 +78,7 @@ export function HeroPhoto({ children, className }: HeroPhotoProps) {
   const reduceMotion = useReducedMotion();
 
   if (reduceMotion) {
-    return (
-      <div className={cn("hidden lg:flex", className)}>{children}</div>
-    );
+    return <div className={cn("hidden lg:flex", className)}>{children}</div>;
   }
 
   return (

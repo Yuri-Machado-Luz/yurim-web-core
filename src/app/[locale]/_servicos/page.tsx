@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/composed/PageHeader";
 import { ServicesList } from "@/components/composed/ServicesList";
-import {
-  createPageMetadata,
-  type LocalePageProps,
-} from "@/meta";
+import { createPageMetadata, type LocalePageProps } from "@/meta";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({

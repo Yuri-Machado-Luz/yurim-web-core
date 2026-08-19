@@ -44,7 +44,9 @@ export function ServiceModal({
         </DialogHeader>
 
         <div className="mt-4">
-          <h4 className="text-foreground text-sm font-medium">{specsHeading}</h4>
+          <h4 className="text-foreground text-sm font-medium">
+            {specsHeading}
+          </h4>
           <ul className="text-muted-foreground mt-2 list-disc space-y-1 pl-5 text-sm">
             {service?.specs.map((spec, i) => (
               <li key={i}>{spec}</li>

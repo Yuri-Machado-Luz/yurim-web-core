@@ -40,7 +40,7 @@ export function LangSwitcher() {
         buttonVariants({ variant: "outline", size: "sm" }),
         // outline defaults to dark:bg-transparent + rounded-4xl; on a dark bar that
         // reads as side-only arcs. Keep sm height (match Contato) with a solid chip.
-        "h-8 gap-1.5 rounded-full border-border bg-secondary px-2.5 font-medium tracking-wide",
+        "border-border bg-secondary h-8 gap-1.5 rounded-full px-2.5 font-medium tracking-wide",
         "hover:bg-muted dark:bg-secondary dark:hover:bg-muted",
       )}
       aria-label={isPt ? "Switch to English" : "Mudar para Português"}

@@ -48,7 +48,7 @@ export function ServicesList({
                 }}
               >
                 <CardHeader className="flex flex-row items-start justify-between gap-3">
-                  <h2 className="text-foreground font-sans text-xl font-semibold transition-colors duration-300 group-hover/card:text-primary">
+                  <h2 className="text-foreground group-hover/card:text-primary font-sans text-xl font-semibold transition-colors duration-300">
                     {item.title}
                   </h2>
                   <ExternalLink

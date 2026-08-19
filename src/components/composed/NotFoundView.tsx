@@ -18,7 +18,7 @@ export function NotFoundView({
   illustrationAlt,
 }: NotFoundViewProps) {
   return (
-    <section className="isolate relative z-[1] flex min-h-[65svh] flex-1 flex-col items-center justify-center overflow-hidden py-24">
+    <section className="relative isolate z-[1] flex min-h-[65svh] flex-1 flex-col items-center justify-center overflow-hidden py-24">
       <img
         src="/not-found/404.svg"
         alt={illustrationAlt}

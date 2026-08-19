@@ -20,10 +20,7 @@ import { createPortal } from "react-dom";
 import { toast } from "sonner";
 
 import { Link } from "@/i18n/navigation";
-import {
-  CONTEXT_NAV_ITEMS,
-  type NavTranslationKey,
-} from "@/lib/nav-items";
+import { CONTEXT_NAV_ITEMS, type NavTranslationKey } from "@/lib/nav-items";
 import { cn } from "@/lib/utils";
 
 const MENU_PADDING = 8;
@@ -146,14 +143,14 @@ export function SiteContextMenu() {
       className={cn(
         "fixed z-[var(--z-overlay)] min-w-52 overflow-hidden rounded-lg p-1",
         "border-border/60 bg-popover/90 text-popover-foreground backdrop-blur-sm",
-        "shadow-[var(--shadow-card-subtle)] ring-1 ring-foreground/5",
+        "ring-foreground/5 shadow-[var(--shadow-card-subtle)] ring-1",
       )}
       style={{
         left: position?.x ?? menu.x,
         top: position?.y ?? menu.y,
       }}
     >
-      <p className="px-2.5 py-1.5 text-xs font-semibold text-muted-foreground">
+      <p className="text-muted-foreground px-2.5 py-1.5 text-xs font-semibold">
         {t("contextMenu.navigateTo")}
       </p>
       {CONTEXT_NAV_ITEMS.map((item) => {
@@ -171,7 +168,7 @@ export function SiteContextMenu() {
           </Link>
         );
       })}
-      <div className="my-1 h-px bg-border/80" role="separator" />
+      <div className="bg-border/80 my-1 h-px" role="separator" />
       <button
         type="button"
         role="menuitem"

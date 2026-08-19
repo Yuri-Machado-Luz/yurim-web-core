@@ -12,6 +12,7 @@ dist
 .vscode
 out
 coverage
+*.tsbuildinfo
 
 # Env & secrets (keep .env.example committed)
 .env
@@ -38,3 +39,5 @@ _docs/
 # Archived legacy sources (portfolio / blog / docs copies)
 _local/
 .mcp.json
+
+*.tsbuildinfo

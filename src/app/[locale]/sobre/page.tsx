@@ -214,7 +214,9 @@ export default async function AboutPage({ params }: LocalePageProps) {
               <span className="text-foreground text-base font-semibold">
                 {item.name}
               </span>
-              <span className="text-muted-foreground text-sm">{item.level}</span>
+              <span className="text-muted-foreground text-sm">
+                {item.level}
+              </span>
             </StaggerItem>
           ))}
         </StaggerGroup>
@@ -222,7 +224,10 @@ export default async function AboutPage({ params }: LocalePageProps) {
 
       <Separator />
 
-      <FadeIn initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}>
+      <FadeIn
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+      >
         <section className="flex min-h-[40vh] flex-col items-center justify-center gap-6 py-16 text-center">
           <h2 className="font-heading text-foreground text-3xl font-semibold md:text-4xl">
             {copy("ctaTitle")}

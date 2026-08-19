@@ -33,7 +33,13 @@ export function StaggerItem({
 
   if (reduceMotion) {
     const Static =
-      as === "li" ? "li" : as === "article" ? "article" : as === "p" ? "p" : "div";
+      as === "li"
+        ? "li"
+        : as === "article"
+          ? "article"
+          : as === "p"
+            ? "p"
+            : "div";
     return <Static className={className}>{children}</Static>;
   }
 

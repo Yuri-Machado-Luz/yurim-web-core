@@ -40,7 +40,8 @@
   }
 
   .card-glow-subtle {
-    animation: ambientGlowSubtle var(--glow-duration-subtle) ease-in-out infinite;
+    animation: ambientGlowSubtle var(--glow-duration-subtle) ease-in-out
+      infinite;
   }
 
   .hero-picture-wrap {
@@ -114,8 +115,8 @@
   }
 
   .stack-drift {
-    animation: stack-drift var(--stack-duration, 16s) ease-in-out var(--stack-delay, 0s)
-      infinite;
+    animation: stack-drift var(--stack-duration, 16s) ease-in-out
+      var(--stack-delay, 0s) infinite;
   }
 }
 

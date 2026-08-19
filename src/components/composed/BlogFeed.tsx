@@ -51,7 +51,7 @@ export function BlogFeed({
             type="button"
             variant="outline"
             size="sm"
-            className="shrink-0 self-start order-2 sm:order-1"
+            className="order-2 shrink-0 self-start sm:order-1"
             onClick={() => setFilter("all")}
           >
             {viewAllLabel}

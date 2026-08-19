@@ -1,7 +1,4 @@
-import {
-  techIcons,
-  type TechIconName,
-} from "@/assets/icons/tech";
+import { techIcons, type TechIconName } from "@/assets/icons/tech";
 import { cn } from "@/lib/utils";
 
 const TECHS: { name: string; icon: TechIconName }[] = [

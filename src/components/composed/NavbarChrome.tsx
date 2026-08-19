@@ -27,15 +27,13 @@ export function NavbarChrome({ children, className }: NavbarChromeProps) {
         "sticky top-0 z-[var(--z-navbar)] w-full",
         // One transform utility at a time (Tailwind source order ≠ className order).
         "transition-transform duration-300 ease-out motion-reduce:transition-none",
-        hidden
-          ? "pointer-events-none -translate-y-full"
-          : "translate-y-0",
+        hidden ? "pointer-events-none -translate-y-full" : "translate-y-0",
         className,
       )}
     >
       <div
         className={cn(
-          "bg-background/80 flex w-full items-center border-b border-border/60",
+          "bg-background/80 border-border/60 flex w-full items-center border-b",
           "backdrop-blur-md select-none",
           "transition-[border-color,box-shadow,background-color] duration-300 ease-out",
           "motion-reduce:transition-none",

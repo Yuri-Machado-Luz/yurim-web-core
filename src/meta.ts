@@ -79,9 +79,7 @@ export function rootMetadata(locale?: string): Metadata {
   const languages: Record<string, string> = {};
   for (const loc of routing.locales) {
     languages[loc] =
-      loc === routing.defaultLocale
-        ? absoluteUrl("/")
-        : absoluteUrl(`/${loc}`);
+      loc === routing.defaultLocale ? absoluteUrl("/") : absoluteUrl(`/${loc}`);
   }
 
   return {
@@ -165,10 +163,7 @@ export function pageMetadata(input: {
     },
     openGraph: {
       type: "website",
-      locale:
-        input.locale === "en"
-          ? "en_US"
-          : SITE.localeOg,
+      locale: input.locale === "en" ? "en_US" : SITE.localeOg,
       url,
       siteName: SITE.name,
       title: `${input.title} · ${SITE.shortName}`,

@@ -6,10 +6,7 @@ import { FadeIn } from "@/components/composed/motion/FadeIn";
 import { StaggerItem } from "@/components/composed/motion/StaggerItem";
 import { STATUS_KEY_MAP, type Format } from "@/i18n/types";
 import { listByFormat } from "@/lib/content";
-import {
-  createPageMetadata,
-  type LocalePageProps,
-} from "@/meta";
+import { createPageMetadata, type LocalePageProps } from "@/meta";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({

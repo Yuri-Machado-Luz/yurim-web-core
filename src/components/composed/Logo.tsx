@@ -10,7 +10,7 @@ export function Logo({ className }: LogoProps) {
     <Link
       href="/"
       className={cn(
-        "text-muted-foreground hover:text-foreground focus-visible:ring-ring/40 inline-flex shrink-0 items-center rounded-md outline-none transition-colors duration-300 focus-visible:ring-3",
+        "text-muted-foreground hover:text-foreground focus-visible:ring-ring/40 inline-flex shrink-0 items-center rounded-md transition-colors duration-300 outline-none focus-visible:ring-3",
         className,
       )}
       aria-label="Yuri Machado Luz"

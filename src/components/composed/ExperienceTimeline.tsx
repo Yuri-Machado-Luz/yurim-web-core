@@ -1,7 +1,13 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 
 import { techIcons, type TechIconName } from "@/assets/icons/tech";
 import {
@@ -36,10 +42,38 @@ const OPPOSITE_STACKS: TechIconName[][] = [
 ];
 
 const STACK_LAYOUT = [
-  { size: "size-12", left: "6%", top: "8%", rot: "-18deg", duration: "14s", delay: "0s" },
-  { size: "size-16", left: "58%", top: "42%", rot: "14deg", duration: "18s", delay: "1.2s" },
-  { size: "size-10", left: "10%", top: "68%", rot: "-10deg", duration: "16s", delay: "2.4s" },
-  { size: "size-10", left: "62%", top: "4%", rot: "20deg", duration: "20s", delay: "0.6s" },
+  {
+    size: "size-12",
+    left: "6%",
+    top: "8%",
+    rot: "-18deg",
+    duration: "14s",
+    delay: "0s",
+  },
+  {
+    size: "size-16",
+    left: "58%",
+    top: "42%",
+    rot: "14deg",
+    duration: "18s",
+    delay: "1.2s",
+  },
+  {
+    size: "size-10",
+    left: "10%",
+    top: "68%",
+    rot: "-10deg",
+    duration: "16s",
+    delay: "2.4s",
+  },
+  {
+    size: "size-10",
+    left: "62%",
+    top: "4%",
+    rot: "20deg",
+    duration: "20s",
+    delay: "0.6s",
+  },
 ] as const;
 
 function clamp(n: number, min: number, max: number) {
@@ -116,10 +150,7 @@ function OppositeStacks({
         return (
           <Svg
             key={name}
-            className={cn(
-              "text-primary absolute stack-drift",
-              layout.size,
-            )}
+            className={cn("text-primary stack-drift absolute", layout.size)}
             style={
               {
                 left: layout.left,

@@ -10,7 +10,11 @@ export type ContentMeta = Omit<FullPost, "mdx" | "content">;
 /** Full post including MDX for detail pages. */
 export type ContentPost = FullPost;
 
-function toMeta({ mdx: _mdx, content: _content, ...meta }: FullPost): ContentMeta {
+function toMeta({
+  mdx: _mdx,
+  content: _content,
+  ...meta
+}: FullPost): ContentMeta {
   return meta;
 }
 
