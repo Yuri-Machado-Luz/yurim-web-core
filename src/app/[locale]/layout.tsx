@@ -5,7 +5,6 @@ import { getMessages } from "next-intl/server";
 
 import { PageShell } from "@/components/composed/PageShell";
 import { SiteContextMenu } from "@/components/composed/SiteContextMenu";
-import { SiteCursor } from "@/components/composed/SiteCursor";
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/i18n/routing";
 import { rootMetadata } from "@/meta";
@@ -41,7 +40,6 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={clientMessages}>
-      <SiteCursor />
       <SiteContextMenu />
       <PageShell>{children}</PageShell>
       <Toaster theme="dark" />
