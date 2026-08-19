@@ -6,19 +6,9 @@ featured: true
 pubDate: 2026-07-16
 ---
 
-> Olhei no espelho — e detestei o que vi.
->
-> __Não era eu quem estava ali.__
->
-> Era um reflexo da minha ambição afobada, da minha ansiedade e da minha pressa.
->
-> Eu estava me cobrando demais, me comparando demais, me exigindo demais.
->
-> _E isso estava me consumindo._
-
 ## O ponto de ruptura
 
-Em meio a crises existenciais e insatisfação constante com o resultado dos meus esforços, me encontrei, aos poucos, em um estado de exaustão mental e emocional. A pressão (que eu mesmo coloquei sobre mim) para mostrar ao mundo minhas capacidades foi, aos poucos, produzindo um efeito bola de neve: quanto mais eu me cobrava, mais eu me sentia incapaz — quanto mais incapaz, mais tentativas de remendar as lacunas e insatisfações, e quanto mais tentativas, mais frustração. Um ciclo vicioso que me levou apenas ao desânimo e à sensação de que nada do que eu fazia chegava ao estado real de "finalizado".
+Em meio a insatisfação constante com o resultado dos meus esforços, me encontrei, aos poucos, em um estado de exaustão. A pressão (que eu mesmo coloquei sobre mim) para mostrar ao mundo minhas capacidades foi, aos poucos, produzindo um efeito bola de neve: quanto mais eu me cobrava, mais eu me sentia incapaz — quanto mais incapaz, mais tentativas de remendar as lacunas e insatisfações, e quanto mais tentativas, mais frustração. Um ciclo vicioso que me levou apenas ao desânimo e à sensação de que nada do que eu fazia chegava ao estado real de "finalizado".
 
 Entretanto, nesse processo, exaustivo e doloroso, eu percebi que estava me afastando da essência que eu gostaria de expressar. Eu estava me perdendo em meio a expectativas, esquecendo de cuidar de mim mesmo e de valorizar minhas conquistas. Foi nesse ponto que decidi que precisava dar um tempo — um tempo para me reconectar comigo mesmo, para refletir sobre minhas prioridades e para redescobrir minha paixão pelo que faço.
 
