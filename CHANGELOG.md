@@ -1,4 +1,4 @@
-# [5.1.0-alpha.1](https://github.com/Yuri-Machado-Luz/yurim-web-core/compare/v5.0.0...v5.1.0-alpha.1) (2026-08-19)
+# [5.1.0](https://github.com/Yuri-Machado-Luz/yurim-web-core/compare/v5.0.0...v5.1.0) (2026-08-19)
 
 
 ### Bug Fixes
