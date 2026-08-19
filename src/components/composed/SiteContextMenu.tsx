@@ -5,7 +5,6 @@ import {
   Briefcase,
   House,
   Mail,
-  Server,
   Share2,
   UserRound,
 } from "lucide-react";
@@ -36,7 +35,6 @@ const NAV_ICONS: Record<
   home: House,
   about: UserRound,
   projects: Briefcase,
-  services: Server,
   blog: BookOpen,
   contact: Mail,
 };
