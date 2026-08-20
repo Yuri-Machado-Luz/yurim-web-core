@@ -1,7 +1,7 @@
 {
   "name": "yurim-web-core",
   "private": true,
-  "version": "5.1.0",
+  "version": "5.1.1-alpha.1",
   "description": "yurimachado.dev.br — portfolio + blog (Next.js)",
   "packageManager": "pnpm@11.18.0",
   "scripts": {
