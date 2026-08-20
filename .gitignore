@@ -32,8 +32,10 @@ Thumbs.db
 # Cursor workspace rules/agents stay on this machine
 .cursor/
 
-# Personal notes for this checkout
-_docs/
+# Personal notes for this checkout (keep selected project docs tracked)
+_docs/*
+!_docs/semantic-release.md
+!_docs/ui-layers.md
 ./docs/
 
 # Archived legacy sources (portfolio / blog / docs copies)
