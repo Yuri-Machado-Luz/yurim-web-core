@@ -2,17 +2,17 @@
 
 import { MenuIcon } from "lucide-react";
 
-import { Logo } from "@/components/composed/Logo";
-import { NavLink } from "@/components/composed/NavLink";
-import { Button } from "@/components/ui/button";
 import {
+  Button,
   Sheet,
   SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@/components/ui";
+
+import { NavLink } from "./NavLink";
 
 type NavItem = {
   href: string;
@@ -40,11 +40,8 @@ export function MobileNav({ items, openLabel, closeLabel }: MobileNavProps) {
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[min(100%,20rem)] gap-0 p-0">
-        <SheetHeader className="border-border/60 flex-row items-center border-b px-5 py-4 pr-14">
+        <SheetHeader className="border-border/60 border-b px-5 py-4 pr-14">
           <SheetTitle className="sr-only">{openLabel}</SheetTitle>
-          <SheetClose asChild>
-            <Logo />
-          </SheetClose>
         </SheetHeader>
         <nav className="flex flex-col gap-1 px-4 py-5">
           {items.map((item) => (
