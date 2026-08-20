@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/Yuri-Machado-Luz/yurim-web-core/compare/v5.1.0...v5.1.1) (2026-08-20)
+
+
+### Bug Fixes
+
+* **shell:** remove logo do drawer mobile ([205302e](https://github.com/Yuri-Machado-Luz/yurim-web-core/commit/205302e5b5ef9853873395b088a4b31826ba22dd))
+
 # [5.1.0](https://github.com/Yuri-Machado-Luz/yurim-web-core/compare/v5.0.0...v5.1.0) (2026-08-19)
 
 
