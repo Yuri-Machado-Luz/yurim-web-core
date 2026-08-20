@@ -3,18 +3,20 @@ import { TriangleAlert } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { PageHeader } from "@/components/composed/PageHeader";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/composed";
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Badge,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
+  Separator,
+} from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { STATUS_KEY_MAP } from "@/i18n/types";

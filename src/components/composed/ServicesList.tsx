@@ -3,7 +3,7 @@
 import { ExternalLink } from "lucide-react";
 import { useState } from "react";
 
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardContent } from "@/components/ui";
 import { ServiceModal } from "./ServiceModal";
 
 type Service = {

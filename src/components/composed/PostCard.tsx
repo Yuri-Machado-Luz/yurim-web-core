@@ -1,14 +1,14 @@
-import { Badge } from "@/components/ui/badge";
 import {
+  Badge,
+  buttonVariants,
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/components/ui/card";
+} from "@/components/ui";
 import { Link } from "@/i18n/navigation";
-import { buttonVariants } from "@/components/ui/button";
 import type { ContentMeta } from "@/lib/content";
 import { cn } from "@/lib/utils";
 

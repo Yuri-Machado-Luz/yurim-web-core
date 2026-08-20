@@ -4,7 +4,7 @@ import {
   ContactForm,
   type ContactFormLabels,
   type ContactFormValues,
-} from "@/components/composed/ContactForm";
+} from "./ContactForm";
 
 type ContactFormSectionProps = {
   labels: ContactFormLabels;

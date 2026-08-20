@@ -3,9 +3,8 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
-import { PageShell } from "@/components/composed/PageShell";
-import { SiteContextMenu } from "@/components/composed/SiteContextMenu";
-import { Toaster } from "@/components/ui/sonner";
+import { PageShell, SiteContextMenu } from "@/components/composed";
+import { Toaster } from "@/components/ui";
 import { routing } from "@/i18n/routing";
 import { rootMetadata } from "@/meta";
 

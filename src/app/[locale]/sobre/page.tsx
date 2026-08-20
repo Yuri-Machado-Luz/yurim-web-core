@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 
-import { ExperienceTimeline } from "@/components/composed/ExperienceTimeline";
-import { ResumeDownloads } from "@/components/composed/ResumeDownloads";
-import { SocialLinks } from "@/components/composed/SocialLinks";
-import { FadeIn } from "@/components/composed/motion/FadeIn";
-import { StaggerGroup } from "@/components/composed/motion/StaggerGroup";
-import { StaggerItem } from "@/components/composed/motion/StaggerItem";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import {
+  ExperienceTimeline,
+  ResumeDownloads,
+  SocialLinks,
+} from "@/components/composed";
+import {
+  FadeIn,
+  StaggerGroup,
+  StaggerItem,
+} from "@/components/composed/motion";
+import { Badge, Button, Separator } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 import { createPageMetadata, type LocalePageProps } from "@/meta";
 import { cn } from "@/lib/utils";

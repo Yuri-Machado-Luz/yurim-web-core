@@ -1,4 +1,4 @@
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui";
 
 export type NotFoundViewProps = {
   code: string;

@@ -1,8 +1,8 @@
-import { Logo } from "@/components/composed/Logo";
-import { LangSwitcher } from "@/components/composed/LangSwitcher";
-import { MobileNav } from "@/components/composed/MobileNav";
-import { NavbarChrome } from "@/components/composed/NavbarChrome";
-import { NavLink } from "@/components/composed/NavLink";
+import { Logo } from "./Logo";
+import { LangSwitcher } from "./LangSwitcher";
+import { MobileNav } from "./MobileNav";
+import { NavbarChrome } from "./NavbarChrome";
+import { NavLink } from "./NavLink";
 import { NAV_ITEMS, NAV_ITEMS_MOBILE } from "@/lib/nav-items";
 import { cn, breakPoints } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";

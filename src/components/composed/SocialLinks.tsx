@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Icon } from "@/components/composed/Icons";
+import { Button } from "@/components/ui";
+
+import { Icon } from "./Icons";
 import { SITE } from "@/meta";
 import { cn } from "@/lib/utils";
 

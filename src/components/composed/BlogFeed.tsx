@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-import { PostCard, type PostCardLabels } from "@/components/composed/PostCard";
-import { StaggerItem } from "@/components/composed/motion/StaggerItem";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { StaggerItem } from "@/components/composed/motion";
+import { Button, Tabs, TabsList, TabsTrigger } from "@/components/ui";
+
+import { PostCard, type PostCardLabels } from "./PostCard";
 import type { Format } from "@/i18n/types";
 import type { ContentMeta } from "@/lib/content";
 import { cn } from "@/lib/utils";

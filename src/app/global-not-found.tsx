@@ -3,7 +3,7 @@ import "@/styles/global.css";
 import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 
-import { NotFoundView } from "@/components/composed/NotFoundView";
+import { NotFoundView } from "@/components/composed";
 import shared from "@/i18n/contents/pt-BR/shared.json";
 import { cn } from "@/lib/utils";
 import { SITE } from "@/meta";

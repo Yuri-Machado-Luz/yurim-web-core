@@ -1,21 +1,16 @@
 import type { Metadata } from "next";
 
-import { FadeIn } from "@/components/composed/motion/FadeIn";
 import {
+  FadeIn,
   HeroActions,
   HeroPhoto,
   HeroTitle,
-} from "@/components/composed/motion/HeroMotion";
-import {
   MotionSection,
   RecentWritingList,
-} from "@/components/composed/motion/RecentWritingList";
-import { StaggerItem } from "@/components/composed/motion/StaggerItem";
-import { ProjectCard } from "@/components/composed/ProjectCard";
-import { SocialLinks } from "@/components/composed/SocialLinks";
-import { TechStack } from "@/components/composed/TechStack";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+  StaggerItem,
+} from "@/components/composed/motion";
+import { ProjectCard, SocialLinks, TechStack } from "@/components/composed";
+import { Avatar, AvatarFallback, AvatarImage, Button } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 import { STATUS_KEY_MAP } from "@/i18n/types";
 import { listByFormat, listPostMeta } from "@/lib/content";

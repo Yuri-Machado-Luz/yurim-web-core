@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
-import { SocialLinks } from "@/components/composed/SocialLinks";
+import { SocialLinks } from "./SocialLinks";
 import { Link, usePathname } from "@/i18n/navigation";
 import { breakPoints, cn } from "@/lib/utils";
 import { SITE } from "@/meta";

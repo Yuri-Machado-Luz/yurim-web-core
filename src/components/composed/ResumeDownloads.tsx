@@ -1,6 +1,6 @@
 import { Download } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 const RESUME_BASE = "/downloads/curriculo-yuri-machado";

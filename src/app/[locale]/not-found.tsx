@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 
-import { NotFoundView } from "@/components/composed/NotFoundView";
+import { NotFoundView } from "@/components/composed";
 import { getPathname } from "@/i18n/navigation";
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/composed/PageHeader";
-import { ServicesList } from "@/components/composed/ServicesList";
+import { PageHeader, ServicesList } from "@/components/composed";
 import { createPageMetadata, type LocalePageProps } from "@/meta";
 import { getTranslations } from "next-intl/server";
 

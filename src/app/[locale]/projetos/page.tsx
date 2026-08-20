@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 
-import { PageHeader } from "@/components/composed/PageHeader";
-import { ProjectCard } from "@/components/composed/ProjectCard";
-import { FadeIn } from "@/components/composed/motion/FadeIn";
-import { StaggerItem } from "@/components/composed/motion/StaggerItem";
+import { PageHeader, ProjectCard } from "@/components/composed";
+import { FadeIn, StaggerItem } from "@/components/composed/motion";
 import { STATUS_KEY_MAP, type Format } from "@/i18n/types";
 import { listByFormat } from "@/lib/content";
 import { createPageMetadata, type LocalePageProps } from "@/meta";

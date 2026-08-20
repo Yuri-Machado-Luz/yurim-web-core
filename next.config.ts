@@ -7,6 +7,9 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  experimental: {
+    optimizePackageImports: ["lucide-react", "motion", "radix-ui"],
+  },
 };
 
 export default withContentCollections(withNextIntl(nextConfig));

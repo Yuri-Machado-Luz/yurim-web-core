@@ -1,11 +1,13 @@
 import { Mail, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 
-import { ContactFormSection } from "@/components/composed/ContactFormSection";
-import { Icon } from "@/components/composed/Icons";
-import { PageHeader } from "@/components/composed/PageHeader";
-import { SocialLinks } from "@/components/composed/SocialLinks";
-import { FadeIn } from "@/components/composed/motion/FadeIn";
+import {
+  ContactFormSection,
+  Icon,
+  PageHeader,
+  SocialLinks,
+} from "@/components/composed";
+import { FadeIn } from "@/components/composed/motion";
 import { createPageMetadata, SITE, type LocalePageProps } from "@/meta";
 import { getTranslations } from "next-intl/server";
 

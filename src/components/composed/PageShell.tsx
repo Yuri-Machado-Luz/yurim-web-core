@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
-import { Footer } from "@/components/composed/Footer";
-import { MainSurface } from "@/components/composed/MainSurface";
-import { Navbar } from "@/components/composed/Navbar";
+import { Footer } from "./Footer";
+import { MainSurface } from "./MainSurface";
+import { Navbar } from "./Navbar";
 
 type PageShellProps = {
   children: ReactNode;

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
-import { BlogFeed } from "@/components/composed/BlogFeed";
-import { PageHeader } from "@/components/composed/PageHeader";
-import { FadeIn } from "@/components/composed/motion/FadeIn";
+import { BlogFeed, PageHeader } from "@/components/composed";
+import { FadeIn } from "@/components/composed/motion";
 import { STATUS_KEY_MAP, type Format } from "@/i18n/types";
 import { listPostMeta } from "@/lib/content";
 import { createPageMetadata, type LocalePageProps } from "@/meta";

@@ -1,14 +1,14 @@
 "use client";
 
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+} from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 
 type Service = {
