@@ -7,7 +7,7 @@ const config = {
   branches: [
     "main",
     {
-      name: "development/v5",
+      name: "development",
       prerelease: "alpha",
     },
   ],

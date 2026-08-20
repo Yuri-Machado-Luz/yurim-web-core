@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [main, development/v5]
+    branches: [main, development]
 
 concurrency:
   group: release-${{ github.ref }}
