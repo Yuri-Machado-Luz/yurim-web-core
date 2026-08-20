@@ -1,29 +1,43 @@
 # yurim-web-core
 
-Site público de [yurimachado.dev.br](https://www.yurimachado.dev.br): portfólio, projetos, serviços, contato e registros técnicos.
+Site unificado de [yurimachado.dev.br](https://www.yurimachado.dev.br): portfólio + blog no mesmo Next.js.
 
 Escopo: sistemas web, APIs e automações.
 
 ## Stack
 
-- Next.js App Router, React 19, TypeScript
-- Tailwind CSS v4, shadcn/ui, Typography
+- Next.js 16 App Router, React 19, TypeScript
+- next-intl (`pt-BR` default, `en`)
 - Content Collections (`@content-collections/*`)
+- Tailwind CSS v4, shadcn/ui (Radix), Motion
+- EmailJS (formulário de contato)
+- semantic-release + GitHub Actions
 - Deploy na Vercel
+- pnpm (`packageManager` no `package.json`)
+
+## Branches
+
+| Branch        | Papel                               |
+| ------------- | ----------------------------------- |
+| `main`        | Estável — tags `vX.Y.Z`             |
+| `development` | Prerelease alpha — `vX.Y.Z-alpha.N` |
+
+Trabalho diário em `development`; fast-forward para `main` quando for soltar estável.
 
 ## Estrutura
 
 ```text
-content/          # posts flat: *.md
+content/{nota|pensamento|projeto|planejamento}/*.md
 content-collections.ts
-src/
-  app/
-  components/
-  config/
-  lib/
-  styles/
+src/app/[locale]/…
+src/components/{ui,composed}/
+src/i18n/{contents,navigation,routing,request}.ts
+src/styles/
+src/meta.ts
+src/lib/
 public/
-  og/
+.github/workflows/{ci,release}.yml
+release.config.mjs
 ```
 
 ## Desenvolvimento
@@ -35,23 +49,44 @@ pnpm dev
 
 ## Scripts
 
-```bash
-pnpm build
-pnpm lint
-pnpm typecheck
-pnpm test
-```
+| Script                              | Uso                                       |
+| ----------------------------------- | ----------------------------------------- |
+| `pnpm dev`                          | Dev server                                |
+| `pnpm build` / `pnpm start`         | Produção                                  |
+| `pnpm lint`                         | ESLint                                    |
+| `pnpm typecheck`                    | Gera content collections + `tsc --noEmit` |
+| `pnpm content:generate`             | Só gera collections                       |
+| `pnpm format` / `pnpm format:check` | Prettier                                  |
+| `pnpm test`                         | Vitest                                    |
+| `pnpm release`                      | semantic-release (local/CI)               |
+| `pnpm ui:add`                       | Adiciona componente shadcn                |
 
 ## Conteúdo
 
-Posts em `content/{formato}/{slug}.md`. O **formato** vem da pasta (`nota`, `pensamento`, `projeto`, `planejamento`), não do frontmatter. Exemplo:
+Formato pela pasta (`nota`, `pensamento`, `projeto`, `planejamento`), não pelo frontmatter. Exemplos:
 
 ```text
-content/planejamento/dando-um-tempo.md → format: planejamento, /blog/dando-um-tempo
-content/projeto/meu-portfolio.md       → format: projeto,       /blog/meu-portfolio
+content/planejamento/dando-um-tempo.md → /blog/dando-um-tempo
+content/projeto/meu-portfolio.md       → /blog/meu-portfolio
 ```
 
 Frontmatter canônico: `title`, `description`, `pubDate`, `draft`, depois opcionais (`updatedAt`, `status`, `order`, `github`, `liveLink`, `featured`, …).
+
+Changelog editorial do site: [`content/planejamento/changelog.md`](content/planejamento/changelog.md) → `/blog/changelog`.
+
+## i18n
+
+- Locales: `pt-BR` (default), `en`
+- `localePrefix: as-needed` (URLs em português sem prefixo; inglês em `/en/...`)
+- Mensagens em `src/i18n/contents/{locale}/`
+
+## Release
+
+Conventional Commits (preset Angular). Detalhes em [`_docs/semantic-release.md`](_docs/semantic-release.md).
+
+- `feat:` → minor · `fix:` → patch · `BREAKING CHANGE:` no rodapé → major
+- `chore:` / `ci:` / `docs:` / `refactor:` → sem bump
+- `CHANGELOG.md` na raiz é **gerado pelo bot**; narrativa humana fica no post `/blog/changelog`
 
 ## Ambiente
 
