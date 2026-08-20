@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "node scripts/generate-content.mjs && tsc --noEmit",
+    "typecheck": "pnpm content:generate && tsc --noEmit",
+    "content:generate": "node scripts/generate-content.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
@@ -21,8 +22,8 @@
     "@hookform/resolvers": "^5.5.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^1.28.0",
-    "motion": "^13.0.0",
+    "lucide-react": "^1.31.0",
+    "motion": "^13.1.0",
     "next": "16.2.9",
     "next-intl": "^4.13.4",
     "radix-ui": "^1.6.7",
@@ -30,10 +31,10 @@
     "react-dom": "19.2.4",
     "react-hook-form": "^7.83.0",
     "rehype-external-links": "^3.0.0",
-    "sonner": "^2.0.7",
+    "sonner": "^2.0.8",
     "tailwind-merge": "^3.6.0",
     "tw-animate-css": "^1.4.0",
-    "zod": "^3.25.76"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@content-collections/core": "0.15.2",
@@ -58,7 +59,7 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "remark-gfm": "^4.0.1",
     "semantic-release": "^25.0.8",
-    "shadcn": "^4.16.0",
+    "shadcn": "^4.16.2",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "vitest": "^4.1.10"
