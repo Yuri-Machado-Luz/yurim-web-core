@@ -1,3 +1,10 @@
+## [5.1.2](https://github.com/Yuri-Machado-Luz/yurim-web-core/compare/v5.1.1...v5.1.2) (2026-08-25)
+
+
+### Bug Fixes
+
+* **seo:** aponta OG/Twitter para PNGs em public/og ([8f63f48](https://github.com/Yuri-Machado-Luz/yurim-web-core/commit/8f63f4864d105ca1af5c781408ff9b6c559d181d))
+
 ## [5.1.1](https://github.com/Yuri-Machado-Luz/yurim-web-core/compare/v5.1.0...v5.1.1) (2026-08-20)
 
 
