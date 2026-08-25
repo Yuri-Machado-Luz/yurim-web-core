@@ -63,7 +63,7 @@ export default async function ContactPage({ params }: LocalePageProps) {
                   href={`mailto:${SITE.social.email}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="surface-glass surface-row card-glow-subtle !p-3"
+                  className="surface-glass surface-row card-glow-subtle p-3!"
                 >
                   <Mail className="text-muted-foreground size-4 shrink-0" />
                   <span className="min-w-0 flex-1">
@@ -81,7 +81,7 @@ export default async function ContactPage({ params }: LocalePageProps) {
                   href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="surface-glass surface-row card-glow-subtle !p-3"
+                  className="surface-glass surface-row card-glow-subtle p-3!"
                 >
                   <Icon
                     name="whatsapp"
@@ -98,7 +98,7 @@ export default async function ContactPage({ params }: LocalePageProps) {
                 </a>
               </li>
               <li>
-                <address className="surface-glass surface-tint card-glow-subtle flex items-center gap-3 !p-3 not-italic">
+                <address className="surface-glass surface-tint card-glow-subtle flex items-center gap-3 p-3! not-italic">
                   <MapPin className="text-muted-foreground size-4 shrink-0" />
                   <span>
                     <span className="field-label block text-xs">

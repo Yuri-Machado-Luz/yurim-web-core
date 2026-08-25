@@ -12,8 +12,8 @@ import {
 } from "@/components/composed/motion";
 import { Badge, Button, Separator } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
-import { createPageMetadata, type LocalePageProps } from "@/meta";
 import { cn } from "@/lib/utils";
+import { createPageMetadata, type LocalePageProps } from "@/meta";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
@@ -89,7 +89,7 @@ export default async function AboutPage({ params }: LocalePageProps) {
         <aside
           className={cn(
             "surface-glass shrink-0 rounded-xl px-5 py-5",
-            "border-border/60 shadow-[var(--shadow-card-subtle)]",
+            "border-border/60 shadow-(--shadow-card-subtle)",
           )}
         >
           <StaggerGroup as="ul" className="flex flex-col gap-2.5">
@@ -147,7 +147,7 @@ export default async function AboutPage({ params }: LocalePageProps) {
               key={category.label}
               nested
               as="div"
-              className="surface-glass border-border/60 flex h-full flex-col gap-4 rounded-2xl border p-6 shadow-[var(--shadow-card-subtle)]"
+              className="surface-glass border-border/60 flex h-full flex-col gap-4 rounded-2xl border p-6 shadow-(--shadow-card-subtle)"
             >
               <h3 className="text-muted-foreground text-sm font-semibold tracking-wider uppercase">
                 {category.label}
@@ -185,7 +185,7 @@ export default async function AboutPage({ params }: LocalePageProps) {
               key={item.degree}
               nested
               as="article"
-              className="surface-glass border-border/60 flex h-full flex-col gap-1 rounded-xl border p-5 shadow-[var(--shadow-card-subtle)]"
+              className="surface-glass border-border/60 flex h-full flex-col gap-1 rounded-xl border p-5 shadow-(--shadow-card-subtle)"
             >
               <p className="text-foreground text-base font-semibold">
                 {item.degree}
@@ -214,7 +214,7 @@ export default async function AboutPage({ params }: LocalePageProps) {
               key={item.name}
               nested
               as="article"
-              className="surface-glass border-border/60 flex flex-col gap-1 rounded-xl border px-5 py-4 shadow-[var(--shadow-card-subtle)]"
+              className="surface-glass border-border/60 flex flex-col gap-1 rounded-xl border px-5 py-4 shadow-(--shadow-card-subtle)"
             >
               <span className="text-foreground text-base font-semibold">
                 {item.name}
