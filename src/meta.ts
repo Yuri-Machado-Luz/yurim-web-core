@@ -31,21 +31,35 @@ export const ASSETS = {
   },
   og: {
     size: {
-      width: 1200,
-      height: 630,
+      width: 1024,
+      height: 537,
     },
     images: {
-      default: {
-        url: "/og/default.svg",
+      portfolio: {
+        url: "/og/portfolio.png",
         alt: SITE.titleDefault,
       },
       blog: {
-        url: "/og/blog.svg",
+        url: "/og/blog.png",
         alt: "Blog",
+      },
+      sobre: {
+        url: "/og/sobre.png",
+        alt: "Sobre",
+      },
+      projetos: {
+        url: "/og/projetos.png",
+        alt: "Projetos",
+      },
+      contato: {
+        url: "/og/contato.png",
+        alt: "Contato",
       },
     },
   },
 } as const;
+
+export type OgKind = keyof typeof ASSETS.og.images;
 
 export const SITE_ICONS = {
   icon: [{ url: ASSETS.favicon.href, type: ASSETS.favicon.type }],
@@ -65,7 +79,7 @@ export const SEO_KEYWORDS = [
 
 export const OG_SIZE = ASSETS.og.size;
 
-export function getOgImage(kind: keyof typeof ASSETS.og.images = "default") {
+export function getOgImage(kind: OgKind = "portfolio") {
   return ASSETS.og.images[kind];
 }
 
@@ -112,10 +126,10 @@ export function rootMetadata(locale?: string): Metadata {
       description: SITE.description,
       images: [
         {
-          url: getOgImage("default").url,
+          url: getOgImage("portfolio").url,
           width: OG_SIZE.width,
           height: OG_SIZE.height,
-          alt: SITE.titleDefault,
+          alt: getOgImage("portfolio").alt,
         },
       ],
     },
@@ -123,7 +137,7 @@ export function rootMetadata(locale?: string): Metadata {
       card: "summary_large_image",
       title: SITE.titleDefault,
       description: SITE.description,
-      images: [getOgImage("default").url],
+      images: [getOgImage("portfolio").url],
     },
     robots: {
       index: true,
@@ -137,9 +151,9 @@ export function pageMetadata(input: {
   description: string;
   path: string;
   locale?: string;
-  og?: "default" | "blog";
+  og?: OgKind;
 }) {
-  const image = getOgImage(input.og ?? "default");
+  const image = getOgImage(input.og ?? "portfolio");
   const routePath =
     input.locale && input.locale !== routing.defaultLocale
       ? `/${input.locale}${input.path}`
@@ -173,7 +187,7 @@ export function pageMetadata(input: {
           url: image.url,
           width: OG_SIZE.width,
           height: OG_SIZE.height,
-          alt: input.title,
+          alt: image.alt,
         },
       ],
     },
@@ -197,7 +211,7 @@ export async function createPageMetadata(
     path: string;
     titleKey?: string;
     descriptionKey?: string;
-    og?: "default" | "blog";
+    og?: OgKind;
   },
 ): Promise<Metadata> {
   const { locale } = await params;

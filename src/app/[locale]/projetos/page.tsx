@@ -10,7 +10,10 @@ import { getTranslations } from "next-intl/server";
 export async function generateMetadata({
   params,
 }: LocalePageProps): Promise<Metadata> {
-  return createPageMetadata(params, "projects", { path: "/projetos" });
+  return createPageMetadata(params, "projects", {
+    path: "/projetos",
+    og: "projetos",
+  });
 }
 
 export default async function ProjectsPage({ params }: LocalePageProps) {

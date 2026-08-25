@@ -23,6 +23,7 @@ export async function generateMetadata({
   return createPageMetadata(params, "home", {
     path: "/",
     titleKey: "metaTitle",
+    og: "portfolio",
   });
 }
 

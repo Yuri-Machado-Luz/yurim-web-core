@@ -15,6 +15,7 @@ export async function generateMetadata({
   params,
 }: LocalePageProps): Promise<Metadata> {
   return createPageMetadata(params, "contact", {
+    og: "contato",
     path: "/contato",
     descriptionKey: "lead",
   });

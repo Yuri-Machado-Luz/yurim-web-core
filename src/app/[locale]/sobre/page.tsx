@@ -19,7 +19,10 @@ import { getTranslations } from "next-intl/server";
 export async function generateMetadata({
   params,
 }: LocalePageProps): Promise<Metadata> {
-  return createPageMetadata(params, "about", { path: "/sobre" });
+  return createPageMetadata(params, "about", {
+    path: "/sobre",
+    og: "sobre",
+  });
 }
 
 export default async function AboutPage({ params }: LocalePageProps) {
